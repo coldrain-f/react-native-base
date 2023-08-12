@@ -11,12 +11,13 @@ type Book = {
 
 type Props = {
   book: Book;
+  onPress(): void;
 };
 
 export default function HomeBookItem(props: Props): React.JSX.Element {
-  const {book} = props;
+  const {book, onPress} = props;
   return (
-    <Pressable onPress={() => console.log(book.id)} my="2">
+    <Pressable onPress={onPress} my="2">
       {({isPressed}) => {
         return (
           <Box
