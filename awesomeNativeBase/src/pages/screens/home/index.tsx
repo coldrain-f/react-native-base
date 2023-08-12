@@ -9,12 +9,10 @@ import {
   Text,
   QuestionIcon,
   createIcon,
-  StatusBar,
 } from 'native-base';
 import HomeBanner from '../../../components/HomeBanner';
 import HomeBookItem from '../../../components/HomeBookItem';
 import type {HomeProps} from '../../navigation';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 type Book = {
   id: number;
@@ -63,7 +61,7 @@ export default function Home({navigation}: HomeProps): React.JSX.Element {
           opacity={0.5}
           py="2"
           flex={1}
-          onPress={() => navigation.navigate('Information')}>
+          onPress={() => navigation.navigate('Configuration')}>
           <Center>
             <CogBoxIcon />
             <Text color="white" fontSize="12">

@@ -7,7 +7,7 @@ export default function Category({
   route,
 }: CategoryProps): React.JSX.Element {
   const {bookTitle} = route.params;
-
+  console.log(navigation);
   return (
     <Box>
       <Center p="5">

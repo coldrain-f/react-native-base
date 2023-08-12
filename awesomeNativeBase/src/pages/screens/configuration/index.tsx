@@ -1,11 +1,11 @@
-import {Box, Center, Heading} from 'native-base';
 import React from 'react';
-import type {InformationProps} from '../../navigation';
+import {Box, Center, Heading} from 'native-base';
+import {ConfigurationProps} from '../../navigation';
 
-export default function Information({
+export default function Configuration({
   navigation,
   route,
-}: InformationProps): React.JSX.Element {
+}: ConfigurationProps): React.JSX.Element {
   console.log(navigation, route);
   return (
     <Box>
