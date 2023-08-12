@@ -4,12 +4,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Home from '../screens/home';
 import Category from '../screens/category';
+import Information from '../screens/information';
 
 type StackParamList = {
   Home: undefined;
   Category: {
     bookTitle: string;
   };
+  Information: undefined;
 };
 
 export type HomeProps = NativeStackScreenProps<StackParamList, 'Home'>;
@@ -26,8 +28,13 @@ export default function Navigation() {
           component={Home}
           options={{
             title: '단어장',
+
             headerTitleStyle: {
               fontWeight: 'bold',
+              color: 'white',
+            },
+            headerStyle: {
+              backgroundColor: '#4F46E5',
             },
           }}
         />
@@ -38,7 +45,27 @@ export default function Navigation() {
             title: '카테고리',
             headerTitleStyle: {
               fontWeight: 'bold',
+              color: 'white',
             },
+            headerStyle: {
+              backgroundColor: '#4F46E5',
+            },
+            headerTintColor: 'white',
+          }}
+        />
+        <Stack.Screen
+          name="Information"
+          component={Information}
+          options={{
+            title: '이용안내',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: 'white',
+            },
+            headerStyle: {
+              backgroundColor: '#4F46E5',
+            },
+            headerTintColor: 'white',
           }}
         />
       </Stack.Navigator>
