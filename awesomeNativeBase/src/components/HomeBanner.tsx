@@ -2,14 +2,27 @@ import React from 'react';
 import {AspectRatio, Box, Image} from 'native-base';
 
 export default function HomeBanner(): React.JSX.Element {
+  const [index, setIndex] = React.useState<number>(0);
+
   const title: string = '일본어 단어 종결자';
+  const backgroundList = [
+    'https://cdn.pixabay.com/photo/2020/01/06/05/29/kimono-4744625_1280.jpg',
+    'https://cdn.pixabay.com/photo/2015/02/15/03/04/japanese-umbrellas-636870_1280.jpg',
+    'https://cdn.pixabay.com/photo/2020/01/31/07/26/chef-4807317_1280.jpg',
+    'https://cdn.pixabay.com/photo/2021/07/05/15/18/senbon-torii-6389421_1280.jpg',
+  ];
+
+  setTimeout(() => {
+    const length = backgroundList.length;
+    setIndex((index + 1) % length);
+  }, 1000 * 30);
 
   return (
     <Box>
       <AspectRatio w="100%" ratio={16 / 9}>
         <Image
           source={{
-            uri: 'https://cdn.pixabay.com/photo/2020/01/06/05/29/kimono-4744625_1280.jpg',
+            uri: backgroundList[index],
           }}
           resizeMode="cover"
           alt="image"
