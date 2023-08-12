@@ -2,7 +2,7 @@ import React from 'react';
 import {AspectRatio, Box, Image} from 'native-base';
 
 export default function HomeBanner(): React.JSX.Element {
-  const title: string = '일본어 단어 학습';
+  const title: string = '일본어 단어 종결자';
 
   return (
     <Box>
