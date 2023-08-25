@@ -1,15 +1,15 @@
-import React from 'react';
-import {AspectRatio, Box, Image} from 'native-base';
+import React from "react";
+import { AspectRatio, Box, Image } from "native-base";
 
 export default function HomeBanner(): React.JSX.Element {
   const [index, setIndex] = React.useState<number>(0);
 
-  const title: string = '일본어 단어 종결자';
+  const title: string = "일본어 단어 종결자";
   const backgroundList = [
-    'https://cdn.pixabay.com/photo/2020/01/06/05/29/kimono-4744625_1280.jpg',
-    'https://cdn.pixabay.com/photo/2015/02/15/03/04/japanese-umbrellas-636870_1280.jpg',
-    'https://cdn.pixabay.com/photo/2020/01/31/07/26/chef-4807317_1280.jpg',
-    'https://cdn.pixabay.com/photo/2021/07/05/15/18/senbon-torii-6389421_1280.jpg',
+    "https://cdn.pixabay.com/photo/2020/01/06/05/29/kimono-4744625_1280.jpg",
+    "https://cdn.pixabay.com/photo/2015/02/15/03/04/japanese-umbrellas-636870_1280.jpg",
+    "https://cdn.pixabay.com/photo/2020/01/31/07/26/chef-4807317_1280.jpg",
+    "https://cdn.pixabay.com/photo/2021/07/05/15/18/senbon-torii-6389421_1280.jpg",
   ];
 
   setTimeout(() => {
@@ -30,14 +30,15 @@ export default function HomeBanner(): React.JSX.Element {
       </AspectRatio>
       <Box
         _text={{
-          color: 'warmGray.50',
-          fontWeight: '700',
-          fontSize: 'xl',
+          color: "warmGray.50",
+          fontWeight: "700",
+          fontSize: "xl",
         }}
         position="absolute"
         bottom="0"
         px="3"
-        py="1.5">
+        py="1.5"
+      >
         {title}
       </Box>
     </Box>

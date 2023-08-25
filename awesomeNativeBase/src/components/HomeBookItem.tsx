@@ -1,5 +1,5 @@
-import React from 'react';
-import {Avatar, Box, HStack, Pressable, Text} from 'native-base';
+import React from "react";
+import { Avatar, Box, HStack, Pressable, Text } from "native-base";
 
 type Book = {
   id: number;
@@ -15,15 +15,15 @@ type Props = {
 };
 
 export default function HomeBookItem(props: Props): React.JSX.Element {
-  const {book, onPress} = props;
+  const { book, onPress } = props;
   return (
     <Pressable onPress={onPress} my="2">
-      {({isPressed}) => {
+      {({ isPressed }) => {
         return (
           <Box
             h={20}
             w="100%"
-            bg={isPressed ? 'coolGray.200' : 'coolGray.100'}
+            bg={isPressed ? "coolGray.200" : "coolGray.100"}
             style={{
               transform: [
                 {
@@ -34,7 +34,8 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
             p="5"
             borderWidth={0}
             borderColor="coolGray.300"
-            shadow={3}>
+            shadow={3}
+          >
             <HStack space={3} justifyContent="space-between">
               <Avatar
                 size="md"
@@ -53,9 +54,10 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 <Text
                   fontSize="xs"
                   _dark={{
-                    color: 'warmGray.50',
+                    color: "warmGray.50",
                   }}
-                  color="coolGray.800">
+                  color="coolGray.800"
+                >
                   {book.wordCount}자
                 </Text>
               </Box>

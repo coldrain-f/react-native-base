@@ -1,58 +1,75 @@
-import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Home from '../screens/home';
-import Configuration from '../screens/configuration';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Home from "../screens/home";
+import Configuration from "../screens/configuration";
 import type {
   BottomTabScreenProps,
   BottomTabNavigationOptions,
-} from '@react-navigation/bottom-tabs';
-import Information from '../screens/information';
+} from "@react-navigation/bottom-tabs";
+import Information from "../screens/information";
+import Icon from "react-native-vector-icons/Ionicons";
 
-type BottomTabParamList = {
+export type BottomTabParamList = {
   Home: undefined;
   Configuration: undefined;
   Information: undefined;
 };
 
-export type HomeProps = BottomTabScreenProps<BottomTabParamList, 'Home'>;
+export type HomeProps = BottomTabScreenProps<BottomTabParamList, "Home">;
 export type InformationProps = BottomTabScreenProps<
   BottomTabParamList,
-  'Information'
+  "Information"
 >;
 export type ConfigurationProps = BottomTabScreenProps<
   BottomTabParamList,
-  'Configuration'
+  "Configuration"
 >;
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 const BasicBottomTabNavigationOprions: BottomTabNavigationOptions = {
   headerTitleStyle: {
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
   },
   headerStyle: {
-    backgroundColor: '#4F46E5',
+    backgroundColor: "#4F46E5",
   },
-  headerTintColor: 'white',
+  headerTintColor: "white",
 };
 
 export default function BottomTabNavigation(): React.JSX.Element {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      screenOptions={{
+      screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: '#4F46E5',
+          backgroundColor: "#4F46E5",
         },
-        tabBarActiveTintColor: 'white',
-      }}>
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: "gray",
+        // Icon Link: https://ionic.io/ionicons/
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName: string = "book-sharp";
+          if (route.name === "Home") {
+            iconName = focused ? "book-sharp" : "book-outline";
+          } else if (route.name === "Information") {
+            iconName = focused
+              ? "information-circle-sharp"
+              : "information-circle-outline";
+          } else if (route.name === "Configuration") {
+            iconName = focused ? "settings-sharp" : "settings-sharp";
+          }
+          return <Icon name={iconName} color={color} size={size} />;
+        },
+      })}
+    >
       <BottomTab.Screen
         name="Home"
         component={Home}
         options={{
           ...BasicBottomTabNavigationOprions,
-          title: '단어장',
+          title: "단어장",
         }}
       />
       <BottomTab.Screen
@@ -60,7 +77,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
         component={Configuration}
         options={{
           ...BasicBottomTabNavigationOprions,
-          title: '설정',
+          title: "설정",
         }}
       />
       <BottomTab.Screen
@@ -68,7 +85,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
         component={Information}
         options={{
           ...BasicBottomTabNavigationOprions,
-          title: '이용 안내',
+          title: "안내",
         }}
       />
     </BottomTab.Navigator>

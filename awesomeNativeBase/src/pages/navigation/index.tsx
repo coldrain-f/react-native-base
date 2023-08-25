@@ -1,22 +1,24 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import BottomTabNavigation from '../bottomNavigation';
-import Category from '../screens/category';
+import React from "react";
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
+import Category from "../screens/category";
 
 type StackParamList = {
-  Home: undefined;
+  // BottomTabNavigation은 이런식으로 설정한다.
+  // BottomTabParamList은 BottomTabNavigation 컴포넌트에서 정의하고 불러왔음.
+  Root: NavigatorScreenParams<BottomTabParamList> | undefined;
   Category: {
     bookTitle: string;
   };
-  Information: undefined;
-  Configuration: undefined;
-  Root: undefined;
 };
 
-export type HomeProps = NativeStackScreenProps<StackParamList, 'Home'>;
-export type CategoryProps = NativeStackScreenProps<StackParamList, 'Category'>;
+export type CategoryProps = NativeStackScreenProps<StackParamList, "Category">;
+export type RootProps = NativeStackScreenProps<StackParamList, "Root">;
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -27,21 +29,21 @@ export default function Navigation() {
         <Stack.Screen
           name="Root"
           component={BottomTabNavigation}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Category"
           component={Category}
           options={{
-            title: '카테고리',
+            title: "카테고리",
             headerTitleStyle: {
-              fontWeight: 'bold',
-              color: 'white',
+              fontWeight: "bold",
+              color: "white",
             },
             headerStyle: {
-              backgroundColor: '#4F46E5',
+              backgroundColor: "#4F46E5",
             },
-            headerTintColor: 'white',
+            headerTintColor: "white",
           }}
         />
       </Stack.Navigator>
