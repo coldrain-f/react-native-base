@@ -9,8 +9,6 @@ import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
 
 type StackParamList = {
-  // BottomTabNavigation은 이런식으로 설정한다.
-  // BottomTabParamList은 BottomTabNavigation 컴포넌트에서 정의하고 불러왔음.
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
   Category: {
     bookTitle: string;

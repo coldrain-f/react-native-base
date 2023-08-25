@@ -13,9 +13,19 @@ export type BottomTabParamList = {
   Home: undefined;
   Configuration: undefined;
   Information: undefined;
+  Category: {
+    bookTitle: string;
+  };
 };
 
+// React-Native navigation Typescript 참고 문서
+// https://joonfluence.tistory.com/568
+
 export type HomeProps = BottomTabScreenProps<BottomTabParamList, "Home">;
+export type CategoryProps = BottomTabScreenProps<
+  BottomTabParamList,
+  "Category"
+>;
 export type InformationProps = BottomTabScreenProps<
   BottomTabParamList,
   "Information"
@@ -48,8 +58,9 @@ export default function BottomTabNavigation(): React.JSX.Element {
         },
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "gray",
-        // Icon Link: https://ionic.io/ionicons/
+
         tabBarIcon: ({ focused, color, size }) => {
+          // Icon Link: https://ionic.io/ionicons/
           let iconName: string = "book-sharp";
           if (route.name === "Home") {
             iconName = focused ? "book-sharp" : "book-outline";

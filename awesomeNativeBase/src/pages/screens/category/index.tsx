@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Heading, Center } from "native-base";
-import { CategoryProps } from "../../navigation";
+import { CategoryProps } from "../../bottomNavigation";
 
 export default function Category({
   navigation,
