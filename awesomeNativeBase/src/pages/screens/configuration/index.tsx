@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Center, Heading} from 'native-base';
-import {ConfigurationProps} from '../../navigation';
+import {ConfigurationProps} from '../../bottomNavigation';
 
 export default function Configuration({
   navigation,

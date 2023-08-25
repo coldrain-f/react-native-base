@@ -1,6 +1,6 @@
 import {Box, Center, Heading} from 'native-base';
 import React from 'react';
-import type {InformationProps} from '../../navigation';
+import {InformationProps} from '../../bottomNavigation';
 
 export default function Information({
   navigation,
