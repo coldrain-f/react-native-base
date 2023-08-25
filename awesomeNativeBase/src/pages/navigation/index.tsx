@@ -4,7 +4,10 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type {
+  NativeStackScreenProps,
+  NativeStackNavigationOptions,
+} from "@react-navigation/native-stack";
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
 
@@ -20,6 +23,17 @@ export type RootProps = NativeStackScreenProps<StackParamList, "Root">;
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
+const BasicNativeStackNavigationOptions: NativeStackNavigationOptions = {
+  headerTitleStyle: {
+    fontWeight: "bold",
+    color: "white",
+  },
+  headerStyle: {
+    backgroundColor: "#4F46E5",
+  },
+  headerTintColor: "white",
+};
+
 export default function Navigation() {
   return (
     <NavigationContainer>
@@ -33,15 +47,8 @@ export default function Navigation() {
           name="Category"
           component={Category}
           options={{
+            ...BasicNativeStackNavigationOptions,
             title: "카테고리",
-            headerTitleStyle: {
-              fontWeight: "bold",
-              color: "white",
-            },
-            headerStyle: {
-              backgroundColor: "#4F46E5",
-            },
-            headerTintColor: "white",
           }}
         />
       </Stack.Navigator>

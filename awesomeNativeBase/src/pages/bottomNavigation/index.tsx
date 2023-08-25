@@ -20,6 +20,7 @@ export type BottomTabParamList = {
 
 // React-Native navigation Typescript 참고 문서
 // https://joonfluence.tistory.com/568
+// https://youngslog.medium.com/%EB%B2%88%EC%97%AD-type-checking-with-typescript-react-navigation-bacbcf901be4
 
 export type HomeProps = BottomTabScreenProps<BottomTabParamList, "Home">;
 export type CategoryProps = BottomTabScreenProps<
