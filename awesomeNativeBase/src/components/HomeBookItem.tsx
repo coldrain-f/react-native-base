@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Box, HStack, Pressable, Text } from "native-base";
+import { Avatar, Box, HStack, VStack, Pressable, Text } from "native-base";
 
 type Book = {
   id: number;
@@ -44,13 +44,13 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 }}
                 alignSelf="center"
               />
-              <Box>
+              <VStack>
                 <Text color="coolGray.700" fontWeight="bold" fontSize="md">
                   {book.title}
                 </Text>
                 <Text color="warmGray.600">{book.subtitle}</Text>
-              </Box>
-              <Box>
+              </VStack>
+              <VStack>
                 <Text
                   fontSize="xs"
                   _dark={{
@@ -60,7 +60,7 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 >
                   {book.wordCount}자
                 </Text>
-              </Box>
+              </VStack>
             </HStack>
           </Box>
         );

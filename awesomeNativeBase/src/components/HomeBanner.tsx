@@ -4,7 +4,6 @@ import { AspectRatio, Box, Image } from "native-base";
 export default function HomeBanner(): React.JSX.Element {
   const [index, setIndex] = React.useState<number>(0);
 
-  const title: string = "일본어 단어 종결자";
   const backgroundList = [
     "https://cdn.pixabay.com/photo/2020/01/06/05/29/kimono-4744625_1280.jpg",
     "https://cdn.pixabay.com/photo/2015/02/15/03/04/japanese-umbrellas-636870_1280.jpg",
@@ -39,7 +38,7 @@ export default function HomeBanner(): React.JSX.Element {
         px="3"
         py="1.5"
       >
-        {title}
+        일본어 단어 종결자
       </Box>
     </Box>
   );
