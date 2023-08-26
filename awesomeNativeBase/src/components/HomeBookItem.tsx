@@ -1,18 +1,11 @@
 import React from "react";
-import { Avatar, Box, HStack, VStack, Pressable, Text } from "native-base";
+import { Avatar, Box, Pressable, Text, Flex } from "native-base";
+import { Book } from "../@types/bookType";
 
-type Book = {
-  id: number;
-  title: string;
-  subtitle: string;
-  wordCount: number;
-  uri: string;
-};
-
-type Props = {
+interface Props {
   book: Book;
   onPress(): void;
-};
+}
 
 export default function HomeBookItem(props: Props): React.JSX.Element {
   const { book, onPress } = props;
@@ -36,21 +29,23 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
             borderColor="coolGray.300"
             shadow={3}
           >
-            <HStack space={3} justifyContent="space-between">
-              <Avatar
-                size="md"
-                source={{
-                  uri: book.uri,
-                }}
-                alignSelf="center"
-              />
-              <VStack>
+            <Flex direction="row">
+              <Box pr="7">
+                <Avatar
+                  size="md"
+                  source={{
+                    uri: book.uri,
+                  }}
+                  alignSelf="center"
+                />
+              </Box>
+              <Box>
                 <Text color="coolGray.700" fontWeight="bold" fontSize="md">
                   {book.title}
                 </Text>
                 <Text color="warmGray.600">{book.subtitle}</Text>
-              </VStack>
-              <VStack>
+              </Box>
+              <Flex flex={1} flexDirection="row" justifyContent="flex-end">
                 <Text
                   fontSize="xs"
                   _dark={{
@@ -60,8 +55,8 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 >
                   {book.wordCount}자
                 </Text>
-              </VStack>
-            </HStack>
+              </Flex>
+            </Flex>
           </Box>
         );
       }}
