@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Heading, Center } from "native-base";
+import { Box, Heading } from "native-base";
 import { CategoryProps } from "../../bottomNavigation";
+import CategoryItem from "../../../components/CategoryItem";
 
 export default function Category({
   navigation,
@@ -9,10 +10,8 @@ export default function Category({
   const { bookTitle } = route.params;
 
   return (
-    <Box>
-      <Center p="5">
-        <Heading size="md">{bookTitle}</Heading>
-      </Center>
+    <Box bg="warmGray.100" flex={1} safeAreaTop width="100%">
+      <CategoryItem onPress={() => {}} />
     </Box>
   );
 }
