@@ -1,6 +1,7 @@
 import React from "react";
 import { Avatar, Box, Pressable, Text, Flex } from "native-base";
 import { Book } from "../@types/bookType";
+import Icon from "react-native-vector-icons/Ionicons";
 
 interface Props {
   book: Book;
@@ -46,15 +47,11 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 <Text color="warmGray.600">{book.subtitle}</Text>
               </Box>
               <Flex flex={1} flexDirection="row" justifyContent="flex-end">
-                <Text
-                  fontSize="xs"
-                  _dark={{
-                    color: "warmGray.50",
-                  }}
-                  color="coolGray.800"
-                >
-                  {book.wordCount}자
-                </Text>
+                <Icon
+                  name="arrow-forward-circle-outline"
+                  color="black"
+                  size={24}
+                />
               </Flex>
             </Flex>
           </Box>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, FlatList, Heading } from "native-base";
+import { Box, FlatList, Heading, View } from "native-base";
 import HomeBanner from "../../../components/HomeBanner";
 import HomeBookItem from "../../../components/HomeBookItem";
 import { HomeProps } from "../../bottomNavigation";
@@ -20,9 +20,11 @@ export default function Home({ navigation }: HomeProps): React.JSX.Element {
   return (
     <Box bg="warmGray.100" flex={1} safeAreaTop width="100%">
       <HomeBanner />
-      <Heading size="md" p="5" pb="1" color="primary.900">
-        모든 단어장
-      </Heading>
+      <View>
+        <Heading size="md" p="5" pb="5" color="primary.900">
+          모든 단어장
+        </Heading>
+      </View>
       <FlatList
         data={books}
         renderItem={({ item }) => (
