@@ -10,6 +10,8 @@ import type {
 } from "@react-navigation/native-stack";
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { Button, useColorMode } from "native-base";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
@@ -28,13 +30,34 @@ const BasicNativeStackNavigationOptions: NativeStackNavigationOptions = {
     fontWeight: "bold",
     color: "white",
   },
-  headerStyle: {
-    backgroundColor: "#4F46E5",
-  },
   headerTintColor: "white",
+  headerRight: () => <BasicHeaderRight />,
+};
+
+const BasicHeaderRight = () => {
+  const { toggleColorMode, colorMode } = useColorMode();
+
+  return (
+    <Button
+      size="sm"
+      mr="2"
+      backgroundColor={colorMode === "light" ? "#4F46E5" : "#0F172A"}
+      onPress={() => {
+        toggleColorMode();
+      }}
+    >
+      <Ionicons
+        name={colorMode === "light" ? "moon" : "sunny"}
+        color="white"
+        size={20}
+      />
+    </Button>
+  );
 };
 
 export default function Navigation() {
+  const { colorMode } = useColorMode();
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -49,6 +72,9 @@ export default function Navigation() {
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "카테고리",
+            headerStyle: {
+              backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+            },
           }}
         />
       </Stack.Navigator>

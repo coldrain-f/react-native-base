@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Box, Pressable, Text, Flex } from "native-base";
+import { Avatar, Box, Pressable, Text, Flex, useColorMode } from "native-base";
 import { Book } from "../@types/bookType";
 import Icon from "react-native-vector-icons/Ionicons";
 
@@ -9,6 +9,8 @@ interface Props {
 }
 
 export default function HomeBookItem(props: Props): React.JSX.Element {
+  const { colorMode } = useColorMode();
+
   const { book, onPress } = props;
   return (
     <Pressable onPress={onPress} my="2">
@@ -29,6 +31,10 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
             borderWidth={0}
             borderColor="coolGray.300"
             shadow={3}
+            _dark={{
+              bg: "#171E2E",
+              borderColor: "coolGray.100",
+            }}
           >
             <Flex direction="row">
               <Box pr="7">
@@ -41,15 +47,22 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 />
               </Box>
               <Box>
-                <Text color="coolGray.700" fontWeight="bold" fontSize="md">
+                <Text
+                  color="coolGray.700"
+                  fontWeight="bold"
+                  fontSize="md"
+                  _dark={{ color: "warmGray.100" }}
+                >
                   {book.title}
                 </Text>
-                <Text color="warmGray.600">{book.subtitle}</Text>
+                <Text color="warmGray.600" _dark={{ color: "warmGray.200" }}>
+                  {book.subtitle}
+                </Text>
               </Box>
               <Flex flex={1} flexDirection="row" justifyContent="flex-end">
                 <Icon
                   name="arrow-forward-circle-outline"
-                  color="black"
+                  color={colorMode === "light" ? "black" : "white"}
                   size={24}
                 />
               </Flex>

@@ -18,10 +18,22 @@ export default function Home({ navigation }: HomeProps): React.JSX.Element {
   }, []);
 
   return (
-    <Box bg="warmGray.100" flex={1} safeAreaTop width="100%">
+    <Box
+      flex={1}
+      safeAreaTop
+      width="100%"
+      _light={{ bg: "warmGray.100" }}
+      _dark={{ bg: "#0F172A" }}
+    >
       <HomeBanner />
       <View>
-        <Heading size="md" p="5" pb="5" color="primary.900">
+        <Heading
+          size="md"
+          p="5"
+          pb="5"
+          _light={{ color: "primary.900" }}
+          _dark={{ color: "white" }}
+        >
           모든 단어장
         </Heading>
       </View>

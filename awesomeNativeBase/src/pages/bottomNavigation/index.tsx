@@ -7,7 +7,8 @@ import type {
   BottomTabNavigationOptions,
 } from "@react-navigation/bottom-tabs";
 import Information from "../screens/information";
-import Icon from "react-native-vector-icons/Ionicons";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { Button, useColorMode } from "native-base";
 
 export type BottomTabParamList = {
   Home: undefined;
@@ -43,25 +44,47 @@ const BasicBottomTabNavigationOprions: BottomTabNavigationOptions = {
     fontWeight: "bold",
     color: "white",
   },
-  headerStyle: {
-    backgroundColor: "#4F46E5",
-  },
   headerTintColor: "white",
+  headerRight: () => <BasicHeaderRight />,
 };
 
+const BasicHeaderRight = () => {
+  const { toggleColorMode, colorMode } = useColorMode();
+
+  return (
+    <Button
+      size="sm"
+      mr="2"
+      backgroundColor={colorMode === "light" ? "#4F46E5" : "#0F172A"}
+      onPress={() => {
+        toggleColorMode();
+      }}
+    >
+      <Ionicons
+        name={colorMode === "light" ? "moon" : "sunny"}
+        color="white"
+        size={20}
+      />
+    </Button>
+  );
+};
+
+// Icon Link: https://ionic.io/ionicons/
+
 export default function BottomTabNavigation(): React.JSX.Element {
+  const { colorMode } = useColorMode();
+
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: "#4F46E5",
+          backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
         },
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "gray",
 
         tabBarIcon: ({ focused, color, size }) => {
-          // Icon Link: https://ionic.io/ionicons/
           let iconName: string = "book-sharp";
           if (route.name === "Home") {
             iconName = focused ? "book-sharp" : "book-outline";
@@ -72,7 +95,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
           } else if (route.name === "Configuration") {
             iconName = focused ? "settings-sharp" : "settings-sharp";
           }
-          return <Icon name={iconName} color={color} size={size} />;
+          return <Ionicons name={iconName} color={color} size={size} />;
         },
       })}
     >
@@ -82,6 +105,9 @@ export default function BottomTabNavigation(): React.JSX.Element {
         options={{
           ...BasicBottomTabNavigationOprions,
           title: "단어장",
+          headerStyle: {
+            backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+          },
         }}
       />
       <BottomTab.Screen
@@ -90,6 +116,9 @@ export default function BottomTabNavigation(): React.JSX.Element {
         options={{
           ...BasicBottomTabNavigationOprions,
           title: "설정",
+          headerStyle: {
+            backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+          },
         }}
       />
       <BottomTab.Screen
@@ -98,6 +127,9 @@ export default function BottomTabNavigation(): React.JSX.Element {
         options={{
           ...BasicBottomTabNavigationOprions,
           title: "안내",
+          headerStyle: {
+            backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+          },
         }}
       />
     </BottomTab.Navigator>
