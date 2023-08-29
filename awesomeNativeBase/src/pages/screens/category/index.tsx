@@ -1,22 +1,97 @@
 import React from "react";
-import { Box, Heading, View } from "native-base";
+import { Box, FlatList, Flex, Progress, Text, View } from "native-base";
 import { CategoryProps } from "../../bottomNavigation";
 import CategoryItem from "../../../components/CategoryItem";
+import type { CategoryType } from "../../../@types/categoryType";
 
 export default function Category({
   navigation,
   route,
 }: CategoryProps): React.JSX.Element {
-  const { bookTitle } = route.params;
+  const { book, categories } = route.params;
 
   return (
-    <Box bg="warmGray.100" flex={1} width="100%" safeAreaTop>
+    <Box
+      bg="warmGray.100"
+      width="100%"
+      flex={1}
+      _dark={{
+        bg: "#0F172A",
+      }}
+      safeAreaTop
+    >
       <View>
-        <Heading size="md" p="5" pb="5" color="primary.900">
-          {bookTitle}
-        </Heading>
+        <View
+          p="5"
+          mb="2"
+          borderBottomWidth={1}
+          borderColor="coolGray.400"
+          bg="coolGray.100"
+          _dark={{ bg: "#171E2E", borderColor: "white" }}
+        >
+          <Text
+            color="primary.900"
+            fontWeight="bold"
+            fontSize="lg"
+            _dark={{ color: "white" }}
+          >
+            {book.title}
+          </Text>
+          <Text
+            color="coolGray.900"
+            fontSize="md"
+            mb="1"
+            _dark={{ color: "coolGray.100" }}
+          >
+            학습 진척도:{" "}
+            {(
+              (categories.reduce((acc, value) => {
+                return acc + value.finishedCount;
+              }, 0) /
+                categories.reduce((acc, value) => {
+                  return acc + value.totalCount;
+                }, 0)) *
+              100
+            ).toFixed(1)}
+            %
+          </Text>
+          <Flex direction="row">
+            <Box w="60%" mt="2">
+              <Progress
+                colorScheme="info"
+                value={
+                  (categories.reduce((acc, value) => {
+                    return acc + value.finishedCount;
+                  }, 0) /
+                    categories.reduce((acc, value) => {
+                      return acc + value.totalCount;
+                    }, 0)) *
+                  100
+                }
+                size="sm"
+              />
+            </Box>
+            <Box w="26%" ml="3">
+              <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
+                {categories.reduce((acc, value) => {
+                  return acc + value.finishedCount;
+                }, 0)}{" "}
+                /{" "}
+                {categories.reduce((acc, value) => {
+                  return acc + value.totalCount;
+                }, 0)}
+                자
+              </Text>
+            </Box>
+          </Flex>
+        </View>
       </View>
-      <CategoryItem onPress={() => {}} />
+      <FlatList
+        data={categories}
+        renderItem={({ item }) => (
+          <CategoryItem category={item} onPress={() => {}} key={item.id} />
+        )}
+      />
     </Box>
   );
 }

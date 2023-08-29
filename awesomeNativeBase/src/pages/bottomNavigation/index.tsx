@@ -8,14 +8,17 @@ import type {
 } from "@react-navigation/bottom-tabs";
 import Information from "../screens/information";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Button, useColorMode } from "native-base";
+import { Button, Flex, useColorMode } from "native-base";
+import type { Book } from "../../@types/bookType";
+import type { CategoryType } from "../../@types/categoryType";
 
 export type BottomTabParamList = {
   Home: undefined;
   Configuration: undefined;
   Information: undefined;
   Category: {
-    bookTitle: string;
+    book: Book;
+    categories: CategoryType[];
   };
 };
 
@@ -52,20 +55,22 @@ const BasicHeaderRight = () => {
   const { toggleColorMode, colorMode } = useColorMode();
 
   return (
-    <Button
-      size="sm"
-      mr="2"
-      backgroundColor={colorMode === "light" ? "#4F46E5" : "#0F172A"}
-      onPress={() => {
-        toggleColorMode();
-      }}
-    >
-      <Ionicons
-        name={colorMode === "light" ? "moon" : "sunny"}
-        color="white"
-        size={20}
-      />
-    </Button>
+    <Flex direction="row">
+      <Button
+        size="sm"
+        mr="3"
+        backgroundColor={colorMode === "light" ? "#4F46E5" : "#0F172A"}
+        onPress={() => {
+          toggleColorMode();
+        }}
+      >
+        <Ionicons
+          name={colorMode === "light" ? "moon" : "sunny"}
+          color="white"
+          size={20}
+        />
+      </Button>
+    </Flex>
   );
 };
 

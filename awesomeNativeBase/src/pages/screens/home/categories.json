@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "subject": "초등학교 1학년 한자",
+    "learningStatus": "Finished",
+    "finishedCount": 80,
+    "totalCount": 80
+  },
+  {
+    "id": 2,
+    "subject": "초등학교 2학년 한자",
+    "learningStatus": "Ongoing",
+    "finishedCount": 127,
+    "totalCount": 160
+  },
+  {
+    "id": 3,
+    "subject": "초등학교 3학년 한자",
+    "learningStatus": "Ongoing",
+    "finishedCount": 0,
+    "totalCount": 200
+  },
+  {
+    "id": 4,
+    "subject": "초등학교 4학년 한자",
+    "learningStatus": "Ongoing",
+    "finishedCount": 0,
+    "totalCount": 202
+  },
+  {
+    "id": 5,
+    "subject": "초등학교 5학년 한자",
+    "learningStatus": "Ongoing",
+    "finishedCount": 0,
+    "totalCount": 193
+  },
+  {
+    "id": 6,
+    "subject": "초등학교 6학년 한자",
+    "learningStatus": "Ongoing",
+    "finishedCount": 0,
+    "totalCount": 191
+  }
+]

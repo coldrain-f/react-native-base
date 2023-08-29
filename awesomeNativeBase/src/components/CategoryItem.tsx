@@ -1,13 +1,24 @@
 import React from "react";
-import { Progress, Box, Pressable, Text, Flex, Badge } from "native-base";
+import {
+  Progress,
+  Box,
+  Pressable,
+  Text,
+  Flex,
+  useColorMode,
+} from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
+import { CategoryType } from "../@types/categoryType";
 
 interface Props {
+  category: CategoryType;
   onPress(): void;
 }
 
 export default function CategoryItem(props: Props): React.JSX.Element {
-  const { onPress } = props;
+  const { category, onPress } = props;
+  const { colorMode } = useColorMode();
+
   return (
     <Pressable my="2" onPress={onPress}>
       {({ isPressed }) => {
@@ -27,30 +38,61 @@ export default function CategoryItem(props: Props): React.JSX.Element {
             borderWidth={0}
             borderColor="coolGray.300"
             shadow={3}
+            _dark={{ bg: "#171E2E" }}
           >
             <Flex direction="row">
               <Box>
-                <Text color="coolGray.700" fontWeight="bold" fontSize="md">
-                  초등학교 1학년 한자
+                <Text
+                  color="coolGray.700"
+                  fontWeight="bold"
+                  fontSize="md"
+                  _dark={{
+                    color: "warmGray.100",
+                  }}
+                >
+                  {category.subject}
                 </Text>
-                <Text color="secondary.700">학습 진행중</Text>
+                <Text
+                  color={
+                    category.learningStatus === "Ongoing"
+                      ? "secondary.700"
+                      : "primary.700"
+                  }
+                  _dark={{
+                    color:
+                      category.learningStatus === "Ongoing"
+                        ? "secondary.200"
+                        : "primary.200",
+                  }}
+                >
+                  {category.learningStatus === "Ongoing"
+                    ? "학습 진행중"
+                    : "학습 완료"}
+                </Text>
                 <Flex direction="row">
-                  <Box w="70%" mt="2">
+                  <Box w="64%" mt="2">
                     <Progress
-                      colorScheme="primary"
-                      value={(50 / 80) * 100}
-                      size="md"
+                      colorScheme="info"
+                      value={
+                        (category.finishedCount / category.totalCount) * 100
+                      }
+                      size="sm"
                     />
                   </Box>
-                  <Box ml="3">
-                    <Text color="coolGray.700">50 / 80자</Text>
+                  <Box w="26%" ml="3">
+                    <Text
+                      color="coolGray.700"
+                      _dark={{ color: "coolGray.100" }}
+                    >
+                      {category.finishedCount} / {category.totalCount}자
+                    </Text>
                   </Box>
                 </Flex>
               </Box>
               <Flex flex={1} direction="row" justifyContent="flex-end">
                 <Icon
                   name="arrow-forward-circle-outline"
-                  color="black"
+                  color={colorMode === "light" ? "black" : "white"}
                   size={24}
                 />
               </Flex>

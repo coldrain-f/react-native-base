@@ -11,12 +11,15 @@ import type {
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Button, useColorMode } from "native-base";
+import { Button, Flex, useColorMode } from "native-base";
+import type { Book } from "../../@types/bookType";
+import type { CategoryType } from "../../@types/categoryType";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
   Category: {
-    bookTitle: string;
+    book: Book;
+    categories: CategoryType[];
   };
 };
 
@@ -31,28 +34,6 @@ const BasicNativeStackNavigationOptions: NativeStackNavigationOptions = {
     color: "white",
   },
   headerTintColor: "white",
-  headerRight: () => <BasicHeaderRight />,
-};
-
-const BasicHeaderRight = () => {
-  const { toggleColorMode, colorMode } = useColorMode();
-
-  return (
-    <Button
-      size="sm"
-      mr="2"
-      backgroundColor={colorMode === "light" ? "#4F46E5" : "#0F172A"}
-      onPress={() => {
-        toggleColorMode();
-      }}
-    >
-      <Ionicons
-        name={colorMode === "light" ? "moon" : "sunny"}
-        color="white"
-        size={20}
-      />
-    </Button>
-  );
 };
 
 export default function Navigation() {
