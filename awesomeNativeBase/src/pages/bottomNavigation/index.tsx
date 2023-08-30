@@ -18,7 +18,6 @@ export type BottomTabParamList = {
   Information: undefined;
   Category: {
     book: Book;
-    categories: CategoryType[];
   };
 };
 

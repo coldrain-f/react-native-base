@@ -19,7 +19,6 @@ type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
   Category: {
     book: Book;
-    categories: CategoryType[];
   };
 };
 

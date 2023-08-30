@@ -2,27 +2,19 @@ import React from "react";
 import { Box, FlatList, Heading, View } from "native-base";
 import HomeBanner from "../../../components/HomeBanner";
 import HomeBookItem from "../../../components/HomeBookItem";
-import { HomeProps } from "../../bottomNavigation";
+import type { HomeProps } from "../../bottomNavigation";
 import type { Book } from "../../../@types/bookType";
 import type { CategoryType } from "../../../@types/categoryType";
 
 export default function Home({ navigation }: HomeProps): React.JSX.Element {
   const [books, setBooks] = React.useState<Book[]>([]);
-  const [categories, setCategories] = React.useState<CategoryType[]>([]);
 
-  const fetchData = (): Book[] => {
+  const fetchBooks = (): Book[] => {
     return require("./books");
   };
 
-  const fetchCategories = (): CategoryType[] => {
-    return require("./categories");
-  };
-
   React.useEffect((): void => {
-    const data: Book[] = fetchData();
-    const categories = fetchCategories();
-    setBooks(data);
-    setCategories(categories);
+    setBooks(fetchBooks());
   }, []);
 
   return (
@@ -47,16 +39,15 @@ export default function Home({ navigation }: HomeProps): React.JSX.Element {
       </View>
       <FlatList
         data={books}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <HomeBookItem
             book={item}
             onPress={() => {
               navigation.navigate("Category", {
                 book: item,
-                categories: categories,
               });
             }}
-            key={item.id}
           />
         )}
       />

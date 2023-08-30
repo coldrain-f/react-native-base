@@ -25,7 +25,7 @@ export default function HomeBanner(): React.JSX.Element {
         <Image
           source={{
             // uri: backgroundList[index],
-            uri: colorMode === "light" ? backgroundList[1] : backgroundList[5],
+            uri: colorMode === "light" ? backgroundList[1] : backgroundList[0],
           }}
           resizeMode="cover"
           alt="image"

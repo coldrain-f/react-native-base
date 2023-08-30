@@ -19,6 +19,10 @@ export default function CategoryItem(props: Props): React.JSX.Element {
   const { category, onPress } = props;
   const { colorMode } = useColorMode();
 
+  React.useEffect(() => {
+    console.log("Render categoryItem !", category.id);
+  }, []);
+
   return (
     <Pressable my="2" onPress={onPress}>
       {({ isPressed }) => {
