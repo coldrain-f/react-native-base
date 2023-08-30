@@ -11,7 +11,7 @@ import type {
 } from "@react-navigation/native-stack";
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
-
+import Word from "../screens/word";
 import { useColorMode } from "native-base";
 import type { Book } from "../../@types/bookType";
 
@@ -20,6 +20,7 @@ type StackParamList = {
   Category: {
     book: Book;
   };
+  Word: undefined;
 };
 
 // ScreenProps
@@ -56,6 +57,17 @@ export default function Navigation() {
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "카테고리",
+            headerStyle: {
+              backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Word"
+          component={Word}
+          options={{
+            ...BasicNativeStackNavigationOptions,
+            title: "단어",
             headerStyle: {
               backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
             },

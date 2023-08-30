@@ -9,17 +9,25 @@ import {
 } from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
 import { CategoryType } from "../@types/categoryType";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "../pages/navigation";
 
 interface Props {
   category: CategoryType;
 }
 
 export default function CategoryItem(props: Props): React.JSX.Element {
+  const navigation = useNavigation<StackNavigationProp>();
   const { category } = props;
   const { colorMode } = useColorMode();
 
   return (
-    <Pressable my="2" onPress={() => {}}>
+    <Pressable
+      my="2"
+      onPress={() => {
+        navigation.navigate("Word");
+      }}
+    >
       {({ isPressed }) => {
         return (
           <Box
