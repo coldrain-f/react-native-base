@@ -37,13 +37,15 @@ export default function Home({ navigation }: HomeProps): React.JSX.Element {
         </Heading>
       </View>
       <FlatList
-        data={books}
         keyExtractor={(item) => item.id.toString()}
+        data={books}
         renderItem={({ item }) => (
           <View>
             <HomeBookItem book={item} />
           </View>
         )}
+        onRefresh={() => console.log("refreshing")}
+        refreshing={false}
       />
     </Box>
   );

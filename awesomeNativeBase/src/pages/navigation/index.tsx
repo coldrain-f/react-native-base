@@ -22,6 +22,7 @@ type StackParamList = {
   };
 };
 
+// ScreenProps
 export type CategoryProps = NativeStackScreenProps<StackParamList, "Category">;
 export type RootProps = NativeStackScreenProps<StackParamList, "Root">;
 

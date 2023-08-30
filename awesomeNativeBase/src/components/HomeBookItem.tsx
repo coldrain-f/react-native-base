@@ -3,12 +3,10 @@ import { Avatar, Box, Pressable, Text, Flex, useColorMode } from "native-base";
 import { Book } from "../@types/bookType";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import { HomeProps } from "../pages/bottomNavigation";
 import { StackNavigationProp } from "../pages/navigation";
 
 interface Props {
   book: Book;
-  // onPress(): void;
 }
 
 export default function HomeBookItem(props: Props): React.JSX.Element {

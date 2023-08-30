@@ -2,7 +2,6 @@ import React from "react";
 import { AspectRatio, Box, Image, useColorMode } from "native-base";
 
 export default function HomeBanner(): React.JSX.Element {
-  const [index, setIndex] = React.useState<number>(0);
   const { colorMode } = useColorMode();
 
   const backgroundList = [
@@ -14,17 +13,11 @@ export default function HomeBanner(): React.JSX.Element {
     "https://cdn.pixabay.com/photo/2019/05/22/14/51/skull-4221695_1280.jpg",
   ];
 
-  // setTimeout(() => {
-  //   const length = backgroundList.length;
-  //   setIndex((index + 1) % length);
-  // }, 1000 * 30);
-
   return (
     <Box>
       <AspectRatio w="100%" ratio={16 / 9}>
         <Image
           source={{
-            // uri: backgroundList[index],
             uri: colorMode === "light" ? backgroundList[1] : backgroundList[0],
           }}
           resizeMode="cover"

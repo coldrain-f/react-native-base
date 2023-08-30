@@ -9,17 +9,16 @@ import type {
 import Information from "../screens/information";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Button, Flex, useColorMode } from "native-base";
-import type { Book } from "../../@types/bookType";
+
+/**
+ * Icon Link: https://ionic.io/ionicons/
+ */
 
 export type BottomTabParamList = {
   Home: undefined;
   Configuration: undefined;
   Information: undefined;
 };
-
-// React-Native navigation Typescript 참고 문서
-// https://joonfluence.tistory.com/568
-// https://youngslog.medium.com/%EB%B2%88%EC%97%AD-type-checking-with-typescript-react-navigation-bacbcf901be4
 
 export type HomeProps = BottomTabScreenProps<BottomTabParamList, "Home">;
 export type InformationProps = BottomTabScreenProps<
@@ -64,8 +63,6 @@ const BasicHeaderRight = () => {
     </Flex>
   );
 };
-
-// Icon Link: https://ionic.io/ionicons/
 
 export default function BottomTabNavigation(): React.JSX.Element {
   const { colorMode } = useColorMode();
