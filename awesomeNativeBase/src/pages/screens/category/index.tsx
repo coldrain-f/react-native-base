@@ -1,5 +1,15 @@
 import React from "react";
-import { Box, FlatList, Flex, Progress, Text, View } from "native-base";
+import {
+  Box,
+  FlatList,
+  Flex,
+  Heading,
+  Progress,
+  Spinner,
+  Text,
+  View,
+  HStack,
+} from "native-base";
 import CategoryItem from "../../../components/CategoryItem";
 import type { CategoryType } from "../../../@types/categoryType";
 import type { CategoryProps } from "../../navigation";
@@ -58,6 +68,7 @@ export default function Category({
   const { book } = route.params;
 
   const [categories, setCategories] = React.useState<CategoryType[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const fetchCategories = (): CategoryType[] => {
     return require("./categories");
@@ -65,24 +76,37 @@ export default function Category({
 
   React.useEffect((): void => {
     setCategories(fetchCategories());
+    setIsLoading(false);
   }, []);
 
   return (
-    <Box
+    <View
       bg="warmGray.100"
       width="100%"
       flex={1}
       _dark={{
         bg: "#0F172A",
       }}
-      safeAreaTop
     >
-      <CategoryItemListHeader book={book} />
-      <FlatList
-        keyExtractor={(item) => item.id.toString()}
-        data={categories}
-        renderItem={({ item }) => <CategoryItem category={item} />}
-      />
-    </Box>
+      {isLoading ? (
+        <HStack space={2} justifyContent="center" alignItems="center" h="100%">
+          <Spinner accessibilityLabel="Loading posts" />
+          <Heading color="primary.500" fontSize="md">
+            Loading
+          </Heading>
+        </HStack>
+      ) : (
+        <View>
+          <CategoryItemListHeader book={book} />
+          <FlatList
+            keyExtractor={(item) => item.id.toString()}
+            onRefresh={() => {}}
+            refreshing={false}
+            data={categories}
+            renderItem={({ item }) => <CategoryItem category={item} />}
+          />
+        </View>
+      )}
+    </View>
   );
 }
