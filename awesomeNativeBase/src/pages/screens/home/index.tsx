@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, HStack, Heading, Spinner, View } from "native-base";
+import { FlatList, Heading, View } from "native-base";
 import HomeBanner from "../../../components/HomeBanner";
 import HomeBookItem from "../../../components/HomeBookItem";
 import type { HomeProps } from "../../bottomNavigation";
