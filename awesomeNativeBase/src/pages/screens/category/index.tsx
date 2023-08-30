@@ -17,10 +17,14 @@ import type { Book } from "../../../@types/bookType";
 
 interface CategoryItemListHeaderProps {
   book: Book;
+  learningFinishedCount: number;
+  learningTotalCount: number;
 }
 
 function CategoryItemListHeader({
   book,
+  learningFinishedCount,
+  learningTotalCount,
 }: CategoryItemListHeaderProps): React.JSX.Element {
   return (
     <View
@@ -45,15 +49,20 @@ function CategoryItemListHeader({
         mb="1"
         _dark={{ color: "coolGray.100" }}
       >
-        학습 진척도: {20.2}%
+        학습 진척도:{" "}
+        {((learningFinishedCount / learningTotalCount) * 100).toFixed(1)}%
       </Text>
       <Flex direction="row">
         <Box w="60%" mt="2">
-          <Progress colorScheme="info" value={20.2} size="sm" />
+          <Progress
+            colorScheme="info"
+            value={(learningFinishedCount / learningTotalCount) * 100}
+            size="sm"
+          />
         </Box>
         <Box w="26%" ml="3">
           <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
-            207 / 1026자
+            {learningFinishedCount} / {learningTotalCount}자
           </Text>
         </Box>
       </Flex>
@@ -70,12 +79,19 @@ export default function Category({
   const [categories, setCategories] = React.useState<CategoryType[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
+  const [learningFinishedCount, setLearningFinishedCount] =
+    React.useState<number>(0);
+
+  const [learningTotalCount, setLearningTotalCount] = React.useState<number>(0);
+
   const fetchCategories = (): CategoryType[] => {
     return require("./categories");
   };
 
   React.useEffect((): void => {
     setCategories(fetchCategories());
+    setLearningFinishedCount(207);
+    setLearningTotalCount(1026);
     setIsLoading(false);
   }, []);
 
@@ -97,7 +113,11 @@ export default function Category({
         </HStack>
       ) : (
         <View>
-          <CategoryItemListHeader book={book} />
+          <CategoryItemListHeader
+            book={book}
+            learningFinishedCount={learningFinishedCount}
+            learningTotalCount={learningTotalCount}
+          />
           <FlatList
             keyExtractor={(item) => item.id.toString()}
             onRefresh={() => {}}
