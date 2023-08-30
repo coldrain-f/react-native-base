@@ -12,11 +12,10 @@ import { CategoryType } from "../@types/categoryType";
 
 interface Props {
   category: CategoryType;
-  onPress(): void;
 }
 
 export default function CategoryItem(props: Props): React.JSX.Element {
-  const { category, onPress } = props;
+  const { category } = props;
   const { colorMode } = useColorMode();
 
   React.useEffect(() => {
@@ -24,7 +23,7 @@ export default function CategoryItem(props: Props): React.JSX.Element {
   }, []);
 
   return (
-    <Pressable my="2" onPress={onPress}>
+    <Pressable my="2" onPress={() => {}}>
       {({ isPressed }) => {
         return (
           <Box

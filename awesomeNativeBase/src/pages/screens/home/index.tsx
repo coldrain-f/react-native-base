@@ -4,7 +4,6 @@ import HomeBanner from "../../../components/HomeBanner";
 import HomeBookItem from "../../../components/HomeBookItem";
 import type { HomeProps } from "../../bottomNavigation";
 import type { Book } from "../../../@types/bookType";
-import type { CategoryType } from "../../../@types/categoryType";
 
 export default function Home({ navigation }: HomeProps): React.JSX.Element {
   const [books, setBooks] = React.useState<Book[]>([]);
@@ -41,14 +40,9 @@ export default function Home({ navigation }: HomeProps): React.JSX.Element {
         data={books}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <HomeBookItem
-            book={item}
-            onPress={() => {
-              navigation.navigate("Category", {
-                book: item,
-              });
-            }}
-          />
+          <View>
+            <HomeBookItem book={item} />
+          </View>
         )}
       />
     </Box>

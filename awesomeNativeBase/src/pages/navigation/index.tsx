@@ -7,13 +7,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type {
   NativeStackScreenProps,
   NativeStackNavigationOptions,
+  NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { Button, Flex, useColorMode } from "native-base";
+
+import { useColorMode } from "native-base";
 import type { Book } from "../../@types/bookType";
-import type { CategoryType } from "../../@types/categoryType";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
@@ -24,6 +24,9 @@ type StackParamList = {
 
 export type CategoryProps = NativeStackScreenProps<StackParamList, "Category">;
 export type RootProps = NativeStackScreenProps<StackParamList, "Root">;
+
+// Navigation Prop
+export type StackNavigationProp = NativeStackNavigationProp<StackParamList>;
 
 const Stack = createNativeStackNavigator<StackParamList>();
 

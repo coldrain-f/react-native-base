@@ -10,15 +10,11 @@ import Information from "../screens/information";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Button, Flex, useColorMode } from "native-base";
 import type { Book } from "../../@types/bookType";
-import type { CategoryType } from "../../@types/categoryType";
 
 export type BottomTabParamList = {
   Home: undefined;
   Configuration: undefined;
   Information: undefined;
-  Category: {
-    book: Book;
-  };
 };
 
 // React-Native navigation Typescript 참고 문서
@@ -26,10 +22,6 @@ export type BottomTabParamList = {
 // https://youngslog.medium.com/%EB%B2%88%EC%97%AD-type-checking-with-typescript-react-navigation-bacbcf901be4
 
 export type HomeProps = BottomTabScreenProps<BottomTabParamList, "Home">;
-export type CategoryProps = BottomTabScreenProps<
-  BottomTabParamList,
-  "Category"
->;
 export type InformationProps = BottomTabScreenProps<
   BottomTabParamList,
   "Information"

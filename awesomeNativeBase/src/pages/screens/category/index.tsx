@@ -77,11 +77,7 @@ export default function Category({
       </View>
       <ScrollView>
         {categories.map((category) => (
-          <CategoryItem
-            key={category.id}
-            category={category}
-            onPress={() => {}}
-          />
+          <CategoryItem key={category.id} category={category} />
         ))}
       </ScrollView>
       {/* <FlatList

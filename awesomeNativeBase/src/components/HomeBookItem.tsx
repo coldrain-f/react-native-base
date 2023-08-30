@@ -2,18 +2,28 @@ import React from "react";
 import { Avatar, Box, Pressable, Text, Flex, useColorMode } from "native-base";
 import { Book } from "../@types/bookType";
 import Icon from "react-native-vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
+import { HomeProps } from "../pages/bottomNavigation";
+import { StackNavigationProp } from "../pages/navigation";
 
 interface Props {
   book: Book;
-  onPress(): void;
+  // onPress(): void;
 }
 
 export default function HomeBookItem(props: Props): React.JSX.Element {
+  const navigation = useNavigation<StackNavigationProp>();
+
   const { colorMode } = useColorMode();
 
-  const { book, onPress } = props;
+  const { book } = props;
   return (
-    <Pressable onPress={onPress} my="2">
+    <Pressable
+      my="2"
+      onPress={() => {
+        navigation.navigate("Category", { book });
+      }}
+    >
       {({ isPressed }) => {
         return (
           <Box
