@@ -38,7 +38,7 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
         </Box>
       </Flex>
       <Flex direction="row" mt={3}>
-        <Box w="35%">
+        <Box w="50%">
           <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
             {"학습완료 단어: "}
             <Text
@@ -51,8 +51,7 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
             개
           </Text>
         </Box>
-        <Divider orientation="vertical" thickness={2} mx={2} />
-        <Box w="35%">
+        <Box w="50%">
           <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
             {"선택한 한자: "}
             <Text
