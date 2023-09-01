@@ -25,7 +25,7 @@ export default function CategoryItem(props: Props): React.JSX.Element {
     <Pressable
       my="2"
       onPress={() => {
-        navigation.navigate("Word");
+        navigation.navigate("Kanji");
       }}
     >
       {({ isPressed }) => {
