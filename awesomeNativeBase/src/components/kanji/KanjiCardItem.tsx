@@ -51,11 +51,21 @@ export default function KanjiCardItem(): React.JSX.Element {
                     color: "primary.200",
                   }}
                 >
-                  <Text color="coolGray.700">{"매화나무"}</Text> {"매"}
+                  <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
+                    {"매화나무 "}
+                  </Text>
+                  {"매"}
                 </Text>
-                <Text color="coolGray.700">획수: 4획</Text>
+                <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
+                  획수: 4획
+                </Text>
               </View>
-              <Divider thickness={1} mx={2} orientation="vertical" />
+              <Divider
+                thickness={1}
+                mx={2}
+                orientation="vertical"
+                _dark={{ backgroundColor: "warmGray.200" }}
+              />
               {/* 음독, 훈독 Grid */}
               <View borderWidth={0} p={2} ml={1} w="60%">
                 <Flex direction="row">
@@ -65,10 +75,16 @@ export default function KanjiCardItem(): React.JSX.Element {
                     fontSize="md"
                     pb={1}
                     w="20%"
+                    _dark={{ color: "warmGray.200" }}
                   >
                     음독:
                   </Text>
-                  <Text color="coolGray.700" fontSize="md" w="80%">
+                  <Text
+                    color="coolGray.700"
+                    fontSize="md"
+                    w="80%"
+                    _dark={{ color: "warmGray.200" }}
+                  >
                     ぎょ, うお
                   </Text>
                 </Flex>
@@ -78,28 +94,53 @@ export default function KanjiCardItem(): React.JSX.Element {
                     color="coolGray.700"
                     fontSize="md"
                     w="20%"
+                    _dark={{ color: "warmGray.200" }}
                   >
                     훈독:
                   </Text>
-                  <Text color="coolGray.700" fontSize="md" w="80%">
+                  <Text
+                    color="coolGray.700"
+                    fontSize="md"
+                    w="80%"
+                    _dark={{ color: "warmGray.200" }}
+                  >
                     うお, さかな
                   </Text>
                 </Flex>
                 {/* 회독 수, 포함 단어 Grid */}
                 <Flex direction="row" mt={3.5} flexWrap="wrap" w="100%">
-                  <Text fontWeight="bold" color="info.700" pr={1}>
+                  <Text
+                    fontWeight="bold"
+                    color="info.700"
+                    pr={1}
+                    _dark={{ color: "info.200" }}
+                  >
                     0
                   </Text>
-                  <Text>회독 완료</Text>
+                  <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
+                    회독 완료
+                  </Text>
                   <Divider orientation="vertical" mx={2} thickness={2} />
-                  <Text pr={1}>포함 단어:</Text>
-                  <Text fontWeight="bold" color="info.700">
+                  <Text
+                    pr={1}
+                    color="coolGray.700"
+                    _dark={{ color: "warmGray.200" }}
+                  >
+                    포함 단어:
+                  </Text>
+                  <Text
+                    fontWeight="bold"
+                    color="info.700"
+                    _dark={{ color: "info.200" }}
+                  >
                     10
                   </Text>
-                  <Text>개</Text>
+                  <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
+                    개
+                  </Text>
                 </Flex>
               </View>
-              <Flex pt={2} flex={1} direction="column" alignItems="flex-end">
+              <Flex flex={1} pt={2} direction="column" alignItems="flex-end">
                 <Checkbox
                   value="0"
                   accessibilityLabel="This is a checkbox"
