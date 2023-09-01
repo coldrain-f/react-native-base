@@ -112,7 +112,7 @@ export default function Category({
           </Heading>
         </HStack>
       ) : (
-        <View>
+        <>
           <CategoryItemListHeader
             book={book}
             learningFinishedCount={learningFinishedCount}
@@ -125,7 +125,7 @@ export default function Category({
             data={categories}
             renderItem={({ item }) => <CategoryItem category={item} />}
           />
-        </View>
+        </>
       )}
     </View>
   );
