@@ -1,5 +1,6 @@
 import { View } from "native-base";
 import KanjiCardItem from "../../../components/kanji/KanjiCardItem";
+import KanjiCardItemListHeader from "../../../components/kanji/KanjiCardItemListHeader";
 
 export default function Word(): React.JSX.Element {
   return (
@@ -11,6 +12,7 @@ export default function Word(): React.JSX.Element {
         bg: "#0F172A",
       }}
     >
+      <KanjiCardItemListHeader />
       <KanjiCardItem />
     </View>
   );
