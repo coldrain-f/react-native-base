@@ -23,7 +23,6 @@ export default function KanjiCardItem(): React.JSX.Element {
                 },
               ],
             }}
-            p="4"
             pt="2"
             pb="2"
             borderWidth={0}
@@ -33,7 +32,7 @@ export default function KanjiCardItem(): React.JSX.Element {
           >
             <Flex direction="row">
               {/* 한자 표시 Grid */}
-              <View borderWidth={0} pl={2} w="25%">
+              <View pl={5} w="25%">
                 <Text
                   color="coolGray.700"
                   fontWeight="bold"
@@ -42,23 +41,27 @@ export default function KanjiCardItem(): React.JSX.Element {
                     color: "warmGray.100",
                   }}
                 >
-                  馬
+                  魚
                 </Text>
                 <Text
-                  color="primary.700"
+                  color="coolGray.700"
                   fontWeight="bold"
                   _dark={{
-                    color: "primary.200",
+                    color: "warmGray.200",
                   }}
                 >
-                  <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
-                    {"고기 "}
+                  {"물고기 "}
+                  <Text
+                    color="primary.700"
+                    fontWeight="bold"
+                    _dark={{
+                      color: "primary.200",
+                    }}
+                  >
+                    {"어"}
                   </Text>
-                  {"어"}
                 </Text>
-                <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
-                  획수: 4획
-                </Text>
+                <Text>획수: 4획</Text>
               </View>
               <Divider
                 thickness={1}
@@ -67,7 +70,7 @@ export default function KanjiCardItem(): React.JSX.Element {
                 _dark={{ backgroundColor: "warmGray.200" }}
               />
               {/* 음독, 훈독 Grid */}
-              <View borderWidth={0} p={2} ml={1} w="60%">
+              <View p={2} ml={1} w="62.5%">
                 <Flex direction="row" pb={1}>
                   <Text
                     fontWeight="bold"
@@ -132,7 +135,7 @@ export default function KanjiCardItem(): React.JSX.Element {
                   </View>
                 </Flex>
               </View>
-              <Flex flex={1} pt={2} direction="column" alignItems="flex-end">
+              <Flex pt={2} direction="column" alignItems="center">
                 <Checkbox
                   value="0"
                   accessibilityLabel="This is a checkbox"
