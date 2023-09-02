@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "kanji": "馬",
+    "meaning": "고기 어",
+    "onYomi": ["ぎょ", "うお"],
+    "kunYomi": ["うお", "さかな"],
+    "readCount": 0,
+    "wordCount": 10,
+    "strokeCount": 4
+  },
+  {
+    "id": 2,
+    "kanji": "悪",
+    "meaning": "악할 악",
+    "onYomi": ["あく", "お"],
+    "kunYomi": ["わるい"],
+    "readCount": 0,
+    "wordCount": 10,
+    "strokeCount": 10
+  }
+]

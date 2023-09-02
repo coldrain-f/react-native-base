@@ -74,18 +74,10 @@ export default function KanjiCardItem(): React.JSX.Element {
                     color="coolGray.700"
                     fontSize="md"
                     pb={1}
-                    w="20%"
+                    w="100%"
                     _dark={{ color: "warmGray.200" }}
                   >
-                    음독:
-                  </Text>
-                  <Text
-                    color="coolGray.700"
-                    fontSize="md"
-                    w="80%"
-                    _dark={{ color: "warmGray.200" }}
-                  >
-                    ぎょ, うお
+                    음독: ぎょ, うお
                   </Text>
                 </Flex>
                 <Flex direction="row">
@@ -93,51 +85,52 @@ export default function KanjiCardItem(): React.JSX.Element {
                     fontWeight="bold"
                     color="coolGray.700"
                     fontSize="md"
-                    w="20%"
+                    w="100%"
                     _dark={{ color: "warmGray.200" }}
                   >
-                    훈독:
-                  </Text>
-                  <Text
-                    color="coolGray.700"
-                    fontSize="md"
-                    w="80%"
-                    _dark={{ color: "warmGray.200" }}
-                  >
-                    うお, さかな
+                    훈독: うお, さかな
                   </Text>
                 </Flex>
                 {/* 회독 수, 포함 단어 Grid */}
                 <Flex direction="row" mt={3.5} flexWrap="wrap" w="100%">
-                  <Text
-                    fontWeight="bold"
-                    color="info.700"
-                    pr={1}
-                    _dark={{ color: "info.200" }}
-                  >
-                    0
-                  </Text>
-                  <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
-                    회독 완료
-                  </Text>
-                  <Divider orientation="vertical" mx={2} thickness={2} />
-                  <Text
-                    pr={1}
-                    color="coolGray.700"
-                    _dark={{ color: "warmGray.200" }}
-                  >
-                    포함 단어:
-                  </Text>
-                  <Text
-                    fontWeight="bold"
-                    color="info.700"
-                    _dark={{ color: "info.200" }}
-                  >
-                    10
-                  </Text>
-                  <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
-                    개
-                  </Text>
+                  <View flexDirection="row" flexWrap="wrap" w="45%">
+                    <Text
+                      fontWeight="bold"
+                      color="info.700"
+                      pr={1}
+                      _dark={{ color: "info.200" }}
+                    >
+                      3
+                    </Text>
+                    <Text
+                      color="coolGray.700"
+                      _dark={{ color: "warmGray.200" }}
+                    >
+                      회독 완료
+                    </Text>
+                  </View>
+                  <View flexDirection="row" flexWrap="wrap" w="55%">
+                    <Text
+                      pr={1}
+                      color="coolGray.700"
+                      _dark={{ color: "warmGray.200" }}
+                    >
+                      포함 단어:
+                    </Text>
+                    <Text
+                      fontWeight="bold"
+                      color="info.700"
+                      _dark={{ color: "info.200" }}
+                    >
+                      10
+                    </Text>
+                    <Text
+                      color="coolGray.700"
+                      _dark={{ color: "warmGray.200" }}
+                    >
+                      개
+                    </Text>
+                  </View>
                 </Flex>
               </View>
               <Flex flex={1} pt={2} direction="column" alignItems="flex-end">
