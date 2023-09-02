@@ -42,7 +42,7 @@ export default function CategoryItem(props: Props): React.JSX.Element {
               ],
             }}
             p="5"
-            borderWidth={0}
+            borderWidth={1}
             borderColor="coolGray.300"
             shadow={3}
             _dark={{ bg: "#171E2E" }}
@@ -99,7 +99,7 @@ export default function CategoryItem(props: Props): React.JSX.Element {
               <Flex flex={1} direction="row" justifyContent="flex-end">
                 <Icon
                   name="arrow-forward-circle-outline"
-                  color={colorMode === "light" ? "black" : "white"}
+                  color={colorMode === "light" ? "gray" : "white"}
                   size={24}
                 />
               </Flex>
