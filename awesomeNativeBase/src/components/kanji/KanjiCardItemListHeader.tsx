@@ -151,6 +151,7 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
             </View>
             <View flexDirection="row" alignItems="center">
               <Checkbox
+                size="md"
                 value="0"
                 accessibilityLabel="This is a checkbox"
                 mt={0.5}

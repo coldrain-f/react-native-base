@@ -15,6 +15,7 @@ import Kanji from "../screens/kanji";
 import Word from "../screens/word";
 import { useColorMode } from "native-base";
 import type { Book } from "../../@types/bookType";
+import { StyleProp } from "react-native";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
@@ -45,6 +46,12 @@ const BasicNativeStackNavigationOptions: NativeStackNavigationOptions = {
 export default function Navigation() {
   const { colorMode } = useColorMode();
 
+  const basicHeaderStyle: StyleProp<{
+    backgroundColor?: string | undefined;
+  }> = {
+    backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
+  };
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -59,9 +66,7 @@ export default function Navigation() {
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "카테고리",
-            headerStyle: {
-              backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
-            },
+            headerStyle: basicHeaderStyle,
           }}
         />
         <Stack.Screen
@@ -70,9 +75,7 @@ export default function Navigation() {
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "한자",
-            headerStyle: {
-              backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
-            },
+            headerStyle: basicHeaderStyle,
           }}
         />
         <Stack.Screen
@@ -81,9 +84,7 @@ export default function Navigation() {
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "단어",
-            headerStyle: {
-              backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
-            },
+            headerStyle: basicHeaderStyle,
           }}
         />
       </Stack.Navigator>

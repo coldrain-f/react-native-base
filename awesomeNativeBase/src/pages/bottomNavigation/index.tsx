@@ -41,6 +41,13 @@ const BasicBottomTabNavigationOprions: BottomTabNavigationOptions = {
   headerRight: () => <BasicHeaderRight />,
 };
 
+/**
+ *
+ * 파랑: #4F46E5
+ * info.700: #0369a1
+ * indigo.700: #4338ca
+ */
+
 const BasicHeaderRight = () => {
   const { toggleColorMode, colorMode } = useColorMode();
 
@@ -49,7 +56,7 @@ const BasicHeaderRight = () => {
       <Button
         size="sm"
         mr="3"
-        backgroundColor={colorMode === "light" ? "#4F46E5" : "#0F172A"}
+        backgroundColor={colorMode === "light" ? "#4338ca" : "#0F172A"}
         onPress={() => {
           toggleColorMode();
         }}
@@ -72,7 +79,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
       initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+          backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
         },
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "gray",
@@ -99,7 +106,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
           ...BasicBottomTabNavigationOprions,
           title: "단어장",
           headerStyle: {
-            backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+            backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
           },
         }}
       />
