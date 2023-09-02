@@ -117,7 +117,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
           ...BasicBottomTabNavigationOprions,
           title: "설정",
           headerStyle: {
-            backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+            backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
           },
         }}
       />
@@ -128,7 +128,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
           ...BasicBottomTabNavigationOprions,
           title: "안내",
           headerStyle: {
-            backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+            backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
           },
         }}
       />
