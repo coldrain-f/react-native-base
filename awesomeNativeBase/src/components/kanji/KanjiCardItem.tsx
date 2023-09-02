@@ -52,9 +52,9 @@ export default function KanjiCardItem(): React.JSX.Element {
                   }}
                 >
                   <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
-                    {"매화나무 "}
+                    {"고기 "}
                   </Text>
-                  {"매"}
+                  {"어"}
                 </Text>
                 <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
                   획수: 4획
@@ -68,16 +68,15 @@ export default function KanjiCardItem(): React.JSX.Element {
               />
               {/* 음독, 훈독 Grid */}
               <View borderWidth={0} p={2} ml={1} w="60%">
-                <Flex direction="row">
+                <Flex direction="row" pb={1}>
                   <Text
                     fontWeight="bold"
                     color="coolGray.700"
                     fontSize="md"
-                    pb={1}
                     w="100%"
                     _dark={{ color: "warmGray.200" }}
                   >
-                    음독: ぎょ, うお
+                    음독: <Text fontWeight="medium">ぎょ, うお</Text>
                   </Text>
                 </Flex>
                 <Flex direction="row">
@@ -88,7 +87,7 @@ export default function KanjiCardItem(): React.JSX.Element {
                     w="100%"
                     _dark={{ color: "warmGray.200" }}
                   >
-                    훈독: うお, さかな
+                    훈독: <Text fontWeight="medium">うお, さかな</Text>
                   </Text>
                 </Flex>
                 {/* 회독 수, 포함 단어 Grid */}
