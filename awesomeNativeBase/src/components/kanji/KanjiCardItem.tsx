@@ -67,7 +67,9 @@ export default function KanjiCardItem(): React.JSX.Element {
                 thickness={1}
                 mx={2}
                 orientation="vertical"
-                _dark={{ backgroundColor: "warmGray.200" }}
+                _dark={{
+                  backgroundColor: "warmGray.200",
+                }}
               />
               {/* 음독, 훈독 Grid */}
               <View p={2} ml={1} w="62.5%">

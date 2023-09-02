@@ -1,7 +1,19 @@
-import { Box, Button, Divider, Flex, Progress, Text, View } from "native-base";
+import React from "react";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  Progress,
+  Text,
+  View,
+  useColorMode,
+} from "native-base";
 import Ionicon from "react-native-vector-icons/Ionicons";
 
 export default function KanjiCardItemListHeader(): React.JSX.Element {
+  const { colorMode } = useColorMode();
+
   return (
     <View
       p="5"
@@ -25,15 +37,15 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
         mb="1"
         _dark={{ color: "coolGray.100" }}
       >
-        학습 진척도: {((77 / 200) * 100).toFixed(1)}%
+        학습 진척도: {((42 / 80) * 100).toFixed(1)}%
       </Text>
       <Flex direction="row">
         <Box w="60%" mt={2}>
-          <Progress colorScheme="info" value={(77 / 200) * 100} size="sm" />
+          <Progress colorScheme="info" value={(42 / 80) * 100} size="sm" />
         </Box>
         <Box w="40%" ml={3}>
           <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
-            {77} / {200}자
+            {42} / {80}자
           </Text>
         </Box>
       </Flex>
@@ -46,7 +58,7 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
               color="info.700"
               _dark={{ color: "info.200" }}
             >
-              {"300"}
+              {"420"}
             </Text>
             개
           </Text>
@@ -59,7 +71,7 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
               color="info.700"
               _dark={{ color: "info.200" }}
             >
-              {"3"}
+              {"0"}
             </Text>
             {"개"}
           </Text>
@@ -76,6 +88,64 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
             학습 시작
           </Button>
         </Box>
+      </Flex>
+      <Flex direction="row" mt={4} justifyContent="space-between">
+        <View flexDirection="row">
+          <Button
+            size="sm"
+            variant="outline"
+            colorScheme="coolGray"
+            leftIcon={
+              <Ionicon
+                name="eye"
+                color={colorMode === "light" ? "gray" : "white"}
+                size={20}
+              />
+            }
+          >
+            <Text
+              color="coolGray.900"
+              _dark={{
+                color: "coolGray.200",
+              }}
+            >
+              음독 보기
+            </Text>
+          </Button>
+        </View>
+        <View flexDirection="row">
+          <Button
+            size="sm"
+            variant="outline"
+            colorScheme="coolGray"
+            leftIcon={
+              <Ionicon
+                name="eye"
+                color={colorMode === "light" ? "gray" : "white"}
+                size={20}
+              />
+            }
+          >
+            <Text
+              color="coolGray.900"
+              _dark={{
+                color: "coolGray.200",
+              }}
+            >
+              훈독 보기
+            </Text>
+          </Button>
+        </View>
+        <View flexDirection="row" alignItems="center">
+          <Checkbox
+            value="0"
+            accessibilityLabel="This is a checkbox"
+            mt={0.5}
+          />
+          <Text color="coolGray.900" pl={2} _dark={{ color: "coolGray.200" }}>
+            전체 선택
+          </Text>
+        </View>
       </Flex>
     </View>
   );
