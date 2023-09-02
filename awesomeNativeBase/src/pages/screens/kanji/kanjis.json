@@ -3,7 +3,7 @@
     "id": 1,
     "kanji": "馬",
     "meaning": "고기 어",
-    "onYomi": ["ぎょ", "うお"],
+    "onYomi": ["ぎょ"],
     "kunYomi": ["うお", "さかな"],
     "readCount": 0,
     "wordCount": 10,
@@ -18,5 +18,25 @@
     "readCount": 0,
     "wordCount": 10,
     "strokeCount": 10
+  },
+  {
+    "id": 3,
+    "kanji": "節",
+    "meaning": "마디 절",
+    "onYomi": ["せつ", "せち"],
+    "kunYomi": ["ふし"],
+    "readCount": 0,
+    "wordCount": 10,
+    "strokeCount": 15
+  },
+  {
+    "id": 4,
+    "kanji": "延",
+    "meaning": "늘일 연",
+    "onYomi": ["えん"],
+    "kunYomi": ["のびる", "のベる", "のぼす"],
+    "readCount": 0,
+    "wordCount": 10,
+    "strokeCount": 7
   }
 ]

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Box,
@@ -7,10 +8,23 @@ import {
   Divider,
   Checkbox,
 } from "native-base";
+import { StackNavigationProp } from "../../pages/navigation";
+import { KanjiType } from "../../@types/kanjiType";
 
-export default function KanjiCardItem(): React.JSX.Element {
+interface Props {
+  kanji: KanjiType;
+}
+
+export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
+  const navigation = useNavigation<StackNavigationProp>();
+
   return (
-    <Pressable mb={3} onPress={() => {}}>
+    <Pressable
+      mb={3}
+      onPress={() => {
+        navigation.navigate("Word");
+      }}
+    >
       {({ isPressed }) => {
         return (
           <Box
@@ -41,7 +55,7 @@ export default function KanjiCardItem(): React.JSX.Element {
                     color: "warmGray.100",
                   }}
                 >
-                  魚
+                  {kanji.kanji}
                 </Text>
                 <Text
                   color="coolGray.700"
@@ -50,7 +64,7 @@ export default function KanjiCardItem(): React.JSX.Element {
                     color: "warmGray.200",
                   }}
                 >
-                  {"물고기 "}
+                  {kanji.meaning.split(" ")[0] + " "}
                   <Text
                     color="primary.700"
                     fontWeight="bold"
@@ -58,10 +72,10 @@ export default function KanjiCardItem(): React.JSX.Element {
                       color: "primary.200",
                     }}
                   >
-                    {"어"}
+                    {kanji.meaning.split(" ")[1]}
                   </Text>
                 </Text>
-                <Text>획수: 4획</Text>
+                <Text>획수: {kanji.strokeCount}획</Text>
               </View>
               <Divider
                 thickness={1}
@@ -81,7 +95,8 @@ export default function KanjiCardItem(): React.JSX.Element {
                     w="100%"
                     _dark={{ color: "warmGray.200" }}
                   >
-                    음독: <Text fontWeight="medium">ぎょ, うお</Text>
+                    음독:{" "}
+                    <Text fontWeight="medium">{kanji.onYomi.join(", ")}</Text>
                   </Text>
                 </Flex>
                 <Flex direction="row">
@@ -92,7 +107,8 @@ export default function KanjiCardItem(): React.JSX.Element {
                     w="100%"
                     _dark={{ color: "warmGray.200" }}
                   >
-                    훈독: <Text fontWeight="medium">うお, さかな</Text>
+                    훈독:{" "}
+                    <Text fontWeight="medium">{kanji.kunYomi.join(", ")}</Text>
                   </Text>
                 </Flex>
                 {/* 회독 수, 포함 단어 Grid */}
@@ -104,7 +120,7 @@ export default function KanjiCardItem(): React.JSX.Element {
                       pr={1}
                       _dark={{ color: "info.200" }}
                     >
-                      3
+                      {kanji.readCount}
                     </Text>
                     <Text
                       color="coolGray.700"
@@ -126,7 +142,7 @@ export default function KanjiCardItem(): React.JSX.Element {
                       color="info.700"
                       _dark={{ color: "info.200" }}
                     >
-                      10
+                      {kanji.wordCount}
                     </Text>
                     <Text
                       color="coolGray.700"

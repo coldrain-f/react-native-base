@@ -12,6 +12,7 @@ import type {
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
 import Kanji from "../screens/kanji";
+import Word from "../screens/word";
 import { useColorMode } from "native-base";
 import type { Book } from "../../@types/bookType";
 
@@ -21,6 +22,7 @@ type StackParamList = {
     book: Book;
   };
   Kanji: undefined;
+  Word: undefined;
 };
 
 // ScreenProps
@@ -68,6 +70,17 @@ export default function Navigation() {
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "한자",
+            headerStyle: {
+              backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Word"
+          component={Word}
+          options={{
+            ...BasicNativeStackNavigationOptions,
+            title: "단어",
             headerStyle: {
               backgroundColor: colorMode === "light" ? "#4F46E5" : "#0F172A",
             },

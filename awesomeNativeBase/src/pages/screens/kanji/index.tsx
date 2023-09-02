@@ -1,21 +1,12 @@
 import React from "react";
-import { View } from "native-base";
+import { FlatList, HStack, Heading, Spinner, View } from "native-base";
 import KanjiCardItem from "../../../components/kanji/KanjiCardItem";
 import KanjiCardItemListHeader from "../../../components/kanji/KanjiCardItemListHeader";
-
-interface KanjiType {
-  id: number;
-  kanji: string;
-  meaning: string;
-  onYomi: string[];
-  kunYomi: string[];
-  readCount: number;
-  wordCount: number;
-  strokeCount: number;
-}
+import type { KanjiType } from "../../../@types/kanjiType";
 
 export default function Word(): React.JSX.Element {
   const [kanjiList, setKanjiList] = React.useState<KanjiType[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const fetchBooks = (): KanjiType[] => {
     return require("./kanjis");
@@ -23,6 +14,7 @@ export default function Word(): React.JSX.Element {
 
   React.useEffect((): void => {
     setKanjiList(fetchBooks());
+    setIsLoading(false);
   }, []);
 
   return (
@@ -34,10 +26,25 @@ export default function Word(): React.JSX.Element {
         bg: "#0F172A",
       }}
     >
-      <KanjiCardItemListHeader />
-      {kanjiList.map((kanji) => (
-        <KanjiCardItem key={kanji.id} />
-      ))}
+      {isLoading ? (
+        <HStack space={2} justifyContent="center" alignItems="center" h="100%">
+          <Spinner accessibilityLabel="Loading posts" />
+          <Heading color="primary.500" fontSize="md">
+            Loading
+          </Heading>
+        </HStack>
+      ) : (
+        <>
+          <KanjiCardItemListHeader />
+          <FlatList
+            keyExtractor={(item) => item.id.toString()}
+            onRefresh={() => {}}
+            refreshing={false}
+            data={kanjiList}
+            renderItem={({ item }) => <KanjiCardItem kanji={item} />}
+          />
+        </>
+      )}
     </View>
   );
 }
