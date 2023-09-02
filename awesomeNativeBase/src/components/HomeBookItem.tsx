@@ -42,6 +42,7 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
             _dark={{
               bg: "#171E2E",
               borderColor: "coolGray.100",
+              borderWidth: 0,
             }}
           >
             <Flex direction="row">

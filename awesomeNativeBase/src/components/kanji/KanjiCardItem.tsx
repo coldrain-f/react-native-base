@@ -38,7 +38,10 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
       borderWidth={1}
       borderColor="coolGray.300"
       shadow={3}
-      _dark={{ bg: "#171E2E" }}
+      _dark={{
+        bg: "#171E2E",
+        borderWidth: 0,
+      }}
     >
       <Flex direction="row">
         {/* 한자 표시 Grid */}
@@ -157,6 +160,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
           size="md"
           variant="outline"
           colorScheme="info"
+          borderColor="warmGray.200"
           onPress={() => {
             navigation.navigate("Word");
           }}
