@@ -86,7 +86,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                 }}
               />
               {/* 음독, 훈독 Grid */}
-              <View p={2} ml={1} w="62.5%">
+              <View p={2} ml={1} w="60%">
                 <Flex direction="row" pb={1}>
                   <Text
                     fontWeight="bold"
@@ -153,8 +153,10 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                   </View>
                 </Flex>
               </View>
+              {/* 한자 체크박스 Grid */}
               <Flex pt={2} direction="column" alignItems="center">
                 <Checkbox
+                  size="md"
                   value="0"
                   accessibilityLabel="This is a checkbox"
                   mt={0.5}
