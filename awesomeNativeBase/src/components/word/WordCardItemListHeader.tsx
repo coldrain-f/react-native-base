@@ -1,52 +1,31 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import {
   View,
-  Box,
   Flex,
   Text,
   Divider,
-  Checkbox,
   Button,
-  useColorMode,
   Link,
   Modal,
   ScrollView,
+  useColorMode,
 } from "native-base";
-import { StackNavigationProp } from "../../pages/navigation";
-import { KanjiType } from "../../@types/kanjiType";
 import Ionicon from "react-native-vector-icons/Ionicons";
 
-interface Props {
-  kanji: KanjiType;
-}
-
-export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
+export default function WordCardItemListHeader(): React.JSX.Element {
   const { colorMode } = useColorMode();
-  const navigation = useNavigation<StackNavigationProp>();
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
   return (
-    <Box
-      w="100%"
-      bg={"coolGray.100"}
-      style={{
-        transform: [
-          {
-            scale: 1,
-          },
-        ],
-      }}
-      my="2"
-      pt="2"
-      pb="2"
-      borderWidth={1}
-      borderColor="coolGray.300"
-      shadow={3}
+    <View
+      p={2}
+      mb={4}
+      borderBottomWidth={1}
+      borderColor="coolGray.400"
+      bg="coolGray.100"
       _dark={{
         bg: "#171E2E",
-        borderColor: "coolGray.700",
-        borderWidth: 1,
+        borderColor: "white",
       }}
     >
       <Flex direction="row">
@@ -60,7 +39,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
               color: "warmGray.100",
             }}
           >
-            {kanji.kanji}
+            人
           </Text>
           <Text
             color="coolGray.700"
@@ -69,7 +48,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
               color: "warmGray.200",
             }}
           >
-            {kanji.meaning.split(" ")[0] + " "}
+            사람{" "}
             <Text
               color="primary.700"
               fontWeight="bold"
@@ -77,10 +56,10 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                 color: "primary.200",
               }}
             >
-              {kanji.meaning.split(" ")[1]}
+              인
             </Text>
           </Text>
-          <Text>획수: {kanji.strokeCount}획</Text>
+          <Text>획수: 2획</Text>
         </View>
         <Divider
           thickness={1}
@@ -100,7 +79,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
               w="100%"
               _dark={{ color: "warmGray.200" }}
             >
-              음독: <Text fontWeight="medium">{kanji.onYomi.join(", ")}</Text>
+              음독: <Text fontWeight="medium">じん, にん</Text>
             </Text>
           </Flex>
           <Flex direction="row">
@@ -113,7 +92,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                 color: "warmGray.200",
               }}
             >
-              훈독: <Text fontWeight="medium">{kanji.kunYomi.join(", ")}</Text>
+              훈독: <Text fontWeight="medium">ひと</Text>
             </Text>
           </Flex>
           {/* 회독 수, 포함 단어 Grid */}
@@ -127,7 +106,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                   color: "info.200",
                 }}
               >
-                {kanji.readCount}
+                0
               </Text>
               <Link
                 _text={{
@@ -217,7 +196,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                   color: "info.200",
                 }}
               >
-                {kanji.wordCount}
+                10
               </Text>
               <Text
                 color="coolGray.700"
@@ -230,44 +209,51 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
             </View>
           </Flex>
         </View>
-        {/* 한자 체크박스 Grid */}
-        <Flex pt={2} direction="column" alignItems="center">
-          <Checkbox
-            size="md"
-            value="0"
-            accessibilityLabel="This is a checkbox"
-            mt={0.5}
-          />
-        </Flex>
       </Flex>
-      <Flex direction="row" justifyContent="space-around" mt={2}>
+      {/* <Flex direction="row" justifyContent="space-between" mt={3}>
         <Button
-          w="92.5%"
-          size="md"
+          w="48.5%"
+          size="sm"
           variant="outline"
-          colorScheme="info"
-          onPress={() => {
-            navigation.navigate("Word");
-          }}
-          rightIcon={
+          leftIcon={
             <Ionicon
-              name="caret-forward-circle-outline"
-              color={colorMode === "light" ? "#0369a1" : "white"}
+              name="eye"
+              color={colorMode === "light" ? "gray" : "white"}
               size={20}
             />
           }
         >
           <Text
-            color="info.700"
-            fontWeight="bold"
+            color="coolGray.900"
             _dark={{
-              color: "warmGray.200",
+              color: "coolGray.200",
             }}
           >
-            포함 된 단어 상세보기
+            후리가나 숨기기
           </Text>
         </Button>
-      </Flex>
-    </Box>
+        <Button
+          w="48.5%"
+          size="sm"
+          variant="outline"
+          leftIcon={
+            <Ionicon
+              name="shuffle-outline"
+              color={colorMode === "light" ? "gray" : "white"}
+              size={20}
+            />
+          }
+        >
+          <Text
+            color="coolGray.900"
+            _dark={{
+              color: "coolGray.200",
+            }}
+          >
+            순서 뒤집기
+          </Text>
+        </Button>
+      </Flex> */}
+    </View>
   );
 }

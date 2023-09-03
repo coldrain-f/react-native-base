@@ -1,13 +1,19 @@
 import { View, Center, Heading } from "native-base";
+import WordCardItemListHeader from "../../../components/word/WordCardItemListHeader";
+import WordCardItem from "../../../components/word/WordCardItem";
 
 export default function Word() {
   return (
-    <View>
-      <Center p="5">
-        <Heading size="md" color="coolGray.700">
-          {"Coming soon".toUpperCase()}
-        </Heading>
-      </Center>
+    <View
+      bg="warmGray.100"
+      width="100%"
+      flex={1}
+      _dark={{
+        bg: "#0F172A",
+      }}
+    >
+      <WordCardItemListHeader />
+      <WordCardItem />
     </View>
   );
 }
