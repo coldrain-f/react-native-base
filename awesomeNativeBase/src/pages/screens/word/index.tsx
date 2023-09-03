@@ -1,4 +1,4 @@
-import { View, Center, Heading } from "native-base";
+import { View } from "native-base";
 import WordCardItemListHeader from "../../../components/word/WordCardItemListHeader";
 import WordCardItem from "../../../components/word/WordCardItem";
 

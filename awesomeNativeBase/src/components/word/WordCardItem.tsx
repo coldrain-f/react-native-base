@@ -5,13 +5,8 @@ import {
   Flex,
   Text,
   Divider,
-  Checkbox,
   Button,
   useColorMode,
-  Link,
-  Modal,
-  ScrollView,
-  Heading,
   Center,
   Badge,
 } from "native-base";

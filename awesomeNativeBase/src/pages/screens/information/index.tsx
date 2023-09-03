@@ -1,4 +1,4 @@
-import { Box, Center, Heading, View } from "native-base";
+import { Center, Heading, View } from "native-base";
 import React from "react";
 import { InformationProps } from "../../bottomNavigation";
 

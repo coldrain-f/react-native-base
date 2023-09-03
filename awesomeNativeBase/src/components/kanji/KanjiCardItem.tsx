@@ -264,7 +264,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
               color: "warmGray.200",
             }}
           >
-            포함 된 단어 상세보기
+            단어 목록 보러가기
           </Text>
         </Button>
       </Flex>

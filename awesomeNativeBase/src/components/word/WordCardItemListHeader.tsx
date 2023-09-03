@@ -10,10 +10,8 @@ import {
   ScrollView,
   useColorMode,
 } from "native-base";
-import Ionicon from "react-native-vector-icons/Ionicons";
 
 export default function WordCardItemListHeader(): React.JSX.Element {
-  const { colorMode } = useColorMode();
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
   return (
@@ -210,50 +208,6 @@ export default function WordCardItemListHeader(): React.JSX.Element {
           </Flex>
         </View>
       </Flex>
-      {/* <Flex direction="row" justifyContent="space-between" mt={3}>
-        <Button
-          w="48.5%"
-          size="sm"
-          variant="outline"
-          leftIcon={
-            <Ionicon
-              name="eye"
-              color={colorMode === "light" ? "gray" : "white"}
-              size={20}
-            />
-          }
-        >
-          <Text
-            color="coolGray.900"
-            _dark={{
-              color: "coolGray.200",
-            }}
-          >
-            후리가나 숨기기
-          </Text>
-        </Button>
-        <Button
-          w="48.5%"
-          size="sm"
-          variant="outline"
-          leftIcon={
-            <Ionicon
-              name="shuffle-outline"
-              color={colorMode === "light" ? "gray" : "white"}
-              size={20}
-            />
-          }
-        >
-          <Text
-            color="coolGray.900"
-            _dark={{
-              color: "coolGray.200",
-            }}
-          >
-            순서 뒤집기
-          </Text>
-        </Button>
-      </Flex> */}
     </View>
   );
 }
