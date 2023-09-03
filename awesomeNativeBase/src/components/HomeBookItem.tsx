@@ -11,10 +11,9 @@ interface Props {
 
 export default function HomeBookItem(props: Props): React.JSX.Element {
   const navigation = useNavigation<StackNavigationProp>();
-
   const { colorMode } = useColorMode();
-
   const { book } = props;
+
   return (
     <Pressable
       my="2"
@@ -41,8 +40,8 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
             shadow={3}
             _dark={{
               bg: "#171E2E",
-              borderColor: "coolGray.100",
-              borderWidth: 0,
+              borderColor: "coolGray.700",
+              borderWidth: 1,
             }}
           >
             <Flex direction="row">

@@ -12,13 +12,18 @@ function HomeBookItemListHeader() {
       borderBottomWidth={1}
       borderColor="coolGray.400"
       bg="coolGray.100"
-      _dark={{ bg: "#171E2E", borderColor: "white" }}
+      _dark={{
+        bg: "#171E2E",
+        borderColor: "white",
+      }}
     >
       <Heading
         color="primary.900"
         fontWeight="bold"
         size="md"
-        _dark={{ color: "white" }}
+        _dark={{
+          color: "white",
+        }}
       >
         모든 단어장
       </Heading>

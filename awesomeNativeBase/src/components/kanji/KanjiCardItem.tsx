@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   View,
@@ -8,6 +9,11 @@ import {
   Checkbox,
   Button,
   useColorMode,
+  Link,
+  Modal,
+  ScrollView,
+  HStack,
+  VStack,
 } from "native-base";
 import { StackNavigationProp } from "../../pages/navigation";
 import { KanjiType } from "../../@types/kanjiType";
@@ -20,6 +26,7 @@ interface Props {
 export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
   const { colorMode } = useColorMode();
   const navigation = useNavigation<StackNavigationProp>();
+  const [showModal, setShowModal] = React.useState<boolean>(false);
 
   return (
     <Box
@@ -40,7 +47,8 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
       shadow={3}
       _dark={{
         bg: "#171E2E",
-        borderWidth: 0,
+        borderColor: "coolGray.700",
+        borderWidth: 1,
       }}
     >
       <Flex direction="row">
@@ -103,7 +111,9 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
               color="coolGray.700"
               fontSize="md"
               w="100%"
-              _dark={{ color: "warmGray.200" }}
+              _dark={{
+                color: "warmGray.200",
+              }}
             >
               훈독: <Text fontWeight="medium">{kanji.kunYomi.join(", ")}</Text>
             </Text>
@@ -115,30 +125,108 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                 fontWeight="bold"
                 color="info.700"
                 pr={1}
-                _dark={{ color: "info.200" }}
+                _dark={{
+                  color: "info.200",
+                }}
               >
                 {kanji.readCount}
               </Text>
-              <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
+              <Link
+                _text={{
+                  color: "info.700",
+                  _dark: {
+                    color: "info.200",
+                  },
+                }}
+                onPress={() => {
+                  setShowModal(true);
+                }}
+              >
                 회독 완료
-              </Text>
+              </Link>
+              {/* History Modal */}
+              <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                <Modal.Content>
+                  <Modal.CloseButton />
+                  <Modal.Header>회독 히스토리</Modal.Header>
+                  <Modal.Body>
+                    <ScrollView h="120px">
+                      <Flex direction="column">
+                        {[
+                          { readCount: 1, time: "01시간 56분 16초" },
+                          { readCount: 2, time: "00시간 45분 04초" },
+                          { readCount: 3, time: "00시간 07분 27초" },
+                          { readCount: 4, time: "00시간 05분 12초" },
+                        ].map((data) => (
+                          <Flex
+                            direction="row"
+                            flexWrap="wrap"
+                            key={data.readCount}
+                            justifyContent="space-around"
+                            m={1}
+                          >
+                            <Text
+                              fontWeight="bold"
+                              color="coolGray.700"
+                              marginRight={2}
+                              _dark={{
+                                color: "warmGray.200",
+                              }}
+                            >
+                              {data.readCount}회독:
+                            </Text>
+                            <Text
+                              color="coolGray.700"
+                              _dark={{
+                                color: "warmGray.200",
+                              }}
+                            >
+                              {data.time}
+                            </Text>
+                          </Flex>
+                        ))}
+                      </Flex>
+                    </ScrollView>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      w="100%"
+                      colorScheme="info"
+                      onPress={() => {
+                        setShowModal(false);
+                      }}
+                    >
+                      확인
+                    </Button>
+                  </Modal.Footer>
+                </Modal.Content>
+              </Modal>
             </View>
             <View flexDirection="row" flexWrap="wrap" w="55%">
               <Text
                 pr={1}
                 color="coolGray.700"
-                _dark={{ color: "warmGray.200" }}
+                _dark={{
+                  color: "warmGray.200",
+                }}
               >
                 포함 단어:
               </Text>
               <Text
                 fontWeight="bold"
                 color="info.700"
-                _dark={{ color: "info.200" }}
+                _dark={{
+                  color: "info.200",
+                }}
               >
                 {kanji.wordCount}
               </Text>
-              <Text color="coolGray.700" _dark={{ color: "warmGray.200" }}>
+              <Text
+                color="coolGray.700"
+                _dark={{
+                  color: "warmGray.200",
+                }}
+              >
                 개
               </Text>
             </View>
@@ -160,7 +248,6 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
           size="md"
           variant="outline"
           colorScheme="info"
-          borderColor="warmGray.200"
           onPress={() => {
             navigation.navigate("Word");
           }}

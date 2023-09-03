@@ -47,7 +47,8 @@ export default function CategoryItem(props: Props): React.JSX.Element {
             shadow={3}
             _dark={{
               bg: "#171E2E",
-              borderWidth: 0,
+              borderColor: "coolGray.700",
+              borderWidth: 1,
             }}
           >
             <Flex direction="row">
