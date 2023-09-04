@@ -16,6 +16,7 @@ import Ionicon from "react-native-vector-icons/Ionicons";
 export default function WordCardItem(): React.JSX.Element {
   const { colorMode } = useColorMode();
   const [showFuri, setShowFuri] = React.useState<boolean>(true);
+  const [showMeaning, setShowMeaning] = React.useState<boolean>(true);
 
   return (
     <View>
@@ -91,7 +92,7 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2}>인구</Text>
+                  {showMeaning && <Text ml={2}>인구</Text>}
                 </View>
               </View>
               <View flexDirection="row">
@@ -101,7 +102,7 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2}>인생</Text>
+                  {showMeaning && <Text ml={2}>인생</Text>}
                 </View>
               </View>
               <View flexDirection="row">
@@ -111,7 +112,7 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2}>인물</Text>
+                  {showMeaning && <Text ml={2}>인물</Text>}
                 </View>
               </View>
               <View flexDirection="row">
@@ -121,7 +122,7 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2}>인류</Text>
+                  {showMeaning && <Text ml={2}>인류</Text>}
                 </View>
               </View>
               <View flexDirection="row">
@@ -131,7 +132,7 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2}>위인</Text>
+                  {showMeaning && <Text ml={2}>위인</Text>}
                 </View>
               </View>
             </Flex>
@@ -139,17 +140,19 @@ export default function WordCardItem(): React.JSX.Element {
         </View>
         <Flex direction="row" mt={5} justifyContent="space-between">
           <Button
-            w="48.5%"
+            w="30%"
             size="sm"
             variant="outline"
             leftIcon={
               <Ionicon
-                name="eye"
+                name={showFuri ? "eye" : "eye-outline"}
                 color={colorMode === "light" ? "gray" : "white"}
                 size={20}
               />
             }
-            onPress={() => setShowFuri(!showFuri)}
+            onPress={() => {
+              setShowFuri(!showFuri);
+            }}
           >
             <Text
               color="coolGray.900"
@@ -157,11 +160,35 @@ export default function WordCardItem(): React.JSX.Element {
                 color: "coolGray.200",
               }}
             >
-              {showFuri ? "후리가나 숨기기" : "후리가나 보기"}
+              후리가나
             </Text>
           </Button>
           <Button
-            w="48.5%"
+            w="30%"
+            size="sm"
+            variant="outline"
+            leftIcon={
+              <Ionicon
+                name={showMeaning ? "eye" : "eye-outline"}
+                color={colorMode === "light" ? "gray" : "white"}
+                size={20}
+              />
+            }
+            onPress={() => {
+              setShowMeaning(!showMeaning);
+            }}
+          >
+            <Text
+              color={"coolGray.900"}
+              _dark={{
+                color: "coolGray.200",
+              }}
+            >
+              뜻
+            </Text>
+          </Button>
+          <Button
+            w="35%"
             size="sm"
             variant="outline"
             leftIcon={
