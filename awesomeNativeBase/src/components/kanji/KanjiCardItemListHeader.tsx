@@ -90,15 +90,14 @@ export default function KanjiCardItemListHeader(): React.JSX.Element {
       {showActionDetail && (
         <View>
           <Flex direction="row" mt={4}>
-            <Box w="100%">
-              <Button
-                size="md"
-                colorScheme="info"
-                leftIcon={<Ionicon name="school" color="white" size={20} />}
-              >
-                학습 시작
-              </Button>
-            </Box>
+            <Button
+              w="100%"
+              size="md"
+              colorScheme="info"
+              leftIcon={<Ionicon name="school" color="white" size={20} />}
+            >
+              학습 시작
+            </Button>
           </Flex>
           <Flex direction="row" mt={4} justifyContent="space-between">
             <View flexDirection="row" w="33%">

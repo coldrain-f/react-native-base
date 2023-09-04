@@ -46,8 +46,12 @@ export default function Home({ navigation }: HomeProps): React.JSX.Element {
     <View
       flex={1}
       width="100%"
-      _light={{ bg: "warmGray.100" }}
-      _dark={{ bg: "#0F172A" }}
+      _light={{
+        bg: "warmGray.100",
+      }}
+      _dark={{
+        bg: "#0F172A",
+      }}
     >
       <HomeBanner />
       <HomeBookItemListHeader />
