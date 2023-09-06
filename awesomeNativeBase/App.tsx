@@ -1,10 +1,19 @@
 import React from "react";
 import Navigation from "./src/pages/navigation";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, extendTheme } from "native-base";
 
 export default function App(): React.JSX.Element {
+  const theme = extendTheme({
+    components: {
+      Text: {
+        defaultProps: {
+          allowFontScaling: false,
+        },
+      },
+    },
+  });
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={theme}>
       <Navigation />
     </NativeBaseProvider>
   );
