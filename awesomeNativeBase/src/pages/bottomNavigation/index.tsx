@@ -41,13 +41,6 @@ const BasicBottomTabNavigationOprions: BottomTabNavigationOptions = {
   headerRight: () => <BasicHeaderRight />,
 };
 
-/**
- *
- * 파랑: #4F46E5
- * info.700: #0369a1
- * indigo.700: #4338ca
- */
-
 const BasicHeaderRight = () => {
   const { toggleColorMode, colorMode } = useColorMode();
 

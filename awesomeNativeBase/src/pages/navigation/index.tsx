@@ -2,6 +2,8 @@ import React from "react";
 import {
   NavigationContainer,
   NavigatorScreenParams,
+  RouteProp,
+  useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type {
@@ -13,9 +15,11 @@ import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import Category from "../screens/category";
 import Kanji from "../screens/kanji";
 import Word from "../screens/word";
-import { useColorMode } from "native-base";
+import Learning from "../screens/learning";
 import type { Book } from "../../@types/bookType";
-import { StyleProp } from "react-native";
+import type { StyleProp } from "react-native";
+import { Button, Flex, useColorMode } from "native-base";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
@@ -24,14 +28,23 @@ type StackParamList = {
   };
   Kanji: undefined;
   Word: undefined;
+  Learning: undefined;
 };
 
 // ScreenProps
 export type CategoryProps = NativeStackScreenProps<StackParamList, "Category">;
 export type RootProps = NativeStackScreenProps<StackParamList, "Root">;
+export type LearningProps = NativeStackScreenProps<StackParamList, "Learning">;
+
+// RouteProp
+export type LearningRouteProp = RouteProp<StackParamList, "Learning">;
 
 // Navigation Prop
 export type StackNavigationProp = NativeStackNavigationProp<StackParamList>;
+export type LearningkNavigationProp = NativeStackNavigationProp<
+  StackParamList,
+  "Learning"
+>;
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -45,7 +58,6 @@ const BasicNativeStackNavigationOptions: NativeStackNavigationOptions = {
 
 export default function Navigation() {
   const { colorMode } = useColorMode();
-
   const basicHeaderStyle: StyleProp<{
     backgroundColor?: string | undefined;
   }> = {
@@ -58,7 +70,9 @@ export default function Navigation() {
         <Stack.Screen
           name="Root"
           component={BottomTabNavigation}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="Category"
@@ -85,6 +99,16 @@ export default function Navigation() {
             ...BasicNativeStackNavigationOptions,
             title: "단어",
             headerStyle: basicHeaderStyle,
+          }}
+        />
+        <Stack.Screen
+          name="Learning"
+          component={Learning}
+          options={{
+            ...BasicNativeStackNavigationOptions,
+            title: "단어 학습",
+            headerStyle: basicHeaderStyle,
+            headerBackVisible: false,
           }}
         />
       </Stack.Navigator>

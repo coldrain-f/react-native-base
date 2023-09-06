@@ -160,7 +160,7 @@ export default function WordCardItem(): React.JSX.Element {
                 color: "coolGray.200",
               }}
             >
-              후리가나
+              발음
             </Text>
           </Button>
           <Button
