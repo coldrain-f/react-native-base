@@ -39,6 +39,8 @@ const BasicBottomTabNavigationOprions: BottomTabNavigationOptions = {
   },
   headerTintColor: "white",
   headerRight: () => <BasicHeaderRight />,
+  tabBarAllowFontScaling: false,
+  headerTitleAllowFontScaling: false,
 };
 
 const BasicHeaderRight = () => {
