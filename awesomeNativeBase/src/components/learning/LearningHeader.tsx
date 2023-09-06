@@ -18,8 +18,7 @@ export default function LearningHeader(): React.JSX.Element {
 
   return (
     <View
-      p="5"
-      mb="4"
+      p={5}
       borderBottomWidth={1}
       borderColor="coolGray.400"
       bg="coolGray.100"
@@ -40,8 +39,13 @@ export default function LearningHeader(): React.JSX.Element {
           >
             {"초등학교 1학년 한자"}
           </Text>
-          <Text numberOfLines={2} w="80%">
-            魚 惡 節
+          <Text
+            color="coolGray.900"
+            fontSize="md"
+            mb="1"
+            _dark={{ color: "coolGray.100" }}
+          >
+            학습 진척도: {((3 / 10) * 100).toFixed(1)}%
           </Text>
           <Flex direction="row">
             <Box w="60%" mt={2}>
@@ -52,26 +56,6 @@ export default function LearningHeader(): React.JSX.Element {
                 {3} / {10}개
               </Text>
             </Box>
-          </Flex>
-          <Flex direction="row" justifyContent="space-between" mt={2}>
-            <Text>
-              <Text color="info.700" fontWeight="bold">
-                1{" "}
-              </Text>
-              라운드
-            </Text>
-            <Text>
-              <Text color="info.700" fontWeight="bold">
-                7{" "}
-              </Text>
-              회 맞음
-            </Text>
-            <Text>
-              <Text color="rose.700" fontWeight="bold">
-                3{" "}
-              </Text>
-              회 틀림
-            </Text>
           </Flex>
         </View>
         <View w="20%">

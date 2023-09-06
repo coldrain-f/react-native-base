@@ -28,7 +28,6 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
 
   return (
     <Box
-      w="100%"
       bg={"coolGray.100"}
       style={{
         transform: [
