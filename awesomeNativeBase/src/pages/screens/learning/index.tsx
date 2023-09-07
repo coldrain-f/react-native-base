@@ -1,6 +1,14 @@
 import React from "react";
 import { Animated, TouchableOpacity } from "react-native";
-import { Button, Center, Flex, Text, View, useColorMode } from "native-base";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Text,
+  View,
+  useColorMode,
+} from "native-base";
 import { LearningProps } from "../../navigation";
 import LearningHeader from "../../../components/learning/LearningHeader";
 import Furi from "../../../components/common/Furi";
@@ -19,8 +27,6 @@ export default function Learning({
   route,
 }: LearningProps): React.JSX.Element {
   const { colorMode } = useColorMode();
-  const [showFuri, setShowFuri] = React.useState<boolean>(false);
-  const [showMeaning, setShowMeaning] = React.useState<boolean>(false);
   const [index, setIndex] = React.useState<number>(0);
 
   // Animation
@@ -76,7 +82,8 @@ export default function Learning({
   };
 
   return (
-    <View
+    <Box
+      safeAreaTop
       h="100%"
       bg="coolGray.100"
       _dark={{
@@ -84,196 +91,265 @@ export default function Learning({
       }}
     >
       <LearningHeader />
-
       <View h="100%">
+        {/* FrontFlipCard */}
         <TouchableOpacity
           onPress={() => flipCard()}
           style={{
             backfaceVisibility: "hidden",
-            width: "100%",
+            height: "100%",
           }}
         >
           <Animated.View
-            style={[{ backfaceVisibility: "hidden" }, frontAnimatedStyle]}
+            style={[
+              {
+                backfaceVisibility: "hidden",
+                height: "100%",
+              },
+              frontAnimatedStyle,
+            ]}
           >
-            <Center
-              borderWidth={0}
-              borderColor="coolGray.300"
+            <View
+              h="80%"
               bg="coolGray.100"
-              shadow={0}
               p={5}
+              _dark={{
+                bg: "#171E2E",
+              }}
             >
-              <Text w="100%" color="info.700" bold>
-                문제
-              </Text>
-              <Furi furiData={[words[index]]} showFuri={false} fontSize={42} />
-              <Text
-                fontSize="2xl"
-                color="coolGray.700"
-                _dark={{
-                  color: "warmGray.200",
-                }}
-              >
-                {" "}
-              </Text>
-
-              <Flex
-                direction="row"
-                justifyContent="space-around"
-                flexWrap="wrap"
-                bg="coolGray.100"
-                borderColor="warmGray.200"
-                mt={10}
-                w="100%"
-              >
-                <Button
-                  w="37.5%"
-                  colorScheme="danger"
-                  variant="outline"
-                  leftIcon={
-                    <Ionicon
-                      name="close-circle-outline"
-                      color={colorMode === "light" ? "#be123c" : "white"}
-                      size={20}
-                    />
-                  }
-                  onPress={() => {
-                    setIndex((index + 1) % 5);
-                    rotateValue.current = 180;
-                    resetCard();
+              <View h="80%" justifyContent="center" alignItems="center">
+                <Text
+                  w="100%"
+                  color="info.700"
+                  bold
+                  ml={7}
+                  _dark={{
+                    color: "info.300",
                   }}
                 >
-                  모르겠어요
-                </Button>
-                <Button
-                  w="15%"
-                  colorScheme="info"
-                  variant="outline"
-                  leftIcon={
-                    <Ionicon
-                      name="volume-medium-outline"
-                      color={colorMode === "light" ? "gray" : "white"}
-                      size={20}
-                    />
-                  }
-                  onPress={() => {}}
+                  문제
+                </Text>
+                <Furi
+                  furiData={[words[index]]}
+                  showFuri={false}
+                  fontSize={42}
                 />
-                <Button
-                  w="37.5%"
-                  colorScheme="info"
-                  variant="outline"
-                  leftIcon={
-                    <Ionicon
-                      name="chevron-down-circle-outline"
-                      color={colorMode === "light" ? "#0369a1" : "white"}
-                      size={20}
-                    />
-                  }
-                  onPress={() => {
-                    setIndex((index + 1) % 5);
-                    rotateValue.current = 180;
-                    resetCard();
+                <Text
+                  fontSize="2xl"
+                  color="coolGray.700"
+                  _dark={{
+                    color: "warmGray.200",
                   }}
                 >
-                  외웠어요
-                </Button>
-              </Flex>
-            </Center>
+                  {" "}
+                </Text>
+                <Flex
+                  direction="row"
+                  justifyContent="space-around"
+                  flexWrap="wrap"
+                  bg="coolGray.100"
+                  borderColor="warmGray.200"
+                  mt={10}
+                  w="100%"
+                  _dark={{
+                    bg: "#171E2E",
+                  }}
+                >
+                  <Button
+                    w="37.5%"
+                    colorScheme="danger"
+                    variant="outline"
+                    _dark={{
+                      _text: {
+                        color: "danger.300",
+                      },
+                    }}
+                    leftIcon={
+                      <Ionicon
+                        name="close-circle-outline"
+                        color={colorMode === "light" ? "#be123c" : "#fda4af"}
+                        size={20}
+                      />
+                    }
+                    onPress={() => {
+                      setIndex((index + 1) % 5);
+                      rotateValue.current = 180;
+                      resetCard();
+                    }}
+                  >
+                    모르겠어요
+                  </Button>
+                  <Button
+                    w="15%"
+                    colorScheme="info"
+                    variant="outline"
+                    leftIcon={
+                      <Ionicon
+                        name="volume-medium-outline"
+                        color={colorMode === "light" ? "gray" : "white"}
+                        size={20}
+                      />
+                    }
+                    onPress={() => {}}
+                  />
+                  <Button
+                    w="37.5%"
+                    colorScheme="info"
+                    variant="outline"
+                    _dark={{
+                      _text: {
+                        color: "info.300",
+                      },
+                    }}
+                    leftIcon={
+                      <Ionicon
+                        name="chevron-down-circle-outline"
+                        color={colorMode === "light" ? "#0369a1" : "#7dd3fc"}
+                        size={20}
+                      />
+                    }
+                    onPress={() => {
+                      setIndex((index + 1) % 5);
+                      rotateValue.current = 180;
+                      resetCard();
+                    }}
+                  >
+                    외웠어요
+                  </Button>
+                </Flex>
+              </View>
+            </View>
           </Animated.View>
         </TouchableOpacity>
 
+        {/* BackFlipCard */}
         <TouchableOpacity
           onPress={() => flipCard()}
           style={{
-            width: "100%",
             position: "absolute",
             backfaceVisibility: "hidden",
             top: 0,
+            height: "100%",
           }}
         >
           <Animated.View
-            style={[{ backfaceVisibility: "hidden" }, backAnimatedStyle]}
+            style={[
+              {
+                backfaceVisibility: "hidden",
+                height: "100%",
+              },
+              backAnimatedStyle,
+            ]}
           >
-            <Center borderWidth={0} borderColor="coolGray.300" shadow={0} p={5}>
-              <Text w="100%" color="info.700" bold>
-                정답
-              </Text>
-              <Furi furiData={[words[index]]} showFuri={true} fontSize={42} />
-              <Text
-                fontSize="2xl"
-                color="coolGray.700"
-                _dark={{
-                  color: "warmGray.200",
-                }}
-              >
-                {words[index].meaning}
-              </Text>
-
-              <Flex
-                direction="row"
-                justifyContent="space-around"
-                flexWrap="wrap"
-                bg="coolGray.100"
-                borderColor="warmGray.200"
-                mt={10}
-                w="100%"
-              >
-                <Button
-                  w="37.5%"
-                  colorScheme="danger"
-                  variant="outline"
-                  leftIcon={
-                    <Ionicon
-                      name="close-circle-outline"
-                      color={colorMode === "light" ? "#be123c" : "white"}
-                      size={20}
-                    />
-                  }
-                  onPress={() => {
-                    setIndex((index + 1) % 5);
-                    rotateValue.current = 180;
-                    resetCard();
+            <View
+              h="80%"
+              bg="coolGray.100"
+              p={5}
+              _dark={{
+                bg: "#171E2E",
+              }}
+            >
+              <View h="80%" justifyContent="center" alignItems="center">
+                <Text
+                  w="100%"
+                  color="info.700"
+                  bold
+                  ml={7}
+                  _dark={{
+                    color: "info.300",
                   }}
                 >
-                  모르겠어요
-                </Button>
-                <Button
-                  w="15%"
-                  colorScheme="info"
-                  variant="outline"
-                  leftIcon={
-                    <Ionicon
-                      name="volume-medium-outline"
-                      color={colorMode === "light" ? "gray" : "white"}
-                      size={20}
-                    />
-                  }
-                  onPress={() => {}}
-                />
-                <Button
-                  w="37.5%"
-                  colorScheme="info"
-                  variant="outline"
-                  leftIcon={
-                    <Ionicon
-                      name="chevron-down-circle-outline"
-                      color={colorMode === "light" ? "#0369a1" : "white"}
-                      size={20}
-                    />
-                  }
-                  onPress={() => {
-                    setIndex((index + 1) % 5);
-                    rotateValue.current = 180;
-                    resetCard();
+                  정답
+                </Text>
+                <Furi furiData={[words[index]]} showFuri={true} fontSize={42} />
+                <Text
+                  fontSize="2xl"
+                  color="coolGray.700"
+                  _dark={{
+                    color: "warmGray.200",
                   }}
                 >
-                  외웠어요
-                </Button>
-              </Flex>
-            </Center>
+                  {words[index].meaning}
+                </Text>
+                <Flex
+                  direction="row"
+                  justifyContent="space-around"
+                  flexWrap="wrap"
+                  bg="coolGray.100"
+                  borderColor="warmGray.200"
+                  mt={10}
+                  w="100%"
+                  _dark={{
+                    bg: "#171E2E",
+                  }}
+                >
+                  <Button
+                    w="37.5%"
+                    colorScheme="danger"
+                    variant="outline"
+                    _dark={{
+                      _text: {
+                        color: "danger.300",
+                      },
+                    }}
+                    leftIcon={
+                      <Ionicon
+                        name="close-circle-outline"
+                        color={colorMode === "light" ? "#be123c" : "#fda4af"}
+                        size={20}
+                      />
+                    }
+                    onPress={() => {
+                      setIndex((index + 1) % 5);
+                      rotateValue.current = 180;
+                      resetCard();
+                    }}
+                  >
+                    모르겠어요
+                  </Button>
+                  <Button
+                    w="15%"
+                    colorScheme="info"
+                    variant="outline"
+                    leftIcon={
+                      <Ionicon
+                        name="volume-medium-outline"
+                        color={colorMode === "light" ? "gray" : "white"}
+                        size={20}
+                      />
+                    }
+                    onPress={() => {}}
+                  />
+                  <Button
+                    w="37.5%"
+                    colorScheme="info"
+                    variant="outline"
+                    _dark={{
+                      _text: {
+                        color: "info.300",
+                      },
+                    }}
+                    leftIcon={
+                      <Ionicon
+                        name="chevron-down-circle-outline"
+                        color={colorMode === "light" ? "#0369a1" : "#7dd3fc"}
+                        size={20}
+                      />
+                    }
+                    onPress={() => {
+                      setIndex((index + 1) % 5);
+                      rotateValue.current = 180;
+                      resetCard();
+                    }}
+                  >
+                    외웠어요
+                  </Button>
+                </Flex>
+              </View>
+            </View>
           </Animated.View>
         </TouchableOpacity>
       </View>
-    </View>
+    </Box>
   );
 }
