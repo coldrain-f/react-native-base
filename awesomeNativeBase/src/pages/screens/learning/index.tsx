@@ -1,14 +1,6 @@
 import React from "react";
 import { Animated, TouchableOpacity } from "react-native";
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Text,
-  View,
-  useColorMode,
-} from "native-base";
+import { Box, Button, Flex, Text, View, useColorMode } from "native-base";
 import { LearningProps } from "../../navigation";
 import LearningHeader from "../../../components/learning/LearningHeader";
 import Furi from "../../../components/common/Furi";
@@ -28,6 +20,7 @@ export default function Learning({
 }: LearningProps): React.JSX.Element {
   const { colorMode } = useColorMode();
   const [index, setIndex] = React.useState<number>(0);
+  const [flipCardStatus, setFlipCardStatus] = React.useState<string>("front");
 
   // Animation
   const rotateValue = React.useRef<number>(0);
@@ -84,20 +77,21 @@ export default function Learning({
   return (
     <Box
       safeAreaTop
-      h="100%"
-      bg="coolGray.100"
+      bg="coolGray.200"
       _dark={{
         bg: "#0F172A",
       }}
     >
       <LearningHeader />
-      <View h="100%">
+      <View h="100%" position="relative">
         {/* FrontFlipCard */}
         <TouchableOpacity
           onPress={() => flipCard()}
           style={{
-            backfaceVisibility: "hidden",
             height: "100%",
+            backfaceVisibility: "hidden",
+            position: "absolute",
+            top: 0,
           }}
         >
           <Animated.View
@@ -110,7 +104,6 @@ export default function Learning({
             ]}
           >
             <View
-              h="80%"
               bg="coolGray.100"
               p={5}
               _dark={{
@@ -118,17 +111,30 @@ export default function Learning({
               }}
             >
               <View h="80%" justifyContent="center" alignItems="center">
-                <Text
-                  w="100%"
-                  color="info.700"
-                  bold
-                  ml={7}
-                  _dark={{
-                    color: "info.300",
-                  }}
-                >
-                  문제
-                </Text>
+                <Flex direction="row" w="100%" mb={3}>
+                  <View w="50%">
+                    <Text
+                      color="info.700"
+                      bold
+                      ml={7}
+                      mt={2}
+                      _dark={{
+                        color: "info.300",
+                      }}
+                    >
+                      문제
+                    </Text>
+                  </View>
+                  <View w="50%" alignItems="flex-end">
+                    <Button
+                      w="30%"
+                      variant="ghost"
+                      leftIcon={
+                        <Ionicon name="bookmark" color="#0369a1" size={20} />
+                      }
+                    />
+                  </View>
+                </Flex>
                 <Furi
                   furiData={[words[index]]}
                   showFuri={false}
@@ -145,14 +151,17 @@ export default function Learning({
                 </Text>
                 <Flex
                   direction="row"
-                  justifyContent="space-around"
                   flexWrap="wrap"
+                  justifyContent="space-around"
                   bg="coolGray.100"
                   borderColor="warmGray.200"
                   mt={10}
                   w="100%"
                   _dark={{
                     bg: "#171E2E",
+                  }}
+                  style={{
+                    backfaceVisibility: "hidden",
                   }}
                 >
                   <Button
@@ -228,8 +237,8 @@ export default function Learning({
           style={{
             position: "absolute",
             backfaceVisibility: "hidden",
-            top: 0,
             height: "100%",
+            top: 0,
           }}
         >
           <Animated.View
@@ -242,7 +251,6 @@ export default function Learning({
             ]}
           >
             <View
-              h="80%"
               bg="coolGray.100"
               p={5}
               _dark={{
@@ -250,17 +258,30 @@ export default function Learning({
               }}
             >
               <View h="80%" justifyContent="center" alignItems="center">
-                <Text
-                  w="100%"
-                  color="info.700"
-                  bold
-                  ml={7}
-                  _dark={{
-                    color: "info.300",
-                  }}
-                >
-                  정답
-                </Text>
+                <Flex direction="row" w="100%" mb={3}>
+                  <View w="50%">
+                    <Text
+                      color="info.700"
+                      bold
+                      ml={7}
+                      mt={2}
+                      _dark={{
+                        color: "info.300",
+                      }}
+                    >
+                      문제
+                    </Text>
+                  </View>
+                  <View w="50%" alignItems="flex-end">
+                    <Button
+                      w="30%"
+                      variant="ghost"
+                      leftIcon={
+                        <Ionicon name="bookmark" color="#0369a1" size={20} />
+                      }
+                    />
+                  </View>
+                </Flex>
                 <Furi furiData={[words[index]]} showFuri={true} fontSize={42} />
                 <Text
                   fontSize="2xl"
@@ -271,6 +292,7 @@ export default function Learning({
                 >
                   {words[index].meaning}
                 </Text>
+
                 <Flex
                   direction="row"
                   justifyContent="space-around"
