@@ -317,9 +317,15 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
           />
         </Flex>
       </Flex>
-      <Flex direction="row" justifyContent="space-around" mt={2}>
+      <Flex
+        direction="row"
+        justifyContent="space-around"
+        mt={2}
+        flexWrap="wrap"
+      >
         <Button
           w="92.5%"
+          mb={2}
           size="md"
           variant="outline"
           colorScheme="info"

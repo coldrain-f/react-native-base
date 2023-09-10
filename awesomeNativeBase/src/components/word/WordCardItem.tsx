@@ -18,6 +18,20 @@ export default function WordCardItem(): React.JSX.Element {
   const [showFuri, setShowFuri] = React.useState<boolean>(true);
   const [showMeaning, setShowMeaning] = React.useState<boolean>(true);
 
+  const [words, setWords] = React.useState([
+    { name: "人口", furi: "じんこう", meaning: "인구" },
+    { name: "人生", furi: "じんせい", meaning: "인생" },
+    { name: "人物", furi: "じんぶつ", meaning: "인물" },
+    { name: "人類", furi: "じんるい", meaning: "인류" },
+    { name: "偉人", furi: "いじん", meaning: "위인" },
+  ]);
+
+  const shuffle = require("fisher-yates");
+
+  const handleShuffleClick = () => {
+    setWords(shuffle(words));
+  };
+
   return (
     <View>
       <Badge
@@ -85,66 +99,20 @@ export default function WordCardItem(): React.JSX.Element {
               w="65%"
               justifyContent="space-between"
             >
-              <View flexDirection="row">
-                <Furi
-                  furiData={[{ word: "人口", furi: "じんこう" }]}
-                  showFuri={showFuri}
-                  fontSize={20}
-                />
-                <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
-                    인구
-                  </Text>
+              {words.map((word) => (
+                <View flexDirection="row" key={word.name}>
+                  <Furi
+                    furiData={[{ word: word.name, furi: word.furi }]}
+                    showFuri={showFuri}
+                    fontSize={20}
+                  />
+                  <View justifyContent="flex-end" pb={1}>
+                    <Text ml={2} opacity={showMeaning ? 1 : 0}>
+                      {word.meaning}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-              <View flexDirection="row">
-                <Furi
-                  furiData={[{ word: "人生", furi: "じんせい" }]}
-                  showFuri={showFuri}
-                  fontSize={20}
-                />
-                <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
-                    인생
-                  </Text>
-                </View>
-              </View>
-              <View flexDirection="row">
-                <Furi
-                  furiData={[{ word: "人物", furi: "じんぶつ" }]}
-                  showFuri={showFuri}
-                  fontSize={20}
-                />
-                <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
-                    인물
-                  </Text>
-                </View>
-              </View>
-              <View flexDirection="row">
-                <Furi
-                  furiData={[{ word: "人類", furi: "じんるい" }]}
-                  showFuri={showFuri}
-                  fontSize={20}
-                />
-                <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
-                    인류
-                  </Text>
-                </View>
-              </View>
-              <View flexDirection="row">
-                <Furi
-                  furiData={[{ word: "偉人", furi: "いじん" }]}
-                  showFuri={showFuri}
-                  fontSize={20}
-                />
-                <View justifyContent="flex-end" pb={1}>
-                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
-                    위인
-                  </Text>
-                </View>
-              </View>
+              ))}
             </Flex>
           </Flex>
         </View>
@@ -208,6 +176,7 @@ export default function WordCardItem(): React.JSX.Element {
                 size={20}
               />
             }
+            onPress={handleShuffleClick}
           >
             <Text
               color="coolGray.900"
