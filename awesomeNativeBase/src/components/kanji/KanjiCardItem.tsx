@@ -129,7 +129,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
               {/* 음독 숨기기 아이콘 */}
               <TouchableOpacity
                 style={{ flex: 1 }}
-                activeOpacity={1}
+                activeOpacity={0.8}
                 onPress={() => setShowOn(true)}
               >
                 <View
@@ -189,7 +189,7 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
               {/* 훈독 숨기기 아이콘 */}
               <TouchableOpacity
                 style={{ flex: 1 }}
-                activeOpacity={1}
+                activeOpacity={0.8}
                 onPress={() => setShowKun(true)}
               >
                 <View

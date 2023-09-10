@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  AlertDialog,
   Box,
   Button,
   Flex,
@@ -15,6 +16,11 @@ import { StackNavigationProp } from "../../pages/navigation";
 export default function LearningHeader(): React.JSX.Element {
   const navigation = useNavigation<StackNavigationProp>();
   const { colorMode } = useColorMode();
+
+  // AlertDialog
+  const [isOpen, setIsOpen] = React.useState(false);
+  const onClose = () => setIsOpen(false);
+  const cancelRef = React.useRef(null);
 
   return (
     <View
@@ -149,9 +155,45 @@ export default function LearningHeader(): React.JSX.Element {
               />
             }
             onPress={() => {
-              navigation.goBack();
+              setIsOpen(!isOpen);
             }}
-          ></Button>
+          />
+          {/* 학습 종료 AlertDialog */}
+          <AlertDialog
+            leastDestructiveRef={cancelRef}
+            isOpen={isOpen}
+            onClose={onClose}
+          >
+            <AlertDialog.Content>
+              <AlertDialog.CloseButton />
+              <AlertDialog.Header>학습 종료</AlertDialog.Header>
+              <AlertDialog.Body>
+                {
+                  "학습이 진행 중입니다. 지금 종료하면 학습 완료가 되지 않습니다. 정말 종료하시겠습니까?"
+                }
+              </AlertDialog.Body>
+              <AlertDialog.Footer>
+                <Button.Group space={2}>
+                  <Button
+                    colorScheme="primary"
+                    onPress={() => {
+                      navigation.goBack();
+                    }}
+                  >
+                    확인
+                  </Button>
+                  <Button
+                    variant="unstyled"
+                    colorScheme="coolGray"
+                    onPress={onClose}
+                    ref={cancelRef}
+                  >
+                    취소
+                  </Button>
+                </Button.Group>
+              </AlertDialog.Footer>
+            </AlertDialog.Content>
+          </AlertDialog>
         </View>
       </Flex>
     </View>
