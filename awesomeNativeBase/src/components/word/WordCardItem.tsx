@@ -92,7 +92,9 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  {showMeaning && <Text ml={2}>인구</Text>}
+                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
+                    인구
+                  </Text>
                 </View>
               </View>
               <View flexDirection="row">
@@ -102,7 +104,9 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  {showMeaning && <Text ml={2}>인생</Text>}
+                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
+                    인생
+                  </Text>
                 </View>
               </View>
               <View flexDirection="row">
@@ -112,7 +116,9 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  {showMeaning && <Text ml={2}>인물</Text>}
+                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
+                    인물
+                  </Text>
                 </View>
               </View>
               <View flexDirection="row">
@@ -122,7 +128,9 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  {showMeaning && <Text ml={2}>인류</Text>}
+                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
+                    인류
+                  </Text>
                 </View>
               </View>
               <View flexDirection="row">
@@ -132,7 +140,9 @@ export default function WordCardItem(): React.JSX.Element {
                   fontSize={20}
                 />
                 <View justifyContent="flex-end" pb={1}>
-                  {showMeaning && <Text ml={2}>위인</Text>}
+                  <Text ml={2} opacity={showMeaning ? 1 : 0}>
+                    위인
+                  </Text>
                 </View>
               </View>
             </Flex>

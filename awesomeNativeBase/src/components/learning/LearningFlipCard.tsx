@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    padding: 20,
+    padding: 19,
     backfaceVisibility: "hidden",
     position: "absolute",
     height: "100%",
