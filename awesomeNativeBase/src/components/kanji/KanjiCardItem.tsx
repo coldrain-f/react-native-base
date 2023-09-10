@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
 import {
   View,
   Box,
@@ -13,6 +13,7 @@ import {
   Modal,
   ScrollView,
 } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "../../pages/navigation";
 import { KanjiType } from "../../@types/kanjiType";
 import Ionicon from "react-native-vector-icons/Ionicons";
@@ -25,6 +26,8 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
   const { colorMode } = useColorMode();
   const navigation = useNavigation<StackNavigationProp>();
   const [showModal, setShowModal] = React.useState<boolean>(false);
+  const [showOn, setShowOn] = React.useState<boolean>(false);
+  const [showKun, setShowKun] = React.useState<boolean>(false);
 
   return (
     <Box
@@ -87,30 +90,109 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
         />
         {/* 음독, 훈독 Grid */}
         <View p={2} ml={1} w="60%">
-          <Flex direction="row" pb={1}>
-            <Text
-              fontWeight="bold"
-              color="coolGray.700"
-              fontSize="md"
-              w="100%"
-              _dark={{ color: "warmGray.200" }}
+          {/* 음독 */}
+          {showOn ? (
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => setShowOn(false)}
             >
-              음독: <Text fontWeight="medium">{kanji.onYomi.join(", ")}</Text>
-            </Text>
-          </Flex>
-          <Flex direction="row">
-            <Text
-              fontWeight="bold"
-              color="coolGray.700"
-              fontSize="md"
-              w="100%"
-              _dark={{
-                color: "warmGray.200",
-              }}
+              <Flex direction="row" pb={1} w="100%">
+                <Text
+                  fontWeight="bold"
+                  color="coolGray.700"
+                  fontSize="md"
+                  w="100%"
+                  _dark={{
+                    color: "warmGray.200",
+                  }}
+                >
+                  음독:{" "}
+                  <Text fontWeight="medium">{kanji.onYomi.join(", ")}</Text>
+                </Text>
+              </Flex>
+            </TouchableOpacity>
+          ) : (
+            <Flex direction="row" pb={1} w="100%">
+              <View>
+                <Text
+                  fontWeight="bold"
+                  color="coolGray.700"
+                  fontSize="md"
+                  w="100%"
+                  _dark={{
+                    color: "warmGray.200",
+                  }}
+                >
+                  음독:{" "}
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={{ flex: 1 }}
+                activeOpacity={1}
+                onPress={() => setShowOn(true)}
+              >
+                <View flex={1} bg="coolGray.200" alignItems="center">
+                  <Ionicon
+                    name="eye"
+                    color={colorMode === "light" ? "gray" : "white"}
+                    size={20}
+                  />
+                </View>
+              </TouchableOpacity>
+            </Flex>
+          )}
+
+          {/* 훈독 */}
+          {showKun ? (
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => setShowKun(false)}
             >
-              훈독: <Text fontWeight="medium">{kanji.kunYomi.join(", ")}</Text>
-            </Text>
-          </Flex>
+              <Flex direction="row" pb={1} w="100%">
+                <Text
+                  fontWeight="bold"
+                  color="coolGray.700"
+                  fontSize="md"
+                  w="100%"
+                  _dark={{
+                    color: "warmGray.200",
+                  }}
+                >
+                  훈독:{" "}
+                  <Text fontWeight="medium">{kanji.kunYomi.join(", ")}</Text>
+                </Text>
+              </Flex>
+            </TouchableOpacity>
+          ) : (
+            <Flex direction="row" pb={1} w="100%">
+              <View>
+                <Text
+                  fontWeight="bold"
+                  color="coolGray.700"
+                  fontSize="md"
+                  w="100%"
+                  _dark={{
+                    color: "warmGray.200",
+                  }}
+                >
+                  훈독:{" "}
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={{ flex: 1 }}
+                activeOpacity={1}
+                onPress={() => setShowKun(true)}
+              >
+                <View flex={1} bg="coolGray.200" alignItems="center">
+                  <Ionicon
+                    name="eye"
+                    color={colorMode === "light" ? "gray" : "white"}
+                    size={20}
+                  />
+                </View>
+              </TouchableOpacity>
+            </Flex>
+          )}
           {/* 회독 수, 포함 단어 Grid */}
           <Flex direction="row" mt={3.5} flexWrap="wrap" w="100%">
             <View flexDirection="row" flexWrap="wrap" w="45%">
