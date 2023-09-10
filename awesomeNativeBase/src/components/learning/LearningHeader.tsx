@@ -3,12 +3,13 @@ import {
   Box,
   Button,
   Flex,
+  Heading,
   Progress,
   Text,
   View,
   useColorMode,
 } from "native-base";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import Ionicon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "../../pages/navigation";
 
@@ -28,9 +29,9 @@ export default function LearningHeader(): React.JSX.Element {
       }}
     >
       <Flex direction="row">
-        <View w="80%">
+        <View w="85%">
           <Text
-            color="primary.900"
+            color="primary.800"
             fontWeight="bold"
             fontSize="lg"
             _dark={{
@@ -58,7 +59,23 @@ export default function LearningHeader(): React.JSX.Element {
             </Box>
           </Flex>
         </View>
-        <View w="20%"></View>
+        <View w="15%">
+          <Button
+            size="sm"
+            variant="ghost"
+            colorScheme="coolGray"
+            rightIcon={
+              <Ionicon
+                name="exit-outline"
+                color={colorMode === "light" ? "#374151" : "#7dd3fc"}
+                size={20}
+              />
+            }
+            onPress={() => {
+              navigation.goBack();
+            }}
+          ></Button>
+        </View>
       </Flex>
     </View>
   );
