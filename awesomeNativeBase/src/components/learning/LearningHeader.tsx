@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  Heading,
   Progress,
   Text,
   View,
@@ -58,6 +57,40 @@ export default function LearningHeader(): React.JSX.Element {
               </Text>
             </Box>
           </Flex>
+          <View
+            flexDirection="row"
+            justifyContent="space-between"
+            mt={3}
+            flexWrap="wrap"
+          >
+            <View>
+              <Text>
+                시도:{" "}
+                <Text bold color="primary.700">
+                  0
+                </Text>
+                회
+              </Text>
+            </View>
+            <View>
+              <Text>
+                외웠어요:{" "}
+                <Text color="info.900" bold>
+                  0
+                </Text>
+                개
+              </Text>
+            </View>
+            <View>
+              <Text>
+                틀렸어요:{" "}
+                <Text color="rose.900" bold>
+                  0
+                </Text>
+                개
+              </Text>
+            </View>
+          </View>
         </View>
         <View w="15%">
           <Button

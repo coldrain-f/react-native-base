@@ -118,17 +118,6 @@ export default function FlipCard() {
             </Center>
             <View flex={1} justifyContent="flex-end" mb={10}>
               <VStack>
-                <Badge
-                  colorScheme="primary"
-                  rounded="full"
-                  mb={-4}
-                  mr={-4}
-                  zIndex={1}
-                  variant="solid"
-                  alignSelf="flex-end"
-                >
-                  7
-                </Badge>
                 <Button
                   colorScheme="info"
                   _dark={{
@@ -147,18 +136,7 @@ export default function FlipCard() {
                   외웠어요
                 </Button>
               </VStack>
-              <VStack mt={3}>
-                <Badge
-                  colorScheme="primary"
-                  rounded="full"
-                  mb={-4}
-                  mr={-4}
-                  zIndex={1}
-                  variant="solid"
-                  alignSelf="flex-end"
-                >
-                  2
-                </Badge>
+              <VStack mt={5}>
                 <Button
                   colorScheme="danger"
                   _dark={{
@@ -228,17 +206,6 @@ export default function FlipCard() {
             </Center>
             <View flex={1} justifyContent="flex-end" mb={10}>
               <VStack>
-                <Badge
-                  colorScheme="primary"
-                  rounded="full"
-                  mb={-4}
-                  mr={-4}
-                  zIndex={1}
-                  variant="solid"
-                  alignSelf="flex-end"
-                >
-                  7
-                </Badge>
                 <Button
                   colorScheme="info"
                   _dark={{
@@ -257,18 +224,7 @@ export default function FlipCard() {
                   외웠어요
                 </Button>
               </VStack>
-              <VStack mt={3}>
-                <Badge
-                  colorScheme="primary"
-                  rounded="full"
-                  mb={-4}
-                  mr={-4}
-                  zIndex={1}
-                  variant="solid"
-                  alignSelf="flex-end"
-                >
-                  2
-                </Badge>
+              <VStack mt={5}>
                 <Button
                   colorScheme="danger"
                   _dark={{
