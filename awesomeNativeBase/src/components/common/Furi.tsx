@@ -8,14 +8,16 @@ interface FuriType {
 
 interface FuriProps {
   furiData: FuriType[];
-  showFuri?: boolean;
+  showFuri: boolean;
   fontSize?: number;
+  color?: string;
 }
 
 export default function Furi({
   furiData,
-  showFuri = true,
+  showFuri,
   fontSize = 22,
+  color = "coolGray.700",
 }: FuriProps) {
   return (
     <Flex direction="row" flexWrap="wrap">
@@ -24,7 +26,7 @@ export default function Furi({
           <Text
             fontSize={fontSize * 0.5}
             textAlign="center"
-            color="coolGray.700"
+            color={color}
             _dark={{
               color: "warmGray.200",
             }}
@@ -34,7 +36,7 @@ export default function Furi({
           <Text
             fontSize={fontSize}
             textAlign={index === 0 ? "left" : "center"}
-            color="coolGray.700"
+            color={color}
             _dark={{
               color: "warmGray.200",
             }}

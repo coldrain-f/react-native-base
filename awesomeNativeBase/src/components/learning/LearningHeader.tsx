@@ -13,8 +13,8 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "../../pages/navigation";
 
 export default function LearningHeader(): React.JSX.Element {
-  const { colorMode } = useColorMode();
   const navigation = useNavigation<StackNavigationProp>();
+  const { colorMode } = useColorMode();
 
   return (
     <View
@@ -58,22 +58,7 @@ export default function LearningHeader(): React.JSX.Element {
             </Box>
           </Flex>
         </View>
-        <View w="20%">
-          <Button
-            size="sm"
-            variant="ghost"
-            colorScheme="coolGray"
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
-            <Ionicons
-              name="exit-outline"
-              color={colorMode === "light" ? "black" : "white"}
-              size={26}
-            />
-          </Button>
-        </View>
+        <View w="20%"></View>
       </Flex>
     </View>
   );

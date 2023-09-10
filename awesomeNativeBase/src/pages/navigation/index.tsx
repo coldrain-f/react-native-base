@@ -108,7 +108,7 @@ export default function Navigation() {
             ...BasicNativeStackNavigationOptions,
             title: "단어 학습",
             headerStyle: basicHeaderStyle,
-            headerBackVisible: false,
+            headerBackVisible: true,
           }}
         />
       </Stack.Navigator>
