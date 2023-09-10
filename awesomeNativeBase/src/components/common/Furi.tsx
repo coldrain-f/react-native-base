@@ -28,7 +28,7 @@ export default function Furi({
             textAlign="center"
             color={color}
             _dark={{
-              color: "warmGray.200",
+              color: "coolGray.100",
             }}
           >
             {data.furi && showFuri ? data.furi : " "}
@@ -38,7 +38,7 @@ export default function Furi({
             textAlign={index === 0 ? "left" : "center"}
             color={color}
             _dark={{
-              color: "warmGray.200",
+              color: "coolGray.100",
             }}
           >
             {data.word}

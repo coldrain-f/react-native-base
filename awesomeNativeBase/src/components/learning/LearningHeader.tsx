@@ -75,7 +75,7 @@ export default function LearningHeader(): React.JSX.Element {
               <Text
                 color="coolGray.700"
                 _dark={{
-                  color: "coolGray.200",
+                  color: "coolGray.100",
                 }}
               >
                 시도:{" "}
@@ -95,7 +95,7 @@ export default function LearningHeader(): React.JSX.Element {
               <Text
                 color="coolGray.700"
                 _dark={{
-                  color: "coolGray.200",
+                  color: "coolGray.100",
                 }}
               >
                 외웠어요:{" "}
@@ -115,7 +115,7 @@ export default function LearningHeader(): React.JSX.Element {
               <Text
                 color="coolGray.700"
                 _dark={{
-                  color: "coolGray.200",
+                  color: "coolGray.100",
                 }}
               >
                 모르겠어요:{" "}
@@ -142,8 +142,9 @@ export default function LearningHeader(): React.JSX.Element {
             rightIcon={
               <Ionicon
                 // #f5f5f4: warmGray.100
+                // #f3f4f6: coolGray.100
                 name="exit-outline"
-                color={colorMode === "light" ? "#374151" : "#f5f5f4"}
+                color={colorMode === "light" ? "#374151" : "#f3f4f6"}
                 size={20}
               />
             }

@@ -88,6 +88,7 @@ export default function LearningFlipCard() {
           bg: "#171E2E",
         }}
       >
+        {/* 문제 표시 - Face */}
         <Animated.View
           style={[styles.card, frontStyle, { zIndex: isFlipped ? 0 : 1 }]}
         >
@@ -97,27 +98,43 @@ export default function LearningFlipCard() {
               flexWrap="wrap"
               justifyContent="space-between"
             >
+              {/* 문제 Label */}
               <View w="50%" pt={2}>
-                <Text color="info.700" bold>
+                <Text
+                  color="info.700"
+                  bold
+                  _dark={{
+                    color: "info.200",
+                  }}
+                >
                   문제
                 </Text>
               </View>
+
               <View w="50%" flexDirection="row" justifyContent="flex-end">
+                {/* 듣기 아이콘 */}
                 <Button
                   variant="outline"
                   leftIcon={
                     <Ionicon
                       name="volume-medium-outline"
-                      color={colorMode === "light" ? "#0369a1" : "white"}
+                      // #e7e5e4: warmGray.200
+                      // #f3f4f6: coolGray.100
+                      color={colorMode === "light" ? "#0369a1" : "#f3f4f6"}
                       size={20}
                     />
                   }
                 />
+                {/* 북마크 아이콘 */}
                 <Button
                   ml={2}
                   variant="outline"
                   leftIcon={
-                    <Ionicon name="heart-outline" color="#0369a1" size={20} />
+                    <Ionicon
+                      name="heart-outline"
+                      color={colorMode === "light" ? "#0369a1" : "#f3f4f6"}
+                      size={20}
+                    />
                   }
                 />
               </View>
@@ -135,18 +152,20 @@ export default function LearningFlipCard() {
               </Heading>
             </Center>
             <View flex={1} justifyContent="flex-end" mb={10}>
+              {/* 외웠어요 버튼 */}
               <VStack>
                 <Button
                   colorScheme="info"
                   _dark={{
                     _text: {
-                      color: "info.300",
+                      color: "coolGray.100",
                     },
                   }}
                   leftIcon={
                     <Ionicon
+                      // #f3f4f6: coolGray.100
                       name="chevron-down-circle-outline"
-                      color={colorMode === "light" ? "white" : "#7dd3fc"}
+                      color={colorMode === "light" ? "white" : "#f3f4f6"}
                       size={20}
                     />
                   }
@@ -154,18 +173,19 @@ export default function LearningFlipCard() {
                   외웠어요
                 </Button>
               </VStack>
+              {/* 모르겠어요 버튼 */}
               <VStack mt={5}>
                 <Button
                   colorScheme="danger"
                   _dark={{
                     _text: {
-                      color: "danger.300",
+                      color: "#f3f4f6",
                     },
                   }}
                   leftIcon={
                     <Ionicon
                       name="close-circle-outline"
-                      color={colorMode === "light" ? "white" : "#fda4af"}
+                      color={colorMode === "light" ? "white" : "#f3f4f6"}
                       size={20}
                     />
                   }
@@ -176,6 +196,7 @@ export default function LearningFlipCard() {
             </View>
           </View>
         </Animated.View>
+        {/* 정답 표시 - Back */}
         <Animated.View
           style={[styles.card, backStyle, { zIndex: isFlipped ? 1 : 0 }]}
         >
@@ -185,56 +206,81 @@ export default function LearningFlipCard() {
               flexWrap="wrap"
               justifyContent="space-between"
             >
+              {/* 정답 Label */}
               <View w="50%" pt={2}>
-                <Text color="info.700" bold>
+                <Text
+                  color="info.700"
+                  bold
+                  _dark={{
+                    color: "info.200",
+                  }}
+                >
                   정답
                 </Text>
               </View>
               <View w="50%" flexDirection="row" justifyContent="flex-end">
+                {/* 듣기 아이콘 */}
                 <Button
                   variant="outline"
                   leftIcon={
                     <Ionicon
                       name="volume-medium-outline"
-                      color={colorMode === "light" ? "#0369a1" : "white"}
+                      // #e7e5e4: warmGray.200
+                      // #f3f4f6: coolGray.100
+                      color={colorMode === "light" ? "#0369a1" : "#f3f4f6"}
                       size={20}
                     />
                   }
                 />
+                {/* 북마크 아이콘 */}
                 <Button
                   ml={2}
                   variant="outline"
                   leftIcon={
-                    <Ionicon name="heart-outline" color="#0369a1" size={20} />
+                    <Ionicon
+                      name="heart-outline"
+                      color={colorMode === "light" ? "#0369a1" : "#f3f4f6"}
+                      size={20}
+                    />
                   }
                 />
               </View>
             </View>
             <Divider mb={2} mt={2} />
             <Center flex={1}>
+              {/* 단어 표시 */}
               <Furi
                 furiData={[{ word: "難解", furi: "なんかい" }]}
                 showFuri={true}
                 fontSize={38}
                 color="coolGray.700"
               />
-              <Heading color="coolGray.700" fontWeight="normal">
+              {/* 뜻 표시 */}
+              <Heading
+                color="coolGray.700"
+                fontWeight="normal"
+                _dark={{
+                  color: "coolGray.100",
+                }}
+              >
                 난해
               </Heading>
             </Center>
             <View flex={1} justifyContent="flex-end" mb={10}>
+              {/* 외웠어요 버튼 */}
               <VStack>
                 <Button
                   colorScheme="info"
                   _dark={{
                     _text: {
-                      color: "info.300",
+                      color: "coolGray.100",
                     },
                   }}
                   leftIcon={
                     <Ionicon
+                      // #f3f4f6: coolGray.100
                       name="chevron-down-circle-outline"
-                      color={colorMode === "light" ? "white" : "#7dd3fc"}
+                      color={colorMode === "light" ? "white" : "#f3f4f6"}
                       size={20}
                     />
                   }
@@ -242,18 +288,19 @@ export default function LearningFlipCard() {
                   외웠어요
                 </Button>
               </VStack>
+              {/* 모르겠어요 버튼 */}
               <VStack mt={5}>
                 <Button
                   colorScheme="danger"
                   _dark={{
                     _text: {
-                      color: "danger.300",
+                      color: "#f3f4f6",
                     },
                   }}
                   leftIcon={
                     <Ionicon
                       name="close-circle-outline"
-                      color={colorMode === "light" ? "white" : "#fda4af"}
+                      color={colorMode === "light" ? "white" : "#f3f4f6"}
                       size={20}
                     />
                   }
