@@ -63,28 +63,62 @@ export default function LearningHeader(): React.JSX.Element {
             mt={3}
             flexWrap="wrap"
           >
+            {/* 시도, 외웠어요, 모르겠어요 카운팅 */}
             <View>
-              <Text>
+              <Text
+                color="coolGray.700"
+                _dark={{
+                  color: "coolGray.200",
+                }}
+              >
                 시도:{" "}
-                <Text bold color="primary.700">
+                <Text
+                  color="primary.700"
+                  bold
+                  _dark={{
+                    color: "primary.200",
+                  }}
+                >
                   0
                 </Text>
                 회
               </Text>
             </View>
             <View>
-              <Text>
+              <Text
+                color="coolGray.700"
+                _dark={{
+                  color: "coolGray.200",
+                }}
+              >
                 외웠어요:{" "}
-                <Text color="info.900" bold>
+                <Text
+                  color="info.900"
+                  bold
+                  _dark={{
+                    color: "info.200",
+                  }}
+                >
                   0
                 </Text>
                 개
               </Text>
             </View>
             <View>
-              <Text>
+              <Text
+                color="coolGray.700"
+                _dark={{
+                  color: "coolGray.200",
+                }}
+              >
                 모르겠어요:{" "}
-                <Text color="rose.900" bold>
+                <Text
+                  color="rose.900"
+                  bold
+                  _dark={{
+                    color: "rose.200",
+                  }}
+                >
                   0
                 </Text>
                 개
