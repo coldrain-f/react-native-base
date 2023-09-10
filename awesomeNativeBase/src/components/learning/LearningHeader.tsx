@@ -43,7 +43,9 @@ export default function LearningHeader(): React.JSX.Element {
             color="coolGray.900"
             fontSize="md"
             mb="1"
-            _dark={{ color: "coolGray.100" }}
+            _dark={{
+              color: "coolGray.100",
+            }}
           >
             학습 진척도: {((3 / 10) * 100).toFixed(1)}%
           </Text>
@@ -52,7 +54,12 @@ export default function LearningHeader(): React.JSX.Element {
               <Progress colorScheme="info" value={(3 / 10) * 100} size="sm" />
             </Box>
             <Box w="40%" ml={3}>
-              <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
+              <Text
+                color="coolGray.900"
+                _dark={{
+                  color: "coolGray.100",
+                }}
+              >
                 {3} / {10}개
               </Text>
             </Box>
@@ -126,6 +133,7 @@ export default function LearningHeader(): React.JSX.Element {
             </View>
           </View>
         </View>
+        {/* 학습 종료 아이콘*/}
         <View w="15%">
           <Button
             size="sm"
@@ -133,8 +141,9 @@ export default function LearningHeader(): React.JSX.Element {
             colorScheme="coolGray"
             rightIcon={
               <Ionicon
+                // #f5f5f4: warmGray.100
                 name="exit-outline"
-                color={colorMode === "light" ? "#374151" : "#7dd3fc"}
+                color={colorMode === "light" ? "#374151" : "#f5f5f4"}
                 size={20}
               />
             }

@@ -61,13 +61,33 @@ export default function LearningFlipCard() {
     transform: [{ rotateY: interpolateRotationBack }],
   };
 
+  const styles = StyleSheet.create({
+    touchableOpacity: {
+      flex: 1,
+    },
+    card: {
+      flex: 1,
+      padding: 19,
+      backfaceVisibility: "hidden",
+      position: "absolute",
+      height: "100%",
+    },
+  });
+
   return (
     <TouchableOpacity
       onPress={flipCard}
       style={styles.touchableOpacity}
       activeOpacity={1}
     >
-      <View flex={1} alignItems="center" bg="coolGray.100">
+      <View
+        flex={1}
+        alignItems="center"
+        bg="coolGray.100"
+        _dark={{
+          bg: "#171E2E",
+        }}
+      >
         <Animated.View
           style={[styles.card, frontStyle, { zIndex: isFlipped ? 0 : 1 }]}
         >
@@ -248,16 +268,3 @@ export default function LearningFlipCard() {
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  touchableOpacity: {
-    flex: 1,
-  },
-  card: {
-    flex: 1,
-    padding: 19,
-    backfaceVisibility: "hidden",
-    position: "absolute",
-    height: "100%",
-  },
-});
