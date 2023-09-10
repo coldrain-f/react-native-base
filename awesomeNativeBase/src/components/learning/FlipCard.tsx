@@ -23,10 +23,9 @@ const words = [
 ];
 
 export default function FlipCard() {
-  const { colorMode } = useColorMode();
-  const [isFlipped, setIsFlipped] = React.useState(false);
-
+  const [isFlipped, setIsFlipped] = React.useState<boolean>(false);
   const flipAnimation = React.useRef(new Animated.Value(0)).current;
+  const { colorMode } = useColorMode();
 
   const flipCard = () => {
     setIsFlipped(!isFlipped);

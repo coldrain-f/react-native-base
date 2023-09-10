@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "native-base";
+import { View, Center, Heading } from "native-base";
 import { InformationProps } from "../../bottomNavigation";
 import FlipCard from "../../../components/learning/FlipCard";
 
@@ -8,10 +8,12 @@ export default function Information({
   route,
 }: InformationProps): React.JSX.Element {
   return (
-    <View flex={1}>
-      <View h="100%">
-        <FlipCard />
-      </View>
+    <View>
+      <Center p="5">
+        <Heading size="md" color="coolGray.700">
+          {"Coming soon".toUpperCase()}
+        </Heading>
+      </Center>
     </View>
   );
 }
