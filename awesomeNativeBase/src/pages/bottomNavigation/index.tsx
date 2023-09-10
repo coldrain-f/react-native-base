@@ -9,6 +9,8 @@ import type {
 import Information from "../screens/information";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Button, Flex, useColorMode } from "native-base";
+import Progress from "../screens/progress";
+import BookMark from "../screens/bookmark";
 
 /**
  * Icon Link: https://ionic.io/ionicons/
@@ -16,18 +18,28 @@ import { Button, Flex, useColorMode } from "native-base";
 
 export type BottomTabParamList = {
   Home: undefined;
+  Bookmark: undefined;
+  Progress: undefined;
   Configuration: undefined;
   Information: undefined;
 };
 
 export type HomeProps = BottomTabScreenProps<BottomTabParamList, "Home">;
-export type InformationProps = BottomTabScreenProps<
+export type BookmarkProps = BottomTabScreenProps<
   BottomTabParamList,
-  "Information"
+  "Bookmark"
+>;
+export type ProgressProps = BottomTabScreenProps<
+  BottomTabParamList,
+  "Progress"
 >;
 export type ConfigurationProps = BottomTabScreenProps<
   BottomTabParamList,
   "Configuration"
+>;
+export type InformationProps = BottomTabScreenProps<
+  BottomTabParamList,
+  "Information"
 >;
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -76,13 +88,18 @@ export default function BottomTabNavigation(): React.JSX.Element {
         tabBarStyle: {
           backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
         },
-        tabBarActiveTintColor: "white",
-        tabBarInactiveTintColor: "gray",
+        // BottomTab Icon 색상
+        tabBarActiveTintColor: "#f3f4f6", // coolGray.100
+        tabBarInactiveTintColor: "#9ca3af", // coolGray.400
 
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: string = "book-sharp";
           if (route.name === "Home") {
             iconName = focused ? "book-sharp" : "book-outline";
+          } else if (route.name === "Bookmark") {
+            iconName = focused ? "heart" : "heart-outline";
+          } else if (route.name === "Progress") {
+            iconName = focused ? "footsteps" : "footsteps-outline";
           } else if (route.name === "Information") {
             iconName = focused
               ? "information-circle-sharp"
@@ -100,6 +117,28 @@ export default function BottomTabNavigation(): React.JSX.Element {
         options={{
           ...BasicBottomTabNavigationOprions,
           title: "단어장",
+          headerStyle: {
+            backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
+          },
+        }}
+      />
+      <BottomTab.Screen
+        name="Bookmark"
+        component={BookMark}
+        options={{
+          ...BasicBottomTabNavigationOprions,
+          title: "북마크",
+          headerStyle: {
+            backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
+          },
+        }}
+      />
+      <BottomTab.Screen
+        name="Progress"
+        component={Progress}
+        options={{
+          ...BasicBottomTabNavigationOprions,
+          title: "진척도",
           headerStyle: {
             backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
           },
