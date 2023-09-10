@@ -126,12 +126,20 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                   음독:{" "}
                 </Text>
               </View>
+              {/* 음독 숨기기 아이콘 */}
               <TouchableOpacity
                 style={{ flex: 1 }}
                 activeOpacity={1}
                 onPress={() => setShowOn(true)}
               >
-                <View flex={1} bg="coolGray.200" alignItems="center">
+                <View
+                  flex={1}
+                  bg="coolGray.200"
+                  alignItems="center"
+                  _dark={{
+                    bg: "#0369a1",
+                  }}
+                >
                   <Ionicon
                     name="eye"
                     color={colorMode === "light" ? "gray" : "white"}
@@ -178,12 +186,20 @@ export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
                   훈독:{" "}
                 </Text>
               </View>
+              {/* 훈독 숨기기 아이콘 */}
               <TouchableOpacity
                 style={{ flex: 1 }}
                 activeOpacity={1}
                 onPress={() => setShowKun(true)}
               >
-                <View flex={1} bg="coolGray.200" alignItems="center">
+                <View
+                  flex={1}
+                  bg="coolGray.200"
+                  alignItems="center"
+                  _dark={{
+                    bg: "#0369a1",
+                  }}
+                >
                   <Ionicon
                     name="eye"
                     color={colorMode === "light" ? "gray" : "white"}
