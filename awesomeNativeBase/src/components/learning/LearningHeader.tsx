@@ -83,7 +83,7 @@ export default function LearningHeader(): React.JSX.Element {
             </View>
             <View>
               <Text>
-                틀렸어요:{" "}
+                모르겠어요:{" "}
                 <Text color="rose.900" bold>
                   0
                 </Text>

@@ -1,15 +1,13 @@
 import React from "react";
-import { Flex, View, useColorMode } from "native-base";
+import { View } from "native-base";
 import { LearningProps } from "../../navigation";
 import LearningHeader from "../../../components/learning/LearningHeader";
-import FlipCard from "../../../components/learning/FlipCard";
+import LearningFlipCard from "../../../components/learning/LearningFlipCard";
 
 export default function Learning({
   navigation,
   route,
 }: LearningProps): React.JSX.Element {
-  const { colorMode } = useColorMode();
-
   return (
     <View
       flex={1}
@@ -21,7 +19,7 @@ export default function Learning({
       <View flex={1}>
         <LearningHeader />
         <View flex={1}>
-          <FlipCard />
+          <LearningFlipCard />
         </View>
       </View>
     </View>

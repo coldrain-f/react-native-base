@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Center, Heading } from "native-base";
 import { InformationProps } from "../../bottomNavigation";
-import FlipCard from "../../../components/learning/FlipCard";
 
 export default function Information({
   navigation,
