@@ -2,10 +2,7 @@ import React from "react";
 import { Center, Heading, View } from "native-base";
 import type { ProgressProps } from "../../bottomNavigation";
 
-export default function Progress({
-  navigation,
-  route,
-}: ProgressProps): React.JSX.Element {
+export default function Progress(props: ProgressProps): React.JSX.Element {
   return (
     <View>
       <Center p="5">
