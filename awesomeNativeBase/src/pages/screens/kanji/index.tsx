@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, HStack, Heading, Spinner, View } from "native-base";
 import KanjiCardItem from "../../../components/kanji/KanjiCardItem";
 import KanjiCardItemListHeader from "../../../components/kanji/KanjiCardItemListHeader";
+import KanjiActionSheet from "../../../components/kanji/KanjiActionSheet";
 import type { KanjiType } from "../../../@types/kanjiType";
 
 export default function Word(): React.JSX.Element {
@@ -43,6 +44,7 @@ export default function Word(): React.JSX.Element {
             data={kanjiList}
             renderItem={({ item }) => <KanjiCardItem kanji={item} />}
           />
+          <KanjiActionSheet />
         </>
       )}
     </View>

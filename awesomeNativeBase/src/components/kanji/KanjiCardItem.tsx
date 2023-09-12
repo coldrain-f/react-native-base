@@ -22,12 +22,14 @@ interface Props {
   kanji: KanjiType;
 }
 
-export default function KanjiCardItem({ kanji }: Props): React.JSX.Element {
+export default function KanjiCardItem({ kanji }: Props) {
   const { colorMode } = useColorMode();
   const navigation = useNavigation<StackNavigationProp>();
   const [showModal, setShowModal] = React.useState<boolean>(false);
   const [showOn, setShowOn] = React.useState<boolean>(false);
   const [showKun, setShowKun] = React.useState<boolean>(false);
+
+  React.useEffect(() => {}, [kanji.id]);
 
   return (
     <Box

@@ -13,10 +13,10 @@ import Ionicon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "../../pages/navigation";
 
-export default function KanjiCardItemListHeader(): React.JSX.Element {
+export default function KanjiCardItemListHeader() {
   const navigation = useNavigation<StackNavigationProp>();
-  const { colorMode } = useColorMode();
   const [showActionDetail, setShowActionDetail] = React.useState<boolean>(true);
+  const { colorMode } = useColorMode();
 
   return (
     <View
