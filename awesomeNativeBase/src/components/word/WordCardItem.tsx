@@ -123,7 +123,7 @@ export default function WordCardItem(): React.JSX.Element {
             variant="outline"
             leftIcon={
               <Ionicon
-                name={showFuri ? "eye" : "eye-outline"}
+                name={showFuri ? "eye-off" : "eye"}
                 color={colorMode === "light" ? "gray" : "white"}
                 size={20}
               />
@@ -147,7 +147,7 @@ export default function WordCardItem(): React.JSX.Element {
             variant="outline"
             leftIcon={
               <Ionicon
-                name={showMeaning ? "eye" : "eye-outline"}
+                name={showMeaning ? "eye-off" : "eye"}
                 color={colorMode === "light" ? "gray" : "white"}
                 size={20}
               />
