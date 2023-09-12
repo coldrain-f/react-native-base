@@ -170,8 +170,8 @@ export default function LearningHeader(): React.JSX.Element {
               <AlertDialog.Header>학습 종료</AlertDialog.Header>
               <AlertDialog.Body>
                 <Text color="coolGray.900">
-                  지금 종료하면 학습 완료가 되지 않습니다. 정말
-                  종료하시겠습니까?
+                  학습이 진행 중입니다. 지금 종료하면 학습 완료가 되지 않습니다.
+                  정말 종료하시겠습니까?
                 </Text>
               </AlertDialog.Body>
               <AlertDialog.Footer>
