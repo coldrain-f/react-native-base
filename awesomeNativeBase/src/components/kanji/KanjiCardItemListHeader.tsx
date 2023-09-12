@@ -1,31 +1,22 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Flex,
-  Progress,
-  Text,
-  View,
-  useColorMode,
-} from "native-base";
+import { Box, Button, Flex, Progress, Text, View } from "native-base";
 import Ionicon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "../../pages/navigation";
 
 export default function KanjiCardItemListHeader() {
   const navigation = useNavigation<StackNavigationProp>();
-  const [showActionDetail, setShowActionDetail] = React.useState<boolean>(true);
-  const { colorMode } = useColorMode();
 
   return (
     <View
       p="5"
-      mb="4"
       borderBottomWidth={1}
       borderColor="coolGray.400"
       bg="coolGray.100"
-      _dark={{ bg: "#171E2E", borderColor: "white" }}
+      _dark={{
+        bg: "#171E2E",
+        borderColor: "white",
+      }}
     >
       <Text
         color="primary.900"
@@ -54,7 +45,7 @@ export default function KanjiCardItemListHeader() {
         </Box>
       </Flex>
       <Flex direction="row" justifyContent="space-between" mt={3}>
-        <Box>
+        <Box w="50%">
           <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
             {"학습완료 단어: "}
             <Text
@@ -67,7 +58,7 @@ export default function KanjiCardItemListHeader() {
             개
           </Text>
         </Box>
-        <Box>
+        <Box w="50%">
           <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
             {"선택한 한자: "}
             <Text
@@ -80,98 +71,23 @@ export default function KanjiCardItemListHeader() {
             {"개"}
           </Text>
         </Box>
-        <Box>
-          <Ionicon
-            name={showActionDetail ? "caret-down-outline" : "caret-up-outline"}
-            color={colorMode === "light" ? "black" : "white"}
-            size={20}
-            onPress={() => setShowActionDetail(!showActionDetail)}
-          />
-        </Box>
       </Flex>
 
-      {showActionDetail && (
-        <View>
-          <Flex direction="row" mt={4}>
-            <Button
-              w="100%"
-              size="md"
-              colorScheme="info"
-              leftIcon={<Ionicon name="school" color="white" size={20} />}
-              onPress={() => {
-                navigation.navigate("Learning");
-              }}
-            >
-              학습 시작
-            </Button>
-          </Flex>
-          <Flex direction="row" mt={4} justifyContent="space-between">
-            <View flexDirection="row" w="33%">
-              <Button
-                w="100%"
-                size="sm"
-                variant="outline"
-                colorScheme="coolGray"
-                leftIcon={
-                  <Ionicon
-                    name="eye"
-                    color={colorMode === "light" ? "gray" : "white"}
-                    size={20}
-                  />
-                }
-              >
-                <Text
-                  color="coolGray.900"
-                  _dark={{
-                    color: "coolGray.200",
-                  }}
-                >
-                  음독 숨기기
-                </Text>
-              </Button>
-            </View>
-            <View flexDirection="row" w="33%">
-              <Button
-                w="100%"
-                size="sm"
-                variant="outline"
-                colorScheme="coolGray"
-                leftIcon={
-                  <Ionicon
-                    name="eye"
-                    color={colorMode === "light" ? "gray" : "white"}
-                    size={20}
-                  />
-                }
-              >
-                <Text
-                  color="coolGray.900"
-                  _dark={{
-                    color: "coolGray.200",
-                  }}
-                >
-                  훈독 숨기기
-                </Text>
-              </Button>
-            </View>
-            <View flexDirection="row" alignItems="center">
-              <Checkbox
-                size="md"
-                value="0"
-                accessibilityLabel="This is a checkbox"
-                mt={0.5}
-              />
-              <Text
-                color="coolGray.900"
-                pl={2}
-                _dark={{ color: "coolGray.200" }}
-              >
-                전체 선택
-              </Text>
-            </View>
-          </Flex>
-        </View>
-      )}
+      <View>
+        <Flex direction="row" mt={4}>
+          <Button
+            w="100%"
+            size="md"
+            colorScheme="info"
+            leftIcon={<Ionicon name="school" color="white" size={20} />}
+            onPress={() => {
+              navigation.navigate("Learning");
+            }}
+          >
+            학습 시작
+          </Button>
+        </Flex>
+      </View>
     </View>
   );
 }

@@ -147,10 +147,11 @@ export default function LearningHeader(): React.JSX.Element {
             colorScheme="coolGray"
             rightIcon={
               <Ionicon
+                // #111827: coolGray.900
                 // #f5f5f4: warmGray.100
                 // #f3f4f6: coolGray.100
                 name="exit-outline"
-                color={colorMode === "light" ? "#374151" : "#f3f4f6"}
+                color={colorMode === "light" ? "#111827" : "#f3f4f6"}
                 size={20}
               />
             }
@@ -168,9 +169,10 @@ export default function LearningHeader(): React.JSX.Element {
               <AlertDialog.CloseButton />
               <AlertDialog.Header>학습 종료</AlertDialog.Header>
               <AlertDialog.Body>
-                {
-                  "학습이 진행 중입니다. 지금 종료하면 학습 완료가 되지 않습니다. 정말 종료하시겠습니까?"
-                }
+                <Text color="coolGray.900">
+                  지금 종료하면 학습 완료가 되지 않습니다. 정말
+                  종료하시겠습니까?
+                </Text>
               </AlertDialog.Body>
               <AlertDialog.Footer>
                 <Button.Group space={2}>

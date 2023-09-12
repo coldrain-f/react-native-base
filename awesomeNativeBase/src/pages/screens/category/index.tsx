@@ -29,17 +29,21 @@ function CategoryItemListHeader({
   return (
     <View
       p="5"
-      mb="2"
       borderBottomWidth={1}
       borderColor="coolGray.400"
       bg="coolGray.100"
-      _dark={{ bg: "#171E2E", borderColor: "white" }}
+      _dark={{
+        bg: "#171E2E",
+        borderColor: "white",
+      }}
     >
       <Text
         color="primary.900"
         fontWeight="bold"
         fontSize="lg"
-        _dark={{ color: "white" }}
+        _dark={{
+          color: "white",
+        }}
       >
         {book.title}
       </Text>
@@ -47,7 +51,9 @@ function CategoryItemListHeader({
         color="coolGray.900"
         fontSize="md"
         mb="1"
-        _dark={{ color: "coolGray.100" }}
+        _dark={{
+          color: "coolGray.100",
+        }}
       >
         학습 진척도:{" "}
         {((learningFinishedCount / learningTotalCount) * 100).toFixed(1)}%
@@ -61,7 +67,12 @@ function CategoryItemListHeader({
           />
         </Box>
         <Box w="26%" ml="3">
-          <Text color="coolGray.900" _dark={{ color: "coolGray.100" }}>
+          <Text
+            color="coolGray.900"
+            _dark={{
+              color: "coolGray.100",
+            }}
+          >
             {learningFinishedCount} / {learningTotalCount}자
           </Text>
         </Box>
