@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/home";
+import WhaleVocabulary from "../screens/vocabulary/WhaleVocabulary";
 import Configuration from "../screens/configuration";
 import type {
   BottomTabScreenProps,
@@ -17,14 +17,17 @@ import BookMark from "../screens/bookmark";
  */
 
 export type BottomTabParamList = {
-  Home: undefined;
+  WhaleVocabulary: undefined;
   Bookmark: undefined;
   Progress: undefined;
   Configuration: undefined;
   Information: undefined;
 };
 
-export type HomeProps = BottomTabScreenProps<BottomTabParamList, "Home">;
+export type WhaleVocabularyProps = BottomTabScreenProps<
+  BottomTabParamList,
+  "WhaleVocabulary"
+>;
 export type BookmarkProps = BottomTabScreenProps<
   BottomTabParamList,
   "Bookmark"
@@ -83,7 +86,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="WhaleVocabulary"
       screenOptions={({ route }) => ({
         tabBarStyle: {
           backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
@@ -94,7 +97,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
 
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: string = "book-sharp";
-          if (route.name === "Home") {
+          if (route.name === "WhaleVocabulary") {
             iconName = focused ? "book-sharp" : "book-outline";
           } else if (route.name === "Bookmark") {
             iconName = focused ? "heart" : "heart-outline";
@@ -112,8 +115,8 @@ export default function BottomTabNavigation(): React.JSX.Element {
       })}
     >
       <BottomTab.Screen
-        name="Home"
-        component={Home}
+        name="WhaleVocabulary"
+        component={WhaleVocabulary}
         options={{
           ...BasicBottomTabNavigationOprions,
           title: "단어장",

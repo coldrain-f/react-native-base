@@ -1,7 +1,7 @@
 import React from "react";
 import { AspectRatio, Box, Image, useColorMode } from "native-base";
 
-export default function HomeBanner(): React.JSX.Element {
+export default function WhaleVocabularyBanner(): React.JSX.Element {
   const { colorMode } = useColorMode();
 
   const backgroundList = [
@@ -9,7 +9,7 @@ export default function HomeBanner(): React.JSX.Element {
     "https://cdn.pixabay.com/photo/2017/08/04/16/59/whale-2580660_1280.jpg",
   ];
 
-  const title = "Whale Vocabulary";
+  const title = React.useRef<string>("Whale Vocabulary");
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export default function HomeBanner(): React.JSX.Element {
         px="3"
         py="1.5"
       >
-        {title}
+        {title.current}
       </Box>
     </Box>
   );

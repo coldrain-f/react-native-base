@@ -1,26 +1,18 @@
 import React from "react";
-import {
-  Avatar,
-  Box,
-  Pressable,
-  Text,
-  Flex,
-  View,
-  useColorMode,
-} from "native-base";
-import { Book } from "../@types/bookType";
+import { Box, Pressable, Text, Flex, View, useColorMode } from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "../pages/navigation";
+import type { StackNavigationProp } from "../../navigation";
+import type { Book } from "../../../@types/bookType";
 
 interface Props {
   book: Book;
 }
 
-export default function HomeBookItem(props: Props): React.JSX.Element {
+export default function WhaleVocabularyItem(props: Props): React.JSX.Element {
+  const { book } = props;
   const navigation = useNavigation<StackNavigationProp>();
   const { colorMode } = useColorMode();
-  const { book } = props;
 
   return (
     <Pressable
@@ -40,7 +32,7 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 },
               ],
             }}
-            p="5"
+            p={5}
             borderWidth={1}
             borderColor="coolGray.300"
             shadow={3}
@@ -56,6 +48,7 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
               justifyContent="space-between"
             >
               <View w="85%">
+                {/* Begin:: 단어장 카드 아이템 제목 */}
                 <Text
                   color="coolGray.700"
                   fontWeight="bold"
@@ -66,22 +59,30 @@ export default function HomeBookItem(props: Props): React.JSX.Element {
                 >
                   {book.title}
                 </Text>
+                {/* End:: 단어장 카드 아이템 제목 */}
+
+                {/* Begin:: 단어장 카드 아이템 서브 제목 */}
                 <Text
-                  color="warmGray.600"
+                  color="coolGray.700"
                   _dark={{
-                    color: "warmGray.200",
+                    color: "coolGray.200",
                   }}
                 >
                   {book.subtitle}
                 </Text>
+                {/* End:: 단어장 카드 아이템 서브 제목 */}
               </View>
+
+              {/* Begin:: 이동 아이콘 */}
               <View w="10%" alignItems="flex-end">
                 <Icon
                   name="arrow-forward-circle-outline"
-                  color={colorMode === "light" ? "gray" : "white"}
+                  // #374151: coolGray.700, #f3f4f6: coolGray.100
+                  color={colorMode === "light" ? "#374151" : "#f3f4f6"}
                   size={24}
                 />
               </View>
+              {/* End:: 이동 아이콘 */}
             </Flex>
           </Box>
         );

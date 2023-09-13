@@ -1,12 +1,12 @@
 import React from "react";
 import { FlatList, View, HStack, Heading, Spinner } from "native-base";
-import HomeBanner from "../../../components/HomeBanner";
-import HomeBookItem from "../../../components/HomeBookItem";
-import type { HomeProps } from "../../bottomNavigation";
 import type { Book } from "../../../@types/bookType";
-import VocabularyItemListHeader from "../../../components/VocabularyItemListHeader";
+import type { WhaleVocabularyProps } from "../../bottomNavigation";
+import WhaleVocabularyHeader from "./WhaleVocabularyHeader";
+import WhaleVocabularyBanner from "./WhaleVocabularyBanner";
+import WhaleVocabularyItem from "./WhaleVocabularyItem";
 
-export default function Home({ navigation }: HomeProps) {
+export default function WhaleVocabulary({ navigation }: WhaleVocabularyProps) {
   const [books, setBooks] = React.useState<Book[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
@@ -36,14 +36,16 @@ export default function Home({ navigation }: HomeProps) {
         </HStack>
       ) : (
         <>
-          <HomeBanner />
-          <VocabularyItemListHeader />
+          <WhaleVocabularyBanner />
+          <WhaleVocabularyHeader />
           <FlatList
             keyExtractor={(item) => item.id.toString()}
             onRefresh={() => {}}
             refreshing={false}
             data={books}
-            renderItem={({ item }) => <HomeBookItem book={item} />}
+            renderItem={({ item }) => {
+              return <WhaleVocabularyItem book={item} />;
+            }}
           />
         </>
       )}

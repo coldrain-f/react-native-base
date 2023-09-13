@@ -3,7 +3,7 @@ import { Text, View } from "native-base";
 
 interface Props {}
 
-export default function VocabularyItemListHeader(props: Props) {
+export default function WhaleVocabularyHeader(props: Props) {
   const titleRef = React.useRef<string>("모든 단어장");
 
   return (
