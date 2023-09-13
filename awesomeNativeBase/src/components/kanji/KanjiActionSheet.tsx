@@ -93,7 +93,7 @@ export default function KanjiActionSheet() {
               />
             }
           >
-            음독 보기
+            음독만 보기
           </Actionsheet.Item>
 
           <Actionsheet.Item
@@ -116,7 +116,7 @@ export default function KanjiActionSheet() {
               />
             }
           >
-            훈독 보기
+            훈독만 보기
           </Actionsheet.Item>
         </Actionsheet.Content>
       </Actionsheet>

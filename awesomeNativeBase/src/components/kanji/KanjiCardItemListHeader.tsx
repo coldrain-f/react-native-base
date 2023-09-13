@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Button, Flex, Progress, Text, View } from "native-base";
-import Ionicon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "../../pages/navigation";
+import Ionicon from "react-native-vector-icons/Ionicons";
 
 export default function KanjiCardItemListHeader() {
   const navigation = useNavigation<StackNavigationProp>();

@@ -4,6 +4,8 @@ import HomeBanner from "../../../components/HomeBanner";
 import HomeBookItem from "../../../components/HomeBookItem";
 import type { HomeProps } from "../../bottomNavigation";
 import type { Book } from "../../../@types/bookType";
+import CategoryItemListHeader from "../../../components/CategoryItemListHeader";
+import VocabularyItemListHeader from "../../../components/VocabularyItemListHeader";
 
 function HomeBookItemListHeader() {
   return (
@@ -45,16 +47,17 @@ export default function Home({ navigation }: HomeProps): React.JSX.Element {
   return (
     <View
       flex={1}
-      width="100%"
-      _light={{
-        bg: "warmGray.100",
-      }}
+      bg="warmGray.100"
       _dark={{
         bg: "#0F172A",
       }}
     >
       <HomeBanner />
-      <HomeBookItemListHeader />
+
+      <VocabularyItemListHeader
+        learningFinishedCount={1502}
+        learningTotalCount={2136}
+      />
       <FlatList
         keyExtractor={(item) => item.id.toString()}
         onRefresh={() => {}}
