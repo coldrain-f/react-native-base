@@ -4,12 +4,10 @@ import type { Book } from "../@types/bookType";
 
 interface Props {
   book: Book;
-  learningFinishedCount: number;
-  learningTotalCount: number;
 }
 
 export default function CategoryItemListHeader(props: Props) {
-  const { book, learningFinishedCount, learningTotalCount } = props;
+  const { book } = props;
 
   return (
     <View
@@ -32,36 +30,6 @@ export default function CategoryItemListHeader(props: Props) {
       >
         {book.title}
       </Text>
-      <Text
-        color="coolGray.900"
-        fontSize="md"
-        mb="1"
-        _dark={{
-          color: "coolGray.100",
-        }}
-      >
-        학습 진척도:{" "}
-        {((learningFinishedCount / learningTotalCount) * 100).toFixed(1)}%
-      </Text>
-      <Flex direction="row">
-        <Box w="60%" mt="2">
-          <Progress
-            colorScheme="info"
-            value={(learningFinishedCount / learningTotalCount) * 100}
-            size="sm"
-          />
-        </Box>
-        <Box w="26%" ml="3">
-          <Text
-            color="coolGray.900"
-            _dark={{
-              color: "coolGray.100",
-            }}
-          >
-            {learningFinishedCount} / {learningTotalCount}자
-          </Text>
-        </Box>
-      </Flex>
     </View>
   );
 }
