@@ -25,7 +25,9 @@ export default function WhaleCategoryItem(props: Props) {
   const { colorMode } = useColorMode();
   const { category } = props;
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showPreviewModal, setShowPreviewModal] = React.useState(false);
+  const [showLearningHistoryModal, setShowLearningHistoryModal] =
+    React.useState(false);
 
   return (
     <Pressable
@@ -81,94 +83,147 @@ export default function WhaleCategoryItem(props: Props) {
                 </Text>
                 {/* End:: 카테고리 서브 제목 */}
 
-                {/* Begin:: 한자 미리보기 링크 */}
-                <Link
-                  w="35%"
-                  _text={{
-                    color: "info.700",
-
-                    _dark: {
-                      color: "info.200",
-                    },
-                  }}
-                  onPress={() => {
-                    setShowModal(true);
-                  }}
+                <View
+                  flexDirection="row"
+                  flexWrap="wrap"
+                  justifyContent="space-between"
                 >
-                  漢字 미리보기
-                </Link>
-                {/* End:: 한자 미리보기 링크 */}
+                  {/* Begin:: 한자 미리보기 링크 */}
+                  <Link
+                    _text={{
+                      color: "info.700",
+                      _dark: {
+                        color: "info.200",
+                      },
+                    }}
+                    onPress={() => {
+                      setShowPreviewModal(true);
+                    }}
+                  >
+                    漢字 미리보기
+                  </Link>
+                  {/* End:: 한자 미리보기 링크 */}
 
-                {/* Begin:: 한자 미리보기 모달 */}
-                <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                  <Modal.Content maxH={320}>
-                    <Modal.CloseButton />
-                    <Modal.Header>漢字 미리보기</Modal.Header>
-                    <Modal.Body>
-                      <View flexDirection="row" mb={3}>
-                        <Text w="80%" color="coolGray.700" bold>
-                          초등학교 1학년 한자
-                        </Text>
-                        <Text w="20%" color="coolGray.700" textAlign="right">
-                          80자
-                        </Text>
-                      </View>
-                      <ScrollView>
-                        <View flexDirection="row" flexWrap="wrap">
-                          {[
-                            { kanji: "一", meaning: "한 일" },
-                            { kanji: "二", meaning: "두 이" },
-                            { kanji: "三", meaning: "석 삼" },
-                            { kanji: "四", meaning: "넉 사" },
-                            { kanji: "五", meaning: "다섯 오" },
-                            { kanji: "六", meaning: "여섯 육" },
-                            { kanji: "七", meaning: "일곱 칠" },
-                            { kanji: "八", meaning: "여덟 팔" },
-                            { kanji: "九", meaning: "아홉 구" },
-                          ].map((data, index) => (
-                            <View
-                              key={index}
-                              borderWidth={1}
-                              borderLeftWidth={index % 4 === 0 ? 1 : 0}
-                              borderTopWidth={index >= 4 ? 0 : 1}
-                              borderColor="coolGray.300"
-                              alignItems="center"
-                              w="25%"
-                            >
-                              <View>
-                                <Text fontSize="2xl" color="coolGray.700">
-                                  {data.kanji}
-                                </Text>
-                              </View>
+                  {/* Begin:: 학습 상태 */}
+                  <Link
+                    _text={{
+                      color: "info.700",
+                      _dark: {
+                        color: "info.200",
+                      },
+                    }}
+                    onPress={() => {
+                      setShowLearningHistoryModal(true);
+                    }}
+                  >
+                    학습 진행중
+                  </Link>
+                  {/* End:: 학습 상태 */}
+
+                  {/* Begin:: 한자 미리보기 모달 */}
+                  <Modal
+                    isOpen={showPreviewModal}
+                    onClose={() => setShowPreviewModal(false)}
+                  >
+                    <Modal.Content maxH={320}>
+                      <Modal.CloseButton />
+                      <Modal.Header>漢字 미리보기</Modal.Header>
+                      <Modal.Body>
+                        <View flexDirection="row" mb={3}>
+                          <Text w="80%" color="coolGray.700" bold>
+                            초등학교 1학년 한자
+                          </Text>
+                          <Text w="20%" color="coolGray.700" textAlign="right">
+                            80자
+                          </Text>
+                        </View>
+                        <ScrollView>
+                          <View flexDirection="row" flexWrap="wrap">
+                            {[
+                              { kanji: "一", meaning: "한 일" },
+                              { kanji: "二", meaning: "두 이" },
+                              { kanji: "三", meaning: "석 삼" },
+                              { kanji: "四", meaning: "넉 사" },
+                              { kanji: "五", meaning: "다섯 오" },
+                              { kanji: "六", meaning: "여섯 육" },
+                              { kanji: "七", meaning: "일곱 칠" },
+                              { kanji: "八", meaning: "여덟 팔" },
+                              { kanji: "九", meaning: "아홉 구" },
+                            ].map((data, index) => (
                               <View
-                                borderTopWidth={1}
+                                key={index}
+                                borderWidth={1}
+                                borderLeftWidth={index % 4 === 0 ? 1 : 0}
+                                borderTopWidth={index >= 4 ? 0 : 1}
                                 borderColor="coolGray.300"
                                 alignItems="center"
-                                w="100%"
+                                w="25%"
                               >
-                                <Text color="coolGray.700">{data.meaning}</Text>
+                                <View>
+                                  <Text fontSize="2xl" color="coolGray.700">
+                                    {data.kanji}
+                                  </Text>
+                                </View>
+                                <View
+                                  borderTopWidth={1}
+                                  borderColor="coolGray.300"
+                                  alignItems="center"
+                                  w="100%"
+                                >
+                                  <Text color="coolGray.700">
+                                    {data.meaning}
+                                  </Text>
+                                </View>
                               </View>
-                            </View>
-                          ))}
-                        </View>
-                      </ScrollView>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button.Group space={2}>
-                        <Button
-                          w="100%"
-                          colorScheme="info"
-                          onPress={() => {
-                            setShowModal(false);
-                          }}
-                        >
-                          확인
-                        </Button>
-                      </Button.Group>
-                    </Modal.Footer>
-                  </Modal.Content>
-                </Modal>
-                {/* End:: 한자 미리보기 모달 */}
+                            ))}
+                          </View>
+                        </ScrollView>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button.Group space={2}>
+                          <Button
+                            w="100%"
+                            colorScheme="info"
+                            onPress={() => {
+                              setShowPreviewModal(false);
+                            }}
+                          >
+                            확인
+                          </Button>
+                        </Button.Group>
+                      </Modal.Footer>
+                    </Modal.Content>
+                  </Modal>
+                  {/* End:: 한자 미리보기 모달 */}
+
+                  {/* Begin:: 학습 이력 모달 - 학습 진행중인 경우만 표시 */}
+                  <Modal
+                    isOpen={showLearningHistoryModal}
+                    onClose={() => setShowLearningHistoryModal(false)}
+                  >
+                    <Modal.Content maxH={320}>
+                      <Modal.CloseButton />
+                      <Modal.Header>학습 이력</Modal.Header>
+                      <Modal.Body>
+                        <ScrollView></ScrollView>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button.Group space={2}>
+                          <Button
+                            w="100%"
+                            colorScheme="info"
+                            onPress={() => {
+                              setShowLearningHistoryModal(false);
+                            }}
+                          >
+                            확인
+                          </Button>
+                        </Button.Group>
+                      </Modal.Footer>
+                    </Modal.Content>
+                  </Modal>
+                  {/* End:: 학습 이력 모달 - 학습 진행중인 경우만 표시 */}
+                </View>
               </View>
 
               {/* Begin:: 이동 아이콘 */}
