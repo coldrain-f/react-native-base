@@ -7,16 +7,16 @@ import {
   Flex,
   useColorMode,
 } from "native-base";
-import Icon from "react-native-vector-icons/Ionicons";
-import { CategoryType } from "../@types/categoryType";
+import type { StackNavigationProp } from "../../navigation";
+import type { CategoryType } from "../../../@types/categoryType";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "../pages/navigation";
+import Icon from "react-native-vector-icons/Ionicons";
 
 interface Props {
   category: CategoryType;
 }
 
-export default function CategoryItem(props: Props): React.JSX.Element {
+export default function WhaleCategoryItem(props: Props): React.JSX.Element {
   const navigation = useNavigation<StackNavigationProp>();
   const { category } = props;
   const { colorMode } = useColorMode();

@@ -3,7 +3,6 @@ import {
   NavigationContainer,
   NavigatorScreenParams,
   RouteProp,
-  useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type {
@@ -12,18 +11,18 @@ import type {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
-import Category from "../screens/category";
+import WhaleCategory from "../screens/category/WhaleCategory";
 import Kanji from "../screens/kanji";
 import Word from "../screens/word";
 import Learning from "../screens/learning";
 import type { Book } from "../../@types/bookType";
 import type { StyleProp } from "react-native";
-import { Button, Flex, useColorMode } from "native-base";
+import { useColorMode } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
-  Category: {
+  WhaleCategory: {
     book: Book;
   };
   Kanji: undefined;
@@ -32,7 +31,10 @@ type StackParamList = {
 };
 
 // ScreenProps
-export type CategoryProps = NativeStackScreenProps<StackParamList, "Category">;
+export type WhaleCategoryProps = NativeStackScreenProps<
+  StackParamList,
+  "WhaleCategory"
+>;
 export type RootProps = NativeStackScreenProps<StackParamList, "Root">;
 export type LearningProps = NativeStackScreenProps<StackParamList, "Learning">;
 
@@ -75,8 +77,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Category"
-          component={Category}
+          name="WhaleCategory"
+          component={WhaleCategory}
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "카테고리",

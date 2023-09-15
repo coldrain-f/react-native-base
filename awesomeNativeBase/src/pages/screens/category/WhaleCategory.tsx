@@ -1,11 +1,11 @@
 import React from "react";
 import { FlatList, Heading, Spinner, View, HStack } from "native-base";
-import CategoryItemListHeader from "../../../components/CategoryItemListHeader";
-import CategoryItem from "../../../components/CategoryItem";
 import type { CategoryType } from "../../../@types/categoryType";
-import type { CategoryProps } from "../../navigation";
+import type { WhaleCategoryProps } from "../../navigation";
+import WhaleCategoryHeader from "./WhaleCategoryHeader";
+import WhaleCategoryItem from "./WhaleCategoryItem";
 
-export default function Category(props: CategoryProps) {
+export default function WhaleCategory(props: WhaleCategoryProps) {
   const { route } = props;
   const { book } = route.params;
 
@@ -39,13 +39,15 @@ export default function Category(props: CategoryProps) {
         </HStack>
       ) : (
         <>
-          <CategoryItemListHeader book={book} />
+          <WhaleCategoryHeader book={book} />
           <FlatList
             keyExtractor={(item) => item.id.toString()}
             onRefresh={() => {}}
             refreshing={false}
             data={categories}
-            renderItem={({ item }) => <CategoryItem category={item} />}
+            renderItem={({ item }) => {
+              return <WhaleCategoryItem category={item} />;
+            }}
           />
         </>
       )}
