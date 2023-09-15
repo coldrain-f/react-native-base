@@ -30,6 +30,7 @@ export default function WhaleCategoryHeader(props: Props) {
       >
         {book.title}
       </Text>
+      <Text>일본 초등학교 필수 상용한자 1026자 수록</Text>
     </View>
   );
 }
