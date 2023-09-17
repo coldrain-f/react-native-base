@@ -2,17 +2,17 @@ import React from "react";
 import { Box, Pressable, Text, Flex, View, useColorMode } from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import type { StackNavigationProp } from "../../navigation";
-import type { Book } from "../../../@types/bookType";
+import type { StackNavigationProp } from "../../../../navigation";
+import type { Book } from "../../../../../@types/bookType";
 
 interface Props {
   book: Book;
 }
 
-export default function WhaleVocabularyItem(props: Props): React.JSX.Element {
-  const { book } = props;
+export default function WhaleVocabularyKanjiVocaFlatListItem(props: Props) {
   const navigation = useNavigation<StackNavigationProp>();
   const { colorMode } = useColorMode();
+  const { book } = props;
 
   return (
     <Pressable
