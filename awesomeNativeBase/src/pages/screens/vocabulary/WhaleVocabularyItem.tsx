@@ -16,7 +16,7 @@ export default function WhaleVocabularyItem(props: Props): React.JSX.Element {
 
   return (
     <Pressable
-      my="2"
+      my={2}
       onPress={() => {
         navigation.navigate("WhaleCategory", { book });
       }}

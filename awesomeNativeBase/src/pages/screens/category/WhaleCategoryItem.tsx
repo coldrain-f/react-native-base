@@ -105,7 +105,7 @@ export default function WhaleCategoryItem(props: Props) {
               <Button
                 w="48%"
                 size="sm"
-                colorScheme={colorMode === "light" ? "blue" : "darkBlue"}
+                colorScheme={colorMode === "light" ? "info" : "darkBlue"}
                 variant="solid"
                 mr={3}
                 onPress={() => {
@@ -120,7 +120,7 @@ export default function WhaleCategoryItem(props: Props) {
               <Button
                 w="48%"
                 size="sm"
-                colorScheme={colorMode === "light" ? "blue" : "darkBlue"}
+                colorScheme={colorMode === "light" ? "info" : "darkBlue"}
                 variant="solid"
                 leftIcon={
                   <Ionicon
