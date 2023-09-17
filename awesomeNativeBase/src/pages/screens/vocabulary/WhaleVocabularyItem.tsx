@@ -76,7 +76,7 @@ export default function WhaleVocabularyItem(props: Props): React.JSX.Element {
               {/* Begin:: 이동 아이콘 */}
               <View w="10%" alignItems="flex-end">
                 <Icon
-                  name="arrow-forward-circle-outline"
+                  name="caret-forward-circle-outline"
                   // #374151: coolGray.700, #f3f4f6: coolGray.100
                   color={colorMode === "light" ? "#374151" : "#f3f4f6"}
                   size={24}
