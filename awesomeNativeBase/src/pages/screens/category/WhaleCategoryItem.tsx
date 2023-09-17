@@ -147,10 +147,26 @@ export default function WhaleCategoryItem(props: Props) {
                   <Modal.Header>漢字 미리보기</Modal.Header>
                   <Modal.Body>
                     <View flexDirection="row" mb={3}>
-                      <Text w="80%" color="coolGray.700" bold>
+                      <Text
+                        w="80%"
+                        color={
+                          colorMode === "light"
+                            ? "coolGray.700"
+                            : "coolGray.100"
+                        }
+                        bold
+                      >
                         초등학교 1학년 한자
                       </Text>
-                      <Text w="20%" color="coolGray.700" textAlign="right">
+                      <Text
+                        w="20%"
+                        color={
+                          colorMode === "light"
+                            ? "coolGray.700"
+                            : "coolGray.100"
+                        }
+                        textAlign="right"
+                      >
                         80자
                       </Text>
                     </View>
@@ -173,12 +189,23 @@ export default function WhaleCategoryItem(props: Props) {
                             borderWidth={1}
                             borderLeftWidth={index % 4 === 0 ? 1 : 0}
                             borderTopWidth={index >= 4 ? 0 : 1}
-                            borderColor="coolGray.300"
+                            borderColor={
+                              colorMode === "light"
+                                ? "coolGray.300"
+                                : "coolGray.100"
+                            }
                             alignItems="center"
                             w="25%"
                           >
                             <View>
-                              <Text fontSize="2xl" color="coolGray.700">
+                              <Text
+                                fontSize="2xl"
+                                color={
+                                  colorMode === "light"
+                                    ? "coolGray.700"
+                                    : "coolGray.100"
+                                }
+                              >
                                 {data.kanji}
                               </Text>
                             </View>
@@ -188,9 +215,23 @@ export default function WhaleCategoryItem(props: Props) {
                               alignItems="center"
                               w="100%"
                             >
-                              <Text color="coolGray.700">
+                              <Text
+                                color={
+                                  colorMode === "light"
+                                    ? "coolGray.700"
+                                    : "coolGray.100"
+                                }
+                              >
                                 {data.kunYomi}{" "}
-                                <Text color="info.700">{data.onYomi}</Text>
+                                <Text
+                                  color={
+                                    colorMode === "light"
+                                      ? "info.700"
+                                      : "info.200"
+                                  }
+                                >
+                                  {data.onYomi}
+                                </Text>
                               </Text>
                             </View>
                           </View>
