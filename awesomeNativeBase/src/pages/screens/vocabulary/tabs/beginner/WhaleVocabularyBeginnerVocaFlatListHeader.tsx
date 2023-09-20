@@ -3,7 +3,7 @@ import { View, Text, Heading, useColorMode } from "native-base";
 import { TouchableOpacity } from "react-native";
 import Ionicon from "react-native-vector-icons/Ionicons";
 
-export default function WhaleVocabularyJlptVocaFlatListHeader() {
+export default function WhaleVocabularyBeginnerVocaFlatListHeader() {
   const [showIntroduction, setShowIntroduction] = React.useState(true);
   const { colorMode } = useColorMode();
 
@@ -27,7 +27,7 @@ export default function WhaleVocabularyJlptVocaFlatListHeader() {
           }}
           w="80%"
         >
-          JLPT 단어장 소개
+          일본어 입문 소개
         </Heading>
         <View w="20%" alignItems="flex-end">
           <TouchableOpacity
@@ -55,8 +55,8 @@ export default function WhaleVocabularyJlptVocaFlatListHeader() {
             color: "coolGray.100",
           }}
         >
-          JLPT N5부터 N1까지의 단어를 급수별로 묶어 학습할 수 있는 단어장입니다.
-          JLPT 자격증을 취득하는 데 도움이 됩니다.
+          일본어 단어를 쉽게 암기하기 위한 히라가나와 가타카나 기초 과정입니다.
+          단어를 발음하고 읽을 때 도움이 됩니다.
         </Text>
       )}
     </View>

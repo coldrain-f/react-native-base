@@ -38,7 +38,9 @@ export default function WhaleVocabularyKanjiVocaFlatListHeader() {
           >
             {/* #111825: coolGray.900 */}
             <Ionicon
-              name="caret-down-outline"
+              name={
+                showIntroduction ? "caret-down-outline" : "caret-up-outline"
+              }
               color={colorMode === "light" ? "#374151" : "#f3f4f6"}
               size={20}
             />

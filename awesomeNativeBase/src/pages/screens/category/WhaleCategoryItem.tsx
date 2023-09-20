@@ -9,6 +9,8 @@ import {
   Modal,
   Button,
   ScrollView,
+  Badge,
+  VStack,
 } from "native-base";
 import type { StackNavigationProp } from "../../navigation";
 import type { CategoryType } from "../../../@types/categoryType";
@@ -99,42 +101,74 @@ export default function WhaleCategoryItem(props: Props) {
               flexDirection="row"
               flexWrap="wrap"
               justifyContent="flex-start"
-              mt={4}
+              mt={2}
             >
-              {/* Begin:: 한자 미리보기 링크 */}
-              <Button
-                w="48%"
-                size="sm"
-                colorScheme={colorMode === "light" ? "info" : "darkBlue"}
-                variant="solid"
-                mr={3}
-                onPress={() => {
-                  setShowPreviewModal(true);
-                }}
-              >
-                漢字 미리보기
-              </Button>
+              <VStack w="50%" mt={2}>
+                {/* Begin:: 한자 미리보기 링크 */}
+                <Button
+                  flex={1}
+                  size="sm"
+                  _text={{
+                    color: "info.700",
+                  }}
+                  _dark={{
+                    _text: {
+                      color: "info.200",
+                    },
+                  }}
+                  variant="outline"
+                  mr={3}
+                  onPress={() => {
+                    setShowPreviewModal(true);
+                  }}
+                >
+                  漢字 미리보기
+                </Button>
+              </VStack>
               {/* End:: 한자 미리보기 링크 */}
 
               {/* Begin:: 학습 상태 */}
-              <Button
-                w="48%"
-                size="sm"
-                colorScheme={colorMode === "light" ? "info" : "darkBlue"}
-                variant="solid"
-                leftIcon={
-                  <Ionicon
-                    name="list-outline"
-                    color={colorMode === "light" ? "#bae6fd" : "#bae6fd"}
-                    size={20}
-                  />
-                }
-                onPress={() => {
-                  setShowLearningHistoryModal(true);
-                }}
-              >
-                학습 이력
-              </Button>
+              <VStack w="45.5%">
+                <Badge
+                  colorScheme="info"
+                  rounded="full"
+                  mb={-4}
+                  mr={-4}
+                  zIndex={1}
+                  variant="solid"
+                  alignSelf="flex-end"
+                  _text={{
+                    fontSize: 12,
+                  }}
+                >
+                  2
+                </Badge>
+                <Button
+                  flex={1}
+                  size="sm"
+                  _text={{
+                    color: "info.700",
+                  }}
+                  _dark={{
+                    _text: {
+                      color: "info.200",
+                    },
+                  }}
+                  variant="outline"
+                  leftIcon={
+                    <Ionicon
+                      name="list-outline"
+                      color={colorMode === "light" ? "#0369a1" : "#bae6fd"}
+                      size={20}
+                    />
+                  }
+                  onPress={() => {
+                    setShowLearningHistoryModal(true);
+                  }}
+                >
+                  학습 이력
+                </Button>
+              </VStack>
               {/* End:: 학습 상태 */}
 
               {/* Begin:: 한자 미리보기 모달 */}
