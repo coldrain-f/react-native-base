@@ -325,6 +325,7 @@ export default function KanjiCardItem({ kanji }: Props) {
             </View>
           </Flex>
         </View>
+
         {/* 한자 체크박스 Grid */}
         <Flex pt={2} direction="column" alignItems="center">
           <Checkbox
@@ -335,6 +336,98 @@ export default function KanjiCardItem({ kanji }: Props) {
           />
         </Flex>
       </Flex>
+
+      <View
+        ml={4}
+        mr={4}
+        mt={2}
+        p={3}
+        flexDirection="row"
+        flexWrap="wrap"
+        justifyContent="space-between"
+        borderWidth={1}
+        borderColor="coolGray.300"
+        bg="muted.100"
+        rounded={10}
+        _dark={{
+          bg: "#171E2E",
+          borderColor: "coolGray.700",
+        }}
+      >
+        <Box>
+          <Ionicon
+            name="cube-outline"
+            color={colorMode === "light" ? "#ef4444" : "#fecaca"}
+            size={20}
+          />
+          <Text
+            color="rose.900"
+            _dark={{
+              color: "rose.200",
+            }}
+          >
+            0개
+          </Text>
+        </Box>
+
+        <Box>
+          <Ionicon
+            name="cube-outline"
+            color={colorMode === "light" ? "#f97316" : "#fed7aa"}
+            size={20}
+          />
+          <Text
+            color="orange.900"
+            _dark={{
+              color: "orange.200",
+            }}
+          >
+            0개
+          </Text>
+        </Box>
+
+        <Box>
+          <Ionicon
+            name="cube-outline"
+            color={colorMode === "light" ? "#eab308" : "#fef08a"}
+            size={20}
+          />
+          <Text
+            color="yellow.900"
+            _dark={{
+              color: "yellow.200",
+            }}
+          >
+            0개
+          </Text>
+        </Box>
+
+        <Box>
+          <Ionicon
+            name="cube-outline"
+            color={colorMode === "light" ? "#22c55e" : "#bbf7d0"}
+            size={20}
+          />
+          <Text color="green.900">0개</Text>
+        </Box>
+
+        <Box>
+          <Ionicon
+            name="cube-outline"
+            color={colorMode === "light" ? "#0ea5e9" : "#bae6fd"}
+            size={20}
+          />
+          <Text
+            color="info.900"
+            _dark={{
+              color: "info.200",
+            }}
+          >
+            0개
+          </Text>
+        </Box>
+      </View>
+
       <Flex
         direction="row"
         justifyContent="space-around"

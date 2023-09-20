@@ -39,7 +39,7 @@ export default function WhaleVocabularyJlptVocaFlatListHeader() {
             {/* #111825: coolGray.900 */}
             <Ionicon
               name={
-                showIntroduction ? "caret-down-outline" : "caret-up-outline"
+                showIntroduction ? "caret-up-outline" : "caret-down-outline"
               }
               color={colorMode === "light" ? "#374151" : "#f3f4f6"}
               size={20}
