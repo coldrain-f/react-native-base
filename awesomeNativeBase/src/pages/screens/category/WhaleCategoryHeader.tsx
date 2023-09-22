@@ -44,7 +44,7 @@ export default function WhaleCategoryHeader(props: Props) {
           >
             {/* #111825: coolGray.900 */}
             <Ionicon
-              name={showDetail ? "caret-up-outline" : "caret-down-outline"}
+              name={showDetail ? "caret-down-outline" : "caret-up-outline"}
               color={colorMode === "light" ? "#374151" : "#f3f4f6"}
               size={20}
             />

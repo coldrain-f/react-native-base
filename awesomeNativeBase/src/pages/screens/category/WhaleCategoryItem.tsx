@@ -11,6 +11,7 @@ import {
   ScrollView,
   Badge,
   VStack,
+  Divider,
 } from "native-base";
 import type { StackNavigationProp } from "../../navigation";
 import type { CategoryType } from "../../../@types/categoryType";
@@ -95,6 +96,99 @@ export default function WhaleCategoryItem(props: Props) {
                 />
               </View>
               {/* End:: 이동 아이콘 */}
+              <Divider
+                thickness={1}
+                mt={2}
+                mb={2}
+                _dark={{
+                  bg: "coolGray.200",
+                }}
+              />
+
+              {/* Begin:: 회독수 표시 */}
+              <View
+                flexDirection="row"
+                flexWrap="wrap"
+                justifyContent="space-between"
+              >
+                <Text
+                  w="50%"
+                  color="coolGray.700"
+                  _dark={{
+                    color: "coolGray.200",
+                  }}
+                >
+                  1 회독 완료:{" "}
+                  <Text
+                    bold
+                    color="info.700"
+                    _dark={{
+                      color: "info.200",
+                    }}
+                  >
+                    0
+                  </Text>
+                  개
+                </Text>
+                <Text
+                  w="50%"
+                  color="coolGray.700"
+                  _dark={{
+                    color: "coolGray.200",
+                  }}
+                >
+                  2 회독 완료:{" "}
+                  <Text
+                    color="info.700"
+                    bold
+                    _dark={{
+                      color: "info.200",
+                    }}
+                  >
+                    0
+                  </Text>
+                  개
+                </Text>
+                <Text
+                  w="50%"
+                  color="coolGray.700"
+                  _dark={{
+                    color: "coolGray.200",
+                  }}
+                >
+                  3 회독 완료:{" "}
+                  <Text
+                    color="info.700"
+                    bold
+                    _dark={{
+                      color: "info.200",
+                    }}
+                  >
+                    0
+                  </Text>
+                  개
+                </Text>
+                <Text
+                  w="50%"
+                  color="coolGray.700"
+                  _dark={{
+                    color: "coolGray.200",
+                  }}
+                >
+                  4 회독 이상:{" "}
+                  <Text
+                    color="info.700"
+                    bold
+                    _dark={{
+                      color: "info.200",
+                    }}
+                  >
+                    0
+                  </Text>
+                  개
+                </Text>
+              </View>
+              {/* End:: 회독수 표시 */}
             </Flex>
 
             <View
@@ -110,6 +204,7 @@ export default function WhaleCategoryItem(props: Props) {
                   size="sm"
                   _text={{
                     color: "info.700",
+                    bold: true,
                   }}
                   _dark={{
                     _text: {
@@ -141,13 +236,14 @@ export default function WhaleCategoryItem(props: Props) {
                     fontSize: 12,
                   }}
                 >
-                  2
+                  0
                 </Badge>
                 <Button
                   flex={1}
                   size="sm"
                   _text={{
                     color: "info.700",
+                    bold: true,
                   }}
                   _dark={{
                     _text: {
@@ -166,7 +262,7 @@ export default function WhaleCategoryItem(props: Props) {
                     setShowLearningHistoryModal(true);
                   }}
                 >
-                  학습 이력
+                  진행중인 학습
                 </Button>
               </VStack>
               {/* End:: 학습 상태 */}
