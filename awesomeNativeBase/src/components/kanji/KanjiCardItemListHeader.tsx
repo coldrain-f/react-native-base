@@ -87,7 +87,7 @@ export default function KanjiCardItemListHeader() {
           </Flex>
 
           <Divider
-            thickness={2}
+            thickness={1}
             mt={2}
             mb={2}
             _dark={{
@@ -99,84 +99,107 @@ export default function KanjiCardItemListHeader() {
             flexWrap="wrap"
             justifyContent="space-between"
           >
-            <Text
-              w="50%"
-              color="coolGray.700"
-              _dark={{
-                color: "coolGray.200",
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{
+                width: "50%",
               }}
             >
-              1 회독 완료:{" "}
               <Text
-                bold
                 color="info.700"
                 _dark={{
-                  color: "info.200",
+                  color: "coolGray.200",
                 }}
               >
-                0
+                一 회독 완료:{" "}
+                <Text
+                  bold
+                  color="info.700"
+                  _dark={{
+                    color: "info.200",
+                  }}
+                >
+                  0
+                </Text>
+                개
               </Text>
-              개
-            </Text>
-            <Text
-              w="50%"
-              color="coolGray.700"
-              _dark={{
-                color: "coolGray.200",
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{
+                width: "50%",
               }}
             >
-              2 회독 완료:{" "}
               <Text
                 color="info.700"
-                bold
                 _dark={{
-                  color: "info.200",
+                  color: "coolGray.200",
                 }}
               >
-                0
+                二 회독 완료:{" "}
+                <Text
+                  bold
+                  color="info.700"
+                  _dark={{
+                    color: "info.200",
+                  }}
+                >
+                  0
+                </Text>
+                개
               </Text>
-              개
-            </Text>
-            <Text
-              w="50%"
-              color="coolGray.700"
-              _dark={{
-                color: "coolGray.200",
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{
+                width: "50%",
               }}
             >
-              3 회독 완료:{" "}
               <Text
                 color="info.700"
-                bold
                 _dark={{
-                  color: "info.200",
+                  color: "coolGray.200",
                 }}
               >
-                0
+                三 회독 완료:{" "}
+                <Text
+                  bold
+                  color="info.700"
+                  _dark={{
+                    color: "info.200",
+                  }}
+                >
+                  0
+                </Text>
+                개
               </Text>
-              개
-            </Text>
-            <Text
-              w="50%"
-              color="coolGray.700"
-              _dark={{
-                color: "coolGray.200",
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{
+                width: "50%",
               }}
             >
-              4 회독 이상:{" "}
               <Text
                 color="info.700"
-                bold
                 _dark={{
-                  color: "info.200",
+                  color: "coolGray.200",
                 }}
               >
-                0
+                四 회독 완료:{" "}
+                <Text
+                  bold
+                  color="info.700"
+                  _dark={{
+                    color: "info.200",
+                  }}
+                >
+                  0
+                </Text>
+                개
               </Text>
-              개
-            </Text>
+            </TouchableOpacity>
           </View>
-
           <View>
             <Flex direction="row" mt={4}>
               <Button

@@ -17,6 +17,7 @@ import type { StackNavigationProp } from "../../navigation";
 import type { CategoryType } from "../../../@types/categoryType";
 import { useNavigation } from "@react-navigation/native";
 import Ionicon from "react-native-vector-icons/Ionicons";
+import { TouchableOpacity } from "react-native";
 
 interface Props {
   category: CategoryType;
@@ -111,82 +112,106 @@ export default function WhaleCategoryItem(props: Props) {
                 flexWrap="wrap"
                 justifyContent="space-between"
               >
-                <Text
-                  w="50%"
-                  color="coolGray.700"
-                  _dark={{
-                    color: "coolGray.200",
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={{
+                    width: "50%",
                   }}
                 >
-                  1 회독 완료:{" "}
                   <Text
-                    bold
                     color="info.700"
                     _dark={{
-                      color: "info.200",
+                      color: "coolGray.200",
                     }}
                   >
-                    0
+                    一 회독 완료:{" "}
+                    <Text
+                      bold
+                      color="info.700"
+                      _dark={{
+                        color: "info.200",
+                      }}
+                    >
+                      0
+                    </Text>
+                    개
                   </Text>
-                  개
-                </Text>
-                <Text
-                  w="50%"
-                  color="coolGray.700"
-                  _dark={{
-                    color: "coolGray.200",
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={{
+                    width: "50%",
                   }}
                 >
-                  2 회독 완료:{" "}
                   <Text
                     color="info.700"
-                    bold
                     _dark={{
-                      color: "info.200",
+                      color: "coolGray.200",
                     }}
                   >
-                    0
+                    二 회독 완료:{" "}
+                    <Text
+                      bold
+                      color="info.700"
+                      _dark={{
+                        color: "info.200",
+                      }}
+                    >
+                      0
+                    </Text>
+                    개
                   </Text>
-                  개
-                </Text>
-                <Text
-                  w="50%"
-                  color="coolGray.700"
-                  _dark={{
-                    color: "coolGray.200",
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={{
+                    width: "50%",
                   }}
                 >
-                  3 회독 완료:{" "}
                   <Text
                     color="info.700"
-                    bold
                     _dark={{
-                      color: "info.200",
+                      color: "coolGray.200",
                     }}
                   >
-                    0
+                    三 회독 완료:{" "}
+                    <Text
+                      bold
+                      color="info.700"
+                      _dark={{
+                        color: "info.200",
+                      }}
+                    >
+                      0
+                    </Text>
+                    개
                   </Text>
-                  개
-                </Text>
-                <Text
-                  w="50%"
-                  color="coolGray.700"
-                  _dark={{
-                    color: "coolGray.200",
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={{
+                    width: "50%",
                   }}
                 >
-                  4 회독 이상:{" "}
                   <Text
                     color="info.700"
-                    bold
                     _dark={{
-                      color: "info.200",
+                      color: "coolGray.200",
                     }}
                   >
-                    0
+                    四 회독 완료:{" "}
+                    <Text
+                      bold
+                      color="info.700"
+                      _dark={{
+                        color: "info.200",
+                      }}
+                    >
+                      0
+                    </Text>
+                    개
                   </Text>
-                  개
-                </Text>
+                </TouchableOpacity>
               </View>
               {/* End:: 회독수 표시 */}
             </Flex>
@@ -202,16 +227,8 @@ export default function WhaleCategoryItem(props: Props) {
                 <Button
                   flex={1}
                   size="sm"
-                  _text={{
-                    color: "info.700",
-                    bold: true,
-                  }}
-                  _dark={{
-                    _text: {
-                      color: "info.200",
-                    },
-                  }}
-                  variant="outline"
+                  colorScheme="info"
+                  variant="solid"
                   mr={3}
                   onPress={() => {
                     setShowPreviewModal(true);
@@ -225,7 +242,7 @@ export default function WhaleCategoryItem(props: Props) {
               {/* Begin:: 학습 상태 */}
               <VStack w="45.5%">
                 <Badge
-                  colorScheme="info"
+                  colorScheme="cyan"
                   rounded="full"
                   mb={-4}
                   mr={-4}
@@ -241,20 +258,12 @@ export default function WhaleCategoryItem(props: Props) {
                 <Button
                   flex={1}
                   size="sm"
-                  _text={{
-                    color: "info.700",
-                    bold: true,
-                  }}
-                  _dark={{
-                    _text: {
-                      color: "info.200",
-                    },
-                  }}
-                  variant="outline"
+                  colorScheme="info"
+                  variant="solid"
                   leftIcon={
                     <Ionicon
                       name="list-outline"
-                      color={colorMode === "light" ? "#0369a1" : "#bae6fd"}
+                      color={colorMode === "light" ? "#bae6fd" : "#bae6fd"}
                       size={20}
                     />
                   }
