@@ -13,11 +13,11 @@ import type {
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import WhaleCategory from "../screens/category/WhaleCategory";
 import WhaleKanji from "../screens/kanji/WhaleKanji";
-import Word from "../screens/word";
 import Learning from "../screens/learning";
 import type { Book } from "../../@types/bookType";
 import type { StyleProp } from "react-native";
 import { useColorMode } from "native-base";
+import WhaleWord from "../screens/word/WhaleWord";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
@@ -25,7 +25,7 @@ type StackParamList = {
     book: Book;
   };
   WhaleKanji: undefined;
-  Word: undefined;
+  WhaleWord: undefined;
   Learning: undefined;
 };
 
@@ -94,8 +94,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Word"
-          component={Word}
+          name="WhaleWord"
+          component={WhaleWord}
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "단어",

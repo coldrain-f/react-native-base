@@ -350,7 +350,7 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
           variant="outline"
           colorScheme="info"
           onPress={() => {
-            navigation.navigate("Word");
+            navigation.navigate("WhaleWord");
           }}
           rightIcon={
             <Ionicon

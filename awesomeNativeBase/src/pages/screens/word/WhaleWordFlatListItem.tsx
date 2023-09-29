@@ -10,10 +10,10 @@ import {
   Center,
   Badge,
 } from "native-base";
-import Furi from "../common/Furi";
 import Ionicon from "react-native-vector-icons/Ionicons";
+import Furi from "../../../components/common/Furi";
 
-export default function WordCardItem(): React.JSX.Element {
+export default function WhaleWordFlatListItem(): React.JSX.Element {
   const { colorMode } = useColorMode();
   const [showFuri, setShowFuri] = React.useState<boolean>(true);
   const [showMeaning, setShowMeaning] = React.useState<boolean>(true);

@@ -8,10 +8,9 @@ import {
   Link,
   Modal,
   ScrollView,
-  useColorMode,
 } from "native-base";
 
-export default function WordCardItemListHeader(): React.JSX.Element {
+export default function WhaleWordHeader(): React.JSX.Element {
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
   return (
