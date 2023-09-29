@@ -12,20 +12,19 @@ import type {
 } from "@react-navigation/native-stack";
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
 import WhaleCategory from "../screens/category/WhaleCategory";
-import Kanji from "../screens/kanji";
+import WhaleKanji from "../screens/kanji/WhaleKanji";
 import Word from "../screens/word";
 import Learning from "../screens/learning";
 import type { Book } from "../../@types/bookType";
 import type { StyleProp } from "react-native";
 import { useColorMode } from "native-base";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
   WhaleCategory: {
     book: Book;
   };
-  Kanji: undefined;
+  WhaleKanji: undefined;
   Word: undefined;
   Learning: undefined;
 };
@@ -86,8 +85,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Kanji"
-          component={Kanji}
+          name="WhaleKanji"
+          component={WhaleKanji}
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "한자",

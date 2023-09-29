@@ -36,7 +36,7 @@ export default function WhaleCategoryItem(props: Props) {
     <Pressable
       my="2"
       onPress={() => {
-        navigation.navigate("Kanji");
+        navigation.navigate("WhaleKanji");
       }}
     >
       {({ isPressed }) => {

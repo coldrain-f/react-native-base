@@ -3,7 +3,6 @@ import {
   Button,
   Divider,
   Flex,
-  HStack,
   Heading,
   Text,
   View,
@@ -11,10 +10,10 @@ import {
 } from "native-base";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "../../pages/navigation";
 import Ionicon from "react-native-vector-icons/Ionicons";
+import type { StackNavigationProp } from "../../navigation";
 
-export default function KanjiCardItemListHeader() {
+export default function WhaleKanjiHeader() {
   const navigation = useNavigation<StackNavigationProp>();
   const [showDetail, setShowDetail] = React.useState(true);
   const { colorMode } = useColorMode();
