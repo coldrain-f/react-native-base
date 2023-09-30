@@ -1,9 +1,9 @@
 import React from "react";
 import { View, HStack, Spinner, Heading } from "native-base";
-import WordCardItemListHeader from "../../../components/word/WordCardItemListHeader";
-import WordCardItem from "../../../components/word/WordCardItem";
+import WhaleWordHeader from "./WhaleWordHeader";
+import WhaleWordFlatListItem from "./WhaleWordFlatListItem";
 
-export default function Word() {
+export default function WhaleWord() {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
@@ -28,8 +28,8 @@ export default function Word() {
         </HStack>
       ) : (
         <>
-          <WordCardItemListHeader />
-          <WordCardItem />
+          <WhaleWordHeader />
+          <WhaleWordFlatListItem />
         </>
       )}
     </View>

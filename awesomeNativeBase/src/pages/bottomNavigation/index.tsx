@@ -8,7 +8,7 @@ import type {
 } from "@react-navigation/bottom-tabs";
 import Information from "../screens/information";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Button, Flex, useColorMode } from "native-base";
+import { Button, Flex, View, useColorMode } from "native-base";
 import Progress from "../screens/progress";
 import BookMark from "../screens/bookmark";
 
@@ -54,6 +54,7 @@ const BasicBottomTabNavigationOprions: BottomTabNavigationOptions = {
   },
   headerTintColor: "white",
   headerRight: () => <BasicHeaderRight />,
+  // 기기 폰트 사이즈 의존 제거
   tabBarAllowFontScaling: false,
   headerTitleAllowFontScaling: false,
 };
@@ -81,7 +82,7 @@ const BasicHeaderRight = () => {
   );
 };
 
-export default function BottomTabNavigation(): React.JSX.Element {
+export default function BottomTabNavigation() {
   const { colorMode } = useColorMode();
 
   return (
@@ -91,7 +92,8 @@ export default function BottomTabNavigation(): React.JSX.Element {
         tabBarStyle: {
           backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
         },
-        // BottomTab Icon 색상
+
+        // BottomTab 색상
         tabBarActiveTintColor: "#f3f4f6", // coolGray.100
         tabBarInactiveTintColor: "#9ca3af", // coolGray.400
 
@@ -118,6 +120,7 @@ export default function BottomTabNavigation(): React.JSX.Element {
         name="WhaleVocabulary"
         component={WhaleVocabulary}
         options={{
+          headerShown: true,
           ...BasicBottomTabNavigationOprions,
           title: "단어장",
           headerStyle: {

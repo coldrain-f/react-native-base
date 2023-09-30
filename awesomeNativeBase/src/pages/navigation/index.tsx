@@ -3,7 +3,6 @@ import {
   NavigationContainer,
   NavigatorScreenParams,
   RouteProp,
-  useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type {
@@ -12,38 +11,44 @@ import type {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import BottomTabNavigation, { BottomTabParamList } from "../bottomNavigation";
-import Category from "../screens/category";
-import Kanji from "../screens/kanji";
-import Word from "../screens/word";
-import Learning from "../screens/learning";
+import WhaleCategory from "../screens/category/WhaleCategory";
+import WhaleKanji from "../screens/kanji/WhaleKanji";
+import Learning from "../screens/learning/WhaleLearning";
 import type { Book } from "../../@types/bookType";
 import type { StyleProp } from "react-native";
-import { Button, Flex, useColorMode } from "native-base";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { useColorMode } from "native-base";
+import WhaleWord from "../screens/word/WhaleWord";
+import WhaleLearning from "../screens/learning/WhaleLearning";
 
 type StackParamList = {
   Root: NavigatorScreenParams<BottomTabParamList> | undefined;
-  Category: {
+  WhaleCategory: {
     book: Book;
   };
-  Kanji: undefined;
-  Word: undefined;
-  Learning: undefined;
+  WhaleKanji: undefined;
+  WhaleWord: undefined;
+  WhaleLearning: undefined;
 };
 
 // ScreenProps
-export type CategoryProps = NativeStackScreenProps<StackParamList, "Category">;
+export type WhaleCategoryProps = NativeStackScreenProps<
+  StackParamList,
+  "WhaleCategory"
+>;
 export type RootProps = NativeStackScreenProps<StackParamList, "Root">;
-export type LearningProps = NativeStackScreenProps<StackParamList, "Learning">;
+export type WhaleLearningProps = NativeStackScreenProps<
+  StackParamList,
+  "WhaleLearning"
+>;
 
 // RouteProp
-export type LearningRouteProp = RouteProp<StackParamList, "Learning">;
+export type WhaleLearningRouteProp = RouteProp<StackParamList, "WhaleLearning">;
 
 // Navigation Prop
 export type StackNavigationProp = NativeStackNavigationProp<StackParamList>;
-export type LearningkNavigationProp = NativeStackNavigationProp<
+export type WhaleLearningkNavigationProp = NativeStackNavigationProp<
   StackParamList,
-  "Learning"
+  "WhaleLearning"
 >;
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -75,8 +80,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Category"
-          component={Category}
+          name="WhaleCategory"
+          component={WhaleCategory}
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "카테고리",
@@ -84,8 +89,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Kanji"
-          component={Kanji}
+          name="WhaleKanji"
+          component={WhaleKanji}
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "한자",
@@ -93,8 +98,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Word"
-          component={Word}
+          name="WhaleWord"
+          component={WhaleWord}
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "단어",
@@ -102,8 +107,8 @@ export default function Navigation() {
           }}
         />
         <Stack.Screen
-          name="Learning"
-          component={Learning}
+          name="WhaleLearning"
+          component={WhaleLearning}
           options={{
             ...BasicNativeStackNavigationOptions,
             title: "단어 학습",

@@ -2,23 +2,23 @@ import React from "react";
 import { Box, Pressable, Text, Flex, View, useColorMode } from "native-base";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import type { StackNavigationProp } from "../../navigation";
-import type { Book } from "../../../@types/bookType";
+import type { StackNavigationProp } from "../../../../navigation";
+import type { Book } from "../../../../../@types/bookType";
 
 interface Props {
   book: Book;
 }
 
-export default function WhaleVocabularyItem(props: Props): React.JSX.Element {
-  const { book } = props;
+export default function WhaleVocabularyKanjiVocaFlatListItem(props: Props) {
   const navigation = useNavigation<StackNavigationProp>();
   const { colorMode } = useColorMode();
+  const { book } = props;
 
   return (
     <Pressable
-      my="2"
+      my={2}
       onPress={() => {
-        navigation.navigate("Category", { book });
+        navigation.navigate("WhaleCategory", { book });
       }}
     >
       {({ isPressed }) => {
@@ -76,7 +76,7 @@ export default function WhaleVocabularyItem(props: Props): React.JSX.Element {
               {/* Begin:: 이동 아이콘 */}
               <View w="10%" alignItems="flex-end">
                 <Icon
-                  name="arrow-forward-circle-outline"
+                  name="caret-forward-circle-outline"
                   // #374151: coolGray.700, #f3f4f6: coolGray.100
                   color={colorMode === "light" ? "#374151" : "#f3f4f6"}
                   size={24}

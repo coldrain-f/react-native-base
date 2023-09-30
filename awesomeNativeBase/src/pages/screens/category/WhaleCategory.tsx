@@ -1,34 +1,16 @@
 import React from "react";
-import {
-  Box,
-  FlatList,
-  Flex,
-  Heading,
-  Progress,
-  Spinner,
-  Text,
-  View,
-  HStack,
-} from "native-base";
-import CategoryItem from "../../../components/CategoryItem";
+import { FlatList, Heading, Spinner, View, HStack } from "native-base";
 import type { CategoryType } from "../../../@types/categoryType";
-import type { CategoryProps } from "../../navigation";
-import type { Book } from "../../../@types/bookType";
-import CategoryItemListHeader from "../../../components/CategoryItemListHeader";
+import type { WhaleCategoryProps } from "../../navigation";
+import WhaleCategoryHeader from "./WhaleCategoryHeader";
+import WhaleCategoryItem from "./WhaleCategoryItem";
 
-export default function Category({
-  navigation,
-  route,
-}: CategoryProps): React.JSX.Element {
+export default function WhaleCategory(props: WhaleCategoryProps) {
+  const { route } = props;
   const { book } = route.params;
 
   const [categories, setCategories] = React.useState<CategoryType[]>([]);
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
-
-  const [learningFinishedCount, setLearningFinishedCount] =
-    React.useState<number>(0);
-
-  const [learningTotalCount, setLearningTotalCount] = React.useState<number>(0);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const fetchCategories = (): CategoryType[] => {
     return require("./categories");
@@ -36,8 +18,6 @@ export default function Category({
 
   React.useEffect((): void => {
     setCategories(fetchCategories());
-    setLearningFinishedCount(207);
-    setLearningTotalCount(1026);
     setIsLoading(false);
   }, []);
 
@@ -59,17 +39,15 @@ export default function Category({
         </HStack>
       ) : (
         <>
-          <CategoryItemListHeader
-            book={book}
-            learningFinishedCount={learningFinishedCount}
-            learningTotalCount={learningTotalCount}
-          />
+          <WhaleCategoryHeader book={book} />
           <FlatList
             keyExtractor={(item) => item.id.toString()}
             onRefresh={() => {}}
             refreshing={false}
             data={categories}
-            renderItem={({ item }) => <CategoryItem category={item} />}
+            renderItem={({ item }) => {
+              return <WhaleCategoryItem category={item} />;
+            }}
           />
         </>
       )}

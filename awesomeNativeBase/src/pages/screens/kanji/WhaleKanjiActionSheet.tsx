@@ -8,7 +8,7 @@ import {
 } from "native-base";
 import Ionicon from "react-native-vector-icons/Ionicons";
 
-export default function KanjiActionSheet() {
+export default function WhaleKanjiActionSheet() {
   const { isOpen, onOpen, onClose } = useDisclose();
   const { colorMode } = useColorMode();
 

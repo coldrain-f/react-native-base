@@ -1,11 +1,11 @@
 import React from "react";
 import { FlatList, HStack, Heading, Spinner, View } from "native-base";
-import KanjiCardItem from "../../../components/kanji/KanjiCardItem";
-import KanjiCardItemListHeader from "../../../components/kanji/KanjiCardItemListHeader";
-import KanjiActionSheet from "../../../components/kanji/KanjiActionSheet";
 import type { KanjiType } from "../../../@types/kanjiType";
+import WhaleKanjiFlatListItem from "./WhaleKanjiFlatListItem";
+import WhaleKanjiHeader from "./WhaleKanjiHeader";
+import WhaleKanjiActionSheet from "./WhaleKanjiActionSheet";
 
-export default function Word(): React.JSX.Element {
+export default function WhaleKanji() {
   const [kanjiList, setKanjiList] = React.useState<KanjiType[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
@@ -36,15 +36,15 @@ export default function Word(): React.JSX.Element {
         </HStack>
       ) : (
         <>
-          <KanjiCardItemListHeader />
+          <WhaleKanjiHeader />
           <FlatList
             keyExtractor={(item) => item.id.toString()}
             onRefresh={() => {}}
             refreshing={false}
             data={kanjiList}
-            renderItem={({ item }) => <KanjiCardItem kanji={item} />}
+            renderItem={({ item }) => <WhaleKanjiFlatListItem kanji={item} />}
           />
-          <KanjiActionSheet />
+          <WhaleKanjiActionSheet />
         </>
       )}
     </View>

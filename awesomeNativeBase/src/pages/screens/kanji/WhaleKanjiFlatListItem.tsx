@@ -14,15 +14,15 @@ import {
   ScrollView,
 } from "native-base";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "../../pages/navigation";
-import { KanjiType } from "../../@types/kanjiType";
 import Ionicon from "react-native-vector-icons/Ionicons";
+import type { StackNavigationProp } from "../../navigation";
+import type { KanjiType } from "../../../@types/kanjiType";
 
 interface Props {
   kanji: KanjiType;
 }
 
-export default function KanjiCardItem({ kanji }: Props) {
+export default function WhaleKanjiFlatListItem({ kanji }: Props) {
   const { colorMode } = useColorMode();
   const navigation = useNavigation<StackNavigationProp>();
   const [showModal, setShowModal] = React.useState<boolean>(false);
@@ -325,6 +325,7 @@ export default function KanjiCardItem({ kanji }: Props) {
             </View>
           </Flex>
         </View>
+
         {/* 한자 체크박스 Grid */}
         <Flex pt={2} direction="column" alignItems="center">
           <Checkbox
@@ -335,6 +336,7 @@ export default function KanjiCardItem({ kanji }: Props) {
           />
         </Flex>
       </Flex>
+
       <Flex
         direction="row"
         justifyContent="space-around"
@@ -348,7 +350,7 @@ export default function KanjiCardItem({ kanji }: Props) {
           variant="outline"
           colorScheme="info"
           onPress={() => {
-            navigation.navigate("Word");
+            navigation.navigate("WhaleWord");
           }}
           rightIcon={
             <Ionicon

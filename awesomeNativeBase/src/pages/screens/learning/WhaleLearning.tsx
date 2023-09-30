@@ -1,10 +1,10 @@
 import React from "react";
 import { HStack, Heading, Spinner, View } from "native-base";
-import { LearningProps } from "../../navigation";
-import LearningHeader from "../../../components/learning/LearningHeader";
-import LearningFlipCard from "../../../components/learning/LearningFlipCard";
+import type { WhaleLearningProps } from "../../navigation";
+import WhaleLearningHeader from "./WhaleLearningHeader";
+import WhaleLearningFlipCard from "./WhaleLearningFlipCard";
 
-export default function Learning(props: LearningProps): React.JSX.Element {
+export default function WhaleLearning(props: WhaleLearningProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
@@ -28,9 +28,9 @@ export default function Learning(props: LearningProps): React.JSX.Element {
         </HStack>
       ) : (
         <>
-          <LearningHeader />
+          <WhaleLearningHeader />
           <View flex={1}>
-            <LearningFlipCard />
+            <WhaleLearningFlipCard />
           </View>
         </>
       )}
