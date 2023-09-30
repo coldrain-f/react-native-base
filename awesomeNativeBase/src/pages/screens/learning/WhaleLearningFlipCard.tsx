@@ -13,14 +13,6 @@ import { Animated, TouchableOpacity, StyleSheet } from "react-native";
 import Ionicon from "react-native-vector-icons/Ionicons";
 import Furi from "../../../components/common/Furi";
 
-const words = [
-  { name: "人口", furi: "じんこう", meaning: "인구" },
-  { name: "人生", furi: "じんせい", meaning: "인생" },
-  { name: "人物", furi: "じんぶつ", meaning: "인물" },
-  { name: "人類", furi: "じんるい", meaning: "인류" },
-  { name: "偉人", furi: "いじん", meaning: "위인" },
-];
-
 export default function WhaleLearningFlipCard() {
   const [isFlipped, setIsFlipped] = React.useState<boolean>(false);
   const flipAnimation = React.useRef(new Animated.Value(0)).current;
@@ -28,12 +20,6 @@ export default function WhaleLearningFlipCard() {
 
   const flipCard = () => {
     setIsFlipped(!isFlipped);
-
-    // Animated.timing(flipAnimation, {
-    //   toValue: isFlipped ? 0 : 1,
-    //   duration: 200,
-    //   useNativeDriver: true,
-    // }).start();
 
     Animated.spring(flipAnimation, {
       toValue: isFlipped ? 0 : 1,
