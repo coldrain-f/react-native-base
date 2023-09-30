@@ -11,9 +11,9 @@ import {
 } from "native-base";
 import Ionicon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "../../pages/navigation";
+import type { StackNavigationProp } from "../../navigation";
 
-export default function LearningHeader(): React.JSX.Element {
+export default function WhaleLearningHeader() {
   const navigation = useNavigation<StackNavigationProp>();
   const { colorMode } = useColorMode();
 

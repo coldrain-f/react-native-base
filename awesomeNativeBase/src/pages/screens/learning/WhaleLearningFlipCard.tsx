@@ -11,7 +11,7 @@ import {
 } from "native-base";
 import { Animated, TouchableOpacity, StyleSheet } from "react-native";
 import Ionicon from "react-native-vector-icons/Ionicons";
-import Furi from "../common/Furi";
+import Furi from "../../../components/common/Furi";
 
 const words = [
   { name: "人口", furi: "じんこう", meaning: "인구" },
@@ -21,7 +21,7 @@ const words = [
   { name: "偉人", furi: "いじん", meaning: "위인" },
 ];
 
-export default function LearningFlipCard() {
+export default function WhaleLearningFlipCard() {
   const [isFlipped, setIsFlipped] = React.useState<boolean>(false);
   const flipAnimation = React.useRef(new Animated.Value(0)).current;
   const { colorMode } = useColorMode();

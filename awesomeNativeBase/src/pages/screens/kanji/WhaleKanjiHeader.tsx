@@ -207,7 +207,7 @@ export default function WhaleKanjiHeader() {
                 colorScheme="info"
                 leftIcon={<Ionicon name="school" color="white" size={20} />}
                 onPress={() => {
-                  navigation.navigate("Learning");
+                  navigation.navigate("WhaleLearning");
                 }}
               >
                 학습 시작
