@@ -1,10 +1,10 @@
-package com.whalevoca;
+package whale.dashboard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServerApplicationTests {
+class DashboardApplicationTests {
 
     @Test
     void contextLoads() {
