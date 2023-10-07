@@ -25,7 +25,8 @@ export default function WhaleLearningHeader() {
   return (
     <View
       p={5}
-      borderBottomWidth={1}
+      // 디자인 피드백 반영
+      borderBottomWidth={0.5}
       borderColor="coolGray.400"
       bg="coolGray.100"
       _dark={{
@@ -40,7 +41,7 @@ export default function WhaleLearningHeader() {
             fontWeight="bold"
             fontSize="lg"
             _dark={{
-              color: "white",
+              color: "info.300",
             }}
           >
             {"초등학교 1학년 한자"}
@@ -57,7 +58,14 @@ export default function WhaleLearningHeader() {
           </Text>
           <Flex direction="row">
             <Box w="60%" mt={2}>
-              <Progress colorScheme="info" value={(3 / 10) * 100} size="sm" />
+              <Progress
+                colorScheme="info"
+                value={(3 / 10) * 100}
+                size="sm"
+                _dark={{
+                  bg: "blueGray.700",
+                }}
+              />
             </Box>
             <Box w="40%" ml={3}>
               <Text
@@ -129,7 +137,7 @@ export default function WhaleLearningHeader() {
                   color="rose.900"
                   bold
                   _dark={{
-                    color: "rose.200",
+                    color: "pink.300",
                   }}
                 >
                   0
@@ -151,7 +159,7 @@ export default function WhaleLearningHeader() {
                 // #f5f5f4: warmGray.100
                 // #f3f4f6: coolGray.100
                 name="exit-outline"
-                color={colorMode === "light" ? "#111827" : "#f3f4f6"}
+                color={colorMode === "light" ? "#111827" : "#64748b"}
                 size={20}
               />
             }

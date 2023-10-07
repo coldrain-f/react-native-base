@@ -75,7 +75,8 @@ export default function WhaleLearningFaceFlipCard(props: Props) {
                     name="volume-medium-outline"
                     // #e7e5e4: warmGray.200
                     // #f3f4f6: coolGray.100
-                    color={colorMode === "light" ? "#0369a1" : "#f3f4f6"}
+                    // 디자인 피드백 반영
+                    color={colorMode === "light" ? "#0369a1" : "#bae6fd"}
                     size={20}
                   />
                 }
@@ -87,14 +88,20 @@ export default function WhaleLearningFaceFlipCard(props: Props) {
                 leftIcon={
                   <Ionicon
                     name="heart-outline"
-                    color={colorMode === "light" ? "#0369a1" : "#f3f4f6"}
+                    // 디자인 피드백 반영
+                    color={colorMode === "light" ? "#0369a1" : "#bae6fd"}
                     size={20}
                   />
                 }
               />
             </View>
           </View>
-          <Divider mb={2} mt={2} />
+          <Divider
+            thickness={0.5}
+            mb={2}
+            mt={2} // 디자인 피드백 반영
+            bg="coolGray.400"
+          />
           <Center flex={1}>
             <Furi
               furiData={[{ word: "難解", furi: "なんかい" }]}
@@ -110,7 +117,8 @@ export default function WhaleLearningFaceFlipCard(props: Props) {
             {/* 외웠어요 버튼 */}
             <VStack>
               <Button
-                colorScheme="info"
+                // 단어 피드백 반영
+                colorScheme="indigo"
                 _dark={{
                   _text: {
                     color: "coolGray.100",
@@ -131,7 +139,8 @@ export default function WhaleLearningFaceFlipCard(props: Props) {
             {/* 모르겠어요 버튼 */}
             <VStack mt={5}>
               <Button
-                colorScheme="danger"
+                // 단어 피드백 반영
+                colorScheme="pink"
                 _dark={{
                   _text: {
                     color: "#f3f4f6",

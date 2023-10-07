@@ -124,6 +124,8 @@ export default function BottomTabNavigation() {
           headerShown: true,
           ...BasicBottomTabNavigationOprions,
           title: "Whale Vocabulary",
+          // 디자인 피드백 반영
+          tabBarLabel: "단어장",
           headerStyle: {
             backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
           },
