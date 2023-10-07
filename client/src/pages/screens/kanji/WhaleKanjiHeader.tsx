@@ -21,12 +21,14 @@ export default function WhaleKanjiHeader() {
   return (
     <View
       p="5"
-      borderBottomWidth={1}
+      // 디자인 피드백 반영
+      // 여기선 한자가 가려지므로 쉐도우대신 border 반영
+      borderBottomWidth={0.5}
       borderColor="coolGray.400"
       bg="coolGray.100"
       _dark={{
         bg: "#171E2E",
-        borderColor: "white",
+        borderColor: "coolGray.700",
       }}
     >
       <View flexDirection="row">

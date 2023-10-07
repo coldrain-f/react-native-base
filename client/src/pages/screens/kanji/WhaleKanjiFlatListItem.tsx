@@ -40,13 +40,16 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
       my="2"
       pt="2"
       pb="2"
-      borderWidth={1}
+      // 디자인 피드백 반영
+      borderWidth={0}
       borderColor="coolGray.300"
-      shadow={3}
+      // 디자인 피드백 반영
+      shadow={0}
       _dark={{
         bg: "#171E2E",
         borderColor: "coolGray.700",
-        borderWidth: 1,
+        // 디자인 피드백 반영
+        borderWidth: 0,
       }}
     >
       <Flex direction="row">
@@ -74,7 +77,8 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
               color="primary.700"
               fontWeight="bold"
               _dark={{
-                color: "primary.200",
+                // 디자인 피드백 반영
+                color: "info.400",
               }}
             >
               {kanji.meaning.split(" ")[1]}
@@ -87,7 +91,7 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
           mx={2}
           orientation="vertical"
           _dark={{
-            backgroundColor: "warmGray.200",
+            backgroundColor: "coolGray.700",
           }}
         />
         {/* 음독, 훈독 Grid */}
@@ -139,12 +143,14 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
                   bg="coolGray.200"
                   alignItems="center"
                   _dark={{
-                    bg: "#0369a1",
+                    // 디자인 피드백 반영
+                    bg: "#334155",
                   }}
                 >
                   <Ionicon
                     name="eye"
-                    color={colorMode === "light" ? "gray" : "white"}
+                    // 디자인 피드백 반영
+                    color={colorMode === "light" ? "gray" : "#64748b"}
                     size={20}
                   />
                 </View>
@@ -199,12 +205,13 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
                   bg="coolGray.200"
                   alignItems="center"
                   _dark={{
-                    bg: "#0369a1",
+                    // 디자인 피드백 반영
+                    bg: "#334155",
                   }}
                 >
                   <Ionicon
                     name="eye"
-                    color={colorMode === "light" ? "gray" : "white"}
+                    color={colorMode === "light" ? "gray" : "#64748b"}
                     size={20}
                   />
                 </View>
@@ -219,7 +226,8 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
                 color="info.700"
                 pr={1}
                 _dark={{
-                  color: "info.200",
+                  // 디자인 피드백 반영
+                  color: "info.400",
                 }}
               >
                 {kanji.readCount}
@@ -228,7 +236,8 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
                 _text={{
                   color: "info.700",
                   _dark: {
-                    color: "info.200",
+                    // 디자인 피드백 반영
+                    color: "info.400",
                   },
                 }}
                 onPress={() => {
@@ -309,7 +318,8 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
                 fontWeight="bold"
                 color="info.700"
                 _dark={{
-                  color: "info.200",
+                  // 디자인 피드백 반영
+                  color: "info.400",
                 }}
               >
                 {kanji.wordCount}
@@ -349,6 +359,8 @@ export default function WhaleKanjiFlatListItem({ kanji }: Props) {
           size="md"
           variant="outline"
           colorScheme="info"
+          // 디자인 피드백
+          borderColor={colorMode == "light" ? "coolGray.300" : "coolGray.700"}
           onPress={() => {
             navigation.navigate("WhaleWord");
           }}
