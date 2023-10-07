@@ -17,12 +17,13 @@ export default function WhaleWordHeader(): React.JSX.Element {
     <View
       p={2}
       mb={4}
-      borderBottomWidth={1}
+      // 디자인 피드백 반영
+      borderBottomWidth={0.5}
       borderColor="coolGray.400"
       bg="coolGray.100"
       _dark={{
         bg: "#171E2E",
-        borderColor: "white",
+        borderColor: "coolGray.600",
       }}
     >
       <Flex direction="row">
@@ -50,7 +51,8 @@ export default function WhaleWordHeader(): React.JSX.Element {
               color="primary.700"
               fontWeight="bold"
               _dark={{
-                color: "primary.200",
+                // 디자인 피드백 반영
+                color: "info.400",
               }}
             >
               인
@@ -63,7 +65,7 @@ export default function WhaleWordHeader(): React.JSX.Element {
           mx={2}
           orientation="vertical"
           _dark={{
-            backgroundColor: "warmGray.200",
+            backgroundColor: "coolGray.700",
           }}
         />
         {/* 음독, 훈독 Grid */}
@@ -100,7 +102,7 @@ export default function WhaleWordHeader(): React.JSX.Element {
                 color="info.700"
                 pr={1}
                 _dark={{
-                  color: "info.200",
+                  color: "info.400",
                 }}
               >
                 0
@@ -109,7 +111,8 @@ export default function WhaleWordHeader(): React.JSX.Element {
                 _text={{
                   color: "info.700",
                   _dark: {
-                    color: "info.200",
+                    // 디자인 피드백 반영
+                    color: "info.400",
                   },
                 }}
                 onPress={() => {
@@ -190,7 +193,7 @@ export default function WhaleWordHeader(): React.JSX.Element {
                 fontWeight="bold"
                 color="info.700"
                 _dark={{
-                  color: "info.200",
+                  color: "info.400",
                 }}
               >
                 10

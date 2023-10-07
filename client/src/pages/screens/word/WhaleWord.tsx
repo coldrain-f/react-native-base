@@ -12,7 +12,7 @@ export default function WhaleWord() {
 
   return (
     <View
-      bg="warmGray.100"
+      bg="coolGray.200"
       width="100%"
       flex={1}
       _dark={{

@@ -35,9 +35,11 @@ export default function WhaleWordFlatListItem(): React.JSX.Element {
   return (
     <View>
       <Badge
-        colorScheme={colorMode === "light" ? "info" : "coolGray"}
-        mb={-4}
+        colorScheme={colorMode === "light" ? "info" : "info.400"}
+        mb={-6}
         mr={2}
+        // 디자인 피드백 반영
+        borderRadius={0}
         zIndex={1}
         variant="solid"
         alignSelf="flex-end"
@@ -60,13 +62,16 @@ export default function WhaleWordFlatListItem(): React.JSX.Element {
         p={2}
         pt={5}
         pb={5}
-        borderWidth={1}
+        // 디자인 피드백 반영
+        borderWidth={0}
         borderColor="coolGray.300"
-        shadow={3}
+        // 디자인 피드백 반영
+        shadow={0}
         _dark={{
           bg: "#171E2E",
           borderColor: "coolGray.700",
-          borderWidth: 1,
+          // 디자인 피드백 반영
+          borderWidth: 0,
         }}
       >
         <View>
@@ -90,7 +95,7 @@ export default function WhaleWordFlatListItem(): React.JSX.Element {
               mx={2}
               orientation="vertical"
               _dark={{
-                backgroundColor: "warmGray.200",
+                backgroundColor: "coolGray.700",
               }}
             />
             <Flex
@@ -121,10 +126,13 @@ export default function WhaleWordFlatListItem(): React.JSX.Element {
             w="30%"
             size="sm"
             variant="outline"
+            // 디자인 피드백 반영
+            borderColor={colorMode == "light" ? "coolGray.300" : "coolGray.700"}
             leftIcon={
               <Ionicon
                 name={showFuri ? "eye-off" : "eye"}
-                color={colorMode === "light" ? "gray" : "white"}
+                // 디자인 피드백 반영
+                color={colorMode === "light" ? "gray" : "#64748b"}
                 size={20}
               />
             }
@@ -145,10 +153,13 @@ export default function WhaleWordFlatListItem(): React.JSX.Element {
             w="30%"
             size="sm"
             variant="outline"
+            // 디자인 피드백 반영
+            borderColor={colorMode == "light" ? "coolGray.300" : "coolGray.700"}
             leftIcon={
               <Ionicon
                 name={showMeaning ? "eye-off" : "eye"}
-                color={colorMode === "light" ? "gray" : "white"}
+                // 디자인 피드백 반영
+                color={colorMode === "light" ? "gray" : "#64748b"}
                 size={20}
               />
             }
@@ -169,10 +180,13 @@ export default function WhaleWordFlatListItem(): React.JSX.Element {
             w="35%"
             size="sm"
             variant="outline"
+            // 디자인 피드백 반영
+            borderColor={colorMode == "light" ? "coolGray.300" : "coolGray.700"}
             leftIcon={
               <Ionicon
                 name="shuffle-outline"
-                color={colorMode === "light" ? "gray" : "white"}
+                // 디자인 피드백 반영
+                color={colorMode === "light" ? "gray" : "#64748b"}
                 size={20}
               />
             }
