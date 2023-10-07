@@ -41,6 +41,11 @@ export default function WhaleCategory(props: WhaleCategoryProps) {
         <>
           <WhaleCategoryHeader book={book} />
           <FlatList
+            // 디자인 피드백 변경
+            bg="coolGray.200"
+            _dark={{
+              bg: "coolGray.900",
+            }}
             keyExtractor={(item) => item.id.toString()}
             onRefresh={() => {}}
             refreshing={false}

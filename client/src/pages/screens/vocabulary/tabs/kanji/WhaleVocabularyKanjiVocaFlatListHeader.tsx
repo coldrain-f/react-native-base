@@ -10,6 +10,7 @@ export default function WhaleVocabularyKanjiVocaFlatListHeader() {
   return (
     <View
       p={5}
+      // 디자인 피드백 반영
       borderBottomWidth={1}
       borderColor="coolGray.400"
       bg="coolGray.100"

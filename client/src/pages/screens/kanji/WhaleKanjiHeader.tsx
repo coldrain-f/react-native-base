@@ -90,7 +90,8 @@ export default function WhaleKanjiHeader() {
             mt={2}
             mb={2}
             _dark={{
-              bg: "coolGray.200",
+              // 디자인 피드백 반영
+              bg: "coolGray.800",
             }}
           />
           <View
@@ -101,102 +102,166 @@ export default function WhaleKanjiHeader() {
             <TouchableOpacity
               activeOpacity={0.8}
               style={{
-                width: "50%",
+                padding: 3,
+                width: "18%",
+                backgroundColor: colorMode === "light" ? "#e5e7eb" : "#0f172a",
               }}
             >
-              <Text
-                color="info.700"
-                _dark={{
-                  color: "coolGray.200",
-                }}
-              >
-                一 회독 완료:{" "}
+              <View alignItems="center">
                 <Text
+                  // 디자인 피드백 반영
                   bold
-                  color="info.700"
+                  color="coolGray.700"
                   _dark={{
-                    color: "info.200",
+                    color: "coolGray.400",
                   }}
                 >
-                  0
+                  一 회독
                 </Text>
-                개
-              </Text>
+
+                <Text
+                  color="primary.700"
+                  _dark={{
+                    color: "primary.500",
+                  }}
+                  bold
+                  fontSize="xl"
+                >
+                  0<Text fontSize="sm">개</Text>
+                </Text>
+              </View>
             </TouchableOpacity>
+
             <TouchableOpacity
               activeOpacity={0.8}
               style={{
-                width: "50%",
+                padding: 3,
+                width: "18%",
+                backgroundColor: colorMode === "light" ? "#e5e7eb" : "#0f172a",
               }}
             >
-              <Text
-                color="info.700"
-                _dark={{
-                  color: "coolGray.200",
-                }}
-              >
-                二 회독 완료:{" "}
+              <View alignItems="center">
                 <Text
+                  // 디자인 피드백 반영
                   bold
-                  color="info.700"
+                  color="coolGray.700"
                   _dark={{
-                    color: "info.200",
+                    color: "coolGray.400",
                   }}
                 >
-                  0
+                  二 회독
                 </Text>
-                개
-              </Text>
+
+                <Text
+                  color="primary.700"
+                  _dark={{
+                    color: "primary.500",
+                  }}
+                  bold
+                  fontSize="xl"
+                >
+                  0<Text fontSize="sm">개</Text>
+                </Text>
+              </View>
             </TouchableOpacity>
+
             <TouchableOpacity
               activeOpacity={0.8}
               style={{
-                width: "50%",
+                padding: 3,
+                width: "18%",
+                backgroundColor: colorMode === "light" ? "#e5e7eb" : "#0f172a",
               }}
             >
-              <Text
-                color="info.700"
-                _dark={{
-                  color: "coolGray.200",
-                }}
-              >
-                三 회독 완료:{" "}
+              <View alignItems="center">
                 <Text
+                  // 디자인 피드백 반영
                   bold
-                  color="info.700"
+                  color="coolGray.700"
                   _dark={{
-                    color: "info.200",
+                    color: "coolGray.400",
                   }}
                 >
-                  0
+                  三 회독
                 </Text>
-                개
-              </Text>
+
+                <Text
+                  color="primary.700"
+                  _dark={{
+                    color: "primary.500",
+                  }}
+                  bold
+                  fontSize="xl"
+                >
+                  0<Text fontSize="sm">개</Text>
+                </Text>
+              </View>
             </TouchableOpacity>
+
             <TouchableOpacity
               activeOpacity={0.8}
               style={{
-                width: "50%",
+                padding: 3,
+                width: "18%",
+                backgroundColor: colorMode === "light" ? "#e5e7eb" : "#0f172a",
               }}
             >
-              <Text
-                color="info.700"
-                _dark={{
-                  color: "coolGray.200",
-                }}
-              >
-                四 회독 완료:{" "}
+              <View alignItems="center">
                 <Text
+                  // 디자인 피드백 반영
                   bold
-                  color="info.700"
+                  color="coolGray.700"
                   _dark={{
-                    color: "info.200",
+                    color: "coolGray.400",
                   }}
                 >
-                  0
+                  四 회독
                 </Text>
-                개
-              </Text>
+
+                <Text
+                  color="primary.700"
+                  _dark={{
+                    color: "primary.500",
+                  }}
+                  bold
+                  fontSize="xl"
+                >
+                  79<Text fontSize="sm">개</Text>
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{
+                padding: 3,
+                width: "24%",
+                backgroundColor: colorMode === "light" ? "#e5e7eb" : "#0f172a",
+              }}
+            >
+              <View alignItems="center">
+                <Text
+                  // 디자인 피드백 반영
+                  bold
+                  color="coolGray.700"
+                  _dark={{
+                    color: "coolGray.400",
+                  }}
+                >
+                  五 회독 上
+                </Text>
+
+                <Text
+                  color="primary.700"
+                  _dark={{
+                    color: "primary.500",
+                  }}
+                  bold
+                  fontSize="xl"
+                >
+                  0<Text fontSize="sm">개</Text>
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
           <View>

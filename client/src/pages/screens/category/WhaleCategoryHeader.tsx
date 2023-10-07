@@ -16,7 +16,21 @@ export default function WhaleCategoryHeader(props: Props) {
   return (
     <View
       p="5"
-      borderBottomWidth={1}
+      // 디자인 피드백 반영
+      borderBottomWidth={0}
+      // 디자인 피드백 반영(shadow 추가, 은은하게)
+      zIndex={1}
+      style={{
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.0,
+
+        elevation: 24,
+      }}
       borderColor="coolGray.400"
       bg="coolGray.100"
       _dark={{

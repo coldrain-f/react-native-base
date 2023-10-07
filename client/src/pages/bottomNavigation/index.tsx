@@ -117,12 +117,13 @@ export default function BottomTabNavigation() {
       })}
     >
       <BottomTab.Screen
+        // 디자인 피드백 반영
         name="WhaleVocabulary"
         component={WhaleVocabulary}
         options={{
           headerShown: true,
           ...BasicBottomTabNavigationOprions,
-          title: "단어장",
+          title: "Whale Vocabulary",
           headerStyle: {
             backgroundColor: colorMode === "light" ? "#4338ca" : "#0F172A",
           },

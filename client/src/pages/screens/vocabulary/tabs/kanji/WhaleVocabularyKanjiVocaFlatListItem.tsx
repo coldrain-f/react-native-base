@@ -33,13 +33,15 @@ export default function WhaleVocabularyKanjiVocaFlatListItem(props: Props) {
               ],
             }}
             p={5}
-            borderWidth={1}
+            // 디자인 피드백 반영
+            borderWidth={0}
             borderColor="coolGray.300"
-            shadow={3}
+            shadow={0}
             _dark={{
               bg: "#171E2E",
               borderColor: "coolGray.700",
-              borderWidth: 1,
+              // 디자인 피드백 반영
+              borderWidth: 0,
             }}
           >
             <Flex
