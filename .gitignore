@@ -1,0 +1,10 @@
+
+
+# Android/app/src/assets
+client/android/app/src/main/assets/*
+client/android/app/src/main/res/drawable-hdpi/*
+client/android/app/src/main/res/drawable-mdpi/*
+client/android/app/src/main/res/drawable-mdpi/*
+client/android/app/src/main/res/drawable-xhdpi/*
+client/android/app/src/main/res/drawable-xxhdpi/*
+client/android/app/src/main/res/drawable-xxxhdpi/*
