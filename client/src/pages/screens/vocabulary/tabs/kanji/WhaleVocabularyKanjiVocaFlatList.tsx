@@ -19,7 +19,7 @@ export default function WhaleVocabularyKanjiVocaFlatList() {
         bg: "coolGray.900",
       }}
       flex={1}
-      ListHeaderComponent={<WhaleVocabularyKanjiVocaFlatListHeader />}
+      // ListHeaderComponent={<WhaleVocabularyKanjiVocaFlatListHeader />}
       keyExtractor={(item) => item.id.toString()}
       onRefresh={() => {}}
       refreshing={false}

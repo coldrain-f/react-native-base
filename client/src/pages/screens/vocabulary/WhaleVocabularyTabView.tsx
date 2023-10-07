@@ -22,7 +22,7 @@ const routesInit = [
 
 export default function WhaleVocabularyTabView() {
   const [routes] = React.useState(routesInit);
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(1);
 
   const layout = useWindowDimensions();
 
