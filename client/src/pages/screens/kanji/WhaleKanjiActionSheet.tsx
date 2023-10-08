@@ -1,8 +1,12 @@
 import React from "react";
 import {
   Actionsheet,
+  Checkbox,
   Divider,
   Fab,
+  HStack,
+  Text,
+  View,
   useColorMode,
   useDisclose,
 } from "native-base";
@@ -18,9 +22,7 @@ export default function WhaleKanjiActionSheet() {
         renderInPortal={false}
         shadow={2}
         size="sm"
-        icon={
-          <Ionicon name="ellipsis-horizontal-outline" color="white" size={20} />
-        }
+        icon={<Ionicon name="options-outline" color="white" size={20} />}
         onPress={onOpen}
       />
 
@@ -118,6 +120,8 @@ export default function WhaleKanjiActionSheet() {
           >
             훈독만 보기
           </Actionsheet.Item>
+
+          <Divider />
         </Actionsheet.Content>
       </Actionsheet>
     </>
