@@ -57,7 +57,7 @@ export default function WhaleLearningHeader() {
             학습 진척도: {((3 / 10) * 100).toFixed(1)}%
           </Text>
           <Flex direction="row">
-            <Box w="60%" mt={2}>
+            <Box w="70%" mt={2}>
               <Progress
                 colorScheme="info"
                 value={(3 / 10) * 100}
@@ -85,7 +85,8 @@ export default function WhaleLearningHeader() {
             flexWrap="wrap"
           >
             {/* 시도, 외웠어요, 모르겠어요 카운팅 */}
-            <View>
+            {/* 시도 */}
+            <View w="30%">
               <Text
                 color="coolGray.700"
                 _dark={{
@@ -105,7 +106,8 @@ export default function WhaleLearningHeader() {
                 회
               </Text>
             </View>
-            <View>
+            {/* 외웠어요 */}
+            <View w="30%">
               <Text
                 color="coolGray.700"
                 _dark={{
@@ -125,7 +127,8 @@ export default function WhaleLearningHeader() {
                 개
               </Text>
             </View>
-            <View>
+            {/* 외웠어요 */}
+            <View w="30%">
               <Text
                 color="coolGray.700"
                 _dark={{
@@ -183,7 +186,6 @@ export default function WhaleLearningHeader() {
                     color: "coolGray.100",
                   }}
                 >
-                  학습이 진행 중입니다. 지금 종료하면 학습 완료가 되지 않습니다.
                   정말 종료하시겠습니까?
                 </Text>
               </AlertDialog.Body>

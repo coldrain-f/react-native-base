@@ -104,7 +104,7 @@ export default function BottomTabNavigation() {
           } else if (route.name === "Bookmark") {
             iconName = focused ? "heart" : "heart-outline";
           } else if (route.name === "Progress") {
-            iconName = focused ? "footsteps" : "footsteps-outline";
+            iconName = focused ? "time" : "time-outline";
           } else if (route.name === "Information") {
             iconName = focused
               ? "information-circle-sharp"
