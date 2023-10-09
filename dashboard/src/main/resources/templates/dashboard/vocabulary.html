@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head('단어장 관리')">
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <!-- Begin:: Sidebar -->
+        <div class="col-3 shadow-sm">
+            <div th:replace="fragments/common :: sidebar('vocabulary')"></div>
+        </div>
+        <!-- End:: Sidebar-->
+
+        <div class="col-9 shadow-sm">
+            <div class="container-fluid">
+                <div class="content">
+                    <h2 class="mb-5 fw-semibold">단어장 관리</h2>
+
+                    <!-- Begin:: ag-grid -->
+                    <!-- ag-theme-alpine, ag-theme-material -->
+                    <div id="myGrid" style="height: 42.2vh; width:100%;"
+                         class="ag-theme-material pb-5 border-bottom"></div>
+                    <!-- End:: ag-grid -->
+
+                    <!-- Begin:: Tabs -->
+                    <!-- Tabs navs -->
+                    <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="ex-with-icons-tab-1" data-mdb-toggle="tab"
+                               href="#ex-with-icons-tabs-1" role="tab"
+                               aria-controls="ex-with-icons-tabs-1" aria-selected="true">
+                                <i class="far fa-square-plus fa-fw me-2"></i>
+                                등록
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="ex-with-icons-tab-2" data-mdb-toggle="tab"
+                               href="#ex-with-icons-tabs-2" role="tab"
+                               aria-controls="ex-with-icons-tabs-2" aria-selected="false">
+                                <i class="fas fa-pen-to-square fa-fw me-2"></i>
+                                수정
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="ex-with-icons-tab-3" data-mdb-toggle="tab"
+                               href="#ex-with-icons-tabs-3" role="tab"
+                               aria-controls="ex-with-icons-tabs-3" aria-selected="false">
+                                <i class="far fa-trash-can fa-fw me-2"></i>
+                                삭제
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tabs navs -->
+
+                    <!-- Tabs content -->
+                    <div class="tab-content" id="ex-with-icons-content">
+                        <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel"
+                             aria-labelledby="ex-with-icons-tab-1">
+                            <div class="row mb-3">
+                                <div class="col d-flex justify-content-end">
+
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="far fa-hard-drive me-1"></i>
+                                        DB 반영
+                                    </button>
+                                    <button class="btn btn-info btn-sm ms-2">
+                                        <i class="fas fa-circle-plus me-1"></i>
+                                        행 추가
+                                    </button>
+                                    <button class="btn btn-danger btn-sm ms-2">
+                                        <i class="fas fa-circle-minus me-1"></i>
+                                        행 삭제
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Begin:: ag-grid -->
+                                <!-- ag-theme-alpine, ag-theme-material -->
+                                <div id="addGrid" style="height: 25vh; width:100%;"
+                                     class="ag-theme-material"></div>
+                                <!-- End:: ag-grid -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- 수정 Tab -->
+                    <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
+                         aria-labelledby="ex-with-icons-tab-2">
+                    </div>
+                    <!-- 삭제 Tab -->
+                    <div class="tab-pane fade" id="ex-with-icons-tabs-3" role="tabpanel"
+                         aria-labelledby="ex-with-icons-tab-3">
+                    </div>
+                </div>
+                <!-- Tabs content -->
+                <!-- End:: Tabs-->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Begin:: Bootstrap 5 MDB -->
+<div th:replace="fragments/common :: bootstrap"></div>
+<!-- End:: Bootstrap 5 MDB -->
+</body>
+
+<!--
+    https://www.ag-grid.com/javascript-data-grid/getting-started/
+-->
+<script type="text/javascript">
+    const columnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 120},
+        {headerName: "TITLE", field: "title",},
+        {headerName: "INTRODUCTION", field: "introduction", width: 272},
+        {headerName: "GROUP", field: "group"}
+    ];
+
+    const defaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: true,
+    }
+
+    // specify the data
+    const rowData = [
+        {
+            id: 1,
+            title: "일본어 초등학교 상용한자",
+            introduction: "일본 초등학교 필수 상용한자 1026자 수록",
+            group: "漢字별 단어장"
+        },
+        {
+            id: 2,
+            title: "일본어 중학교 상용한자",
+            introduction: "일본 중학교 필수 상용한자 1110자 수록",
+            group: "漢字별 단어장"
+        },
+    ];
+
+    // let the grid know which columns and what data to use
+    const gridOptions = {
+        columnDefs: columnDefs,
+        rowData: rowData,
+        defaultColDef: defaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: true,
+    };
+
+    // =================================================================================================
+    // 등록 그리드
+    const addColumnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+        {headerName: "TITLE", field: "title",},
+        {headerName: "INTRODUCTION", field: "introduction", width: 392},
+        {headerName: "GROUP", field: "group"},
+
+    ];
+
+    const addDefaultColDef = {
+        editable: true,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+    }
+
+    // specify the data
+    const addRowData = [
+        {title: "", introduction: "", group: "",},
+    ];
+
+    // let the grid know which columns and what data to use
+    const addGridOptions = {
+        columnDefs: addColumnDefs,
+        rowData: addRowData,
+        defaultColDef: addDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: false,
+    };
+
+    // setup the grid after the page has finished loading
+    document.addEventListener('DOMContentLoaded', () => {
+        const gridDiv = document.querySelector('#myGrid');
+        const addGridDiv = document.querySelector("#addGrid");
+
+        new agGrid.Grid(gridDiv, gridOptions);
+        new agGrid.Grid(addGridDiv, addGridOptions);
+    });
+</script>
+
+</html>

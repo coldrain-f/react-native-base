@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head('단어장 관리')">
+    <title>Dashboard</title>
+</head>
+<body>
+
+<div class="row">
+    <!-- Begin:: Sidebar -->
+    <div class="col-2">
+        <div th:replace="fragments/common :: sidebar('vocabulary')"></div>
+    </div>
+    <!-- End:: Sidebar-->
+
+    <div class="col-10">
+        <div class="container-fluid">
+            <div class="content">
+                <!-- Begin:: Breadcrumb-->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">앱 관리</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">단어장 관리</li>
+                    </ol>
+                </nav>
+                <!-- End:: Breadcrumb-->
+
+                <!-- Begin:: Actions -->
+                <div class="mb-2 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary btn-sm ms-2" data-bs-toggle="modal"
+                            data-bs-target="#addModal">
+                        등록
+                    </button>
+                    <button type="button" class="btn btn-success btn-sm ms-2" data-bs-toggle="modal"
+                            data-bs-target="#updateModal">
+                        수정
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal">
+                        삭제
+                    </button>
+                </div>
+                <!-- End:: Actions -->
+                <!-- Begin:: Add Modal -->
+                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="addModalLabel">단어장 등록</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <label for="add-title" class="form-label">제목</label>
+                                <input type="text" class="form-control" id="add-title" placeholder="">
+
+                                <label for="add-introduction" class="form-label mt-2">소개</label>
+                                <input type="text" class="form-control" id="add-introduction" placeholder="">
+
+                                <label for="add-group" class="form-label mt-2">그룹</label>
+                                <select class="form-select" id="add-group" aria-label="Vocabulary group select">
+                                    <option value="1">漢字별 단어장</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">취소
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm">등록</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: Add Modal -->
+
+                <!-- Begin:: Update Modal -->
+                <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="updateModalLabel">단어장 수정</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label for="update-title" class="form-label">제목</label>
+                                <input type="text" class="form-control" id="update-title" placeholder="">
+
+                                <label for="update-introduction" class="form-label mt-2">소개</label>
+                                <input type="text" class="form-control" id="update-introduction" placeholder="">
+
+                                <label for="update-group" class="form-label mt-2">그룹</label>
+                                <select class="form-select" id="update-group" aria-label="Vocabulary group select"
+                                        disabled>
+                                    <option value="1">漢字별 단어장</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">취소
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm">수정</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: Update Modal -->
+
+                <!-- Begin:: Delete Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="deleteModalLabel">단어장 삭제</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label for="delete-title" class="form-label">제목</label>
+                                <input type="text" class="form-control" id="delete-title" placeholder="" disabled>
+
+                                <label for="delete-introduction" class="form-label mt-2">소개</label>
+                                <input type="text" class="form-control" id="delete-introduction" placeholder=""
+                                       disabled>
+                                <label for="delete-group" class="form-label mt-2">그룹</label>
+                                <select class="form-select" id="delete-group" aria-label="Vocabulary group select"
+                                        disabled>
+                                    <option value="1">漢字별 단어장</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">취소
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm">삭제</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:: Update Modal -->
+
+                <!-- Begin:: ag-grid -->
+                <div id="myGrid" style="height: 80vh; width:100%;" class="ag-theme-alpine"></div>
+                <!-- End:: ag-grid -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!--
+    https://www.ag-grid.com/javascript-data-grid/getting-started/
+-->
+<script type="text/javascript">
+    const columnDefs = [
+        {
+            pinned: "left",
+            editable: false,
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            // headerCheckboxSelection: true,
+            width: 50,
+        },
+        {headerName: "#", field: "id", width: 100},
+        {headerName: "제목", field: "title", width: 270},
+        {headerName: "소개", field: "introduction", width: 300},
+        {headerName: "그룹", field: "group", width: 200}
+    ];
+
+    const defaultColDef = {
+        editable: true,
+        sortable: true,
+        filter: true,
+        resizable: true,
+    }
+
+    // specify the data
+    const rowData = [
+        {
+            id: 1,
+            title: "일본어 초등학교 상용한자",
+            introduction: "일본 초등학교 필수 상용한자 1026자 수록",
+            group: "漢字별 단어장"
+        },
+        {
+            id: 2,
+            title: "일본어 중학교 상용한자",
+            introduction: "일본 중학교 필수 상용한자 1110자 수록",
+            group: "漢字별 단어장"
+        },
+    ];
+
+    // let the grid know which columns and what data to use
+    const gridOptions = {
+        columnDefs: columnDefs,
+        rowData: rowData,
+        defaultColDef: defaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+        rowSelection: 'single', // single, multiple
+        pagination: true,
+    };
+
+    // setup the grid after the page has finished loading
+    document.addEventListener('DOMContentLoaded', () => {
+        const gridDiv = document.querySelector('#myGrid');
+        new agGrid.Grid(gridDiv, gridOptions);
+    });
+</script>
+
+</html>

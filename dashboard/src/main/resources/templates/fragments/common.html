@@ -1,0 +1,96 @@
+<!-- https://mdbootstrap.com/ -->
+<!-- https://mdbootstrap.com/docs/standard/ -->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <!--    Bootstrap -->
+    <!--    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"-->
+    <!--          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" th:href="@{/css/dashboard/common.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard/sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard/content.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!--    MDB -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Begin:: Sidebar -->
+<div class="flex-shrink-0 p-3 sidebar" th:fragment="sidebar(route)">
+    <a href="/"
+       class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+        <span class="fs-5 fw-semibold">Whale Dashboard</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+            <!-- aria-expanded="true" 펼친 상태 아이콘 -->
+            <button class="btn btn-toggle btn-tertiary d-inline-flex align-items-center rounded border-0"
+                    data-mdb-toggle="collapse" data-mdb-target="#dashboard-collapse" aria-expanded="true">
+                <i class="fas fa-folder-tree me-2 ms-2"></i>
+                Management
+            </button>
+            <!-- collapse show: 펼친 상태 -->
+            <!-- collapse: 접힌 상태 -->
+            <div class="collapse show" id="dashboard-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li>
+                        <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'vocabulary' ? 'text-primary' : ''">
+                            단어장 관리
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                            카테고리 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                            한자 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                            단어 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                            후리가나 관리
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!--        <li class="border-top my-3"></li>-->
+    </ul>
+</div>
+<!-- End:: Sidebar -->
+</body>
+
+<!-- Common Javascript -->
+<div th:fragment="bootstrap">
+    <!--    Bootstrap -->
+    <!--    <script type="text/javascript" th:src="@{/js/bootstrap.js}"-->
+    <!--            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>-->
+
+    <!--    MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+
+    <!--    AG-Grid -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+</div>
+</html>
