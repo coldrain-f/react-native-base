@@ -10,6 +10,6 @@ public class DashboardController {
 
     @GetMapping("/vocabulary")
     public String main() {
-        return "dashboard/vocabulary";
+        return "/admin/ADMIN_VOCABULARY_00";
     }
 }

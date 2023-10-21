@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/common :: head('단어장 관리')">
+<head th:replace="fragments/FRAGMENTS_COMMON_00 :: HEAD('단어장 관리')">
     <title>Dashboard</title>
 </head>
 <body>
@@ -8,21 +8,26 @@
     <div class="row">
         <!-- Begin:: Sidebar -->
         <div class="col-3 shadow-sm">
-            <div th:replace="fragments/common :: sidebar('vocabulary')"></div>
+            <div th:replace="fragments/FRAGMENTS_COMMON_00 :: SIDEBAR('vocabulary')"></div>
         </div>
         <!-- End:: Sidebar-->
 
-        <div class="col-9 shadow-sm">
-            <div class="container-fluid">
+        <div class="col-9 shadow-sm ps-0 pe-0">
+            <!-- Begin:: Navbar -->
+            <nav th:replace="fragments/FRAGMENTS_COMMON_00 :: NAVBAR"></nav>
+            <!-- End:: Navbar -->
+
+            <div class="container-fluid ps-0 pe-0">
                 <div class="content">
                     <h2 class="mb-5 fw-semibold">단어장 관리</h2>
 
-                    <!-- Begin:: ag-grid -->
-                    <!-- ag-theme-alpine, ag-theme-material -->
-                    <div id="myGrid" style="height: 42.2vh; width:100%;"
-                         class="ag-theme-material pb-5 border-bottom"></div>
-                    <!-- End:: ag-grid -->
-
+                    <div class="row">
+                        <!-- Begin:: ag-grid -->
+                        <!-- ag-theme-alpine, ag-theme-material -->
+                        <div id="myGrid" style="height: 42.2vh; width:100%;"
+                             class="ag-theme-material pb-5 border-bottom"></div>
+                        <!-- End:: ag-grid -->
+                    </div>
                     <!-- Begin:: Tabs -->
                     <!-- Tabs navs -->
                     <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
@@ -55,6 +60,7 @@
 
                     <!-- Tabs content -->
                     <div class="tab-content" id="ex-with-icons-content">
+                        <!-- 등록 Tab -->
                         <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel"
                              aria-labelledby="ex-with-icons-tab-1">
                             <div class="row mb-3">
@@ -77,13 +83,41 @@
                             <div class="row">
                                 <!-- Begin:: ag-grid -->
                                 <!-- ag-theme-alpine, ag-theme-material -->
-                                <div id="addGrid" style="height: 25vh; width:100%;"
+                                <div id="addGrid" style="height: 20vh; width:100%;"
                                      class="ag-theme-material"></div>
                                 <!-- End:: ag-grid -->
                             </div>
+                            <!-- Begin:: AG Grid Cell Double Click Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Group</h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1" selected>漢字별 단어장</option>
+                                                <option value="2">JLPT 단어장</option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                                                취소
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnGroupSelection">
+                                                선택
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End:: AG Grid Cell Double Click Modal -->
                         </div>
-
                     </div>
+
                     <!-- 수정 Tab -->
                     <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
                          aria-labelledby="ex-with-icons-tab-2">
@@ -102,7 +136,7 @@
 </div>
 
 <!-- Begin:: Bootstrap 5 MDB -->
-<div th:replace="fragments/common :: bootstrap"></div>
+<div th:replace="fragments/FRAGMENTS_COMMON_00 :: BOOTSTRAP"></div>
 <!-- End:: Bootstrap 5 MDB -->
 </body>
 
@@ -165,7 +199,6 @@
     };
 
     // =================================================================================================
-    // 등록 그리드
     const addColumnDefs = [
         {
             pinned: "left",
@@ -179,7 +212,11 @@
         },
         {headerName: "TITLE", field: "title",},
         {headerName: "INTRODUCTION", field: "introduction", width: 392},
-        {headerName: "GROUP", field: "group"},
+        {
+            headerName: "GROUP",
+            field: "group",
+            editable: false,
+        },
 
     ];
 
@@ -194,6 +231,10 @@
     // specify the data
     const addRowData = [
         {title: "", introduction: "", group: "",},
+        {title: "", introduction: "", group: "",},
+        {title: "", introduction: "", group: "",},
+        {title: "", introduction: "", group: "",},
+        {title: "", introduction: "", group: "",},
     ];
 
     // let the grid know which columns and what data to use
@@ -207,7 +248,41 @@
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
         pagination: false,
+
+        onCellDoubleClicked: function (params) {
+            // 더블클릭한 셀의 정보를 사용하여 원하는 작업을 수행합니다.
+            const colId = params.column.colId;
+            const rowNode = params.node; // 행에 대한 정보
+            const colDef = params.colDef; // 열에 대한 정보
+            const cellValue = params.value; // 셀의 값
+            const rowIndex = rowNode.rowIndex; // 행의 인덱스
+
+            if (colId == 'group') {
+                const groupSelectionModal = new mdb.Modal(document.getElementById('exampleModal'));
+                groupSelectionModal.show();
+
+
+                // Group 추가
+                $("#btnGroupSelection").click(function () {
+                    console.log("Cell 정보");
+                    console.table(rowNode);
+                    console.table(colDef);
+                    console.log("cellValue = " + cellValue);
+                    console.log("rowIndex = " + rowNode.rowIndex);
+
+                    addValueToCell(params.node.rowIndex, params.column.colId, "값 변경");
+                });
+            }
+        },
     };
+
+    // 특정 셀에 값을 추가하는 함수
+    function addValueToCell(rowIndex, columnId, valueToAdd) {
+        const gridApi = addGridOptions.api;
+        const rowNode = gridApi.getRowNode(rowIndex);
+        rowNode.setDataValue(columnId, valueToAdd);
+        gridApi.refreshCells({force: true});
+    }
 
     // setup the grid after the page has finished loading
     document.addEventListener('DOMContentLoaded', () => {
