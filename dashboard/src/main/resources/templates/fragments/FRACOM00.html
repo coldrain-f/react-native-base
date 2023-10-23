@@ -63,36 +63,36 @@
         <span class="fs-5 fw-semibold">Whale Dashboard</span>
     </a>
     <ul class="list-unstyled ps-0">
-        <!-- Begin:: Sample -->
+        <!-- Begin:: Sidebar Sample -->
         <li class="mb-1">
             <button class="btn btn-toggle btn-tertiary text-body d-inline-flex align-items-center rounded border-0"
                     data-mdb-toggle="collapse" data-mdb-target="#sample-collapse" aria-expanded="false">
                 <i class="fas fa-folder me-2 ms-2"></i>
-                SAMPLE
+                Sample
             </button>
             <div class="collapse" id="sample-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li>
-                        <a href="#"
-                           class="link-body-emphasis d-inline-flex text-decoration-none rounded text-secondary">
+                        <a href="#" th:href="@{/sample/sample/{id}(id = '00')}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'sample00' ? 'text-primary' : 'text-secondary'">
                             기본 CRUD 그리드 샘플
                         </a>
                     </li>
                 </ul>
             </div>
         </li>
-        <!-- End:: Sample -->
+        <!-- End:: Sidebar Sample -->
 
-        <!-- Begin:: Management -->
+        <!-- Begin:: Sidebar Management -->
         <li class="mb-1">
-            <!-- aria-expanded="true" 펼친 상태 아이콘 -->
+            <!-- aria-expanded="true" 펼쳐진 상태 아이콘 -->
             <button class="btn btn-toggle btn-tertiary text-body d-inline-flex align-items-center rounded border-0"
                     data-mdb-toggle="collapse" data-mdb-target="#dashboard-collapse" aria-expanded="true">
                 <i class="fas fa-folder-tree me-2 ms-2"></i>
                 Management
             </button>
-            <!-- collapse show: 펼친 상태 -->
-            <!-- collapse: 접힌 상태 -->
+            <!-- collapse show: 펼쳐진 상태,  collapse: 접힌 상태  -->
             <div class="collapse show" id="dashboard-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li>
@@ -111,27 +111,30 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                        <a href="#" th:href="@{/admin/kanji}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'kanji' ? 'text-primary' : 'text-secondary'">
                             한자 관리
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                        <a href="#" th:href="@{/admin/word}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'word' ? 'text-primary' : 'text-secondary'">
                             단어 관리
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'furigana' ? 'text-primary' : 'text-secondary'">
                             후리가나 관리
                         </a>
                     </li>
                 </ul>
             </div>
         </li>
-        <!-- End:: Management -->
+        <!-- End:: Sidebar Management -->
     </ul>
 </div>
 <!-- End:: Sidebar -->
