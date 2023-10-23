@@ -66,14 +66,14 @@
         <!-- Begin:: Sidebar Sample -->
         <li class="mb-1">
             <button class="btn btn-toggle btn-tertiary text-body d-inline-flex align-items-center rounded border-0"
-                    data-mdb-toggle="collapse" data-mdb-target="#sample-collapse" aria-expanded="false">
+                    data-mdb-toggle="collapse" data-mdb-target="#sample-collapse" aria-expanded="true">
                 <i class="fas fa-folder me-2 ms-2"></i>
                 Sample
             </button>
-            <div class="collapse" id="sample-collapse">
+            <div class="collapse show" id="sample-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li>
-                        <a href="#" th:href="@{/sample/sample/{id}(id = '00')}"
+                        <a href="#" th:href="@{/sample/{id}(id = '00')}"
                            class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                            th:classappend="${route} == 'sample00' ? 'text-primary' : 'text-secondary'">
                             기본 CRUD 그리드 샘플
