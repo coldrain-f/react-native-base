@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/FRAGMENTS_COMMON_00 :: HEAD('단어장 관리')">
+<head th:replace="fragments/FRACOM00 :: HEAD('카테고리 관리')">
     <title>Dashboard</title>
 </head>
 <body>
@@ -8,19 +8,19 @@
     <div class="row">
         <!-- Begin:: 공통 프래그먼트 > SIDEBAR -->
         <div class="col-3 shadow-sm">
-            <div th:replace="fragments/FRAGMENTS_COMMON_00 :: SIDEBAR('vocabulary')"></div>
+            <div th:replace="fragments/FRACOM00 :: SIDEBAR('category')"></div>
         </div>
         <!-- End:: 공통 프래그먼트 > SIDEBAR -->
 
         <div class="col-9 shadow-sm ps-0 pe-0">
             <!-- Begin:: 공통 프래그먼트 > NAVBAR -->
-            <nav th:replace="fragments/FRAGMENTS_COMMON_00 :: NAVBAR"></nav>
+            <nav th:replace="fragments/FRACOM00 :: NAVBAR"></nav>
             <!-- End:: 공통 프래그먼트 > NAVBAR -->
 
             <div class="container-fluid ps-0 pe-0">
                 <div class="content">
                     <!-- Begin:: 관리자 페이지 제목 -->
-                    <h2 class="fw-semibold mb-3">단어장 관리</h2>
+                    <h2 class="fw-semibold mb-3">카테고리 관리</h2>
                     <!-- End:: 관리자 페이지 제목 -->
                     <div class="border-bottom mb-5"></div>
 
@@ -139,10 +139,9 @@
         </div>
     </div>
 </div>
-</div>
 
 <!-- Begin:: Bootstrap 5 MDB -->
-<div th:replace="fragments/FRAGMENTS_COMMON_00 :: BOOTSTRAP"></div>
+<div th:replace="fragments/FRACOM00 :: BOOTSTRAP"></div>
 <!-- End:: Bootstrap 5 MDB -->
 </body>
 
@@ -150,6 +149,9 @@
     https://www.ag-grid.com/javascript-data-grid/getting-started/
 -->
 <script type="text/javascript">
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 상단 그리드
+
     const columnDefs = [
         {
             pinned: "left",
@@ -176,20 +178,7 @@
     }
 
     // specify the data
-    const rowData = [
-        {
-            id: 1,
-            title: "일본어 초등학교 상용한자",
-            introduction: "일본 초등학교 필수 상용한자 1026자 수록",
-            group: "漢字별 단어장"
-        },
-        {
-            id: 2,
-            title: "일본어 중학교 상용한자",
-            introduction: "일본 중학교 필수 상용한자 1110자 수록",
-            group: "漢字별 단어장"
-        },
-    ];
+    const rowData = [];
 
     // let the grid know which columns and what data to use
     const gridOptions = {
@@ -204,7 +193,9 @@
         pagination: true,
     };
 
-    // =================================================================================================
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 하단 그리드 등록 Tab
+
     const addColumnDefs = [
         {
             pinned: "left",
@@ -290,7 +281,9 @@
         gridApi.refreshCells({force: true});
     }
 
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
     // setup the grid after the page has finished loading
+
     document.addEventListener('DOMContentLoaded', () => {
         const gridDiv = document.querySelector('#myGrid');
         const addGridDiv = document.querySelector("#addGrid");

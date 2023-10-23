@@ -35,24 +35,37 @@
                     aria-label="Search"
                     aria-describedby="search-addon"
             />
-            <span class="input-group-text text-white border-0" id="search-addon">
+            <span class="input-group-text border-0" id="search-addon">
                 <i class="fas fa-search"></i>
             </span>
         </form>
+        <nav class="navbar navbar-expand-lg shadow-none p-0">
+            <ul class="navbar-nav d-flex flex-row">
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-bell"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </nav>
 <!-- End:: Navbar -->
 
 <!-- Begin:: Sidebar -->
 <div class="flex-shrink-0 p-3 sidebar" th:fragment="SIDEBAR(route)">
-    <a href="/"
-       class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+    <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none border-bottom pb-3 mb-3 ">
         <span class="fs-5 fw-semibold">Whale Dashboard</span>
     </a>
     <ul class="list-unstyled ps-0">
         <!-- Begin:: Sample -->
         <li class="mb-1">
-            <button class="btn btn-toggle btn-tertiary d-inline-flex align-items-center rounded border-0"
+            <button class="btn btn-toggle btn-tertiary text-body d-inline-flex align-items-center rounded border-0"
                     data-mdb-toggle="collapse" data-mdb-target="#sample-collapse" aria-expanded="false">
                 <i class="fas fa-folder me-2 ms-2"></i>
                 SAMPLE
@@ -60,7 +73,8 @@
             <div class="collapse" id="sample-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li>
-                        <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-secondary">
+                        <a href="#"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded text-secondary">
                             기본 CRUD 그리드 샘플
                         </a>
                     </li>
@@ -72,7 +86,7 @@
         <!-- Begin:: Management -->
         <li class="mb-1">
             <!-- aria-expanded="true" 펼친 상태 아이콘 -->
-            <button class="btn btn-toggle btn-tertiary d-inline-flex align-items-center rounded border-0"
+            <button class="btn btn-toggle btn-tertiary text-body d-inline-flex align-items-center rounded border-0"
                     data-mdb-toggle="collapse" data-mdb-target="#dashboard-collapse" aria-expanded="true">
                 <i class="fas fa-folder-tree me-2 ms-2"></i>
                 Management
@@ -82,15 +96,17 @@
             <div class="collapse show" id="dashboard-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li>
-                        <a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                           th:classappend="${route} == 'vocabulary' ? 'text-primary' : ''">
+                        <a href="#" th:href="@{/admin/vocabulary}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'vocabulary' ? 'text-primary' : 'text-secondary'">
                             단어장 관리
                         </a>
 
                     </li>
                     <li>
-                        <a href="#"
-                           class="link-body-emphasis text-secondary d-inline-flex text-decoration-none rounded">
+                        <a href="#" th:href="@{/admin/category}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'category' ? 'text-primary' : 'text-secondary'">
                             카테고리 관리
                         </a>
                     </li>
