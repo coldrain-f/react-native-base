@@ -4,139 +4,199 @@
     <title>Dashboard</title>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <!-- Begin:: 공통 프래그먼트 > SIDEBAR -->
-        <div class="col-3 shadow-sm">
+        <div class="col-2 shadow-sm">
             <div th:replace="fragments/FRACOM00 :: SIDEBAR('sample00')"></div>
         </div>
         <!-- End:: 공통 프래그먼트 > SIDEBAR -->
 
-        <div class="col-9 shadow-sm ps-0 pe-0">
-            <!-- Begin:: 공통 프래그먼트 > NAVBAR -->
-            <nav th:replace="fragments/FRACOM00 :: NAVBAR"></nav>
-            <!-- End:: 공통 프래그먼트 > NAVBAR -->
-
-            <div class="container-fluid ps-0 pe-0">
-                <div class="content">
-                    <!-- Begin:: 관리자 페이지 제목 -->
-                    <h2 class="fw-semibold mb-3">기본 CRUD 그리드 샘플</h2>
-                    <!-- End:: 관리자 페이지 제목 -->
-                    <div class="border-bottom mb-5"></div>
-
-                    <!-- Begin:: 관리자 페이지 상단 그리드 -->
-                    <div class="row">
-                        <!-- Begin:: 관리자 페이지 상단 그리드 AG Grid -->
-                        <div id="myGrid" style="height: 42.2vh; width:100%;"
-                             class="ag-theme-material pb-5 border-bottom"></div>
-                        <!-- End:: 관리자 페이지 상단 그리드 AG Grid -->
+        <!-- Begin:: 그리드 영역 -->
+        <div class="col-10">
+            <div class="row">
+                <div class="col-12 ps-0 pe-0">
+                    <!-- Begin:: 공통 프래그먼트 > NAVBAR -->
+                    <nav th:replace="fragments/FRACOM00 :: NAVBAR"></nav>
+                    <!-- End:: 공통 프래그먼트 > NAVBAR -->
+                </div>
+            </div>
+            <div class="row">
+                <!-- Begin:: 그리드 필터 영역 -->
+                <div class="col-2 bg-light">
+                    <h3 class="fw-semibold mt-3 mb-3">Filter</h3>
+                    <div class="border-bottom mb-3"></div>
+                    <div class="mb-3">
+                        <label class="form-label">단어장</label>
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>일본어 초등학교 상용한자</option>
+                        </select>
                     </div>
-                    <!-- End:: 관리자 페이지 상단 그리드 -->
+                    <div class="mb-3">
+                        <label class="form-label">카테고리</label>
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>초등학교 1학년 한자</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">한자</label>
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>人</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">단어</label>
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>人生</option>
+                        </select>
+                    </div>
 
-                    <!-- Begin:: 관리자 페이지 하단 그리드 Tabs navs -->
-                    <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="ex-with-icons-tab-1" data-mdb-toggle="tab"
-                               href="#ex-with-icons-tabs-1" role="tab"
-                               aria-controls="ex-with-icons-tabs-1" aria-selected="true">
-                                <i class="far fa-square-plus fa-fw me-2"></i>
-                                등록
-                            </a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="ex-with-icons-tab-2" data-mdb-toggle="tab"
-                               href="#ex-with-icons-tabs-2" role="tab"
-                               aria-controls="ex-with-icons-tabs-2" aria-selected="false">
-                                <i class="fas fa-pen-to-square fa-fw me-2"></i>
-                                수정
-                            </a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="ex-with-icons-tab-3" data-mdb-toggle="tab"
-                               href="#ex-with-icons-tabs-3" role="tab"
-                               aria-controls="ex-with-icons-tabs-3" aria-selected="false">
-                                <i class="far fa-trash-can fa-fw me-2"></i>
-                                삭제
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- End:: 관리자 페이지 하단 그리드 Tabs navs -->
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-light btn-sm shadow-sm">
+                            <i class="fas fa-arrow-rotate-right me-1"></i>
+                            초기화
+                        </button>
+                        <button class="btn btn-primary btn-sm shadow-sm">
+                            <i class="fas fa-magnifying-glass me-1"></i>
+                            검색
+                        </button>
+                    </div>
+                </div>
+                <!-- End:: 그리드 필터 영역 -->
 
-                    <!-- Begin:: 관리자 페이지 하단 그리드 Tabs content -->
-                    <div class="tab-content" id="ex-with-icons-content">
-                        <!-- Begin:: 관리자 페이지 하단 그리드 등록 Tab -->
-                        <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel"
-                             aria-labelledby="ex-with-icons-tab-1">
-                            <div class="row mb-3">
-                                <div class="col d-flex justify-content-end">
+                <!-- Begin:: 그리드 콘텐츠 영역 -->
+                <div class="col-10 ps-0 pe-0">
+                    <div class="content p-3">
+                        <!-- Begin:: 관리자 페이지 제목 -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="fw-semibold mb-3">기본 CRUD 그리드 샘플</h3>
+                            </div>
+                        </div>
+                        <!-- End:: 관리자 페이지 제목 -->
 
-                                    <button class="btn btn-primary btn-sm">
-                                        <i class="far fa-hard-drive me-1"></i>
-                                        DB 반영
-                                    </button>
-                                    <button class="btn btn-info btn-sm ms-2">
-                                        <i class="fas fa-circle-plus me-1"></i>
-                                        행 추가
-                                    </button>
-                                    <button class="btn btn-danger btn-sm ms-2">
-                                        <i class="fas fa-circle-minus me-1"></i>
-                                        행 삭제
-                                    </button>
+                        <div class="border-bottom mb-5"></div>
+
+                        <!-- Begin:: 관리자 페이지 상단 그리드 -->
+                        <div class="row">
+                            <!-- Begin:: 관리자 페이지 상단 그리드 AG Grid -->
+                            <div id="myGrid" style="height: 40vh; width:100%;"
+                                 class="ag-theme-material pb-3 border-bottom"></div>
+                            <!-- End:: 관리자 페이지 상단 그리드 AG Grid -->
+                        </div>
+                        <!-- End:: 관리자 페이지 상단 그리드 -->
+
+                        <!-- Begin:: 관리자 페이지 하단 그리드 Tabs navs -->
+                        <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="ex-with-icons-tab-1" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-1" role="tab"
+                                   aria-controls="ex-with-icons-tabs-1" aria-selected="true">
+                                    <i class="far fa-square-plus fa-fw me-2"></i>
+                                    등록
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-2" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-2" role="tab"
+                                   aria-controls="ex-with-icons-tabs-2" aria-selected="false">
+                                    <i class="fas fa-pen-to-square fa-fw me-2"></i>
+                                    수정
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-3" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-3" role="tab"
+                                   aria-controls="ex-with-icons-tabs-3" aria-selected="false">
+                                    <i class="far fa-trash-can fa-fw me-2"></i>
+                                    삭제
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End:: 관리자 페이지 하단 그리드 Tabs navs -->
+
+                        <!-- Begin:: 관리자 페이지 하단 그리드 Tabs content -->
+                        <div class="tab-content" id="ex-with-icons-content">
+                            <!-- Begin:: 관리자 페이지 하단 그리드 등록 Tab -->
+                            <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-1">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button class="btn btn-info btn-sm ms-2">
+                                            <i class="fas fa-circle-plus me-1"></i>
+                                            행 추가
+                                        </button>
+                                        <button class="btn btn-danger btn-sm ms-2">
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <!-- Begin:: 관리자 페이지 하단 그리드 등록 Tab AG Grid -->
-                                <div id="addGrid" style="height: 20vh; width:100%;"
-                                     class="ag-theme-material"></div>
-                                <!-- End:: 관리자 페이지 하단 그리드 등록 Tab AG Grid -->
-                            </div>
-                            <!-- Begin:: GROUP Cell 더블 클릭 모달창 -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Group</h5>
-                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option value="1" selected>漢字별 단어장</option>
-                                                <option value="2">JLPT 단어장</option>
-                                            </select>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                                                취소
-                                            </button>
-                                            <button type="button" class="btn btn-primary" id="btnGroupSelection">
-                                                선택
-                                            </button>
+                                <div class="row">
+                                    <!-- Begin:: 관리자 페이지 하단 그리드 등록 Tab AG Grid -->
+                                    <div id="addGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: 관리자 페이지 하단 그리드 등록 Tab AG Grid -->
+                                </div>
+                                <!-- Begin:: GROUP Cell 더블 클릭 모달창 -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Group</h5>
+                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option value="1" selected>漢字별 단어장</option>
+                                                    <option value="2">JLPT 단어장</option>
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-mdb-dismiss="modal">
+                                                    취소
+                                                </button>
+                                                <button type="button" class="btn btn-primary"
+                                                        id="btnGroupSelection">
+                                                    선택
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- End:: GROUP Cell 더블 클릭 모달창 -->
                             </div>
-                            <!-- End:: GROUP Cell 더블 클릭 모달창 -->
                         </div>
-                    </div>
-                    <!-- End:: 관리자 페이지 하단 그리드 등록 Tab -->
+                        <!-- End:: 관리자 페이지 하단 그리드 등록 Tab -->
 
-                    <!-- Begin:: 관리자 페이지 하단 그리드 수정 Tab -->
-                    <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
-                         aria-labelledby="ex-with-icons-tab-2">
-                    </div>
-                    <!-- End:: 관리자 페이지 하단 그리드 수정 Tab -->
+                        <!-- Begin:: 관리자 페이지 하단 그리드 수정 Tab -->
+                        <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
+                             aria-labelledby="ex-with-icons-tab-2">
+                        </div>
+                        <!-- End:: 관리자 페이지 하단 그리드 수정 Tab -->
 
-                    <!-- Begin:: 관리자 페이지 하단 그리드 삭제 Tab -->
-                    <div class="tab-pane fade" id="ex-with-icons-tabs-3" role="tabpanel"
-                         aria-labelledby="ex-with-icons-tab-3">
+                        <!-- Begin:: 관리자 페이지 하단 그리드 삭제 Tab -->
+                        <div class="tab-pane fade" id="ex-with-icons-tabs-3" role="tabpanel"
+                             aria-labelledby="ex-with-icons-tab-3">
+                        </div>
+                        <!-- End:: 관리자 페이지 하단 그리드 삭제 Tab -->
                     </div>
-                    <!-- End:: 관리자 페이지 하단 그리드 삭제 Tab -->
+                    <!-- End:: 관리자 페이지 하단 그리드 Tabs content -->
+
                 </div>
-                <!-- End:: 관리자 페이지 하단 그리드 Tabs content -->
+                <!-- End:: 그리드 콘텐츠 영역 -->
             </div>
+
         </div>
+        <!-- End:: 그리드 영역 -->
     </div>
 </div>
 
