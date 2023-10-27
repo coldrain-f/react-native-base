@@ -13,6 +13,10 @@
 
 ### - PLATFORMS & LANGUAGE - APP
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?&style=for-the-badge&logo=TypeScript&logoColor=white)
+![React Native](https://img.shields.io/badge/React%20Native-3178C6.svg?&style=for-the-badge&logo=TypeScript&logoColor=white)
+![SQLite](https://img.shields.io/badge/React%20Native-3178C6.svg?&style=for-the-badge&logo=TypeScript&logoColor=white)
+
+simple icons에서 배경 색상 설정 필요
 
 ### - PLATFORMS & LANGUAGE - Dashboard
 ![Spring](https://img.shields.io/badge/Spring-6DB33F.svg?&style=for-the-badge&logo=Spring&logoColor=white)
