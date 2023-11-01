@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/FRACOM00 :: HEAD('기본 CRUD 그리드 샘플')">
+<head th:replace="fragments/FRACOM00 :: HEAD('기본 CRUD 그리드 샘플 2')">
     <title>Dashboard</title>
 </head>
 <body>
@@ -8,7 +8,7 @@
     <div class="row">
         <!-- Begin:: 공통 프래그먼트 > SIDEBAR -->
         <div class="col-2 shadow-sm">
-            <div th:replace="fragments/FRACOM00 :: SIDEBAR('sample00')"></div>
+            <div th:replace="fragments/FRACOM00 :: SIDEBAR('sample01')"></div>
         </div>
         <!-- End:: 공통 프래그먼트 > SIDEBAR -->
 
@@ -34,30 +34,6 @@
                             <option value="일본어 초등학교 상용한자">
                         </datalist>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="iptFilterCategory">카테고리</label>
-                        <input class="form-control form-control-sm" list="dlCategory" id="iptFilterCategory"
-                               placeholder="search...">
-                        <datalist id="dlCategory">
-                            <option value="초등학교 1학년 한자">
-                        </datalist>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="iptFilterKanji">한자</label>
-                        <input class="form-control form-control-sm" list="dlKanji" id="iptFilterKanji"
-                               placeholder="search...">
-                        <datalist id="dlKanji">
-                            <option value="日">
-                        </datalist>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="iptFilterWord">단어</label>
-                        <input class="form-control form-control-sm" list="dlWord" id="iptFilterWord"
-                               placeholder="search...">
-                        <datalist id="dlWord">
-                            <option value="日本">
-                        </datalist>
-                    </div>
 
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-light btn-sm shadow-sm">
@@ -72,14 +48,30 @@
                 </div>
                 <!-- End:: 그리드 필터 영역 -->
 
+                <!-- Begin:: 그리드 왼쪽 콘텐츠 영역 -->
+                <div class="col-3 p-3 border-end">
+                    <!-- Begin:: 그리드 왼쪽 콘텐츠 제목  -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="fw-semibold mb-3" style="cursor: default">
+                                카테고리
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- End:: 그리드 왼쪽 콘텐츠 제목-->
+
+                    <div class="border-bottom mb-5"></div>
+                </div>
+                <!-- Begin:: 그리드 왼쪽 콘텐츠 영역 -->
+
                 <!-- Begin:: 그리드 콘텐츠 영역 -->
-                <div class="col-10 ps-0 pe-0">
+                <div class="col-7 ps-0 pe-0">
                     <div class="content p-3">
                         <!-- Begin:: 관리자 페이지 제목 -->
                         <div class="row">
                             <div class="col-12">
                                 <h3 class="fw-semibold mb-3" style="cursor: default">
-                                    단어장
+                                    한자
                                 </h3>
                             </div>
                         </div>

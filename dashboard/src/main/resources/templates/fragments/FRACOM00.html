@@ -76,7 +76,14 @@
                         <a href="#" th:href="@{/sample/{id}(id = '00')}"
                            class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                            th:classappend="${route} == 'sample00' ? 'text-primary' : 'text-secondary'">
-                            기본 CRUD 그리드 샘플
+                            기본 CRUD 그리드 샘플 1
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/sample/{id}(id = '01')}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'sample01' ? 'text-primary' : 'text-secondary'">
+                            기본 CRUD 그리드 샘플 2
                         </a>
                     </li>
                 </ul>
