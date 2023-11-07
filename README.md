@@ -64,3 +64,23 @@ Github-Flow 전략에 따라 `master`, `feature` 브랜치를 사용합니다.
 
 ## Commit convention 
 
+```
+Type: 제목 [#이슈 번호]
+```
+
+✅ **feat** : 새로운 기능 추가 & 기능 변경  
+✅ **fix :** 버그 수정  
+✅ **docs** : 문서 수정  
+✅ **style** : 코드 포맷팅, 세미콜론 누락 등 동작에 영향을 주는 코드 변경이 없는 경우  
+✅ **refactor** : 실제 **기능 변경은 없지만 코드를 수정하는** 경우, 파일/폴더 이름 및 위치 변경  
+✅ **test** : 테스트 코드 관련 모든 동작  
+✅ **add** : 파일 추가  
+✅ **init** : 초기 프로젝트 설정  
+✅ **chore** : 빌드 업무 수정, 패키지 매니저 수정, 주석 수정, 불필요 코드 및 Import 제거 기타 등등      
+
+☑️ 제목은 한글을 기본으로 사용  
+☑️ 본문과 꼬리말은 선택 사항  
+☑️ 이모티콘 미사용    
+
+references :  
+- [Udacity Git Commit Message Style Guide](https://udacity.github.io/git-styleguide/)
