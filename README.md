@@ -49,7 +49,18 @@
 
 ![image](https://github.com/coldrain-f/whale-voca/assets/102038572/ebe41123-1a29-4d75-8295-cc768e613f26)
 
+
 ## Git Flow 브랜치 관리 전략
+
+Github-Flow 전략에 따라 `master`, `feature` 브랜치를 사용합니다.
+
+![Branch](https://github.com/coldrain-f/whale-voca/assets/102038572/7122c78d-6bb6-4198-8822-bc0a429aebf0)
+
+  
+✔️ master : 배포 단계에서 사용하는 브랜치  
+
+✔️ feature/* : 기능을 개발하는 브랜치. 이슈 번호를 기재하고 해당 브랜치에서 개발을 진행합니다.
+  
 
 ## Commit convention 
 
