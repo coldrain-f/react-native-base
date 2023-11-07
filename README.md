@@ -47,8 +47,9 @@
 
 ## ERD(Entity Relationship Diagram)
 
+![image](https://github.com/coldrain-f/whale-voca/assets/102038572/ebe41123-1a29-4d75-8295-cc768e613f26)
+
 ## Git Flow 브랜치 관리 전략
 
 ## Commit convention 
-
 
