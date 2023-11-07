@@ -55,7 +55,8 @@
 
 Github-Flow 전략에 따라 `master`, `feature` 브랜치를 사용합니다.
 
-![Branch](https://github.com/coldrain-f/whale-voca/assets/102038572/7122c78d-6bb6-4198-8822-bc0a429aebf0)
+![Branch 3차](https://github.com/coldrain-f/whale-voca/assets/102038572/5e1d771e-dfe8-4ed2-b922-b828ef234353)
+
 
   
 ✔️ master : 배포 단계에서 사용하는 브랜치  
