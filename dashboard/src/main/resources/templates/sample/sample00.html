@@ -132,15 +132,15 @@
                                  aria-labelledby="ex-with-icons-tab-1">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-sm">
+                                        <button name="DBUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
-                                        <button class="btn btn-info btn-sm ms-2">
+                                        <button name="addRowBtn" class="btn btn-info btn-sm ms-2">
                                             <i class="fas fa-circle-plus me-1"></i>
                                             행 추가
                                         </button>
-                                        <button class="btn btn-danger btn-sm ms-2">
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2">
                                             <i class="fas fa-circle-minus me-1"></i>
                                             행 삭제
                                         </button>
@@ -395,6 +395,24 @@
     }
 
 
+    // 행 추가
+    document.getElementsByName("addRowBtn")[0].addEventListener('click',addNewRow);
+
+    function addNewRow() {
+        const newRow = {};
+        const GridApi = addGridOptions.api;
+        GridApi.applyTransaction({add: [newRow]});
+    }
+
+    // 행 삭제
+    document.getElementsByName("deleteRowBtn")[0].addEventListener('click',deleteRow);
+
+        function deleteRow() {
+        const GridApi = addGridOptions.api;
+        const selectedRows = GridApi.getSelectedRows();
+        GridApi.applyTransaction({remove: selectedRows});
+    }
+
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 수정 Tab
 
@@ -430,6 +448,7 @@
     }
 
     const editRowData = [
+        {title: "edit", introduction: "수정", group: "",},
     ];
 
     const editGridOptions = {
@@ -504,7 +523,7 @@
 
 
     const deleteDefaultColDef = {
-        editable: true,
+        editable: false,
         sortable: true,
         filter: true,
         resizable: true,
@@ -512,7 +531,7 @@
     }
 
     const deleteRowData = [
-        // {title: "delete", introduction: "삭제", group: "",},
+        {title: "delete", introduction: "삭제", group: "",},
 
     ];
 
@@ -527,31 +546,6 @@
         rowSelection: 'multiple', // single, multiple
         pagination: false,
 
-        onCellDoubleClicked: function (params) {
-            // 더블클릭한 셀의 정보를 사용하여 원하는 작업을 수행합니다.
-            const colId = params.column.colId;
-            const rowNode = params.node; // 행에 대한 정보
-            const colDef = params.colDef; // 열에 대한 정보
-            const cellValue = params.value; // 셀의 값
-            const rowIndex = rowNode.rowIndex; // 행의 인덱스
-
-            if (colId == 'group') {
-                const groupSelectionModal = new mdb.Modal(document.getElementById('exampleModal'));
-                groupSelectionModal.show();
-
-
-                // Group 추가
-                $("#btnGroupSelection").click(function () {
-                    console.log("Cell 정보");
-                    console.table(rowNode);
-                    console.table(colDef);
-                    console.log("cellValue = " + cellValue);
-                    console.log("rowIndex = " + rowNode.rowIndex);
-
-                    addValueToCell(params.node.rowIndex, params.column.colId, "값 변경");
-                });
-            }
-        },
     };
 
     // 특정 셀에 값을 추가하는 함수
@@ -572,7 +566,7 @@
         const deleteGridDiv = document.querySelector("#deleteGrid");
 
         new agGrid.Grid(gridDiv, gridOptions);
-        new agGrid.Grid(addGridDiv, addGridOptions);
+        const addGrid = new agGrid.Grid(addGridDiv, addGridOptions);
         new agGrid.Grid(editGridDiv, editGridOptions);
         new agGrid.Grid(deleteGridDiv, deleteGridOptions);
     });
