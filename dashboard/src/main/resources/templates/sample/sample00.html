@@ -191,7 +191,7 @@
                                  aria-labelledby="ex-with-icons-tab-2">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button name=DBUpdateBtn" class="btn btn-primary btn-sm">
+                                        <button class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
@@ -508,8 +508,10 @@
     // 셀 선택 이벤트 함수
     function onRowSelected(event) {
         const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
         const gridRowData = getGridRowData();
         editGridApi.setRowData(gridRowData);
+        deleteGridApi.setRowData(gridRowData);
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
