@@ -191,7 +191,7 @@
                                  aria-labelledby="ex-with-icons-tab-2">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-sm">
+                                        <button name=DBUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
@@ -300,6 +300,9 @@
         defaultColDef: defaultColDef,
         suppressRowClickSelection: true,
         groupSelectsChildren: true,
+
+        // 상단 그리드 선택 이벤트 핸들러
+        onRowSelected: onRowSelected,
 
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
@@ -447,9 +450,14 @@
         floatingFilter: false,
     }
 
-    const editRowData = [
-        {title: "edit", introduction: "수정", group: "",},
-    ];
+    const editRowData = [];
+
+    // 상단 그리드의 rowData 를 가져오는 함수
+    function getGridRowData() {
+        var api = gridOptions.api;
+        var selectedRows = api.getSelectedRows();
+        return selectedRows;
+    }
 
     const editGridOptions = {
         columnDefs: editColumnDefs,
@@ -495,6 +503,13 @@
         const rowNode = gridApi.getRowNode(rowIndex);
         rowNode.setDataValue(columnId, valueToAdd);
         gridApi.refreshCells({force: true});
+    }
+
+    // 셀 선택 이벤트 함수
+    function onRowSelected(event) {
+        const editGridApi = editGridOptions.api;
+        const gridRowData = getGridRowData();
+        editGridApi.setRowData(gridRowData);
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
