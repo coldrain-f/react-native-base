@@ -131,15 +131,15 @@
                                  aria-labelledby="ex-with-icons-tab-1">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-sm">
+                                        <button name="DBUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
-                                        <button class="btn btn-info btn-sm ms-2">
+                                        <button name="addRowBtn" class="btn btn-info btn-sm ms-2">
                                             <i class="fas fa-circle-plus me-1"></i>
                                             행 추가
                                         </button>
-                                        <button class="btn btn-danger btn-sm ms-2">
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2">
                                             <i class="fas fa-circle-minus me-1"></i>
                                             행 삭제
                                         </button>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="row">
                                     <!-- Begin:: 관리자 페이지 하단 그리드 등록 Tab AG Grid -->
-                                    <div id="addGrid" style="height: 20vh; width:100%;"
+                                    <div id="addGrid" style="height: 20vh; width:80;"
                                          class="ag-theme-material"></div>
                                     <!-- End:: 관리자 페이지 하단 그리드 등록 Tab AG Grid -->
                                 </div>
@@ -183,23 +183,54 @@
                                 </div>
                                 <!-- End:: GROUP Cell 더블 클릭 모달창 -->
                             </div>
-                        </div>
-                        <!-- End:: 관리자 페이지 하단 그리드 등록 Tab -->
+                            <!-- End:: 관리자 페이지 하단 그리드 등록 Tab -->
 
-                        <!-- Begin:: 관리자 페이지 하단 그리드 수정 Tab -->
-                        <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
-                             aria-labelledby="ex-with-icons-tab-2">
-                        </div>
-                        <!-- End:: 관리자 페이지 하단 그리드 수정 Tab -->
+                            <!-- Begin:: 관리자 페이지 하단 그리드 수정 Tab -->
+                            <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-2">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: 관리자 페이지 하단 그리드 수정 Tab AG Grid -->
+                                    <div id="editGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: 관리자 페이지 하단 그리드 수정 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: 관리자 페이지 하단 그리드 수정 Tab -->
 
-                        <!-- Begin:: 관리자 페이지 하단 그리드 삭제 Tab -->
-                        <div class="tab-pane fade" id="ex-with-icons-tabs-3" role="tabpanel"
-                             aria-labelledby="ex-with-icons-tab-3">
+                            <!-- Begin:: 관리자 페이지 하단 그리드 삭제 Tab -->
+                            <div class="tab-pane fade" id="ex-with-icons-tabs-3" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-3">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2">
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: 관리자 페이지 하단 그리드 삭제 Tab AG Grid -->
+                                    <div id="deleteGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: 관리자 페이지 하단 그리드 삭제 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: 관리자 페이지 하단 그리드 삭제 Tab -->
                         </div>
-                        <!-- End:: 관리자 페이지 하단 그리드 삭제 Tab -->
+                        <!-- End:: 관리자 페이지 하단 그리드 Tabs content -->
                     </div>
-                    <!-- End:: 관리자 페이지 하단 그리드 Tabs content -->
-
                 </div>
                 <!-- End:: 그리드 콘텐츠 영역 -->
             </div>
@@ -232,10 +263,18 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-        {headerName: "#", field: "id", width: 120},
-        {headerName: "TITLE", field: "title",},
-        {headerName: "INTRODUCTION", field: "introduction", width: 272},
-        {headerName: "GROUP", field: "group"}
+
+        {headerName: "#", field: "id", width: 60,},
+        {headerName: "NAME", field: "name",},
+        {headerName: "MEANING", field: "meaning", width: 175,},
+        {headerName: "SOUND", field: "sound",},
+        {headerName: "STROKE", field: "stroke", width: 60,},
+        {
+            headerName: "GROUP",
+            field: "group",
+            editable: false,
+            width: 180,
+        },
     ];
 
     const defaultColDef = {
@@ -244,23 +283,11 @@
         filter: true,
         resizable: true,
         floatingFilter: true,
+        width: 110,
     }
 
     // specify the data
-    const rowData = [
-        {
-            id: 1,
-            title: "일본어 초등학교 상용한자",
-            introduction: "일본 초등학교 필수 상용한자 1026자 수록",
-            group: "漢字별 단어장"
-        },
-        {
-            id: 2,
-            title: "일본어 중학교 상용한자",
-            introduction: "일본 중학교 필수 상용한자 1110자 수록",
-            group: "漢字별 단어장"
-        },
-    ];
+    const rowData = [];
 
     // let the grid know which columns and what data to use
     const gridOptions = {
@@ -270,10 +297,72 @@
         suppressRowClickSelection: true,
         groupSelectsChildren: true,
 
+        // 상단 그리드 선택 이벤트 핸들러
+        onRowSelected: onRowSelected,
+
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
         pagination: true,
     };
+
+
+    // 한자 카테고리별 rowData
+
+    // 초등1
+    const elementary1rowData = [
+        {
+            id: 1,
+            name: "日",
+            meaning: "날",
+            sound: "일",
+            stroke: 4,
+            group: "초등학교 1학년 한자",
+        },
+        {
+            id: 2,
+            name: "年",
+            meaning: "해",
+            sound: "년",
+            stroke: 6,
+            group: "초등학교 1학년 한자",
+        },
+    ];
+
+    // 초등6
+    const elementary6rowData = [
+        {
+            id: 3,
+            name: "寸",
+            meaning: "마디",
+            sound: "촌",
+            stroke: 3,
+            group: "초등학교 6학년 한자",
+        },
+    ];
+
+    // 중등2
+    const middle2rowData = [
+        {
+            id: 3,
+            name: "隱",
+            meaning: "숨을",
+            sound: "은",
+            stroke: 17,
+            group: "중학교 2학년 한자",
+        },
+    ];
+
+    // JLPT N3
+    const JLPT3rowData = [
+        {
+            id: 4,
+            name: "忘",
+            meaning: "잊을",
+            sound: "망",
+            stroke: 7,
+            group: "JLPT N3",
+        },
+    ];
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 등록 Tab
@@ -289,12 +378,16 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-        {headerName: "TITLE", field: "title",},
-        {headerName: "INTRODUCTION", field: "introduction", width: 392},
+
+        {headerName: "NAME", field: "name",},
+        {headerName: "MEANING", field: "meaning", width: 175,},
+        {headerName: "SOUND", field: "sound",},
+        {headerName: "STROKE", field: "stroke", width: 60,},
         {
             headerName: "GROUP",
             field: "group",
             editable: false,
+            width: 180,
         },
 
     ];
@@ -305,15 +398,13 @@
         filter: true,
         resizable: true,
         floatingFilter: false,
+        width: 110,
     }
 
     // specify the data
     const addRowData = [
-        {title: "", introduction: "", group: "",},
-        {title: "", introduction: "", group: "",},
-        {title: "", introduction: "", group: "",},
-        {title: "", introduction: "", group: "",},
-        {title: "", introduction: "", group: "",},
+        {name: "", meaning: "", sound: "", stroke: null, group: "",},
+        {name: "", meaning: "", sound: "", stroke: null, group: "",},
     ];
 
     // let the grid know which columns and what data to use
@@ -362,6 +453,189 @@
         rowNode.setDataValue(columnId, valueToAdd);
         gridApi.refreshCells({force: true});
     }
+
+
+    // 행 추가
+    document.getElementsByName("addRowBtn")[0].addEventListener('click',addNewRow);
+
+    function addNewRow() {
+        const newRow = {};
+        const GridApi = addGridOptions.api;
+        GridApi.applyTransaction({add: [newRow]});
+    }
+
+    // 행 삭제
+    document.getElementsByName("deleteRowBtn")[0].addEventListener('click',addGridDeleteRow);
+
+        function addGridDeleteRow() {
+        const gridApi = addGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        gridApi.applyTransaction({remove: selectedRows});
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 하단 그리드 수정 Tab
+
+
+    const editColumnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+
+        {headerName: "NAME", field: "name",},
+        {headerName: "MEANING", field: "meaning", width: 175,},
+        {headerName: "SOUND", field: "sound",},
+        {headerName: "STROKE", field: "stroke", width: 60,},
+        {
+            headerName: "GROUP",
+            field: "group",
+            editable: false,
+            width: 180,
+        },
+
+    ];
+
+
+    const editDefaultColDef = {
+        editable: true,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+        width: 110,
+    }
+
+    const editRowData = [];
+
+    // 상단 그리드의 rowData 를 가져오는 함수
+    function getGridRowData() {
+        var api = gridOptions.api;
+        var selectedRows = api.getSelectedRows();
+        return selectedRows;
+    }
+
+    const editGridOptions = {
+        columnDefs: editColumnDefs,
+        rowData: editRowData,
+        defaultColDef: editDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: false,
+
+        onCellDoubleClicked: function (params) {
+            // 더블클릭한 셀의 정보를 사용하여 원하는 작업을 수행합니다.
+            const colId = params.column.colId;
+            const rowNode = params.node; // 행에 대한 정보
+            const colDef = params.colDef; // 열에 대한 정보
+            const cellValue = params.value; // 셀의 값
+            const rowIndex = rowNode.rowIndex; // 행의 인덱스
+
+            if (colId == 'group') {
+                const groupSelectionModal = new mdb.Modal(document.getElementById('exampleModal'));
+                groupSelectionModal.show();
+
+
+                // Group 추가
+                $("#btnGroupSelection").click(function () {
+                    console.log("Cell 정보");
+                    console.table(rowNode);
+                    console.table(colDef);
+                    console.log("cellValue = " + cellValue);
+                    console.log("rowIndex = " + rowNode.rowIndex);
+
+                    addValueToCell(params.node.rowIndex, params.column.colId, "값 변경");
+                });
+            }
+        },
+    };
+
+    // 특정 셀에 값을 추가하는 함수
+    function addValueToCell(rowIndex, columnId, valueToAdd) {
+        const gridApi = editGridOptions.api;
+        const rowNode = gridApi.getRowNode(rowIndex);
+        rowNode.setDataValue(columnId, valueToAdd);
+        gridApi.refreshCells({force: true});
+    }
+
+    // 셀 선택 이벤트 함수
+    function onRowSelected(event) {
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const gridRowData = getGridRowData();
+        editGridApi.setRowData(gridRowData);
+        deleteGridApi.setRowData(gridRowData);
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 하단 그리드 삭제 Tab
+
+        const deleteColumnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+        {headerName: "NAME", field: "name",},
+        {headerName: "MEANING", field: "meaning", width: 175,},
+        {headerName: "SOUND", field: "sound",},
+        {headerName: "STROKE", field: "stroke", width: 60,},
+        {
+            headerName: "GROUP",
+            field: "group",
+            editable: false,
+            width: 180,
+        },
+
+    ];
+
+
+    const deleteDefaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+        width: 110,
+    }
+
+    const deleteRowData = [];
+
+    const deleteGridOptions = {
+        columnDefs: deleteColumnDefs,
+        rowData: deleteRowData,
+        defaultColDef: deleteDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: false,
+
+    };
+
+    document.getElementsByName("deleteRowBtn")[1].addEventListener('click',deleteGridDeleteRow);
+
+        function deleteGridDeleteRow() {
+        const gridApi = deleteGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        gridApi.applyTransaction({remove: selectedRows});
+    }
+
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 좌측 그리드
@@ -416,6 +690,9 @@
         groupSelectsChildren: false,
         readOnlyEdit: true,
 
+        // 셀 선택 이벤트 핸들러
+        onRowSelected: onRowSelected,
+
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'single', // single, multiple
         pagination: false,
@@ -428,10 +705,14 @@
         const gridDiv = document.querySelector('#myGrid');
         const addGridDiv = document.querySelector("#addGrid");
         const leftGridDiv = document.querySelector("#leftGrid")
+        const editGridDiv = document.querySelector("#editGrid");
+        const deleteGridDiv = document.querySelector("#deleteGrid");
 
         new agGrid.Grid(gridDiv, gridOptions);
         new agGrid.Grid(addGridDiv, addGridOptions);
         new agGrid.Grid(leftGridDiv, leftGridOptions);
+        new agGrid.Grid(editGridDiv, editGridOptions);
+        new agGrid.Grid(deleteGridDiv, deleteGridOptions);
     });
 
 </script>
