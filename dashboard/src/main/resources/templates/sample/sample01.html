@@ -61,8 +61,15 @@
                     <!-- End:: 그리드 왼쪽 콘텐츠 제목-->
 
                     <div class="border-bottom mb-5"></div>
+
+
+                    <!-- Begin:: 그리드 왼쪽 콘텐츠 그리드 AG Grid -->
+                    <div id="leftGrid" style="height: 70vh; width:100%;"
+                         class="ag-theme-material"></div>
+                    <!-- End:: 그리드 왼쪽 콘텐츠 그리드 AG Grid -->
+
                 </div>
-                <!-- Begin:: 그리드 왼쪽 콘텐츠 영역 -->
+                <!-- End:: 그리드 왼쪽 콘텐츠 영역 -->
 
                 <!-- Begin:: 그리드 콘텐츠 영역 -->
                 <div class="col-7 ps-0 pe-0">
@@ -357,15 +364,76 @@
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 좌측 그리드
+
+    const leftColumnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: false,
+            width: 80,
+        },
+        {headerName: "CATEGORY", field: "category",},
+
+    ];
+
+    const leftDefaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+    }
+
+    // specify the data
+    const leftRowData = [
+        {category: "초등학교 1학년 한자", introduction: "", group: "",},
+        {category: "초등학교 2학년 한자", introduction: "", group: "",},
+        {category: "초등학교 3학년 한자", introduction: "", group: "",},
+        {category: "초등학교 4학년 한자", introduction: "", group: "",},
+        {category: "초등학교 5학년 한자", introduction: "", group: "",},
+        {category: "초등학교 6학년 한자", introduction: "", group: "",},
+        {category: "중학교 1학년 한자", introduction: "", group: "",},
+        {category: "중학교 2학년 한자", introduction: "", group: "",},
+        {category: "중학교 3학년 한자", introduction: "", group: "",},
+        {category: "JLPT N5", introduction: "", group: "",},
+        {category: "JLPT N4", introduction: "", group: "",},
+        {category: "JLPT N3", introduction: "", group: "",},
+        {category: "JLPT N2", introduction: "", group: "",},
+        {category: "JLPT N1", introduction: "", group: "",},
+    ];
+
+    // let the grid know which columns and what data to use
+    const leftGridOptions = {
+        columnDefs: leftColumnDefs,
+        rowData: leftRowData,
+        defaultColDef: leftDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: false,
+        readOnlyEdit: true,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'single', // single, multiple
+        pagination: false,
+    };
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
     // setup the grid after the page has finished loading
 
     document.addEventListener('DOMContentLoaded', () => {
         const gridDiv = document.querySelector('#myGrid');
         const addGridDiv = document.querySelector("#addGrid");
+        const leftGridDiv = document.querySelector("#leftGrid")
 
         new agGrid.Grid(gridDiv, gridOptions);
         new agGrid.Grid(addGridDiv, addGridOptions);
+        new agGrid.Grid(leftGridDiv, leftGridOptions);
     });
+
 </script>
 
 </html>
