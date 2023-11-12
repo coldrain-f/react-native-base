@@ -514,13 +514,6 @@
 
     const editRowData = [];
 
-    // 상단 그리드의 rowData 를 가져오는 함수
-    function getGridRowData() {
-        var api = gridOptions.api;
-        var selectedRows = api.getSelectedRows();
-        return selectedRows;
-    }
-
     const editGridOptions = {
         columnDefs: editColumnDefs,
         rowData: editRowData,
@@ -567,13 +560,42 @@
         gridApi.refreshCells({force: true});
     }
 
+    // 그리드의 선택된 열만 가져오는 함수
+    function getGridRowData(gridApi) {
+        var api = gridApi;
+        var selectedRows = api.getSelectedRows();
+        return selectedRows;
+    }
+
+
     // 셀 선택 이벤트 함수
     function onRowSelected(event) {
+        const gridApi = gridOptions.api;
         const editGridApi = editGridOptions.api;
         const deleteGridApi = deleteGridOptions.api;
-        const gridRowData = getGridRowData();
-        editGridApi.setRowData(gridRowData);
-        deleteGridApi.setRowData(gridRowData);
+        const leftGridApi = leftGridOptions.api;
+
+        if (event.node.isSelected() == true) {
+            if (event.api == gridOptions.api) {
+                const gridRowData = getGridRowData(gridApi);
+                editGridApi.setRowData(gridRowData);
+                deleteGridApi.setRowData(gridRowData);
+            } else if (event.api == leftGridApi) {
+                if (event.data.category == "초등학교 1학년 한자") {
+                    gridApi.setRowData(elementary1rowData);
+                } else if (event.data.category == "초등학교 6학년 한자") {
+                    gridApi.setRowData(elementary6rowData);
+                } else if (event.data.category == "중학교 2학년 한자") {
+                    gridApi.setRowData(middle2rowData);
+                } else if (event.data.category == "JLPT N3") {
+                    gridApi.setRowData(JLPT3rowData);
+                } else {
+                    gridApi.setRowData(rowData);
+                }
+            } else {
+                console.log("error");
+            }
+        }
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
