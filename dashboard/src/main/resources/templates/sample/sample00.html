@@ -323,6 +323,7 @@
             headerCheckboxSelection: true,
             width: 80,
         },
+        {headerName: "#", field: "id", width: 120,},
         {headerName: "TITLE", field: "title",},
         {headerName: "INTRODUCTION", field: "introduction", width: 392},
         {
@@ -343,9 +344,8 @@
 
     // specify the data
     const addRowData = [
-        {title: "", introduction: "", group: "",},
-        {title: "", introduction: "", group: "",},
-        {title: "", introduction: "", group: "",},
+        {id: null, title: "", introduction: "", group: "",},
+        {id: null, title: "", introduction: "", group: "",},
     ];
 
     // let the grid know which columns and what data to use
@@ -429,6 +429,7 @@
             headerCheckboxSelection: true,
             width: 80,
         },
+        {headerName: "#", field: "id", width: 120, editable: false,},
         {headerName: "TITLE", field: "title",},
         {headerName: "INTRODUCTION", field: "introduction", width: 392},
         {
@@ -436,7 +437,6 @@
             field: "group",
             editable: false,
         },
-
     ];
 
 
@@ -526,6 +526,7 @@
             headerCheckboxSelection: true,
             width: 80,
         },
+        {headerName: "#", field: "id", width: 120,},
         {headerName: "TITLE", field: "title",},
         {headerName: "INTRODUCTION", field: "introduction", width: 392},
         {

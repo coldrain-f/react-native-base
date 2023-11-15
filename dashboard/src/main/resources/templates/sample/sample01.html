@@ -352,18 +352,6 @@
         },
     ];
 
-    // JLPT N3
-    const JLPT3rowData = [
-        {
-            id: 4,
-            name: "忘",
-            meaning: "잊을",
-            sound: "망",
-            stroke: 7,
-            group: "JLPT N3",
-        },
-    ];
-
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 등록 Tab
 
@@ -378,16 +366,16 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-
+        {headerName: "#", field: "id", width: 80,},
         {headerName: "NAME", field: "name",},
-        {headerName: "MEANING", field: "meaning", width: 175,},
+        {headerName: "MEANING", field: "meaning", width: 170,},
         {headerName: "SOUND", field: "sound",},
         {headerName: "STROKE", field: "stroke", width: 60,},
         {
             headerName: "GROUP",
             field: "group",
             editable: false,
-            width: 180,
+            width: 160,
         },
 
     ];
@@ -403,8 +391,8 @@
 
     // specify the data
     const addRowData = [
-        {name: "", meaning: "", sound: "", stroke: null, group: "",},
-        {name: "", meaning: "", sound: "", stroke: null, group: "",},
+        {id: null, name: "", meaning: "", sound: "", stroke: null, group: "",},
+        {id: null, name: "", meaning: "", sound: "", stroke: null, group: "",},
     ];
 
     // let the grid know which columns and what data to use
@@ -488,16 +476,16 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-
+        {headerName: "#", field: "id", width: 80, editable: false,},
         {headerName: "NAME", field: "name",},
-        {headerName: "MEANING", field: "meaning", width: 175,},
+        {headerName: "MEANING", field: "meaning", width: 170,},
         {headerName: "SOUND", field: "sound",},
         {headerName: "STROKE", field: "stroke", width: 60,},
         {
             headerName: "GROUP",
             field: "group",
             editable: false,
-            width: 180,
+            width: 160,
         },
 
     ];
@@ -587,8 +575,6 @@
                     gridApi.setRowData(elementary6rowData);
                 } else if (event.data.category == "중학교 2학년 한자") {
                     gridApi.setRowData(middle2rowData);
-                } else if (event.data.category == "JLPT N3") {
-                    gridApi.setRowData(JLPT3rowData);
                 } else {
                     gridApi.setRowData(rowData);
                 }
@@ -612,15 +598,16 @@
             headerCheckboxSelection: true,
             width: 80,
         },
+        {headerName: "#", field: "id", width: 80,},
         {headerName: "NAME", field: "name",},
-        {headerName: "MEANING", field: "meaning", width: 175,},
+        {headerName: "MEANING", field: "meaning", width: 170,},
         {headerName: "SOUND", field: "sound",},
         {headerName: "STROKE", field: "stroke", width: 60,},
         {
             headerName: "GROUP",
             field: "group",
             editable: false,
-            width: 180,
+            width: 160,
         },
 
     ];
@@ -696,11 +683,6 @@
         {category: "중학교 1학년 한자", introduction: "", group: "",},
         {category: "중학교 2학년 한자", introduction: "", group: "",},
         {category: "중학교 3학년 한자", introduction: "", group: "",},
-        {category: "JLPT N5", introduction: "", group: "",},
-        {category: "JLPT N4", introduction: "", group: "",},
-        {category: "JLPT N3", introduction: "", group: "",},
-        {category: "JLPT N2", introduction: "", group: "",},
-        {category: "JLPT N1", introduction: "", group: "",},
     ];
 
     // let the grid know which columns and what data to use
