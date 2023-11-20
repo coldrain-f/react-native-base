@@ -28,7 +28,8 @@ public class Vocabulary {
     private String description;
 
     @Builder
-    public Vocabulary(final String title, final String description) {
+    public Vocabulary(final VocabularyType vocabularyType, final String title, final String description) {
+        this.vocabularyType = vocabularyType;
         this.title = title;
         this.description = description;
     }
