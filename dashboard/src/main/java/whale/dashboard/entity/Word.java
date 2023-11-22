@@ -1,6 +1,7 @@
 package whale.dashboard.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,7 @@ public class Word {
     @JoinColumn(name = "KUNYOMI_ID")
     private Kunyomi kunyomi;
 
+    @Builder
     public Word(final Onyomi onyomi, final Kunyomi kunyomi, final String name, final String meaning) {
         this.onyomi = onyomi;
         this.kunyomi = kunyomi;
