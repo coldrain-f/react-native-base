@@ -263,7 +263,6 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-
         {headerName: "#", field: "id", width: 60, cellDataType: 'number',},
         {headerName: "NAME", field: "name",},
         {headerName: "MEANING", field: "meaning", width: 175,},
@@ -377,7 +376,6 @@
             editable: false,
             width: 160,
         },
-
     ];
 
     const addDefaultColDef = {
@@ -455,7 +453,7 @@
     // 행 삭제
     document.getElementsByName("deleteRowBtn")[0].addEventListener('click',addGridDeleteRow);
 
-        function addGridDeleteRow() {
+    function addGridDeleteRow() {
         const gridApi = addGridOptions.api;
         const selectedRows = gridApi.getSelectedRows();
         gridApi.applyTransaction({remove: selectedRows});
@@ -499,7 +497,6 @@
             editable: false,
             width: 160,
         },
-
     ];
 
 
@@ -633,7 +630,6 @@
             editable: false,
             width: 160,
         },
-
     ];
 
 
@@ -698,7 +694,6 @@
             width: 80,
         },
         {headerName: "CATEGORY", field: "category",},
-
     ];
 
     const leftDefaultColDef = {

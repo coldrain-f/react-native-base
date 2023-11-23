@@ -331,7 +331,6 @@
             field: "group",
             editable: false,
         },
-
     ];
 
     const addDefaultColDef = {
@@ -408,7 +407,7 @@
     // 행 삭제
     document.getElementsByName("deleteRowBtn")[0].addEventListener('click',addGridDeleteRow);
 
-        function addGridDeleteRow() {
+    function addGridDeleteRow() {
         const gridApi = addGridOptions.api;
         const selectedRows = gridApi.getSelectedRows();
         gridApi.applyTransaction({remove: selectedRows});
@@ -557,7 +556,6 @@
             field: "group",
             editable: false,
         },
-
     ];
 
 
@@ -581,7 +579,6 @@
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
         pagination: false,
-
     };
 
     // 특정 셀에 값을 추가하는 함수
@@ -625,7 +622,7 @@
         const deleteGridDiv = document.querySelector("#deleteGrid");
 
         new agGrid.Grid(gridDiv, gridOptions);
-        const addGrid = new agGrid.Grid(addGridDiv, addGridOptions);
+        new agGrid.Grid(addGridDiv, addGridOptions);
         new agGrid.Grid(editGridDiv, editGridOptions);
         new agGrid.Grid(deleteGridDiv, deleteGridOptions);
     });
