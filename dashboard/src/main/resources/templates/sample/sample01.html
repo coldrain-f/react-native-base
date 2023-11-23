@@ -190,7 +190,7 @@
                                  aria-labelledby="ex-with-icons-tab-2">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-sm">
+                                        <button name="DBUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
@@ -210,7 +210,7 @@
                                  aria-labelledby="ex-with-icons-tab-3">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-sm">
+                                        <button name="DBUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
@@ -264,7 +264,7 @@
             width: 80,
         },
 
-        {headerName: "#", field: "id", width: 60,},
+        {headerName: "#", field: "id", width: 60, cellDataType: 'number',},
         {headerName: "NAME", field: "name",},
         {headerName: "MEANING", field: "meaning", width: 175,},
         {headerName: "SOUND", field: "sound",},
@@ -366,7 +366,7 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-        {headerName: "#", field: "id", width: 80,},
+        {headerName: "#", field: "id", width: 80, cellDataType: 'number',},
         {headerName: "NAME", field: "name",},
         {headerName: "MEANING", field: "meaning", width: 170,},
         {headerName: "SOUND", field: "sound",},
@@ -461,6 +461,18 @@
         gridApi.applyTransaction({remove: selectedRows});
     }
 
+    // DB 반영
+    document.getElementsByName("DBUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
+
+    function addGridUpdateRow() {
+        const gridApi = addGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        console.log(selectedRows);
+        gridOptions.api.applyTransaction({add: selectedRows});
+        addGridOptions.api.refreshCells({force: true});
+    }
+
+
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 수정 Tab
 
@@ -476,7 +488,7 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-        {headerName: "#", field: "id", width: 80, editable: false,},
+        {headerName: "#", field: "id", width: 80, editable: false, cellDataType: 'number',},
         {headerName: "NAME", field: "name",},
         {headerName: "MEANING", field: "meaning", width: 170,},
         {headerName: "SOUND", field: "sound",},
@@ -584,6 +596,18 @@
         }
     }
 
+    // DB 반영
+    document.getElementsByName("DBUpdateBtn")[1].addEventListener('click',editGridUpdateRow);
+
+    function editGridUpdateRow() {
+        const gridApi = editGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        console.log(selectedRows);
+        gridOptions.api.applyTransaction({update: selectedRows});
+        deleteGridOptions.api.refreshCells({force: true});
+    }
+
+
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 삭제 Tab
 
@@ -598,7 +622,7 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-        {headerName: "#", field: "id", width: 80,},
+        {headerName: "#", field: "id", width: 80, cellDataType: 'number',},
         {headerName: "NAME", field: "name",},
         {headerName: "MEANING", field: "meaning", width: 170,},
         {headerName: "SOUND", field: "sound",},
@@ -637,12 +661,25 @@
 
     };
 
+    // 행 삭제
+    // 삭제 Rows 저장 변수
+    var deletedRows;
+
     document.getElementsByName("deleteRowBtn")[1].addEventListener('click',deleteGridDeleteRow);
 
-        function deleteGridDeleteRow() {
+    function deleteGridDeleteRow() {
         const gridApi = deleteGridOptions.api;
         const selectedRows = gridApi.getSelectedRows();
         gridApi.applyTransaction({remove: selectedRows});
+        deletedRows = selectedRows;
+    }
+
+    // DB 반영
+    document.getElementsByName("DBUpdateBtn")[2].addEventListener('click',deleteGridUpdateRow);
+
+    function deleteGridUpdateRow() {
+        console.log(deletedRows);
+        gridOptions.api.applyTransaction({remove: deletedRows});
     }
 
 
