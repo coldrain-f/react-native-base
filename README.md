@@ -47,8 +47,7 @@
 
 ## ERD(Entity Relationship Diagram)
 
-![ERD_5](https://github.com/coldrain-f/whale-voca/assets/102038572/13a0f9b9-4d95-465a-b837-7b7ac4f9abce)
-
+![image](https://github.com/coldrain-f/whale-voca/assets/102038572/8283e263-c3be-4801-a8b6-d0e2e612059b)
 
 
 
