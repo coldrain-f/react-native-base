@@ -477,9 +477,10 @@
 
     function addGridUpdateRow() {
         const gridApi = addGridOptions.api;
-        const selectedRows = gridApi.getSelectedRows();
-        console.log(selectedRows);
-        gridOptions.api.applyTransaction({add: selectedRows});
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+        console.log(allRowsData);
+        gridOptions.api.applyTransaction({add: allRowsData });
+        gridApi.applyTransaction({ remove: allRowsData });
         addGridOptions.api.refreshCells({force: true});
     }
 
@@ -581,9 +582,9 @@
 
     function editGridUpdateRow() {
         const gridApi = editGridOptions.api;
-        const selectedRows = gridApi.getSelectedRows();
-        console.log(selectedRows);
-        gridOptions.api.applyTransaction({update: selectedRows});
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+        console.log(allRowsData);
+        gridOptions.api.applyTransaction({update: allRowsData});
         deleteGridOptions.api.refreshCells({force: true});
     }
 
@@ -654,15 +655,18 @@
         const gridApi = deleteGridOptions.api;
         const selectedRows = gridApi.getSelectedRows();
         gridApi.applyTransaction({remove: selectedRows});
-        deletedRows = selectedRows;
     }
 
     // DB 반영
     document.getElementsByName("dbUpdateBtn")[2].addEventListener('click',deleteGridUpdateRow);
 
     function deleteGridUpdateRow() {
-        console.log(deletedRows);
-        gridOptions.api.applyTransaction({remove: deletedRows});
+        const gridApi = deleteGridOptions.api;
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+        console.log(allRowsData);
+        gridOptions.api.applyTransaction({remove: allRowsData});
+        gridApi.applyTransaction({remove: allRowsData});
+        deleteGridOptions.api.refreshCells({force: true});
     }
 
 
