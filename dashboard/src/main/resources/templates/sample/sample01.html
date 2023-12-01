@@ -131,7 +131,7 @@
                                  aria-labelledby="ex-with-icons-tab-1">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button name="DBUpdateBtn" class="btn btn-primary btn-sm">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
@@ -190,7 +190,7 @@
                                  aria-labelledby="ex-with-icons-tab-2">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button name="DBUpdateBtn" class="btn btn-primary btn-sm">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
@@ -210,7 +210,7 @@
                                  aria-labelledby="ex-with-icons-tab-3">
                                 <div class="row mb-3">
                                     <div class="col d-flex justify-content-end">
-                                        <button name="DBUpdateBtn" class="btn btn-primary btn-sm">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
@@ -465,7 +465,7 @@
     }
 
     // DB 반영
-    document.getElementsByName("DBUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
+    document.getElementsByName("dbUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
 
     function addGridUpdateRow() {
         const gridApi = addGridOptions.api;
@@ -603,7 +603,7 @@
     }
 
     // DB 반영
-    document.getElementsByName("DBUpdateBtn")[1].addEventListener('click',editGridUpdateRow);
+    document.getElementsByName("dbUpdateBtn")[1].addEventListener('click',editGridUpdateRow);
 
     function editGridUpdateRow() {
         const gridApi = editGridOptions.api;
@@ -683,7 +683,7 @@
     }
 
     // DB 반영
-    document.getElementsByName("DBUpdateBtn")[2].addEventListener('click',deleteGridUpdateRow);
+    document.getElementsByName("dbUpdateBtn")[2].addEventListener('click',deleteGridUpdateRow);
 
     function deleteGridUpdateRow() {
         console.log(deletedRows);
