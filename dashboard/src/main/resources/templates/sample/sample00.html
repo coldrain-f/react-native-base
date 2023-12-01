@@ -195,6 +195,10 @@
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2" disabled>
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -215,7 +219,7 @@
                                             <i class="far fa-hard-drive me-1"></i>
                                             DB 반영
                                         </button>
-                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2">
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2" disabled>
                                             <i class="fas fa-circle-minus me-1"></i>
                                             행 삭제
                                         </button>
@@ -607,7 +611,7 @@
     // 삭제 Rows 저장 변수
     var deletedRows;
 
-    document.getElementsByName("deleteRowBtn")[1].addEventListener('click',deleteGridDeleteRow);
+    document.getElementsByName("deleteRowBtn")[2].addEventListener('click',deleteGridDeleteRow);
 
     function deleteGridDeleteRow() {
         const gridApi = deleteGridOptions.api;
