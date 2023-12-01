@@ -304,6 +304,10 @@
         // 상단 그리드 선택 이벤트 핸들러
         onRowSelected: onRowSelected,
 
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
         pagination: true,
@@ -355,6 +359,10 @@
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
         pagination: false,
+
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
 
         onCellDoubleClicked: function (params) {
             // 더블클릭한 셀의 정보를 사용하여 원하는 작업을 수행합니다.
@@ -476,6 +484,10 @@
         rowSelection: 'multiple', // single, multiple
         pagination: false,
 
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+
         onCellDoubleClicked: function (params) {
             // 더블클릭한 셀의 정보를 사용하여 원하는 작업을 수행합니다.
             const colId = params.column.colId;
@@ -576,6 +588,10 @@
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
         pagination: false,
+
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
     };
 
     // 특정 셀에 값을 추가하는 함수
