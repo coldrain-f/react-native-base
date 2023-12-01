@@ -451,7 +451,8 @@
             headerCheckboxSelection: false,
             width: 80,
         },
-        {headerName: "#", field: "id", width: 120, editable: false, cellDataType: 'number',},
+        {headerName: "#", field: "id", width: 120, editable: false, cellDataType: 'number',
+            cellStyle: {'background-color': '#F4F4F4'}},
         {headerName: "TITLE", field: "title",},
         {headerName: "INTRODUCTION", field: "introduction", width: 392},
         {
@@ -590,6 +591,7 @@
         defaultColDef: deleteDefaultColDef,
         suppressRowClickSelection: true,
         groupSelectsChildren: true,
+        rowStyle: { background: '#F4F4F4' },
 
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
