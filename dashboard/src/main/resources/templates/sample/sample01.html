@@ -741,39 +741,52 @@
         const editGridApi = editGridOptions.api;
         const deleteGridApi = deleteGridOptions.api;
         const leftGridApi = leftGridOptions.api;
-        const selectedRowData = getGridRowData();
 
         // 좌측 그리드 선택 시
         if (event.api == leftGridApi) {
-            if (event.node.isSelected() == true) {
-                // 선택한 카테고리로 상단 그리드 rowData 설정
-                // DB 연동 후 로직 수정 예정
-                if (event.data.category == "초등학교 1학년 한자") {
-                    topGridApi.setRowData(elementary1rowData);
-                } else if (event.data.category == "초등학교 6학년 한자") {
-                    topGridApi.setRowData(elementary6rowData);
-                } else if (event.data.category == "중학교 2학년 한자") {
-                    topGridApi.setRowData(middle2rowData);
-                } else {
-                    topGridApi.setRowData([]);
-                }
-            } else if (event.node.isSelected() == false) {
-                // 카테고리 변경 시 그리드 초기화
-                if (leftGridApi.getSelectedRows().length == 0) {
-                    console.log(leftGridApi.getSelectedRows().length);
-                    topGridApi.setRowData([]);
-                } else if (topGridApi.getSelectedRows().length == 0) {
-                    console.log(topGridApi.getSelectedRows().length);
-                    editGridApi.setRowData([]);
-                    deleteGridApi.setRowData([]);
-                }
-            }
+            handleLeftGridSelection(event, topGridApi, leftGridApi, editGridApi, deleteGridApi);
         // 상단 그리드 선택 시
         } else if (event.api == topGridApi) {
-            // 하단 그리드 rowData 설정
-            editGridApi.setRowData(selectedRowData);
-            deleteGridApi.setRowData(selectedRowData);
+            handleTopGridSelection(event, editGridApi, deleteGridApi);
         }
+    }
+
+    function handleLeftGridSelection(event, topGridApi, leftGridApi, editGridApi, deleteGridApi) {
+        if (event.node.isSelected()) {
+            // 선택한 카테고리로 상단 그리드 rowData 설정
+            const category = event.data.category;
+            const rowData = getCategoryRowData(category);
+            topGridApi.setRowData(rowData);
+        } else {
+            // 카테고리 변경 시 그리드 초기화
+            if (leftGridApi.getSelectedRows().length === 0) {
+                topGridApi.setRowData([]);
+            } else if (topGridApi.getSelectedRows().length === 0) {
+                editGridApi.setRowData([]);
+                deleteGridApi.setRowData([]);
+            }
+        }
+    }
+
+    // 각 카테고리에 따른 rowData 반환
+    function getCategoryRowData(category) {
+        switch (category) {
+            case "초등학교 1학년 한자":
+                return elementary1rowData;
+            case "초등학교 6학년 한자":
+                return elementary6rowData;
+            case "중학교 2학년 한자":
+                return middle2rowData;
+            default:
+                return [];
+        }
+    }
+
+    // 상단 그리드 선택 시, 하단 그리드 rowData 설정
+    function handleTopGridSelection(event, editGridApi, deleteGridApi) {
+        const selectedRowData = getGridRowData();
+        editGridApi.setRowData(selectedRowData);
+        deleteGridApi.setRowData(selectedRowData);
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
