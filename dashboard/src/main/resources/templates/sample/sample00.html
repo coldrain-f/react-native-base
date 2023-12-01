@@ -473,13 +473,6 @@
 
     const editRowData = [];
 
-    // 상단 그리드의 rowData 를 가져오는 함수
-    function getGridRowData() {
-        var api = gridOptions.api;
-        var selectedRows = api.getSelectedRows();
-        return selectedRows;
-    }
-
     const editGridOptions = {
         columnDefs: editColumnDefs,
         rowData: editRowData,
@@ -528,15 +521,6 @@
         const rowNode = gridApi.getRowNode(rowIndex);
         rowNode.setDataValue(columnId, valueToAdd);
         gridApi.refreshCells({force: true});
-    }
-
-    // 셀 선택 이벤트 함수
-    function onRowSelected(event) {
-        const editGridApi = editGridOptions.api;
-        const deleteGridApi = deleteGridOptions.api;
-        const gridRowData = getGridRowData();
-        editGridApi.setRowData(gridRowData);
-        deleteGridApi.setRowData(gridRowData);
     }
 
     // DB 반영
@@ -632,6 +616,25 @@
         gridOptions.api.applyTransaction({remove: deletedRows});
     }
 
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 공통
+
+    // 상단 그리드의 selectedRowData 를 가져오는 함수
+    function getGridRowData() {
+        var api = gridOptions.api;
+        var selectedRows = api.getSelectedRows();
+        return selectedRows;
+    }
+
+    // 셀 선택 이벤트 함수
+    // 수정, 삭제 그리드 rowData 설정
+    function onRowSelected(event) {
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const selectedRowData = getGridRowData();
+        editGridApi.setRowData(selectedRowData);
+        deleteGridApi.setRowData(selectedRowData);
+    }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // setup the grid after the page has finished loading

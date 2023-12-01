@@ -359,6 +359,9 @@
         },
     ];
 
+    // DB 연동 고려
+    // const allRowData = [ elementary1rowData, elementary6rowData, middle2rowData, ];
+
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 등록 Tab
 
@@ -573,42 +576,6 @@
         gridApi.refreshCells({force: true});
     }
 
-    // 그리드의 선택된 열만 가져오는 함수
-    function getGridRowData(gridApi) {
-        var api = gridApi;
-        var selectedRows = api.getSelectedRows();
-        return selectedRows;
-    }
-
-
-    // 셀 선택 이벤트 함수
-    function onRowSelected(event) {
-        const gridApi = gridOptions.api;
-        const editGridApi = editGridOptions.api;
-        const deleteGridApi = deleteGridOptions.api;
-        const leftGridApi = leftGridOptions.api;
-
-        if (event.node.isSelected() == true) {
-            if (event.api == gridOptions.api) {
-                const gridRowData = getGridRowData(gridApi);
-                editGridApi.setRowData(gridRowData);
-                deleteGridApi.setRowData(gridRowData);
-            } else if (event.api == leftGridApi) {
-                if (event.data.category == "초등학교 1학년 한자") {
-                    gridApi.setRowData(elementary1rowData);
-                } else if (event.data.category == "초등학교 6학년 한자") {
-                    gridApi.setRowData(elementary6rowData);
-                } else if (event.data.category == "중학교 2학년 한자") {
-                    gridApi.setRowData(middle2rowData);
-                } else {
-                    gridApi.setRowData(rowData);
-                }
-            } else {
-                console.log("error");
-            }
-        }
-    }
-
     // DB 반영
     document.getElementsByName("dbUpdateBtn")[1].addEventListener('click',editGridUpdateRow);
 
@@ -753,6 +720,57 @@
         rowSelection: 'single', // single, multiple
         pagination: false,
     };
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 공통
+
+    // 상단 그리드의 selectedRowData 를 가져오는 함수
+    function getGridRowData() {
+        var api = gridOptions.api
+        var selectedRows = api.getSelectedRows();
+        return selectedRows;
+    }
+
+    // 셀 선택 이벤트 함수
+    function onRowSelected(event) {
+        const topGridApi = gridOptions.api;
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const leftGridApi = leftGridOptions.api;
+        const selectedRowData = getGridRowData();
+
+        // 좌측 그리드 선택 시
+        if (event.api == leftGridApi) {
+            if (event.node.isSelected() == true) {
+                // 선택한 카테고리로 상단 그리드 rowData 설정
+                // DB 연동 후 로직 수정 예정
+                if (event.data.category == "초등학교 1학년 한자") {
+                    topGridApi.setRowData(elementary1rowData);
+                } else if (event.data.category == "초등학교 6학년 한자") {
+                    topGridApi.setRowData(elementary6rowData);
+                } else if (event.data.category == "중학교 2학년 한자") {
+                    topGridApi.setRowData(middle2rowData);
+                } else {
+                    topGridApi.setRowData([]);
+                }
+            } else if (event.node.isSelected() == false) {
+                // 카테고리 변경 시 그리드 초기화
+                if (leftGridApi.getSelectedRows().length == 0) {
+                    console.log(leftGridApi.getSelectedRows().length);
+                    topGridApi.setRowData([]);
+                } else if (topGridApi.getSelectedRows().length == 0) {
+                    console.log(topGridApi.getSelectedRows().length);
+                    editGridApi.setRowData([]);
+                    deleteGridApi.setRowData([]);
+                }
+            }
+        // 상단 그리드 선택 시
+        } else if (event.api == topGridApi) {
+            // 하단 그리드 rowData 설정
+            editGridApi.setRowData(selectedRowData);
+            deleteGridApi.setRowData(selectedRowData);
+        }
+    }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // setup the grid after the page has finished loading
