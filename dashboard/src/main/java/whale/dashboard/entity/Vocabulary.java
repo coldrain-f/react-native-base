@@ -10,7 +10,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"VOCABULARY_TYPE_ID", "TITLE"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"TITLE"}))
+
 public class Vocabulary {
 
     @Id
