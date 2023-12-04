@@ -10,27 +10,21 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Onyomi {
+public class YomiType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ONYOMI_ID")
+    @Column(name = "YOMI_TYPE_ID")
     private Long id;
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "KANJI_ID")
-    private Kanji kanji;
-
     @Builder
-    public Onyomi(final Kanji kanji, final String name) {
-        this.kanji = kanji;
+    public YomiType(final String name) {
         this.name = name;
     }
 
-    public void change(final Kanji kanji, final String name) {
-        this.kanji = kanji;
+    public void change(final String name) {
         this.name = name;
     }
 }
