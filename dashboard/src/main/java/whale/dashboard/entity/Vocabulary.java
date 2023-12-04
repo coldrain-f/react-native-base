@@ -18,24 +18,18 @@ public class Vocabulary {
     @Column(name = "VOCABULARY_ID")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "VOCABULARY_TYPE_ID")
-    private VocabularyType vocabularyType;
-
     @Column(nullable = false)
     private String title;
 
     private String description;
 
     @Builder
-    public Vocabulary(final VocabularyType vocabularyType, final String title, final String description) {
-        this.vocabularyType = vocabularyType;
+    public Vocabulary(final String title, final String description) {
         this.title = title;
         this.description = description;
     }
 
-    public void change(final VocabularyType vocabularyType, final String title, final String description) {
-        this.vocabularyType = vocabularyType;
+    public void change(final String title, final String description) {
         this.title = title;
         this.description = description;
     }
