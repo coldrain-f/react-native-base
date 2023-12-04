@@ -21,32 +21,30 @@ public class Kanji {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    //Todo 일부 칼럼들 칼럼명 변경 예정
-
     private String name;
+
+    private String sound;
 
     private String meaning;
 
-    private Integer strokeCount;
-
-    private Integer readCount;
+    private String strokeCount;
 
     @Builder
-    public Kanji(final Category category, final String name, final String meaning, final Integer strokeCount,
-                 final Integer readCount) {
+    public Kanji(final Category category, final String name, final String sound, final String meaning,
+                 final String strokeCount) {
         this.category = category;
         this.name = name;
+        this.sound = sound;
         this.meaning = meaning;
         this.strokeCount = strokeCount;
-        this.readCount = readCount;
     }
 
-    public void change(final Category category, final String name, final String meaning, final Integer strokeCount,
-                       final Integer readCount) {
+    public void change(final Category category, final String name, final String sound, final String meaning,
+                       final String strokeCount) {
         this.category = category;
         this.name = name;
+        this.sound = sound;
         this.meaning = meaning;
         this.strokeCount = strokeCount;
-        this.readCount = readCount;
     }
 }
