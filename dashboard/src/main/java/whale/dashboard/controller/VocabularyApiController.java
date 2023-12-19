@@ -1,9 +1,9 @@
 package whale.dashboard.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import whale.dashboard.dto.DeleteIdListRequest;
 import whale.dashboard.dto.VocabularyDto;
 import whale.dashboard.entity.Vocabulary;
 import whale.dashboard.service.VocabularyService;
@@ -18,27 +18,27 @@ public class VocabularyApiController {
     private final VocabularyService vocabularyService;
 
     @PostMapping
-    public ResponseEntity<String> register(
+    public ResponseEntity<Void> register(
             @RequestBody List<VocabularyDto.RegistrationRequest> requests) {
         vocabularyService.registerVocabulary(requests);
-        return ResponseEntity.ok("Vocabulary register 성공");
-
+        return ResponseEntity.ok().build();
     }
 
 
     @PatchMapping
-    public ResponseEntity<String> modify(
+    public ResponseEntity<Void> modify(
             @RequestBody List<VocabularyDto.ModifyRequest> requests) {
         vocabularyService.modifyVocabulary(requests);
-        return ResponseEntity.ok("Vocabulary update 성공");
+        return ResponseEntity.ok().build();
     }
 
 
     @DeleteMapping
     public ResponseEntity<Void> remove(
-            @RequestParam List<Long> vocabularyIds) {
-        vocabularyService.removeVocabulary(vocabularyIds);
-        return ResponseEntity.noContent().build();
+            @RequestBody DeleteIdListRequest request) {
+        List<Long> removeIds = request.getIdList();
+        vocabularyService.removeVocabulary(removeIds);
+        return ResponseEntity.ok().build();
     }
 
 
