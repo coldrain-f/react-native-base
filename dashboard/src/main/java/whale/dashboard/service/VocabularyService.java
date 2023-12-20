@@ -11,6 +11,7 @@ import whale.dashboard.repository.VocabularyRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -20,20 +21,9 @@ public class VocabularyService {
     private final VocabularyRepository vocabularyRepository;
 
     @Transactional
-    public List<Long> registerVocabulary(List<VocabularyDto.RegistrationRequest> requests) {
-        List<Long> savedVocabulary = new ArrayList<>();
-
-        for (VocabularyDto.RegistrationRequest request : requests) {
-            final Vocabulary vocabulary = Vocabulary.builder()
-                    .title(request.getTitle())
-                    .description(request.getDescription())
-                    .build();
-
-            final Vocabulary savedId = vocabularyRepository.save(vocabulary);
-            savedVocabulary.add(savedId.getId());
-        }
-
-        return savedVocabulary;
+    public void registerVocabulary(List<VocabularyDto.RegistrationRequest> requests) {
+        List<Vocabulary> vocabularyList = VocabularyDto.RegistrationRequest.toEntityList(requests);
+        vocabularyRepository.saveAll(vocabularyList);
     }
 
 

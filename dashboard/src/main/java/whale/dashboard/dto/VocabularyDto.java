@@ -25,6 +25,16 @@ public class VocabularyDto {
             this.title = title;
             this.description = description;
         }
+
+        public static List<Vocabulary> toEntityList(List<RegistrationRequest> registrationRequests) {
+            return registrationRequests.stream()
+                    .map(request -> Vocabulary.builder()
+                            .title(request.getTitle())
+                            .description(request.getDescription())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
     }
 
 
@@ -62,7 +72,6 @@ public class VocabularyDto {
             this.title = title;
             this.description = description;
         }
-
 
         public static List<Response> toList(List<Vocabulary> vocabularies) {
             return vocabularies.stream()
