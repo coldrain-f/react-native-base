@@ -37,7 +37,6 @@ public class VocabularyService {
                     .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + request.getId()));
 
             vocabulary.change(request.getTitle(), request.getDescription());
-            vocabularyRepository.save(vocabulary);
         }
     }
 
