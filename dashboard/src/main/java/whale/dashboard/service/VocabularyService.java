@@ -2,6 +2,9 @@ package whale.dashboard.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.exception.VocabularyNotFoundException;
@@ -38,6 +41,7 @@ public class VocabularyService {
         }
     }
 
+
     @Transactional
     public void removeVocabulary(List<Long> vocabularyIds) {
         for (Long vocabularyId : vocabularyIds) {
@@ -48,8 +52,10 @@ public class VocabularyService {
         }
     }
 
-    public List<Vocabulary> findAllVocabulary() {
-        // 페이징 구현 예정
-        return vocabularyRepository.findAll();
+
+    public Page<VocabularyDto.Response> findAllVocabulary(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Vocabulary> vocabularyPage = vocabularyRepository.findAll(pageable);
+        return vocabularyPage.map(VocabularyDto.Response::of);
     }
 }

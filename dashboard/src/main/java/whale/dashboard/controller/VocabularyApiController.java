@@ -1,11 +1,11 @@
 package whale.dashboard.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import whale.dashboard.dto.DeleteIdListRequest;
 import whale.dashboard.dto.VocabularyDto;
-import whale.dashboard.entity.Vocabulary;
 import whale.dashboard.service.VocabularyService;
 
 import java.util.List;
@@ -43,9 +43,10 @@ public class VocabularyApiController {
 
 
     @GetMapping
-    public ResponseEntity<List<VocabularyDto.Response>> getResponse() {
-        List<Vocabulary> vocabulary = vocabularyService.findAllVocabulary();
-        List<VocabularyDto.Response> response = VocabularyDto.Response.toList(vocabulary);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Page<VocabularyDto.Response>> getResponse(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Page<VocabularyDto.Response> responsePage = vocabularyService.findAllVocabulary(page, size);
+        return ResponseEntity.ok(responsePage);
     }
 }

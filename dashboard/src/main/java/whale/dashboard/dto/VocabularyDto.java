@@ -1,6 +1,7 @@
 package whale.dashboard.dto;
 
 import lombok.*;
+import org.springframework.data.domain.Page;
 import whale.dashboard.entity.Vocabulary;
 
 import javax.validation.constraints.NotBlank;
@@ -34,7 +35,6 @@ public class VocabularyDto {
                             .build())
                     .collect(Collectors.toList());
         }
-
     }
 
 
@@ -58,13 +58,13 @@ public class VocabularyDto {
         }
     }
 
+
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Response {
         private Long id;
         private String title;
         private String description;
-
 
         @Builder
         public Response(Long id, String title, String description) {
@@ -73,16 +73,18 @@ public class VocabularyDto {
             this.description = description;
         }
 
-        public static List<Response> toList(List<Vocabulary> vocabularies) {
-            return vocabularies.stream()
-                    .map(vocabulary -> Response.builder()
-                            .id(vocabulary.getId())
-                            .title(vocabulary.getTitle())
-                            .description(vocabulary.getDescription())
-                            .build())
-                    .collect(Collectors.toList());
+
+        public static Response of(Vocabulary vocabulary) {
+            return Response.builder()
+                    .id(vocabulary.getId())
+                    .title(vocabulary.getTitle())
+                    .description(vocabulary.getDescription())
+                    .build();
         }
 
-    }
 
+        public static Page<Response> toPage(Page<Vocabulary> vocabularyPage) {
+            return vocabularyPage.map(Response::of);
+        }
+    }
 }
