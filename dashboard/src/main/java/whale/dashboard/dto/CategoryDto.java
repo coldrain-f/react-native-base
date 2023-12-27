@@ -23,13 +23,9 @@ public class CategoryDto {
         @NotBlank(message = "Description을 입력해주세요.")
         private String description;
 
-        @NotNull(message = "VocabularyId를 입력해주세요.")
-        private Long vocabularyId;
-
-        public RegistrationRequest(String subject, String description, Long vocabularyId) {
+        public RegistrationRequest(String subject, String description) {
             this.subject = subject;
             this.description = description;
-            this.vocabularyId = vocabularyId;
         }
 
 
@@ -37,7 +33,7 @@ public class CategoryDto {
             return requests.stream()
                     .map(request -> {
                         Vocabulary vocabulary = vocabularyRepository.findById(vocabularyId)
-                                .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + request.getVocabularyId()));
+                                .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + vocabularyId));
 
                         return Category.builder()
                                 .subject(request.getSubject())
