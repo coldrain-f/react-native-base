@@ -61,9 +61,8 @@ public class VocabularyService {
     }
 
 
-    public Page<VocabularyDto.Response> findAllVocabulary(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Vocabulary> vocabularyPage = vocabularyRepository.findAll(pageable);
-        return vocabularyPage.map(VocabularyDto.Response::of);
+    public Page<VocabularyDto.Response> findAllVocabulary(Pageable pageable) {
+        return vocabularyRepository.findAll(pageable)
+            .map(VocabularyDto.Response::of);
     }
 }

@@ -2,6 +2,8 @@ package whale.dashboard.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import whale.dashboard.dto.DeleteIdListRequest;
@@ -43,10 +45,8 @@ public class VocabularyApiController {
 
 
     @GetMapping
-    public ResponseEntity<Page<VocabularyDto.Response>> getResponse(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        Page<VocabularyDto.Response> responsePage = vocabularyService.findAllVocabulary(page, size);
-        return ResponseEntity.ok(responsePage);
+    public Page<VocabularyDto.Response> getResponse(
+            @PageableDefault Pageable pageable) {
+        return vocabularyService.findAllVocabulary(pageable);
     }
 }
