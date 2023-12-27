@@ -48,4 +48,30 @@ public class CategoryDto {
                     .collect(Collectors.toList());
         }
     }
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class Response {
+        private Long id;
+        private String subject;
+        private String description;
+        private VocabularyDto.Response vocabulary;
+
+        @Builder
+        public Response(Long id, String subject, String description, VocabularyDto.Response vocabulary) {
+            this.id = id;
+            this.subject = subject;
+            this.description = description;
+            this.vocabulary = vocabulary;
+        }
+
+        public static Response of(Category category) {
+            return Response.builder()
+                    .id(category.getId())
+                    .subject(category.getSubject())
+                    .description(category.getDescription())
+                    .vocabulary(VocabularyDto.Response.of(category.getVocabulary()))
+                    .build();
+        }
+    }
 }
