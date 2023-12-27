@@ -7,6 +7,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import whale.dashboard.dto.CategoryDto;
+import whale.dashboard.dto.DeleteIdListRequest;
 import whale.dashboard.service.CategoryService;
 
 import java.util.List;
@@ -29,8 +30,16 @@ public class CategoryApiController {
 
     @PatchMapping("/categories")
     public ResponseEntity<Void> modify(@RequestBody List<CategoryDto.ModifyRequest> requests) {
-        // 여러 개의 카테고리를 한 번에 수정하는 로직을 구현
         categoryService.modifyCategories(requests);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @DeleteMapping("/categories")
+    public ResponseEntity<Void> remove(
+            @RequestBody DeleteIdListRequest request) {
+        List<Long> removeIds = request.getIdList();
+        categoryService.removeCategories(removeIds);
         return ResponseEntity.ok().build();
     }
 

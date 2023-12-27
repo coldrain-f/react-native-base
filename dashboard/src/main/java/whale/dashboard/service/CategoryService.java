@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.CategoryDto;
 import whale.dashboard.entity.Category;
+import whale.dashboard.entity.Kanji;
 import whale.dashboard.entity.Vocabulary;
 import whale.dashboard.exception.CategoryNotFoundException;
 import whale.dashboard.exception.VocabularyNotFoundException;
 import whale.dashboard.repository.CategoryRepository;
+import whale.dashboard.repository.KanjiRepository;
 import whale.dashboard.repository.VocabularyRepository;
 
 import java.util.List;
@@ -22,12 +24,15 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final VocabularyRepository vocabularyRepository;
+    private final KanjiRepository kanjiRepository;
+
 
     @Transactional
     public void registerCategory(Long vocabularyId, List<CategoryDto.RegistrationRequest> requests) {
         List<Category> categoryList = CategoryDto.RegistrationRequest.toEntityList(vocabularyId, requests, vocabularyRepository);
         categoryRepository.saveAll(categoryList);
     }
+
 
     @Transactional
     public void modifyCategories(List<CategoryDto.ModifyRequest> requests) {
@@ -41,6 +46,22 @@ public class CategoryService {
             category.change(vocabulary, request.getSubject(), request.getDescription());
         }
 
+    }
+
+
+    @Transactional
+    public void removeCategories(List<Long> categoryIds) {
+        for (Long categoryId : categoryIds) {
+            Category category = categoryRepository.findById(categoryId)
+                    .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + categoryId));
+
+            List<Kanji> kanjis = kanjiRepository.findAllByCategory(category);
+            for (Kanji kanji : kanjis) {
+                kanji.change(null, kanji.getName(), kanji.getSound(), kanji.getMeaning(), kanji.getStrokeCount());
+            }
+
+            categoryRepository.delete(category);
+        }
     }
 
 
