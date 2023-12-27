@@ -7,9 +7,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import whale.dashboard.entity.Category;
 import whale.dashboard.exception.VocabularyNotFoundException;
 import whale.dashboard.dto.VocabularyDto;
 import whale.dashboard.entity.Vocabulary;
+import whale.dashboard.repository.CategoryRepository;
 import whale.dashboard.repository.VocabularyRepository;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 public class VocabularyService {
 
     private final VocabularyRepository vocabularyRepository;
+    private final CategoryRepository categoryRepository;
 
     @Transactional
     public void registerVocabulary(List<VocabularyDto.RegistrationRequest> requests) {
@@ -46,7 +49,13 @@ public class VocabularyService {
         for (Long vocabularyId : vocabularyIds) {
             Vocabulary vocabulary = vocabularyRepository.findById(vocabularyId)
                     .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + vocabularyId));
-            // 자식 삭제 구현 예정
+
+            // Category와의 연관관계를 끊고 저장
+            List<Category> categories = categoryRepository.findAllByVocabulary(vocabulary);
+            for (Category category : categories) {
+                category.change(null, category.getSubject(), category.getDescription());
+            }
+
             vocabularyRepository.delete(vocabulary);
         }
     }
