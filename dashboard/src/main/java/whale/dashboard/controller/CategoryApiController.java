@@ -26,6 +26,15 @@ public class CategoryApiController {
         return ResponseEntity.ok().build();
     }
 
+
+    @PatchMapping("/categories")
+    public ResponseEntity<Void> modify(@RequestBody List<CategoryDto.ModifyRequest> requests) {
+        // 여러 개의 카테고리를 한 번에 수정하는 로직을 구현
+        categoryService.modifyCategories(requests);
+        return ResponseEntity.ok().build();
+    }
+
+
     @GetMapping("/vocabulary/{id}/categories")
     public Page<CategoryDto.Response> getResponse(
             @PathVariable Long id,

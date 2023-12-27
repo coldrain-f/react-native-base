@@ -49,6 +49,31 @@ public class CategoryDto {
         }
     }
 
+    @Data
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class ModifyRequest {
+
+        @NotNull(message = "수정할 대상 ID를 입력해주세요.")
+        private Long id;
+
+        @NotBlank(message = "Subject를 입력해주세요.")
+        private String subject;
+
+        @NotBlank(message = "Description을 입력해주세요.")
+        private String description;
+
+        @NotNull(message = "Vocabulary ID를 입력해주세요.")
+        private Long vocabularyId;
+
+        public ModifyRequest(Long id, String subject, String description, Long vocabularyId) {
+            this.id = id;
+            this.subject = subject;
+            this.description = description;
+            this.vocabularyId = vocabularyId;
+        }
+    }
+
+
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Response {
