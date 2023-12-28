@@ -42,16 +42,15 @@ public class VocabularyService {
 
 
     @Transactional
-    public void removeVocabulary(List<Long> vocabularyIds) {
-        for (Long vocabularyId : vocabularyIds) {
+    public void removeVocabulary(List<Long> vocabularyIdList) {
+        for (Long vocabularyId : vocabularyIdList) {
             Vocabulary vocabulary = vocabularyRepository.findById(vocabularyId)
                     .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + vocabularyId));
 
             List<Category> categories = categoryRepository.findAllByVocabulary(vocabulary);
             for (Category category : categories) {
-                category.change(null, category.getSubject(), category.getDescription());
+                category.vocabularySetNull();
             }
-
             vocabularyRepository.delete(vocabulary);
         }
     }
