@@ -38,8 +38,7 @@ public class VocabularyApiController {
     @DeleteMapping
     public ResponseEntity<Void> remove(
             @RequestBody DeleteIdListRequest request) {
-        List<Long> removeIds = request.getIdList();
-        vocabularyService.removeVocabulary(removeIds);
+        vocabularyService.removeVocabulary(request.getIdList());
         return ResponseEntity.ok().build();
     }
 
