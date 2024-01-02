@@ -38,4 +38,8 @@ public class Yomi {
     public void change(final String name) {
         this.name = name;
     }
+
+    public void kanjiSetNull() {
+        this.kanji = null;
+    }
 }

@@ -3,6 +3,7 @@ package whale.dashboard.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import whale.dashboard.dto.DeleteIdListRequest;
 import whale.dashboard.dto.KanjiDto;
 import whale.dashboard.service.KanjiService;
 
@@ -26,6 +27,13 @@ public class KanjiApiController {
     @PatchMapping("/kanjis")
     public ResponseEntity<Void> modify(@RequestBody List<KanjiDto.ModifyRequest> requests) {
         kanjiService.modifyKanjis(requests);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/kanjis")
+    public ResponseEntity<Void> remove(
+            @RequestBody DeleteIdListRequest request) {
+        kanjiService.removeKanjis(request.getIdList());
         return ResponseEntity.ok().build();
     }
 }
