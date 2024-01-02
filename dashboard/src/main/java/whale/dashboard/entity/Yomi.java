@@ -42,4 +42,8 @@ public class Yomi {
     public void kanjiSetNull() {
         this.kanji = null;
     }
+
+    public void yomiTypeSetNull() {
+        this.yomiType = null;
+    }
 }

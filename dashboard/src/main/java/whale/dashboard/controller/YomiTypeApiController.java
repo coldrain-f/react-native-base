@@ -3,6 +3,7 @@ package whale.dashboard.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import whale.dashboard.dto.DeleteIdListRequest;
 import whale.dashboard.dto.YomiTypeDto;
 import whale.dashboard.service.YomiTypeService;
 
@@ -27,6 +28,14 @@ public class YomiTypeApiController {
     public ResponseEntity<Void> modify(
             @RequestBody List<YomiTypeDto.ModifyRequest> requests) {
         yomiTypeService.modifyYomiType(requests);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @DeleteMapping
+    public ResponseEntity<Void> remove(
+            @RequestBody DeleteIdListRequest request) {
+        yomiTypeService.removeYomiType(request.getIdList());
         return ResponseEntity.ok().build();
     }
 }

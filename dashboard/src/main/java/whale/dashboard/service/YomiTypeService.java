@@ -5,8 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.YomiTypeDto;
+import whale.dashboard.entity.Yomi;
 import whale.dashboard.entity.YomiType;
+import whale.dashboard.exception.VocabularyNotFoundException;
 import whale.dashboard.exception.YomiTypeNotFoundException;
+import whale.dashboard.repository.YomiRepository;
 import whale.dashboard.repository.YomiTypeRepository;
 
 import java.util.List;
@@ -17,6 +20,8 @@ import java.util.List;
 public class YomiTypeService {
 
     private final YomiTypeRepository yomiTypeRepository;
+    private final YomiRepository yomiRepository;
+
 
     @Transactional
     public void registerYomiType(List<YomiTypeDto.RegistrationRequest> requests) {
@@ -32,6 +37,21 @@ public class YomiTypeService {
                     .orElseThrow(() -> new YomiTypeNotFoundException("YomiType Not Found with id : " + request.getId()));
 
             yomiType.change(request.getName());
+        }
+    }
+
+
+    @Transactional
+    public void removeYomiType(List<Long> yomiTypeIdList) {
+        for (Long yomiTypeId : yomiTypeIdList) {
+            YomiType yomiType = yomiTypeRepository.findById(yomiTypeId)
+                    .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + yomiTypeId));
+
+            List<Yomi> yomis = yomiRepository.findAllByYomiType(yomiType);
+            for (Yomi yomi : yomis) {
+                yomi.yomiTypeSetNull();
+            }
+            yomiTypeRepository.delete(yomiType);
         }
     }
 }
