@@ -22,4 +22,10 @@ public class KanjiApiController {
         kanjiService.registerKanji(id, requests);
         return ResponseEntity.ok().build();
     }
+
+    @PatchMapping("/kanjis")
+    public ResponseEntity<Void> modify(@RequestBody List<KanjiDto.ModifyRequest> requests) {
+        kanjiService.modifyKanjis(requests);
+        return ResponseEntity.ok().build();
+    }
 }

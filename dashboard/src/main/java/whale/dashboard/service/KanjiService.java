@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.KanjiDto;
+import whale.dashboard.entity.Category;
 import whale.dashboard.entity.Kanji;
+import whale.dashboard.exception.CategoryNotFoundException;
+import whale.dashboard.exception.KanjiNotFoundException;
 import whale.dashboard.repository.CategoryRepository;
 import whale.dashboard.repository.KanjiRepository;
 
@@ -25,5 +28,18 @@ public class KanjiService {
         kanjiRepository.saveAll(kanjiList);
     }
 
+
+    @Transactional
+    public void modifyKanjis(List<KanjiDto.ModifyRequest> requests) {
+        for (KanjiDto.ModifyRequest request : requests) {
+            Kanji kanji = kanjiRepository.findById(request.getId())
+                    .orElseThrow(() -> new KanjiNotFoundException("Kanji Not Found with id : " + request.getId()));
+
+            Category category = categoryRepository.findById(request.getCategoryId())
+                    .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + request.getCategoryId()));
+
+            kanji.change(category, request.getName(), request.getSound(), request.getMeaning(), request.getStrokeCount());
+        }
+    }
 
 }
