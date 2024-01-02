@@ -2,10 +2,7 @@ package whale.dashboard.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import whale.dashboard.dto.YomiTypeDto;
 import whale.dashboard.service.YomiTypeService;
 
@@ -22,6 +19,14 @@ public class YomiTypeApiController {
     public ResponseEntity<Void> register(
             @RequestBody List<YomiTypeDto.RegistrationRequest> requests) {
         yomiTypeService.registerYomiType(requests);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @PatchMapping
+    public ResponseEntity<Void> modify(
+            @RequestBody List<YomiTypeDto.ModifyRequest> requests) {
+        yomiTypeService.modifyYomiType(requests);
         return ResponseEntity.ok().build();
     }
 }
