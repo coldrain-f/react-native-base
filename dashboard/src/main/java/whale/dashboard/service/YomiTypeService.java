@@ -2,6 +2,8 @@ package whale.dashboard.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.YomiTypeDto;
@@ -53,5 +55,11 @@ public class YomiTypeService {
             }
             yomiTypeRepository.delete(yomiType);
         }
+    }
+
+
+    public Page<YomiTypeDto.Response> findAllYomiType(Pageable pageable) {
+        return yomiTypeRepository.findAll(pageable)
+            .map(YomiTypeDto.Response::of);
     }
 }
