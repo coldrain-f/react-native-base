@@ -1,6 +1,8 @@
 package whale.dashboard.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.KanjiDto;
@@ -57,5 +59,10 @@ public class KanjiService {
             }
             kanjiRepository.delete(kanji);
         }
+    }
+
+    public Page<KanjiDto.Response> findByCategoryId(Long categoryId, Pageable pageable) {
+        return kanjiRepository.findByCategoryId(categoryId, pageable)
+                .map(KanjiDto.Response::of);
     }
 }
