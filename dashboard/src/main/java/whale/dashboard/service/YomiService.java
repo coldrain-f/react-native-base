@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.YomiDto;
 import whale.dashboard.entity.Yomi;
+import whale.dashboard.exception.YomiNotFoundException;
 import whale.dashboard.repository.KanjiRepository;
 import whale.dashboard.repository.YomiRepository;
 import whale.dashboard.repository.YomiTypeRepository;
@@ -25,5 +26,16 @@ public class YomiService {
     public void registerYomi(Long kanjiId, List<YomiDto.RegistrationRequest> requests) {
         List<Yomi> yomiList = YomiDto.RegistrationRequest.toEntityList(kanjiId, requests, kanjiRepository, yomiTypeRepository);
         yomiRepository.saveAll(yomiList);
+    }
+
+
+    @Transactional
+    public void modifyYomi(List<YomiDto.ModifyRequest> requests) {
+        for (YomiDto.ModifyRequest request : requests) {
+
+            Yomi yomi = yomiRepository.findById(request.getId())
+                    .orElseThrow(() -> new YomiNotFoundException("Yomi Not Found with id : " + request.getId()));
+            yomi.change(request.getName());
+        }
     }
 }

@@ -22,4 +22,10 @@ public class YomiApiController {
         yomiService.registerYomi(id, requests);
         return ResponseEntity.ok().build();
     }
+
+    @PatchMapping("/yomi")
+    public ResponseEntity<Void> modify(@RequestBody List<YomiDto.ModifyRequest> requests) {
+        yomiService.modifyYomi(requests);
+        return ResponseEntity.ok().build();
+    }
 }
