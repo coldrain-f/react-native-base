@@ -1,6 +1,8 @@
 package whale.dashboard.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.WordDto;
@@ -55,8 +57,12 @@ public class WordService {
             for (Furigana furigana : furiganas) {
                 furigana.wordSetNull();
             }
-
             wordRepository.delete(word);
         }
+    }
+
+    public Page<WordDto.Response> findByYomiId(Long yomiId, Pageable pageable) {
+        return wordRepository.findByYomiId(yomiId, pageable)
+                .map(WordDto.Response::of);
     }
 }
