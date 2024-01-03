@@ -36,4 +36,15 @@ public class FuriganaService {
             furigana.change(request.getToken(), request.getReading());
         }
     }
+
+
+    @Transactional
+    public void removeFurigana(List<Long> FuriganaIdList) {
+        for (Long furiganaId : FuriganaIdList) {
+            Furigana furigana = furiganaRepository.findById(furiganaId)
+                    .orElseThrow(() -> new FuriganaNotFoundException("Furigana Not Found with id : " + furiganaId));
+
+            furiganaRepository.delete(furigana);
+        }
+    }
 }
