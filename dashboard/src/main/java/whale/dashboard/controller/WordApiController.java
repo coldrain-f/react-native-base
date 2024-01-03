@@ -22,4 +22,10 @@ public class WordApiController {
         wordService.registerWords(id, requests);
         return ResponseEntity.ok().build();
     }
+
+    @PatchMapping("/words")
+    public ResponseEntity<Void> modify(@RequestBody List<WordDto.ModifyRequest> requests) {
+        wordService.modifyWords(requests);
+        return ResponseEntity.ok().build();
+    }
 }
