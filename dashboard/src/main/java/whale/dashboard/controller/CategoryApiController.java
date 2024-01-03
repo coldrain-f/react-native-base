@@ -38,8 +38,7 @@ public class CategoryApiController {
     @DeleteMapping("/categories")
     public ResponseEntity<Void> remove(
             @RequestBody DeleteIdListRequest request) {
-        List<Long> removeIds = request.getIdList();
-        categoryService.removeCategories(removeIds);
+        categoryService.removeCategories(request.getIdList());
         return ResponseEntity.ok().build();
     }
 

@@ -50,8 +50,8 @@ public class CategoryService {
 
 
     @Transactional
-    public void removeCategories(List<Long> categoryIds) {
-        for (Long categoryId : categoryIds) {
+    public void removeCategories(List<Long> categoryIdList) {
+        for (Long categoryId : categoryIdList) {
             Category category = categoryRepository.findById(categoryId)
                     .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + categoryId));
 
