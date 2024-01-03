@@ -3,6 +3,7 @@ package whale.dashboard.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import whale.dashboard.dto.DeleteIdListRequest;
 import whale.dashboard.dto.WordDto;
 import whale.dashboard.service.WordService;
 
@@ -26,6 +27,13 @@ public class WordApiController {
     @PatchMapping("/words")
     public ResponseEntity<Void> modify(@RequestBody List<WordDto.ModifyRequest> requests) {
         wordService.modifyWords(requests);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/words")
+    public ResponseEntity<Void> remove(
+            @RequestBody DeleteIdListRequest request) {
+        wordService.removeWords(request.getIdList());
         return ResponseEntity.ok().build();
     }
 }

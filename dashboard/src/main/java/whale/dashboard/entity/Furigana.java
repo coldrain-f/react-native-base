@@ -36,4 +36,8 @@ public class Furigana {
         this.token = token;
         this.reading = reading;
     }
+
+    public void wordSetNull() {
+        this.word = null;
+    }
 }
