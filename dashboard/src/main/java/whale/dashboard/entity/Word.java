@@ -37,4 +37,8 @@ public class Word {
         this.name = name;
         this.meaning = meaning;
     }
+
+    public void yomiSetNull() {
+        this.yomi = null;
+    }
 }
