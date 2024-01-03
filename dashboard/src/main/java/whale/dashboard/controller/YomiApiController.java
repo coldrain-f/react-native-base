@@ -1,6 +1,9 @@
 package whale.dashboard.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import whale.dashboard.dto.DeleteIdListRequest;
@@ -35,5 +38,12 @@ public class YomiApiController {
             @RequestBody DeleteIdListRequest request) {
         yomiService.removeYomi(request.getIdList());
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/kanjis/{id}/yomi")
+    public Page<YomiDto.Response> getResponse(
+            @PathVariable Long id,
+            @PageableDefault Pageable pageable) {
+        return yomiService.findByKanjiId(id, pageable);
     }
 }

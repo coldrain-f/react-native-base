@@ -1,11 +1,15 @@
 package whale.dashboard.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.YomiDto;
+import whale.dashboard.entity.Kanji;
 import whale.dashboard.entity.Word;
 import whale.dashboard.entity.Yomi;
+import whale.dashboard.exception.KanjiNotFoundException;
 import whale.dashboard.exception.YomiNotFoundException;
 import whale.dashboard.repository.KanjiRepository;
 import whale.dashboard.repository.WordRepository;
@@ -55,5 +59,10 @@ public class YomiService {
 
             yomiRepository.delete(yomi);
         }
+    }
+
+    public Page<YomiDto.Response> findByKanjiId(Long kanjiId, Pageable pageable) {
+        return yomiRepository.findByKanjiId(kanjiId, pageable)
+                .map(YomiDto.Response::of);
     }
 }
