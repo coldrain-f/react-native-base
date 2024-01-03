@@ -22,4 +22,10 @@ public class FuriganaApiController {
         furiganaService.registerFurigana(id, requests);
         return ResponseEntity.ok().build();
     }
+
+    @PatchMapping("/furigana")
+    public ResponseEntity<Void> modify(@RequestBody List<FuriganaDto.ModifyRequest> requests) {
+        furiganaService.modifyFurigana(requests);
+        return ResponseEntity.ok().build();
+    }
 }
