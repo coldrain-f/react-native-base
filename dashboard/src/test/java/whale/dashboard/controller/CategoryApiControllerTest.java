@@ -19,7 +19,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test") // 테스트용 초기 데이터 설정
 public class CategoryApiControllerTest extends BaseControllerTest {
 
   @Test
