@@ -89,8 +89,8 @@ public class YomiDto {
             return Response.builder()
                     .id(yomi.getId())
                     .name(yomi.getName())
-                    .yomiType(YomiTypeDto.Response.of(yomi.getYomiType()))
-                    .kanji(KanjiDto.Response.of(yomi.getKanji()))
+                    .yomiType(yomi.getYomiType() != null ? YomiTypeDto.Response.of(yomi.getYomiType()) : null)
+                    .kanji(yomi.getKanji() != null ? KanjiDto.Response.of(yomi.getKanji()) : null)
                     .build();
         }
     }

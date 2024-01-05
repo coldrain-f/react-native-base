@@ -87,7 +87,7 @@ public class FuriganaDto {
                     .id(furigana.getId())
                     .token(furigana.getToken())
                     .reading(furigana.getReading())
-                    .word(WordDto.Response.of(furigana.getWord()))
+                    .word(furigana.getWord() != null ? WordDto.Response.of(furigana.getWord()) : null)
                     .build();
         }
 

@@ -117,7 +117,7 @@ public class KanjiDto {
                     .sound(kanji.getSound())
                     .meaning(kanji.getMeaning())
                     .strokeCount(kanji.getStrokeCount())
-                    .category(CategoryDto.Response.of(kanji.getCategory()))
+                    .category(kanji.getCategory() != null ? CategoryDto.Response.of(kanji.getCategory()) : null)
                     .build();
         }
     }

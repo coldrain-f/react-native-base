@@ -91,7 +91,7 @@ public class CategoryDto {
                     .id(category.getId())
                     .subject(category.getSubject())
                     .description(category.getDescription())
-                    .vocabulary(VocabularyDto.Response.of(category.getVocabulary()))
+                    .vocabulary(category.getVocabulary() != null ? VocabularyDto.Response.of(category.getVocabulary()) : null)
                     .build();
         }
     }

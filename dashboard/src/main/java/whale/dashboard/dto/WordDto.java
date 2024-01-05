@@ -96,7 +96,7 @@ public class WordDto {
                     .id(word.getId())
                     .name(word.getName())
                     .meaning(word.getMeaning())
-                    .yomi(YomiDto.Response.of(word.getYomi()))
+                    .yomi(word.getYomi() != null ? YomiDto.Response.of(word.getYomi()) : null)
                     .build();
         }
     }
