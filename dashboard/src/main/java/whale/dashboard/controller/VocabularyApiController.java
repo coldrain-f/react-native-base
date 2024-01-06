@@ -40,7 +40,7 @@ public class VocabularyApiController {
 
     @DeleteMapping
     public ResponseEntity<Void> remove(
-            @RequestBody DeleteIdListRequest request) {
+            @RequestBody @Valid DeleteIdListRequest request) {
         vocabularyService.removeVocabulary(request.getIdList());
         return ResponseEntity.ok().build();
     }
