@@ -1,8 +1,7 @@
 package whale.dashboard.exception;
 
-public class YomiTypeNotFoundException extends RuntimeException {
-
-    public YomiTypeNotFoundException(String message) {
-        super(message);
+public class YomiTypeNotFoundException extends EntityNotFoundException {
+    public YomiTypeNotFoundException(Long id) {
+        super("YomiType", id);
     }
 }

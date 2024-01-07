@@ -36,7 +36,7 @@ public class YomiTypeService {
     public void modifyYomiType(List<YomiTypeDto.ModifyRequest> requests) {
         for (YomiTypeDto.ModifyRequest request : requests) {
             YomiType yomiType = yomiTypeRepository.findById(request.getId())
-                    .orElseThrow(() -> new YomiTypeNotFoundException("YomiType Not Found with id : " + request.getId()));
+                    .orElseThrow(() -> new YomiTypeNotFoundException(request.getId()));
 
             yomiType.change(request.getName());
         }
@@ -47,7 +47,7 @@ public class YomiTypeService {
     public void removeYomiType(List<Long> yomiTypeIdList) {
         for (Long yomiTypeId : yomiTypeIdList) {
             YomiType yomiType = yomiTypeRepository.findById(yomiTypeId)
-                    .orElseThrow(() -> new YomiTypeNotFoundException("YomiType Not Found with id : " + yomiTypeId));
+                    .orElseThrow(() -> new YomiTypeNotFoundException(yomiTypeId));
 
             List<Yomi> yomis = yomiRepository.findAllByYomiType(yomiType);
             for (Yomi yomi : yomis) {
