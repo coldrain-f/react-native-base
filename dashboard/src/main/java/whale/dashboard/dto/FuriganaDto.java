@@ -33,7 +33,7 @@ public class FuriganaDto {
             return requests.stream()
                     .map(request -> {
                         Word word = wordRepository.findById(wordId)
-                                .orElseThrow(() -> new WordNotFoundException("WordId Not Found with id : " + wordId));
+                                .orElseThrow(() -> new WordNotFoundException(wordId));
 
                         return Furigana.builder()
                                 .token(request.getToken())

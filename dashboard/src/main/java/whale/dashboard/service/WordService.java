@@ -38,7 +38,7 @@ public class WordService {
     public void modifyWords(List<WordDto.ModifyRequest> requests) {
         for (WordDto.ModifyRequest request : requests) {
             Word word = wordRepository.findById(request.getId())
-                    .orElseThrow(() -> new WordNotFoundException("Word Not Found with id : " + request.getId()));
+                    .orElseThrow(() -> new WordNotFoundException(request.getId()));
 
             Yomi yomi = yomiRepository.findById(request.getYomiId())
                     .orElseThrow(() -> new YomiNotFoundException("Yomi Not Found with id : " + request.getYomiId()));
@@ -51,7 +51,7 @@ public class WordService {
     public void removeWords(List<Long> wordIdList) {
         for (Long wordId : wordIdList) {
             Word word = wordRepository.findById(wordId)
-                    .orElseThrow(() -> new WordNotFoundException("Word Not Found with id : " + wordId));
+                    .orElseThrow(() -> new WordNotFoundException(wordId));
 
             List<Furigana> furiganas = furiganaRepository.findAllByWord(word);
             for (Furigana furigana : furiganas) {
