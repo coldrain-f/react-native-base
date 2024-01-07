@@ -1,8 +1,7 @@
 package whale.dashboard.exception;
 
-public class VocabularyNotFoundException extends RuntimeException {
-
-    public VocabularyNotFoundException(String message) {
-        super(message);
+public class VocabularyNotFoundException extends EntityNotFoundException {
+    public VocabularyNotFoundException(Long id) {
+        super("Vocabulary Not Found", id);
     }
 }

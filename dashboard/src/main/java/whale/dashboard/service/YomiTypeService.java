@@ -47,7 +47,7 @@ public class YomiTypeService {
     public void removeYomiType(List<Long> yomiTypeIdList) {
         for (Long yomiTypeId : yomiTypeIdList) {
             YomiType yomiType = yomiTypeRepository.findById(yomiTypeId)
-                    .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + yomiTypeId));
+                    .orElseThrow(() -> new YomiTypeNotFoundException("YomiType Not Found with id : " + yomiTypeId));
 
             List<Yomi> yomis = yomiRepository.findAllByYomiType(yomiType);
             for (Yomi yomi : yomis) {

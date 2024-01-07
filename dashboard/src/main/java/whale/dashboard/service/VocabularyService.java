@@ -34,7 +34,7 @@ public class VocabularyService {
     public void modifyVocabulary(List<VocabularyDto.ModifyRequest> requests) {
         for (VocabularyDto.ModifyRequest request : requests) {
             Vocabulary vocabulary = vocabularyRepository.findById(request.getId())
-                    .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + request.getId()));
+                    .orElseThrow(() -> new VocabularyNotFoundException(request.getId()));
 
             vocabulary.change(request.getTitle(), request.getDescription());
         }
@@ -45,7 +45,7 @@ public class VocabularyService {
     public void removeVocabulary(List<Long> vocabularyIdList) {
         for (Long vocabularyId : vocabularyIdList) {
             Vocabulary vocabulary = vocabularyRepository.findById(vocabularyId)
-                    .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + vocabularyId));
+                    .orElseThrow(() -> new VocabularyNotFoundException(vocabularyId));
 
             List<Category> categories = categoryRepository.findAllByVocabulary(vocabulary);
             for (Category category : categories) {

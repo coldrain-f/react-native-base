@@ -41,7 +41,7 @@ public class CategoryService {
                     .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + request.getId()));
 
             Vocabulary vocabulary = vocabularyRepository.findById(request.getVocabularyId())
-                    .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + request.getVocabularyId()));
+                    .orElseThrow(() -> new VocabularyNotFoundException(request.getVocabularyId()));
 
             category.change(vocabulary, request.getSubject(), request.getDescription());
         }

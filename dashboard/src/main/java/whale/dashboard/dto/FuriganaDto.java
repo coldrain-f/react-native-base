@@ -4,6 +4,7 @@ import lombok.*;
 import whale.dashboard.entity.Furigana;
 import whale.dashboard.entity.Word;
 import whale.dashboard.exception.VocabularyNotFoundException;
+import whale.dashboard.exception.WordNotFoundException;
 import whale.dashboard.repository.WordRepository;
 
 import javax.validation.constraints.NotBlank;
@@ -32,7 +33,7 @@ public class FuriganaDto {
             return requests.stream()
                     .map(request -> {
                         Word word = wordRepository.findById(wordId)
-                                .orElseThrow(() -> new VocabularyNotFoundException("WordId Not Found with id : " + wordId));
+                                .orElseThrow(() -> new WordNotFoundException("WordId Not Found with id : " + wordId));
 
                         return Furigana.builder()
                                 .token(request.getToken())

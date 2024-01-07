@@ -33,7 +33,7 @@ public class CategoryDto {
             return requests.stream()
                     .map(request -> {
                         Vocabulary vocabulary = vocabularyRepository.findById(vocabularyId)
-                                .orElseThrow(() -> new VocabularyNotFoundException("Vocabulary Not Found with id : " + vocabularyId));
+                                .orElseThrow(() -> new VocabularyNotFoundException(vocabularyId));
 
                         return Category.builder()
                                 .subject(request.getSubject())
