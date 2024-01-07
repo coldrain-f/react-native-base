@@ -41,7 +41,7 @@ public class YomiService {
         for (YomiDto.ModifyRequest request : requests) {
 
             Yomi yomi = yomiRepository.findById(request.getId())
-                    .orElseThrow(() -> new YomiNotFoundException("Yomi Not Found with id : " + request.getId()));
+                    .orElseThrow(() -> new YomiNotFoundException(request.getId()));
             yomi.change(request.getName());
         }
     }
@@ -50,7 +50,7 @@ public class YomiService {
     public void removeYomi(List<Long> yomiIdList) {
         for (Long yomiId : yomiIdList) {
             Yomi yomi = yomiRepository.findById(yomiId)
-                    .orElseThrow(() -> new YomiNotFoundException("Yomi Not Found with id : " + yomiId));
+                    .orElseThrow(() -> new YomiNotFoundException(yomiId));
 
             List<Word> words = wordRepository.findAllByYomi(yomi);
             for (Word word : words) {

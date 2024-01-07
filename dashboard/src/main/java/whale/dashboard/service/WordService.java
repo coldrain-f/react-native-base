@@ -41,7 +41,7 @@ public class WordService {
                     .orElseThrow(() -> new WordNotFoundException(request.getId()));
 
             Yomi yomi = yomiRepository.findById(request.getYomiId())
-                    .orElseThrow(() -> new YomiNotFoundException("Yomi Not Found with id : " + request.getYomiId()));
+                    .orElseThrow(() -> new YomiNotFoundException(request.getYomiId()));
 
             word.change(yomi, request.getName(), request.getMeaning());
         }

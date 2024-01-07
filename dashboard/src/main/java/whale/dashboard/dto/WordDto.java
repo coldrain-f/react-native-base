@@ -38,7 +38,7 @@ public class WordDto {
             return requests.stream()
                     .map(request -> {
                         Yomi yomi  = yomiRepository.findById(yomiId)
-                                .orElseThrow(() -> new YomiNotFoundException("Yomi Not Found with id : " + yomiId));
+                                .orElseThrow(() -> new YomiNotFoundException(yomiId));
 
                         return Word.builder()
                                 .name(request.getName())
