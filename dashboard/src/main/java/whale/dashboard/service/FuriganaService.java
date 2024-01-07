@@ -33,7 +33,7 @@ public class FuriganaService {
     public void modifyFurigana(List<FuriganaDto.ModifyRequest> requests) {
         for (FuriganaDto.ModifyRequest request : requests) {
             Furigana furigana = furiganaRepository.findById(request.getId())
-                    .orElseThrow(() -> new FuriganaNotFoundException("Furigana Not Found with id : " + request.getId()));
+                    .orElseThrow(() -> new FuriganaNotFoundException(request.getId()));
 
             furigana.change(request.getToken(), request.getReading());
         }
@@ -44,7 +44,7 @@ public class FuriganaService {
     public void removeFurigana(List<Long> FuriganaIdList) {
         for (Long furiganaId : FuriganaIdList) {
             Furigana furigana = furiganaRepository.findById(furiganaId)
-                    .orElseThrow(() -> new FuriganaNotFoundException("Furigana Not Found with id : " + furiganaId));
+                    .orElseThrow(() -> new FuriganaNotFoundException(furiganaId));
 
             furiganaRepository.delete(furigana);
         }

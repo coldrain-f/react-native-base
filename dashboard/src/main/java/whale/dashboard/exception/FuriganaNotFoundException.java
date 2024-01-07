@@ -1,8 +1,7 @@
 package whale.dashboard.exception;
 
-public class FuriganaNotFoundException extends RuntimeException {
-
-    public FuriganaNotFoundException(String message) {
-        super(message);
+public class FuriganaNotFoundException extends EntityNotFoundException {
+    public FuriganaNotFoundException(Long id) {
+        super("Furigana", id);
     }
 }
