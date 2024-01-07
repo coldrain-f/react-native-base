@@ -38,7 +38,7 @@ public class CategoryService {
     public void modifyCategories(List<CategoryDto.ModifyRequest> requests) {
         for (CategoryDto.ModifyRequest request : requests) {
             Category category = categoryRepository.findById(request.getId())
-                    .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + request.getId()));
+                    .orElseThrow(() -> new CategoryNotFoundException(request.getId()));
 
             Vocabulary vocabulary = vocabularyRepository.findById(request.getVocabularyId())
                     .orElseThrow(() -> new VocabularyNotFoundException(request.getVocabularyId()));
@@ -53,7 +53,7 @@ public class CategoryService {
     public void removeCategories(List<Long> categoryIdList) {
         for (Long categoryId : categoryIdList) {
             Category category = categoryRepository.findById(categoryId)
-                    .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + categoryId));
+                    .orElseThrow(() -> new CategoryNotFoundException(categoryId));
 
             List<Kanji> kanjis = kanjiRepository.findAllByCategory(category);
             for (Kanji kanji : kanjis) {

@@ -41,7 +41,7 @@ public class KanjiService {
                     .orElseThrow(() -> new KanjiNotFoundException("Kanji Not Found with id : " + request.getId()));
 
             Category category = categoryRepository.findById(request.getCategoryId())
-                    .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + request.getCategoryId()));
+                    .orElseThrow(() -> new CategoryNotFoundException(request.getCategoryId()));
 
             kanji.change(category, request.getName(), request.getSound(), request.getMeaning(), request.getStrokeCount());
         }

@@ -40,7 +40,7 @@ public class KanjiDto {
             return requests.stream()
                     .map(request -> {
                         Category category = categoryRepository.findById(categoryId)
-                                .orElseThrow(() -> new CategoryNotFoundException("Category Not Found with id : " + categoryId));
+                                .orElseThrow(() -> new CategoryNotFoundException(categoryId));
 
                         return Kanji.builder()
                                 .name(request.getName())
