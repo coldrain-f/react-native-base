@@ -35,8 +35,7 @@ public class YomiDto {
             return requests.stream()
                     .map(request -> {
                         Kanji kanji = kanjiRepository.findById(kanjiId)
-                                .orElseThrow(() -> new KanjiNotFoundException("Kanji Not Found with id : " + kanjiId
-                                ));
+                                .orElseThrow(() -> new KanjiNotFoundException(kanjiId));
 
                         YomiType yomiType = yomiTypeRepository.findById(request.getYomiType())
                                 .orElseThrow(() -> new YomiTypeNotFoundException("YomiType Not Found with id : " + request.getYomiType()

@@ -38,7 +38,7 @@ public class KanjiService {
     public void modifyKanjis(List<KanjiDto.ModifyRequest> requests) {
         for (KanjiDto.ModifyRequest request : requests) {
             Kanji kanji = kanjiRepository.findById(request.getId())
-                    .orElseThrow(() -> new KanjiNotFoundException("Kanji Not Found with id : " + request.getId()));
+                    .orElseThrow(() -> new KanjiNotFoundException(request.getId()));
 
             Category category = categoryRepository.findById(request.getCategoryId())
                     .orElseThrow(() -> new CategoryNotFoundException(request.getCategoryId()));
@@ -51,7 +51,7 @@ public class KanjiService {
     public void removeKanjis(List<Long> kanjiIdList) {
         for (Long kanjiId : kanjiIdList) {
             Kanji kanji = kanjiRepository.findById(kanjiId)
-                    .orElseThrow(() -> new KanjiNotFoundException("Kanji Not Found with id : " + kanjiId));
+                    .orElseThrow(() -> new KanjiNotFoundException(kanjiId));
 
             List<Yomi> yomis = yomiRepository.findAllByKanji(kanji);
             for (Yomi yomi : yomis) {
