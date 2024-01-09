@@ -1,4 +1,4 @@
-package whale.dashboard.exception;
+package whale.dashboard.exception.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
