@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import whale.dashboard.dto.YomiTypeDto;
 import whale.dashboard.entity.Yomi;
 import whale.dashboard.entity.YomiType;
-import whale.dashboard.exception.VocabularyNotFoundException;
 import whale.dashboard.exception.YomiTypeNotFoundException;
 import whale.dashboard.repository.YomiRepository;
 import whale.dashboard.repository.YomiTypeRepository;

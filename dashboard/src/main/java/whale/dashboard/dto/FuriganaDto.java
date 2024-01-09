@@ -3,7 +3,6 @@ package whale.dashboard.dto;
 import lombok.*;
 import whale.dashboard.entity.Furigana;
 import whale.dashboard.entity.Word;
-import whale.dashboard.exception.VocabularyNotFoundException;
 import whale.dashboard.exception.WordNotFoundException;
 import whale.dashboard.repository.WordRepository;
 

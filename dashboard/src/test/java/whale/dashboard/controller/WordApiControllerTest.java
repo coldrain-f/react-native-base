@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import whale.dashboard.BaseControllerTest;
 import whale.dashboard.dto.DeleteIdListRequest;
 import whale.dashboard.dto.WordDto;
-import whale.dashboard.dto.YomiDto;
 
 import java.util.Arrays;
 import java.util.List;

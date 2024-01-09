@@ -1,13 +1,9 @@
 package whale.dashboard.dto;
 
 import lombok.*;
-import whale.dashboard.entity.*;
-import whale.dashboard.exception.KanjiNotFoundException;
-import whale.dashboard.exception.VocabularyNotFoundException;
+import whale.dashboard.entity.Word;
+import whale.dashboard.entity.Yomi;
 import whale.dashboard.exception.YomiNotFoundException;
-import whale.dashboard.repository.KanjiRepository;
-import whale.dashboard.repository.VocabularyRepository;
-import whale.dashboard.repository.WordRepository;
 import whale.dashboard.repository.YomiRepository;
 
 import javax.validation.constraints.NotBlank;
