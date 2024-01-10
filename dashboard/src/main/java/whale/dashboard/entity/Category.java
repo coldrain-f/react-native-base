@@ -39,4 +39,8 @@ public class Category {
         this.subject = subject;
         this.description = description;
     }
+
+    public void vocabularySetNull() {
+        this.vocabulary = null;
+    }
 }
