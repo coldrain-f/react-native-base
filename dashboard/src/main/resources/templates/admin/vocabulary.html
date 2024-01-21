@@ -377,10 +377,27 @@
     document.getElementsByName("dbUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
 
     function addGridUpdateRow() {
-         console.log(allRowsData);
-        gridOptions.api.applyTransaction({add: allRowsData });
-        gridApi.applyTransaction({ remove: allRowsData });
-        addGridOptions.api.refreshCells({force: true});
+        const gridApi = addGridOptions.api;
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+
+        // 서버로 데이터 전송
+        fetch('http://localhost:8000/api/vocabulary', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(allRowsData),
+        })
+        .then(data => {
+            if (data.ok) {
+                console.log('Response Data:', data);
+                gridApi.applyTransaction({ remove: allRowsData });
+                fetchData();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
 
