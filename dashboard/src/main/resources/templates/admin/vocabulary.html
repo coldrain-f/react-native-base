@@ -251,7 +251,7 @@
         },
         {headerName: "#", field: "id", width: 120, cellDataType: 'number',},
         {headerName: "TITLE", field: "title",},
-        {headerName: "DESCRIPTION", field: "description", width: '750'},
+        {headerName: "DESCRIPTION", field: "description", width: '700'},
     ];
 
     // 상단 그리드 컬럼 옵션
@@ -309,7 +309,7 @@
             width: 80,
         },
         {headerName: "TITLE", field: "title",},
-        {headerName: "DESCRIPTION", field: "description", width: '750'},
+        {headerName: "DESCRIPTION", field: "description", width: '700'},
     ];
 
     // 등록 그리드 컬럼 옵션
@@ -365,9 +365,7 @@
     document.getElementsByName("dbUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
 
     function addGridUpdateRow() {
-        const gridApi = addGridOptions.api;
-        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
-        console.log(allRowsData);
+         console.log(allRowsData);
         gridOptions.api.applyTransaction({add: allRowsData });
         gridApi.applyTransaction({ remove: allRowsData });
         addGridOptions.api.refreshCells({force: true});
@@ -394,7 +392,7 @@
         {headerName: "#", field: "id", width: 120, editable: false, cellDataType: 'number',
             cellStyle: {'background-color': '#F4F4F4'}},
         {headerName: "TITLE", field: "title",},
-        {headerName: "DESCRIPTION", field: "description", width: '750'},
+        {headerName: "DESCRIPTION", field: "description", width: '700'},
     ];
 
     // 수정 그리드 컬럼 옵션
@@ -456,7 +454,7 @@
         },
         {headerName: "#", field: "id", width: 120, cellDataType: 'number',},
         {headerName: "TITLE", field: "title",},
-        {headerName: "DESCRIPTION", field: "description", width: '750'},
+        {headerName: "DESCRIPTION", field: "description", width: '700'},
     ];
 
     // 삭제 그리드 컬럼 옵션
@@ -530,8 +528,8 @@
         const editGridApi = editGridOptions.api;
         const deleteGridApi = deleteGridOptions.api;
         const selectedRowData = getGridRowData();
-        editGridApi.setRowData(selectedRowData);
-        deleteGridApi.setRowData(selectedRowData);
+        editGridApi.setGridOption('rowData', selectedRowData);
+        deleteGridApi.setGridOption('rowData', selectedRowData);
     }
 
 
