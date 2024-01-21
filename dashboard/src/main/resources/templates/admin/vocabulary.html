@@ -264,13 +264,7 @@
     }
 
     // 상단 그리드 초기 데이터
-    const rowData = [
-        {
-            id: 1,
-            title: "漢字별 단어장",
-            description: "한자가 포함된 단어를 각각의 한자로 묶어 학습하여 일본어 한자를 숙달하는 데 도움이 됩니다.",
-        },
-    ];
+    const rowData = [];
 
     // 상단 그리드 전체 옵션
     const gridOptions = {
@@ -291,6 +285,24 @@
         rowSelection: 'multiple', // single, multiple
         pagination: true,
     };
+
+    function fetchData() {
+        const apiUrl = 'http://localhost:8000/api/vocabulary';
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                gridOptions.api.setGridOption('rowData', data.content);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+        });
+    }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 단어장 관리 페이지 하단 그리드 등록 Tab
@@ -554,6 +566,9 @@
         new agGrid.Grid(addGridDiv, addGridOptions);
         new agGrid.Grid(editGridDiv, editGridOptions);
         new agGrid.Grid(deleteGridDiv, deleteGridOptions);
+
+        // Vocabulary 조회 요청
+        fetchData();
     });
 
 </script>
