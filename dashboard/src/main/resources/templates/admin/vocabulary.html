@@ -551,12 +551,30 @@
     document.getElementsByName("dbUpdateBtn")[2].addEventListener('click',deleteGridUpdateRow);
 
     function deleteGridUpdateRow() {
-        const gridApi = deleteGridOptions.api;
-        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
-        console.log(allRowsData);
-        gridOptions.api.applyTransaction({remove: allRowsData});
-        gridApi.applyTransaction({remove: allRowsData});
-        deleteGridOptions.api.refreshCells({force: true});
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const allRowsData = deleteGridApi.getModel().rowsToDisplay;
+        const idList = allRowsData.map(row => row.data.id);
+
+        // 서버로 데이터 전송
+        fetch('http://localhost:8000/api/vocabulary', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ idList }),
+        })
+        .then(response => {
+            if(response.ok) {
+                console.log('Response Data:', response);
+                editGridApi.setGridOption('rowData', []);
+                deleteGridApi.setGridOption('rowData', []);
+                fetchData();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
