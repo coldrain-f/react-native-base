@@ -39,9 +39,7 @@ public class Kanji {
         this.strokeCount = strokeCount;
     }
 
-    public void change(final Category category, final String name, final String sound, final String meaning,
-                       final String strokeCount) {
-        this.category = category;
+    public void change(final String name, final String sound, final String meaning, final String strokeCount) {
         this.name = name;
         this.sound = sound;
         this.meaning = meaning;

@@ -32,8 +32,7 @@ public class Word {
         this.meaning = meaning;
     }
 
-    public void change(final Yomi yomi, final String name, final String meaning) {
-        this.yomi = yomi;
+    public void change(final String name, final String meaning) {
         this.name = name;
         this.meaning = meaning;
     }

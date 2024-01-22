@@ -34,8 +34,7 @@ public class Category {
         this.description = description;
     }
 
-    public void change(final Vocabulary vocabulary, final String subject, final String description) {
-        this.vocabulary = vocabulary;
+    public void change(final String subject, final String description) {
         this.subject = subject;
         this.description = description;
     }
