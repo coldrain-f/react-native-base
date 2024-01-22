@@ -353,8 +353,14 @@
         },
         {headerName: "#", field: "id", width: 80, cellDataType: 'number',},
         {headerName: "SUBJECT", field: "subject", width: 120,},
-        {headerName: "DESCRIPTION", field: "description", width: 350,},
-        {headerName: "VOCABULARY", field: "vocabulary", width: 150,},
+        {headerName: "DESCRIPTION", field: "description", width: 400,},
+        {headerName: "VOCABULARY",
+            field: "vocabulary",
+            width: 150,
+            valueGetter: function(params) {
+                return params.data.vocabulary ? params.data.vocabulary.id : 'null';
+            },
+        },
     ];
 
     const defaultColDef = {
@@ -388,6 +394,20 @@
             noRowsToShow: 'No Rows',
         },
     };
+
+
+    function fetchData(id) {
+        const apiUrl = `http://localhost:8000/api/vocabulary/${id}/categories`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                gridOptions.api.setGridOption('rowData', data.content);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 등록 Tab
@@ -661,6 +681,7 @@
             // 선택된 행이 없으면 초기화
             if (leftGridApi.getSelectedRows().length === 0) {
                 topGridApi.deselectAll();
+                topGridApi.setGridOption('rowData', []);
             }
         // 상단 그리드 선택 시
         } else if (event.api == topGridApi) {
