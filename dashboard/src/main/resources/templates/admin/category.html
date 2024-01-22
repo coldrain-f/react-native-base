@@ -438,7 +438,8 @@
     }
 
     // specify the data
-    const addRowData = [];
+    const addRowData = [
+    ];
 
     // let the grid know which columns and what data to use
     const addGridOptions = {
@@ -488,15 +489,36 @@
 
 
     // DB 반영
-    document.getElementsByName("dbUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
+    // 좌측 그리드 선택된 행 ID
+    var selectedRowId;
 
-    function addGridUpdateRow() {
+    document.getElementsByName("dbUpdateBtn")[0].addEventListener('click', function() {
+        addGridUpdateRow(selectedRowId);
+    });
+
+    function addGridUpdateRow(id) {
         const gridApi = addGridOptions.api;
         const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
-        console.log(allRowsData);
-        gridOptions.api.applyTransaction({add: allRowsData });
-        gridApi.applyTransaction({ remove: allRowsData });
-        addGridOptions.api.refreshCells({force: true});
+        const selectedRowId = id;
+
+        // 서버로 데이터 전송
+        fetch(`http://localhost:8000/api/vocabulary/${id}/categories`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(allRowsData),
+        })
+        .then(data => {
+            if (data.ok) {
+                console.log('Response Data:', data);
+                gridApi.applyTransaction({ remove: allRowsData });
+                fetchData(selectedRowId);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
 
