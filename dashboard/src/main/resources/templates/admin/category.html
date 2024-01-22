@@ -125,44 +125,6 @@
                                          class="ag-theme-material"></div>
                                     <!-- End:: 관리자 페이지 하단 그리드 등록 Tab AG Grid -->
                                 </div>
-                                <!-- Begin:: GROUP Cell 더블 클릭 모달창 -->
-                                <div class="modal fade" id="addModal_2" tabindex="-1"
-                                     aria-labelledby="addModalLabel_2"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="addModalLabel_2">Group</h5>
-                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option value="1" selected>초등학교 1학년 한자</option>
-                                                    <option value="2">초등학교 2학년 한자</option>
-                                                    <option value="3">초등학교 3학년 한자</option>
-                                                    <option value="4">초등학교 4학년 한자</option>
-                                                    <option value="5">초등학교 5학년 한자</option>
-                                                    <option value="6">초등학교 6학년 한자</option>
-                                                    <option value="7">중학교 1학년 한자</option>
-                                                    <option value="8">중학교 2학년 한자</option>
-                                                    <option value="9">중학교 3학년 한자</option>
-                                                </select>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-mdb-dismiss="modal">
-                                                    취소
-                                                </button>
-                                                <button type="button" class="btn btn-primary"
-                                                        id="addBtnGroupSelection_2">
-                                                    선택
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End:: GROUP Cell 더블 클릭 모달창 -->
                             </div>
                             <!-- End:: 관리자 페이지 하단 그리드 등록 Tab -->
 
@@ -187,44 +149,6 @@
                                          class="ag-theme-material"></div>
                                     <!-- End:: 관리자 페이지 하단 그리드 수정 Tab AG Grid -->
                                 </div>
-                                <!-- Begin:: GROUP Cell 더블 클릭 모달창 -->
-                                <div class="modal fade" id="editModal_2" tabindex="-1"
-                                     aria-labelledby="editModalLabel_2"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="editModalLabel_2">Group</h5>
-                                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option value="1" selected>초등학교 1학년 한자</option>
-                                                    <option value="2">초등학교 2학년 한자</option>
-                                                    <option value="3">초등학교 3학년 한자</option>
-                                                    <option value="4">초등학교 4학년 한자</option>
-                                                    <option value="5">초등학교 5학년 한자</option>
-                                                    <option value="6">초등학교 6학년 한자</option>
-                                                    <option value="7">중학교 1학년 한자</option>
-                                                    <option value="8">중학교 2학년 한자</option>
-                                                    <option value="9">중학교 3학년 한자</option>
-                                                </select>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-mdb-dismiss="modal">
-                                                    취소
-                                                </button>
-                                                <button type="button" class="btn btn-primary"
-                                                        id="editBtnGroupSelection_2">
-                                                    선택
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End:: GROUP Cell 더블 클릭 모달창 -->
                             </div>
                             <!-- End:: 관리자 페이지 하단 그리드 수정 Tab -->
 
@@ -431,8 +355,7 @@
     }
 
     // specify the data
-    const addRowData = [
-    ];
+    const addRowData = [];
 
     // let the grid know which columns and what data to use
     const addGridOptions = {
@@ -448,16 +371,6 @@
 
         localeText: {
             noRowsToShow: 'No Rows',
-        },
-
-        // Gruop 더블 클릭 시 모달 창 생성
-        onCellDoubleClicked: function (params) {
-            const colId = params.column.colId;
-
-            if (colId === 'group') {
-                handleCellDoubleClicked(params, 'add');
-                console.log("add");
-            }
         },
     };
 
