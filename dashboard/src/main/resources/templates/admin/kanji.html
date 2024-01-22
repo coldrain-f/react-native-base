@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/FRACOM00 :: HEAD('한자 관리')">
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Begin:: 공통 프래그먼트 > SIDEBAR -->
+        <div class="col-2 shadow-sm">
+            <div th:replace="fragments/FRACOM00 :: SIDEBAR('kanji')"></div>
+        </div>
+        <!-- End:: 공통 프래그먼트 > SIDEBAR -->
+
+        <!-- Begin:: 그리드 영역 -->
+        <div class="col-10 border-start">
+            <div class="row">
+                <div class="col-12 ps-0 pe-0">
+                    <!-- Begin:: 공통 프래그먼트 > NAVBAR -->
+                    <nav th:replace="fragments/FRACOM00 :: NAVBAR"></nav>
+                    <!-- End:: 공통 프래그먼트 > NAVBAR -->
+                    <!-- Begin:: 필터 토글 버튼 -->
+                    <button id="toggleFilterBtn" class="btn btn-light btn-sm shadow-sm">
+                        토글 버튼
+                    </button>
+                    <!-- End:: 필터 토글 버튼 -->
+                </div>
+            </div>
+            <div class="row">
+                <!-- Begin:: 그리드 필터 영역 -->
+                <div id="filterArea" class="col-2 bg-light border-end">
+                    <h3 class="fw-semibold mt-3 mb-3" style="cursor: default">Filter</h3>
+                    <div class="border-bottom mb-3"></div>
+                    <div class="mb-3">
+                        <label class="form-label" for="iptFilterVocabulary">단어장</label>
+                        <input class="form-control form-control-sm" list="dlVocabulary" id="iptFilterVocabulary"
+                               placeholder="search...">
+                        <datalist id="dlVocabulary">
+                            <option value="일본어 초등학교 상용한자">
+                        </datalist>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-light btn-sm shadow-sm">
+                            <i class="fas fa-arrow-rotate-right me-1"></i>
+                            초기화
+                        </button>
+                        <button class="btn btn-primary btn-sm shadow-sm">
+                            <i class="fas fa-magnifying-glass me-1"></i>
+                            검색
+                        </button>
+                    </div>
+                </div>
+                <!-- End:: 그리드 필터 영역 -->
+
+
+                <!-- Begin:: 그리드 왼쪽 콘텐츠 영역 -->
+                <div class="col-3 p-3 border-end">
+                    <!-- Begin:: 그리드 왼쪽 콘텐츠 제목  -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="fw-semibold mb-3" style="cursor: default">
+                                카테고리
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- End:: 그리드 왼쪽 콘텐츠 제목-->
+
+                    <div class="border-bottom mb-5"></div>
+
+                    <!-- Begin:: 그리드 왼쪽 콘텐츠 그리드 AG Grid -->
+                    <div id="leftGrid" style="height: 70vh; width:100%;"
+                         class="ag-theme-material"></div>
+                    <!-- End:: 그리드 왼쪽 콘텐츠 그리드 AG Grid -->
+                </div>
+                <!-- End:: 그리드 왼쪽 콘텐츠 영역 -->
+
+                <!-- Begin:: 그리드 콘텐츠 영역 -->
+                <div class="col-7 ps-0 pe-0">
+                    <div class="content p-3">
+                        <!-- Begin:: 한자 관리 페이지 제목 -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="fw-semibold mb-3" style="cursor: default">
+                                    한자
+                                </h3>
+                            </div>
+                        </div>
+                        <!-- End:: 한자 관리 페이지 제목 -->
+
+                        <div class="border-bottom mb-5"></div>
+
+                        <!-- Begin:: 한자 관리 페이지 상단 그리드 -->
+                        <div class="row">
+                            <!-- Begin:: 한자 관리 페이지 상단 그리드 AG Grid -->
+                            <div id="myGrid" style="height: 40vh; width:100%;"
+                                 class="ag-theme-material pb-3 border-bottom"></div>
+                            <!-- End:: 한자 관리 페이지 상단 그리드 AG Grid -->
+                        </div>
+                        <!-- End:: 한자 관리 페이지 상단 그리드 -->
+
+                        <!-- Begin:: 한자 관리 페이지 하단 그리드 Tabs navs -->
+                        <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="ex-with-icons-tab-1" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-1" role="tab"
+                                   aria-controls="ex-with-icons-tabs-1" aria-selected="true">
+                                    <i class="far fa-square-plus fa-fw me-2"></i>
+                                    등록
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-2" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-2" role="tab"
+                                   aria-controls="ex-with-icons-tabs-2" aria-selected="false">
+                                    <i class="fas fa-pen-to-square fa-fw me-2"></i>
+                                    수정
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-3" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-3" role="tab"
+                                   aria-controls="ex-with-icons-tabs-3" aria-selected="false">
+                                    <i class="far fa-trash-can fa-fw me-2"></i>
+                                    삭제
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End:: 한자 관리 페이지 하단 그리드 Tabs navs -->
+
+                        <!-- Begin:: 한자 관리 페이지 하단 그리드 Tabs content -->
+                        <div class="tab-content" id="ex-with-icons-content">
+                            <!-- Begin:: 한자 관리 페이지 하단 그리드 등록 Tab -->
+                            <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-1">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button name="addRowBtn" class="btn btn-info btn-sm ms-2">
+                                            <i class="fas fa-circle-plus me-1"></i>
+                                            행 추가
+                                        </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2">
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: 한자 관리 페이지 하단 그리드 등록 Tab AG Grid -->
+                                    <div id="addGrid" style="height: 20vh; width:80;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: 한자 관리 페이지 하단 그리드 등록 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: 한자 관리 페이지 하단 그리드 등록 Tab -->
+
+                            <!-- Begin:: 한자 관리 페이지 하단 그리드 수정 Tab -->
+                            <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-2">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2" disabled hidden>
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: 한자 관리 페이지 하단 그리드 수정 Tab AG Grid -->
+                                    <div id="editGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: 한자 관리 페이지 하단 그리드 수정 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: 한자 관리 페이지 하단 그리드 수정 Tab -->
+
+                            <!-- Begin:: 한자 관리 페이지 하단 그리드 삭제 Tab -->
+                            <div class="tab-pane fade" id="ex-with-icons-tabs-3" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-3">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2" disabled hidden>
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: 한자 관리 페이지 하단 그리드 삭제 Tab AG Grid -->
+                                    <div id="deleteGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: 한자 관리 페이지 하단 그리드 삭제 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: 한자 관리 페이지 하단 그리드 삭제 Tab -->
+                        </div>
+                        <!-- End:: 한자 관리 페이지 하단 그리드 Tabs content -->
+                    </div>
+                </div>
+                <!-- End:: 그리드 콘텐츠 영역 -->
+            </div>
+
+        </div>
+        <!-- End:: 그리드 영역 -->
+    </div>
+</div>
+
+<!-- Begin:: Bootstrap 5 MDB -->
+<div th:replace="fragments/FRACOM00 :: BOOTSTRAP"></div>
+<!-- End:: Bootstrap 5 MDB -->
+</body>
+
+<!--
+    https://www.ag-grid.com/javascript-data-grid/getting-started/
+-->
+<script type="text/javascript">
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 필터 영역
+
+     document.addEventListener("DOMContentLoaded", function () {
+        // 초기에 필터 영역을 숨김
+        var filterArea = document.getElementById("filterArea");
+        filterArea.style.display = "block";
+
+        // 토글 버튼 클릭 시 필터 영역 토글
+        var toggleFilterBtn = document.getElementById("toggleFilterBtn");
+        toggleFilterBtn.addEventListener("click", function () {
+            if (filterArea.style.display === "none") {
+                filterArea.style.display = "block";
+            } else {
+                filterArea.style.display = "none";
+            }
+        });
+    });
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 좌측 그리드
+
+    // 부모 그리드 컬럼 설정
+    const leftColumnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: false,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 60, cellDataType: 'number',},
+        {headerName: "CATEGORY", field: "category", width: 175},
+    ];
+
+    // 부모 그리드 컬럼 옵션
+    const leftDefaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+    }
+
+    // 부모 그리드 초기 데이터
+    const leftRowData = [];
+
+    // 부모 그리드 전체 옵션
+    const leftGridOptions = {
+        columnDefs: leftColumnDefs,
+        rowData: leftRowData,
+        defaultColDef: leftDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: false,
+        readOnlyEdit: true,
+
+        // 셀 선택 이벤트 핸들러
+        onRowSelected: onRowSelected,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'single', // single, multiple
+        pagination: false,
+    };
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 상단 그리드
+
+    const columnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 60, cellDataType: 'number',},
+        {headerName: "NAME", field: "name", width: 120,},
+        {headerName: "MEANING", field: "meaning", width: 200,},
+        {headerName: "SOUND", field: "sound",  width: 200,},
+        {headerName: "STROKE", field: "stroke", width: 120,},
+    ];
+
+    const defaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: true,
+        width: 110,
+    }
+
+    const rowData = [];
+
+    const gridOptions = {
+        columnDefs: columnDefs,
+        rowData: rowData,
+        defaultColDef: defaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+        onRowSelected: onRowSelected,
+        rowSelection: 'multiple',
+        pagination: true,
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+    };
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 하단 그리드 등록 Tab
+
+     const addColumnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            editable: false,
+            checkboxSelection: true,
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+        {headerName: "NAME", field: "name", width: 150,},
+        {headerName: "MEANING", field: "meaning", width: 200,},
+        {headerName: "SOUND", field: "sound",  width: 200,},
+        {headerName: "STROKE", field: "stroke", width: 150,},
+    ];
+
+    const addDefaultColDef = {
+        editable: true,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+        width: 110,
+    }
+
+    const addRowData = [];
+
+    const addGridOptions = {
+        columnDefs: addColumnDefs,
+        rowData: addRowData,
+        defaultColDef: addDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+        rowSelection: 'multiple',
+        pagination: false,
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+    };
+
+
+    // 행 추가
+    document.getElementsByName("addRowBtn")[0].addEventListener('click',addNewRow);
+
+    function addNewRow() {
+        const newRow = {};
+        const GridApi = addGridOptions.api;
+        GridApi.applyTransaction({add: [newRow]});
+    }
+
+    // 행 삭제
+    document.getElementsByName("deleteRowBtn")[0].addEventListener('click',addGridDeleteRow);
+
+    function addGridDeleteRow() {
+        const gridApi = addGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        gridApi.applyTransaction({remove: selectedRows});
+    }
+
+
+    // DB 반영
+    document.getElementsByName("dbUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
+
+    function addGridUpdateRow() {
+        const gridApi = addGridOptions.api;
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+        console.log(allRowsData);
+        gridOptions.api.applyTransaction({add: allRowsData });
+        gridApi.applyTransaction({ remove: allRowsData });
+        addGridOptions.api.refreshCells({force: true});
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 하단 그리드 수정 Tab
+
+
+    const editColumnDefs = [
+        {
+            hide: true,
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            editable: false,
+            checkboxSelection: false,
+            headerCheckboxSelection: false,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 80, editable: false, cellDataType: 'number',
+            cellStyle: {'background-color': '#F4F4F4'}},
+        {headerName: "NAME", field: "name", width: 150,},
+        {headerName: "MEANING", field: "meaning", width: 200,},
+        {headerName: "SOUND", field: "sound",  width: 200,},
+        {headerName: "STROKE", field: "stroke", width: 150,},
+    ];
+
+
+    const editDefaultColDef = {
+        editable: true,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+        width: 110,
+    }
+
+    const editRowData = [];
+
+    const editGridOptions = {
+        columnDefs: editColumnDefs,
+        rowData: editRowData,
+        defaultColDef: editDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+        rowSelection: 'multiple',
+        pagination: false,
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+    };
+
+
+    // DB 반영
+    document.getElementsByName("dbUpdateBtn")[1].addEventListener('click',editGridUpdateRow);
+
+    function editGridUpdateRow() {
+        const gridApi = editGridOptions.api;
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+        console.log(allRowsData);
+        gridOptions.api.applyTransaction({update: allRowsData});
+        deleteGridOptions.api.refreshCells({force: true});
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 하단 그리드 삭제 Tab
+
+        const deleteColumnDefs = [
+        {
+            hide: true,
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: false,
+            headerCheckboxSelection: false,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 80, cellDataType: 'number',},
+        {headerName: "NAME", field: "name", width: 150,},
+        {headerName: "MEANING", field: "meaning", width: 200,},
+        {headerName: "SOUND", field: "sound",  width: 200,},
+        {headerName: "STROKE", field: "stroke", width: 150,},
+    ];
+
+    const deleteDefaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+        width: 110,
+    }
+
+    const deleteRowData = [];
+
+    const deleteGridOptions = {
+        columnDefs: deleteColumnDefs,
+        rowData: deleteRowData,
+        defaultColDef: deleteDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+        rowStyle: { background: '#F4F4F4' },
+        rowSelection: 'multiple',
+        pagination: false,
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+    };
+
+    // 행 삭제
+    // 삭제 Rows 저장 변수
+    var deletedRows;
+
+    document.getElementsByName("deleteRowBtn")[2].addEventListener('click',deleteGridDeleteRow);
+
+    function deleteGridDeleteRow() {
+        const gridApi = deleteGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        gridApi.applyTransaction({remove: selectedRows});
+    }
+
+    // DB 반영
+    document.getElementsByName("dbUpdateBtn")[2].addEventListener('click',deleteGridUpdateRow);
+
+    function deleteGridUpdateRow() {
+        const gridApi = deleteGridOptions.api;
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+        console.log(allRowsData);
+        gridOptions.api.applyTransaction({remove: allRowsData});
+        gridApi.applyTransaction({remove: allRowsData});
+        deleteGridOptions.api.refreshCells({force: true});
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 공통
+
+    // 상단 그리드의 selectedRowData 를 가져오는 함수
+    function getGridRowData() {
+        var api = gridOptions.api
+        var selectedRows = api.getSelectedRows();
+        return selectedRows;
+    }
+
+
+    // 셀 선택 이벤트 함수
+    function onRowSelected(event) {
+        const topGridApi = gridOptions.api;
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const leftGridApi = leftGridOptions.api;
+        const selectedId = event.data.id;
+
+
+        // 좌측 그리드 선택 시
+        if (event.api == leftGridApi) {
+            if (event.node.isSelected()) {
+                selectedRowId = selectedId;
+                fetchData(selectedId);
+
+                // 선택 변경하면 초기화
+                leftGridApi.addEventListener('selectionChanged', function() {
+                    topGridApi.deselectAll();
+                });
+            }
+            // 선택된 행이 없으면 초기화
+            if (leftGridApi.getSelectedRows().length === 0) {
+                topGridApi.deselectAll();
+                topGridApi.setGridOption('rowData', []);
+            }
+        // 상단 그리드 선택 시
+        } else if (event.api == topGridApi) {
+            handleTopGridSelection(event, editGridApi, deleteGridApi);
+        }
+    }
+
+    // 상단 그리드 선택 시, 하단 그리드 rowData 설정
+    function handleTopGridSelection(event, editGridApi, deleteGridApi) {
+        const selectedRowData = getGridRowData();
+        editGridApi.setRowData(selectedRowData);
+        deleteGridApi.setRowData(selectedRowData);
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 그리드 로딩
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const gridDiv = document.querySelector('#myGrid');
+        const addGridDiv = document.querySelector("#addGrid");
+        const leftGridDiv = document.querySelector("#leftGrid")
+        const editGridDiv = document.querySelector("#editGrid");
+        const deleteGridDiv = document.querySelector("#deleteGrid");
+
+        new agGrid.Grid(gridDiv, gridOptions);
+        new agGrid.Grid(addGridDiv, addGridOptions);
+        new agGrid.Grid(leftGridDiv, leftGridOptions);
+        new agGrid.Grid(editGridDiv, editGridOptions);
+        new agGrid.Grid(deleteGridDiv, deleteGridOptions);
+    });
+</script>
+
+</html>
