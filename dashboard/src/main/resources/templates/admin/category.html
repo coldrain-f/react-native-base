@@ -352,15 +352,8 @@
             width: 80,
         },
         {headerName: "#", field: "id", width: 80, cellDataType: 'number',},
-        {headerName: "SUBJECT", field: "subject", width: 120,},
+        {headerName: "SUBJECT", field: "subject", width: 230,},
         {headerName: "DESCRIPTION", field: "description", width: 400,},
-        {headerName: "VOCABULARY",
-            field: "vocabulary",
-            width: 150,
-            valueGetter: function(params) {
-                return params.data.vocabulary ? params.data.vocabulary.id : 'null';
-            },
-        },
     ];
 
     const defaultColDef = {
@@ -424,8 +417,8 @@
             headerCheckboxSelection: true,
             width: 80,
         },
-        {headerName: "SUBJECT", field: "subject", width: 120,},
-        {headerName: "DESCRIPTION", field: "description", width: 400,},
+        {headerName: "SUBJECT", field: "subject", width: 250,},
+        {headerName: "DESCRIPTION", field: "description", width: 450,},
     ];
 
     const addDefaultColDef = {
@@ -541,9 +534,8 @@
         },
         {headerName: "#", field: "id", width: 80, editable: false, cellDataType: 'number',
             cellStyle: {'background-color': '#F4F4F4'}},
-        {headerName: "SUBJECT", field: "subject", width: 120,},
-        {headerName: "DESCRIPTION", field: "description", width: 400,},
-        {headerName: "VOCABULARY", field: "vocabulary", width: 150,},
+        {headerName: "SUBJECT", field: "subject", width: 250,},
+        {headerName: "DESCRIPTION", field: "description", width: 450,},
     ];
 
 
@@ -603,16 +595,8 @@
             width: 80,
         },
         {headerName: "#", field: "id", width: 80, cellDataType: 'number',},
-        {headerName: "SUBJECT", field: "subject", width: 120,},
-        {headerName: "DESCRIPTION", field: "description", width: 400,},
-        {headerName: "VOCABULARY",
-            field: "vocabulary",
-            width: 150,
-            cellDataType: 'number',
-            valueGetter: function(params) {
-                return params.data.vocabulary ? params.data.vocabulary.id : '';
-            },
-        },
+        {headerName: "SUBJECT", field: "subject", width: 250,},
+        {headerName: "DESCRIPTION", field: "description", width: 450,},
     ];
 
 
