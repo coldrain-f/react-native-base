@@ -19,38 +19,32 @@
                     <!-- Begin:: 공통 프래그먼트 > NAVBAR -->
                     <nav th:replace="fragments/FRACOM00 :: NAVBAR"></nav>
                     <!-- End:: 공통 프래그먼트 > NAVBAR -->
-                    <!-- Begin:: 필터 토글 버튼 -->
-                    <button id="toggleFilterBtn" class="btn btn-light btn-sm shadow-sm">
-                        토글 버튼
-                    </button>
-                    <!-- End:: 필터 토글 버튼 -->
                 </div>
             </div>
             <div class="row">
                 <!-- Begin:: 그리드 필터 영역 -->
                 <div id="filterArea" class="col-2 bg-light border-end">
-                    <h3 class="fw-semibold mt-3 mb-3" style="cursor: default">Filter</h3>
-                    <div class="border-bottom mb-3"></div>
-                    <div class="mb-3">
-                        <label class="form-label" for="iptFilterVocabulary">단어장</label>
-                        <input class="form-control form-control-sm" list="dlVocabulary" id="iptFilterVocabulary"
-                               placeholder="search...">
-                        <datalist id="dlVocabulary">
-                            <option value="일본어 초등학교 상용한자">
-                        </datalist>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-light btn-sm shadow-sm">
-                            <i class="fas fa-arrow-rotate-right me-1"></i>
-                            초기화
-                        </button>
-                        <button class="btn btn-primary btn-sm shadow-sm">
-                            <i class="fas fa-magnifying-glass me-1"></i>
-                            검색
-                        </button>
+                    <div id="filterAreaBox">
+                        <h3 class="fw-semibold mt-3 mb-3" style="cursor: default">Filter</h3>
+                        <div class="border-bottom mb-3"></div>
+                        <div class="mb-3">
+                            <label class="form-label" for="selectFilterVocabulary">단어장</label>
+                            <select class="form-select form-select-sm" id="selectFilterVocabulary">
+                                <option value="" disabled selected hidden>SELECT...</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-light btn-sm shadow-sm" onclick="filterInit()">
+                                <i class="fas fa-arrow-rotate-right me-1"></i>
+                                초기화
+                            </button>
+                            <button class="btn btn-primary btn-sm shadow-sm" onclick="filterSearch()">
+                                <i class="fas fa-magnifying-glass me-1"></i>
+                                검색
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <!-- End:: 그리드 필터 영역 -->
 
 
                 <!-- Begin:: 그리드 왼쪽 콘텐츠 영역 -->
@@ -228,21 +222,58 @@
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 필터 영역
 
-     document.addEventListener("DOMContentLoaded", function () {
-        // 초기에 필터 영역을 숨김
-        var filterArea = document.getElementById("filterArea");
-        filterArea.style.display = "block";
+    // 검색 실행 시
+    function filterSearch() {
+        const selectFilterVocabulary = document.getElementById("selectFilterVocabulary");
+        const selectedVocabulary = vocabularyList.find(vocabulary => vocabulary.title === selectFilterVocabulary.value);
 
-        // 토글 버튼 클릭 시 필터 영역 토글
-        var toggleFilterBtn = document.getElementById("toggleFilterBtn");
-        toggleFilterBtn.addEventListener("click", function () {
-            if (filterArea.style.display === "none") {
-                filterArea.style.display = "block";
-            } else {
-                filterArea.style.display = "none";
-            }
+        if (selectedVocabulary) {
+            // 선택한 부모의 category 조회
+        }
+    }
+
+    function filterInit() {
+        const selectElements = document.querySelectorAll('select');
+
+        selectElements.forEach(selectElement => {
+            selectElement.value = "";
         });
-    });
+    }
+
+    // GET API로 필터 옵션 조회
+    function fetchFilterData() {
+        const apiUrl = 'http://localhost:8000/api/vocabulary';
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                vocabularyList = Array.isArray(data.content) ? data.content : [];
+                addSelectOptions(vocabularyList.map(entry => entry.title));
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // SelectBox에 옵션 추가 함수
+    function addSelectOptions(options) {
+        const selectFilterVocabulary = document.getElementById("selectFilterVocabulary");
+
+        // API에서 가져온 title 옵션으로 추가
+        options.forEach(function (title) {
+            const optionElement = document.createElement("option");
+            optionElement.value = title;
+            optionElement.text = title;
+            selectFilterVocabulary.appendChild(optionElement);
+        });
+    }
+
+
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 좌측 그리드
@@ -260,7 +291,7 @@
             width: 80,
         },
         {headerName: "#", field: "id", width: 60, cellDataType: 'number',},
-        {headerName: "CATEGORY", field: "category", width: 175},
+        {headerName: "CATEGORY", field: "subject", width: 175},
     ];
 
     // 부모 그리드 컬럼 옵션
@@ -568,7 +599,7 @@
         if (event.api == leftGridApi) {
             if (event.node.isSelected()) {
                 selectedRowId = selectedId;
-                fetchData(selectedId);
+                // 상단 그리드 조회 함수
 
                 // 선택 변경하면 초기화
                 leftGridApi.addEventListener('selectionChanged', function() {
@@ -608,6 +639,9 @@
         new agGrid.Grid(leftGridDiv, leftGridOptions);
         new agGrid.Grid(editGridDiv, editGridOptions);
         new agGrid.Grid(deleteGridDiv, deleteGridOptions);
+
+        // 필터 데이터 조회
+        fetchFilterData();
     });
 </script>
 
