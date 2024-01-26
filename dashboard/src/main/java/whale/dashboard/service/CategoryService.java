@@ -40,10 +40,7 @@ public class CategoryService {
             Category category = categoryRepository.findById(request.getId())
                     .orElseThrow(() -> new CategoryNotFoundException(request.getId()));
 
-            Vocabulary vocabulary = vocabularyRepository.findById(request.getVocabularyId())
-                    .orElseThrow(() -> new VocabularyNotFoundException(request.getVocabularyId()));
-
-            category.change(vocabulary, request.getSubject(), request.getDescription());
+            category.change(request.getSubject(), request.getDescription());
         }
 
     }
@@ -57,7 +54,7 @@ public class CategoryService {
 
             List<Kanji> kanjis = kanjiRepository.findAllByCategory(category);
             for (Kanji kanji : kanjis) {
-                kanji.change(null, kanji.getName(), kanji.getSound(), kanji.getMeaning(), kanji.getStrokeCount());
+                kanji.change(kanji.getName(), kanji.getSound(), kanji.getMeaning(), kanji.getStrokeCount());
             }
 
             categoryRepository.delete(category);

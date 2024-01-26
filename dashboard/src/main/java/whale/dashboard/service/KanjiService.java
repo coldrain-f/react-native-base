@@ -40,10 +40,7 @@ public class KanjiService {
             Kanji kanji = kanjiRepository.findById(request.getId())
                     .orElseThrow(() -> new KanjiNotFoundException(request.getId()));
 
-            Category category = categoryRepository.findById(request.getCategoryId())
-                    .orElseThrow(() -> new CategoryNotFoundException(request.getCategoryId()));
-
-            kanji.change(category, request.getName(), request.getSound(), request.getMeaning(), request.getStrokeCount());
+            kanji.change(request.getName(), request.getSound(), request.getMeaning(), request.getStrokeCount());
         }
     }
 

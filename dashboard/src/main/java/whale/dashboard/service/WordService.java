@@ -40,10 +40,7 @@ public class WordService {
             Word word = wordRepository.findById(request.getId())
                     .orElseThrow(() -> new WordNotFoundException(request.getId()));
 
-            Yomi yomi = yomiRepository.findById(request.getYomiId())
-                    .orElseThrow(() -> new YomiNotFoundException(request.getYomiId()));
-
-            word.change(yomi, request.getName(), request.getMeaning());
+            word.change(request.getName(), request.getMeaning());
         }
     }
 
