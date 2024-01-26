@@ -59,14 +59,10 @@ public class WordDto {
         @NotBlank(message = "Meaning을 입력해주세요.")
         private String meaning;
 
-        @NotNull(message = "Yomi ID를 입력해주세요.")
-        private Long yomiId;
-
-        public ModifyRequest(Long id, String name, String meaning, Long yomiId) {
+        public ModifyRequest(Long id, String name, String meaning) {
             this.id = id;
             this.name = name;
             this.meaning = meaning;
-            this.yomiId = yomiId;
         }
     }
 

@@ -58,14 +58,10 @@ public class CategoryDto {
         @NotBlank(message = "Description을 입력해주세요.")
         private String description;
 
-        @NotNull(message = "Vocabulary ID를 입력해주세요.")
-        private Long vocabularyId;
-
-        public ModifyRequest(Long id, String subject, String description, Long vocabularyId) {
+        public ModifyRequest(Long id, String subject, String description) {
             this.id = id;
             this.subject = subject;
             this.description = description;
-            this.vocabularyId = vocabularyId;
         }
     }
 

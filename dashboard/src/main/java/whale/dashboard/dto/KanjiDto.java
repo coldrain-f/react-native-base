@@ -73,17 +73,12 @@ public class KanjiDto {
         @NotBlank(message = "strokeCount를 입력해주세요.")
         private String strokeCount;
 
-        @NotNull(message = "Category ID를 입력해주세요.")
-        private Long categoryId;
-
-
-        public ModifyRequest(Long id, String name, String sound, String meaning, String strokeCount, Long categoryId) {
+        public ModifyRequest(Long id, String name, String sound, String meaning, String strokeCount) {
             this.id = id;
             this.name = name;
             this.sound = sound;
             this.meaning = meaning;
             this.strokeCount = strokeCount;
-            this.categoryId = categoryId;
         }
     }
 
