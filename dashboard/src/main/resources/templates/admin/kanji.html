@@ -372,7 +372,16 @@
         {headerName: "NAME", field: "name", width: 120,},
         {headerName: "MEANING", field: "meaning", width: 200,},
         {headerName: "SOUND", field: "sound",  width: 200,},
-        {headerName: "STROKE", field: "strokeCount", width: 120, cellDataType: 'number',},
+        {headerName: "STROKE", field: "strokeCount", width: 150,
+            valueFormatter: function(params) {
+                if (params.value) {
+                    return parseFloat(params.value);
+                } else if (typeof params.value != 'number' || isNaN(params.value)) {
+                    return '';
+                }
+            },
+            cellDataType: 'number',
+        },
     ];
 
     const defaultColDef = {
@@ -423,20 +432,29 @@
     // 관리자 페이지 하단 그리드 등록 Tab
 
      const addColumnDefs = [
-        {
-            pinned: "left",
-            sortable: false,
-            filter: false,
-            resizable: false,
-            editable: false,
-            checkboxSelection: true,
-            headerCheckboxSelection: true,
-            width: 80,
+         {
+             pinned: "left",
+             sortable: false,
+             filter: false,
+             resizable: false,
+             editable: false,
+             checkboxSelection: true,
+             headerCheckboxSelection: true,
+             width: 80,
+         },
+         {headerName: "NAME", field: "name", width: 150,},
+         {headerName: "MEANING", field: "meaning", width: 200,},
+         {headerName: "SOUND", field: "sound",  width: 200,},
+         {headerName: "STROKE", field: "strokeCount", width: 150,
+             valueFormatter: function(params) {
+                 if (params.value) {
+                     return parseFloat(params.value);
+                 } else if (typeof params.value != 'number' || isNaN(params.value)) {
+                     return '';
+                 }
+             },
+             cellDataType: 'number',
         },
-        {headerName: "NAME", field: "name", width: 150,},
-        {headerName: "MEANING", field: "meaning", width: 200,},
-        {headerName: "SOUND", field: "sound",  width: 200,},
-        {headerName: "STROKE", field: "strokeCount", width: 150, cellDataType: 'number',},
     ];
 
     const addDefaultColDef = {
@@ -537,7 +555,16 @@
         {headerName: "NAME", field: "name", width: 150,},
         {headerName: "MEANING", field: "meaning", width: 200,},
         {headerName: "SOUND", field: "sound",  width: 200,},
-        {headerName: "STROKE", field: "strokeCount", width: 150, cellDataType: 'number',},
+        {headerName: "STROKE", field: "strokeCount", width: 150,
+            valueFormatter: function(params) {
+                if (params.value) {
+                    return parseFloat(params.value);
+                } else if (typeof params.value != 'number' || isNaN(params.value)) {
+                    return '';
+                }
+            },
+            cellDataType: 'number',
+        },
     ];
 
 
@@ -595,7 +622,16 @@
         {headerName: "NAME", field: "name", width: 150,},
         {headerName: "MEANING", field: "meaning", width: 200,},
         {headerName: "SOUND", field: "sound",  width: 200,},
-        {headerName: "STROKE", field: "strokeCount", width: 150, cellDataType: 'number',},
+        {headerName: "STROKE", field: "strokeCount", width: 150,
+            valueFormatter: function(params) {
+                if (params.value) {
+                    return parseFloat(params.value);
+                } else if (typeof params.value != 'number' || isNaN(params.value)) {
+                    return '';
+                }
+            },
+            cellDataType: 'number',
+        },
     ];
 
     const deleteDefaultColDef = {
