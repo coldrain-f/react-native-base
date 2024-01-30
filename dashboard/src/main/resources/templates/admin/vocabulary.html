@@ -188,7 +188,7 @@
             width: 80,
         },
         {headerName: "#", field: "id", width: 120, cellDataType: 'number',},
-        {headerName: "TITLE", field: "title", width: '250',},
+        {headerName: "TITLE", field: "title", width: '230',},
         {headerName: "DESCRIPTION", field: "description", width: '700'},
     ];
 
@@ -312,11 +312,20 @@
     }
 
     // DB 반영
-    document.getElementsByName("dbUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
+    document.getElementsByName("dbUpdateBtn")[0].addEventListener('click', addGridUpdateRow);
 
     function addGridUpdateRow() {
         const gridApi = addGridOptions.api;
         const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+
+        const fieldNames = addColumnDefs
+            .slice(1) // 첫 번째 열 제외
+            .map(col => col.field);
+
+        // 클라이언트 측 유효성 검사 수행
+        if (!validateForm(addGridOptions, allRowsData, fieldNames)) {
+            return;
+        }
 
         // 서버로 데이터 전송
         fetch('http://localhost:8000/api/vocabulary', {
@@ -399,6 +408,16 @@
         const editGridApi = editGridOptions.api;
         const deleteGridApi = deleteGridOptions.api;
         const allRowsData = editGridApi.getModel().rowsToDisplay.map(row => row.data);
+
+        const fieldNames = editColumnDefs
+            .slice(1) // 첫 번째 열 제외
+            .map(col => col.field);
+
+        // 클라이언트 측 유효성 검사 수행
+        if (!validateForm(editGridOptions, allRowsData, fieldNames)) {
+            // 유효성 검사 실패 시 API 호출 막기
+            return;
+        }
 
         // 서버로 데이터 전송
         fetch('http://localhost:8000/api/vocabulary', {
@@ -542,6 +561,52 @@
         const rowNode = gridApi.getDisplayedRowAtIndex(rowIndex);
         rowNode.setDataValue(columnId, valueToAdd);
         gridApi.refreshCells({force: true});
+    }
+
+    // 유효성 검사 메세지 창
+    function validateField(value, fieldName) {
+        // 값이 존재하지 않거나 공백인 경우
+        console.log(value); // 변수 값 출력
+        if (value === null || typeof value !== 'string' || !value.trim()) {
+            alert(`${fieldName} 란을 입력하세요.`);
+            return false;
+        }
+        return true;
+    }
+
+    // 클라이언트 측 유효성 검사 함수
+    function validateForm(gridOptions, rowsData, fieldNames) {
+        var isEmptyCellFound = false; // 비어있는 셀 확인
+        const gridApi = gridOptions.api;
+
+        for (let i = 0; i < rowsData.length; i++) {
+            const rowData = rowsData[i];
+            for (let j = 0; j < fieldNames.length; j++) {
+                const fieldName = fieldNames[j];
+                const value = rowData[fieldName]; // value 변수 정의
+
+                if (fieldName === 'id') {
+                    continue;
+                }
+
+                if (!rowData || !validateField(rowData[fieldName], fieldName)) {
+                    if (!isEmptyCellFound) {
+                        isEmptyCellFound = true; // 플래그 설정
+                    }
+
+                    // 빈 셀에 포커스
+                    const rowIndex = i;
+                    const colId = fieldName;
+                    gridApi.ensureIndexVisible(rowIndex);
+                    gridApi.setFocusedCell(rowIndex, colId);
+                    gridApi.startEditingCell({ rowIndex: rowIndex, colKey: colId });
+
+                    // 유효성 검사 실패
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
