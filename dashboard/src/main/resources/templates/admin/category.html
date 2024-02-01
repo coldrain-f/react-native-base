@@ -500,8 +500,8 @@
         const deleteGridApi = deleteGridOptions.api;
         const apiUrl = `http://localhost:8000/api/categories`;
 
-        const allRowsData = editGridApi.getModel().rowsToDisplay.map(row => {
-            const { vocabulary, ...rowData} = row.data;
+        const allRowsData = editGridApi.getModel().rowsToDisplay.map(row => row.data);
+        const updateRowsData = allRowsData.map(rowData => {
             return {
                 ...rowData,
                 vocabularyId: selectedRowId
@@ -523,7 +523,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(allRowsData),
+            body: JSON.stringify(updateRowsData),
         })
         .then(data => {
             if(data.ok) {
