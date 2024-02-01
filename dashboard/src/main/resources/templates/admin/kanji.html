@@ -594,14 +594,43 @@
 
 
     // DB 반영
-    document.getElementsByName("dbUpdateBtn")[1].addEventListener('click',editGridUpdateRow);
+    document.getElementsByName("dbUpdateBtn")[1].addEventListener('click', function() {
+        editGridUpdateRow(selectedRowId);
+    });
 
-    function editGridUpdateRow() {
-        const gridApi = editGridOptions.api;
-        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
-        console.log(allRowsData);
-        gridOptions.api.applyTransaction({update: allRowsData});
-        deleteGridOptions.api.refreshCells({force: true});
+    function editGridUpdateRow(id) {
+        const selectedRowId = id;
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const apiUrl = `http://localhost:8000/api/kanjis`;
+
+        const allRowsData = editGridApi.getModel().rowsToDisplay.map(row => row.data);
+        const updateRowData = allRowsData.map(rowData => {
+            return {
+                ...rowData,
+                categoryId: selectedRowId
+            };
+        });
+
+        // 서버로 데이터 전송
+        fetch(apiUrl, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updateRowData),
+        })
+        .then(data => {
+            if(data.ok) {
+                console.log('Response Data:', data);
+                editGridApi.applyTransaction({ remove: allRowsData });
+                deleteGridApi.applyTransaction({ remove: allRowsData });
+                fetchData(selectedRowId);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
