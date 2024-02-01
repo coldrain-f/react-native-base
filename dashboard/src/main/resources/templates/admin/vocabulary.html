@@ -221,34 +221,11 @@
 
         // 체크박스 단일, 다중 선택 옵션
         rowSelection: 'multiple', // single, multiple
-        suppressPaginationPanel: true,
         pagination: true,
-        paginationPageSizeSelector: [5, 10, 20, 50],
-        paginationPageSize: 10,
     };
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // 페이지 이동 버튼에 대한 이벤트 핸들러 추가
-        const nextPageButton = document.querySelector('.ag-button.ag-paging-button.ag-next');
-        const previousPageButton = document.querySelector('.ag-button.ag-paging-button.ag-previous');
-
-        if (nextPageButton && previousPageButton) {
-            nextPageButton.addEventListener('click', function() {
-                gridOptions.api.paginationGoToNextPage();
-            });
-
-            previousPageButton.addEventListener('click', function() {
-                gridOptions.api.paginationGoToPreviousPage();
-            });
-        } else {
-            console.error('Page navigation buttons not found.');
-        }
-    });
-
-
-    // 데이터 가져오는 함수
-    function fetchData(pageNumber, pageSize) {
-        const apiUrl = `http://localhost:8000/api/vocabulary?page=${pageNumber}&size=${pageSize}`;
+    function fetchData() {
+        const apiUrl = 'http://localhost:8000/api/vocabulary';
 
         fetch(apiUrl)
             .then(response => {
@@ -258,26 +235,11 @@
                 return response.json();
             })
             .then(data => {
-                // 전체 데이터 개수 설정
-                const totalRowCount = data.totalElements;
-
-                // AG Grid에 데이터 설정
                 gridOptions.api.setGridOption('rowData', data.content);
             })
             .catch(error => {
                 console.error('Error:', error);
         });
-    }
-
-    // 페이지 변경 이벤트 핸들러
-    function onPageChanged(newPageNumber) {
-        const currentPageSize = gridOptions.api.paginationGetPageSize();
-        fetchData(newPageNumber, currentPageSize);
-    }
-
-    // 선택된 행에 대한 이벤트 핸들러
-    function onRowSelected(event) {
-        console.log('Row selected:', event.node.data);
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
