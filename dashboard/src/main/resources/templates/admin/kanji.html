@@ -431,7 +431,7 @@
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 등록 Tab
 
-     const addColumnDefs = [
+    const addColumnDefs = [
          {
              pinned: "left",
              sortable: false,
@@ -513,6 +513,15 @@
         const gridApi = addGridOptions.api;
         const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
         const selectedRowId = id;
+
+        const fieldNames = addColumnDefs
+            .slice(1)
+            .map(col => col.field);
+
+        // 클라이언트 측 유효성 검사 수행
+        if (!validateForm(addGridOptions, allRowsData, fieldNames)) {
+            return;
+        }
 
         // 서버로 데이터 전송
         fetch(`http://localhost:8000/api/categories/${id}/kanjis`, {
@@ -611,6 +620,15 @@
                 categoryId: selectedRowId
             };
         });
+
+        const fieldNames = editColumnDefs
+            .slice(1)
+            .map(col => col.field);
+
+        // 클라이언트 측 유효성 검사 수행
+        if (!validateForm(editGridOptions, allRowsData, fieldNames)) {
+            return;
+        }
 
         // 서버로 데이터 전송
         fetch(apiUrl, {
@@ -780,6 +798,50 @@
         const selectedRowData = getGridRowData();
         editGridApi.setRowData(selectedRowData);
         deleteGridApi.setRowData(selectedRowData);
+    }
+
+    // 유효성 검사 메세지 창
+    function validateField(value, fieldName) {
+        if (value === null || (typeof value !== 'string' && typeof value !== 'number') || (typeof value === 'string' && !value.trim())) {
+            alert(`${fieldName} 란을 입력하세요.`);
+            return false;
+        }
+        return true;
+    }
+
+    // 클라이언트 측 유효성 검사 함수
+    function validateForm(gridOptions, rowsData, fieldNames) {
+        var isEmptyCellFound = false; // 비어있는 셀 확인
+        const gridApi = gridOptions.api;
+
+        for (let i = 0; i < rowsData.length; i++) {
+            const rowData = rowsData[i];
+            for (let j = 0; j < fieldNames.length; j++) {
+                const fieldName = fieldNames[j];
+                // const value = rowData[fieldName];
+
+                if (fieldName === 'id') {
+                    continue;
+                }
+
+                if (!rowData || !validateField(rowData[fieldName], fieldName)) {
+                    if (!isEmptyCellFound) {
+                        isEmptyCellFound = true;
+                    }
+
+                    // 빈 셀에 포커스
+                    const rowIndex = i;
+                    const colId = fieldName;
+                    gridApi.ensureIndexVisible(rowIndex);
+                    gridApi.setFocusedCell(rowIndex, colId);
+                    gridApi.startEditingCell({ rowIndex: rowIndex, colKey: colId });
+
+                    // 유효성 검사 실패
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
