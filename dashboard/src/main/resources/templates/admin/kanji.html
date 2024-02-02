@@ -222,7 +222,7 @@
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 필터 영역
 
-    // 필터 초기 설정
+    // 필터 초기화 버튼 실행 시
     function filterInit() {
         const selectElements = document.querySelectorAll('select');
 
@@ -231,7 +231,7 @@
         });
     }
 
-     // 검색 실행 시
+     // 필터 검색 버튼 실행 시
     function filterSearch() {
         const leftGridApi = leftGridOptions.api;
         const topGridApi = gridOptions.api;
@@ -244,6 +244,9 @@
              console.log(selectFilterVocabulary.value);
              leftGridApi.deselectAll();
              leftGridApi.setGridOption('rowData', []);
+             selectFilterVocabulary.focus();
+             alert("필터 옵션을 선택하세요.");
+             return;
         }
 
         // filter 옵션 변경 시 그리드 초기화
@@ -253,7 +256,7 @@
     }
 
     // GET API로 필터 옵션 조회
-    function fetchFilterData() {
+    function fetchVocabularyFilterData() {
         const apiUrl = 'http://localhost:8000/api/vocabulary';
 
         fetch(apiUrl)
@@ -269,7 +272,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-            });
+        });
     }
 
     // SelectBox에 옵션 추가 함수
