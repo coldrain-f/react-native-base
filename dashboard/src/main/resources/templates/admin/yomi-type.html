@@ -223,6 +223,23 @@
         pagination: true,
     };
 
+    function fetchData() {
+        const apiUrl = 'http://localhost:8000/api/yomi-types';
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                gridOptions.api.setGridOption('rowData', data.content);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // yomi-type 관리 페이지 하단 그리드 등록 Tab
@@ -471,6 +488,8 @@
         new agGrid.Grid(editGridDiv, editGridOptions);
         new agGrid.Grid(deleteGridDiv, deleteGridOptions);
 
+        // yomi-type 데이터 조회
+        fetchData();
     });
 
 </script>
