@@ -396,8 +396,26 @@
         const editGridApi = editGridOptions.api;
         const deleteGridApi = deleteGridOptions.api;
         const allRowsData = editGridApi.getModel().rowsToDisplay.map(row => row.data);
-        editGridApi.applyTransaction({ remove: allRowsData });
-        deleteGridApi.applyTransaction({ remove: allRowsData });
+
+        // 서버로 데이터 전송
+        fetch('http://localhost:8000/api/yomi-types', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(allRowsData),
+        })
+        .then(data => {
+            if(data.ok) {
+                console.log('Response Data:', data);
+                editGridApi.applyTransaction({ remove: allRowsData });
+                deleteGridApi.applyTransaction({ remove: allRowsData });
+                fetchData();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
