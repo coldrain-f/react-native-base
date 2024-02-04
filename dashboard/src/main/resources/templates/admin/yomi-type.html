@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/FRACOM00 :: HEAD('YOMI-TYPE 관리')">
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Begin:: 공통 프래그먼트 > SIDEBAR -->
+        <div class="col-2 shadow-sm">
+            <div th:replace="fragments/FRACOM00 :: SIDEBAR('yomi-type')"></div>
+        </div>
+        <!-- End:: 공통 프래그먼트 > SIDEBAR -->
+
+        <!-- Begin:: 그리드 영역 -->
+        <div class="col-10 border-start">
+            <div class="row">
+                <div class="col-12 ps-0 pe-0">
+                    <!-- Begin:: 공통 프래그먼트 > NAVBAR -->
+                    <nav th:replace="fragments/FRACOM00 :: NAVBAR"></nav>
+                    <!-- End:: 공통 프래그먼트 > NAVBAR -->
+                </div>
+            </div>
+            <div class="row">
+                <!-- Begin:: 그리드 콘텐츠 영역 -->
+                <div class="col-10 ps-0 pe-0">
+                    <div class="content p-3">
+                        <!-- Begin:: yomi-type 관리 페이지 제목 -->
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="fw-semibold mb-3" style="cursor: default">
+                                    YOMI-TYPE 관리
+                                </h3>
+                            </div>
+                        </div>
+                        <!-- End:: yomi-type 관리 페이지 제목 -->
+
+                        <div class="border-bottom mb-5"></div>
+
+                        <!-- Begin:: yomi-type 관리 페이지 상단 그리드 -->
+                        <div class="row">
+                            <!-- Begin:: yomi-type 관리 페이지 상단 그리드 AG Grid -->
+                            <div id="myGrid" style="height: 40vh; width:100%;"
+                                 class="ag-theme-material pb-3 border-bottom"></div>
+                            <!-- End:: yomi-type 관리 페이지 상단 그리드 AG Grid -->
+                        </div>
+                        <!-- End:: yomi-type 관리 페이지 상단 그리드 -->
+
+                        <!-- Begin:: yomi-type 관리 페이지 하단 그리드 Tabs navs -->
+                        <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="ex-with-icons-tab-1" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-1" role="tab"
+                                   aria-controls="ex-with-icons-tabs-1" aria-selected="true">
+                                    <i class="far fa-square-plus fa-fw me-2"></i>
+                                    등록
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-2" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-2" role="tab"
+                                   aria-controls="ex-with-icons-tabs-2" aria-selected="false">
+                                    <i class="fas fa-pen-to-square fa-fw me-2"></i>
+                                    수정
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="ex-with-icons-tab-3" data-mdb-toggle="tab"
+                                   href="#ex-with-icons-tabs-3" role="tab"
+                                   aria-controls="ex-with-icons-tabs-3" aria-selected="false">
+                                    <i class="far fa-trash-can fa-fw me-2"></i>
+                                    삭제
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End:: yomi-type 관리 페이지 하단 그리드 Tabs navs -->
+
+                        <!-- Begin:: yomi-type 관리 페이지하단 그리드 Tabs content -->
+                        <div class="tab-content" id="ex-with-icons-content">
+                            <!-- Begin:: yomi-type 관리 페이지 하단 그리드 등록 Tab -->
+                            <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-1">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button name="addRowBtn" class="btn btn-info btn-sm ms-2">
+                                            <i class="fas fa-circle-plus me-1"></i>
+                                            행 추가
+                                        </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2">
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: yomi-type 관리 페이지 하단 그리드 등록 Tab AG Grid -->
+                                    <div id="addGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: yomi-type 관리 페이지 하단 그리드 등록 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: yomi-type 관리 페이지 하단 그리드 등록 Tab -->
+
+                            <!-- Begin:: yomi-type 관리 페이지 하단 그리드 수정 Tab -->
+                            <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-2">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2" disabled hidden>
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: yomi-type 관리 페이지 하단 그리드 수정 Tab AG Grid -->
+                                    <div id="editGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: yomi-type 관리 페이지 하단 그리드 수정 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: yomi-type 관리 페이지 하단 그리드 수정 Tab -->
+
+                            <!-- Begin:: yomi-type 관리 페이지 하단 그리드 삭제 Tab -->
+                            <div class="tab-pane fade" id="ex-with-icons-tabs-3" role="tabpanel"
+                                 aria-labelledby="ex-with-icons-tab-3">
+                                <div class="row mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <button name="dbUpdateBtn" class="btn btn-primary btn-sm">
+                                            <i class="far fa-hard-drive me-1"></i>
+                                            DB 반영
+                                        </button>
+                                        <button name="deleteRowBtn" class="btn btn-danger btn-sm ms-2" disabled hidden>
+                                            <i class="fas fa-circle-minus me-1"></i>
+                                            행 삭제
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!-- Begin:: yomi-type 관리 페이지 하단 그리드 삭제 Tab AG Grid -->
+                                    <div id="deleteGrid" style="height: 20vh; width:100%;"
+                                         class="ag-theme-material"></div>
+                                    <!-- End:: yomi-type 관리 페이지 하단 그리드 삭제 Tab AG Grid -->
+                                </div>
+                            </div>
+                            <!-- End:: yomi-type 관리 페이지 하단 그리드 삭제 Tab -->
+                        </div>
+                        <!-- End:: yomi-type 관리 페이지 하단 그리드 Tabs content -->
+                    </div>
+                </div>
+                <!-- End:: 그리드 콘텐츠 영역 -->
+            </div>
+        </div>
+        <!-- End:: 그리드 영역 -->
+    </div>
+</div>
+
+<!-- Begin:: Bootstrap 5 MDB -->
+<div th:replace="fragments/FRACOM00 :: BOOTSTRAP"></div>
+<!-- End:: Bootstrap 5 MDB -->
+</body>
+
+<!--
+    https://www.ag-grid.com/javascript-data-grid/getting-started/
+-->
+<script type="text/javascript">
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // yomi-type 관리 페이지 상단 그리드
+
+    // 상단 그리드 컬럼 설정
+    const columnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 120, cellDataType: 'number',},
+        {headerName: "NAME", field: "name", width: 900,},
+    ];
+
+    // 상단 그리드 컬럼 옵션
+    const defaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: true,
+    }
+
+    // 상단 그리드 초기 데이터
+    const rowData = [];
+
+    // 상단 그리드 전체 옵션
+    const gridOptions = {
+        columnDefs: columnDefs,
+        rowData: rowData,
+        defaultColDef: defaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+
+        // 상단 그리드 선택 이벤트 핸들러
+        onRowSelected: onRowSelected,
+
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: true,
+    };
+
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // yomi-type 관리 페이지 하단 그리드 등록 Tab
+
+    // 등록 그리드 컬럼 설정
+    const addColumnDefs = [
+        {
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            editable: false,
+            checkboxSelection: true,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: true,
+            width: 80,
+        },
+        {headerName: "NAME", field: "name", width: 1000,},
+    ];
+
+    // 등록 그리드 컬럼 옵션
+    const addDefaultColDef = {
+        editable: true,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+    }
+
+    // 등록 그리드 초기 데이터
+    const addRowData = [
+    ];
+
+    // 등록 그리드 전체 옵션
+    const addGridOptions = {
+        columnDefs: addColumnDefs,
+        rowData: addRowData,
+        defaultColDef: addDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: false,
+
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+    };
+
+
+    // 행 추가
+    document.getElementsByName("addRowBtn")[0].addEventListener('click',addNewRow);
+
+    function addNewRow() {
+        const newRow = {};
+        const gridApi = addGridOptions.api;
+        gridApi.applyTransaction({add: [newRow]});
+    }
+
+    // 행 삭제
+    document.getElementsByName("deleteRowBtn")[0].addEventListener('click',addGridDeleteRow);
+
+    function addGridDeleteRow() {
+        const gridApi = addGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        gridApi.applyTransaction({remove: selectedRows});
+    }
+
+    // DB 반영
+    document.getElementsByName("dbUpdateBtn")[0].addEventListener('click',addGridUpdateRow);
+
+    function addGridUpdateRow() {
+        const gridApi = addGridOptions.api;
+        const allRowsData = gridApi.getModel().rowsToDisplay.map(row => row.data);
+    }
+
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // yomi-type 관리 페이지 하단 그리드 수정 Tab
+
+    // 수정 그리드 컬럼 설정
+    const editColumnDefs = [
+        {
+            hide: true,
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            editable: false,
+            checkboxSelection: false,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: false,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 120, editable: false, cellDataType: 'number',
+            cellStyle: {'background-color': '#F4F4F4'}},
+        {headerName: "NAME", field: "name", width: 1000,},
+    ];
+
+    // 수정 그리드 컬럼 옵션
+    const editDefaultColDef = {
+        editable: true,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+    }
+
+    // 수정 그리드 초기 데이터
+    const editRowData = [];
+
+    // 수정 그리드 전체 옵션
+    const editGridOptions = {
+        columnDefs: editColumnDefs,
+        rowData: editRowData,
+        defaultColDef: editDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: false,
+
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+    };
+
+
+    // DB 반영
+    document.getElementsByName("dbUpdateBtn")[1].addEventListener('click',editGridUpdateRow);
+
+    function editGridUpdateRow() {
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const allRowsData = editGridApi.getModel().rowsToDisplay.map(row => row.data);
+        editGridApi.applyTransaction({ remove: allRowsData });
+        deleteGridApi.applyTransaction({ remove: allRowsData });
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // yomi-type 관리 페이지 하단 그리드 삭제 Tab
+
+    // 삭제 그리드 컬럼 설정
+    const deleteColumnDefs = [
+        {
+            hide: true,
+            pinned: "left",
+            sortable: false,
+            filter: false,
+            resizable: false,
+            checkboxSelection: false,
+            // multiple 선택 시 필요
+            headerCheckboxSelection: false,
+            width: 80,
+        },
+        {headerName: "#", field: "id", width: 120, cellDataType: 'number',},
+        {headerName: "NAME", field: "name", width: 1000,},
+    ];
+
+    // 삭제 그리드 컬럼 옵션
+    const deleteDefaultColDef = {
+        editable: false,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        floatingFilter: false,
+    }
+
+    // 삭제 그리드 초기 데이터
+    const deleteRowData = [];
+
+    // 삭제 그리드 전체 옵션
+    const deleteGridOptions = {
+        columnDefs: deleteColumnDefs,
+        rowData: deleteRowData,
+        defaultColDef: deleteDefaultColDef,
+        suppressRowClickSelection: true,
+        groupSelectsChildren: true,
+        rowStyle: { background: '#F4F4F4' },
+
+        // 체크박스 단일, 다중 선택 옵션
+        rowSelection: 'multiple', // single, multiple
+        pagination: false,
+
+        localeText: {
+            noRowsToShow: 'No Rows',
+        },
+    };
+
+
+    // 행 삭제
+    // 삭제 Rows 저장 변수
+    var deletedRows;
+
+    document.getElementsByName("deleteRowBtn")[2].addEventListener('click',deleteGridDeleteRow);
+
+    function deleteGridDeleteRow() {
+        const gridApi = deleteGridOptions.api;
+        const selectedRows = gridApi.getSelectedRows();
+        gridApi.applyTransaction({remove: selectedRows});
+    }
+
+    // DB 반영
+    document.getElementsByName("dbUpdateBtn")[2].addEventListener('click',deleteGridUpdateRow);
+
+    function deleteGridUpdateRow() {
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const allRowsData = deleteGridApi.getModel().rowsToDisplay;
+        const idList = allRowsData.map(row => row.data.id);
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 공통
+
+    // 상단 그리드의 selectedRowData 를 가져오는 함수
+    function getGridRowData() {
+        var api = gridOptions.api;
+        var selectedRows = api.getSelectedRows();
+        return selectedRows;
+    }
+
+    // 셀 선택 이벤트 함수
+    // 수정, 삭제 그리드 rowData 설정
+    function onRowSelected(event) {
+        const editGridApi = editGridOptions.api;
+        const deleteGridApi = deleteGridOptions.api;
+        const selectedRowData = getGridRowData();
+        editGridApi.setGridOption('rowData', selectedRowData);
+        deleteGridApi.setGridOption('rowData', selectedRowData);
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 그리드 로딩
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const gridDiv = document.querySelector('#myGrid');
+        const addGridDiv = document.querySelector("#addGrid");
+        const editGridDiv = document.querySelector("#editGrid");
+        const deleteGridDiv = document.querySelector("#deleteGrid");
+
+        new agGrid.Grid(gridDiv, gridOptions);
+        new agGrid.Grid(addGridDiv, addGridOptions);
+        new agGrid.Grid(editGridDiv, editGridOptions);
+        new agGrid.Grid(deleteGridDiv, deleteGridOptions);
+
+    });
+
+</script>
+
+</html>
