@@ -257,7 +257,7 @@
 
     // GET API로 필터 옵션 조회
     function fetchVocabularyFilterData() {
-        const apiUrl = 'http://localhost:8000/api/vocabulary';
+        const apiUrl = 'http://localhost:8000/api/vocabulary?size=1000';
 
         fetch(apiUrl)
             .then(response => {
@@ -340,7 +340,7 @@
 
     // Category 조회 함수
     function fetchLeftData(id) {
-        const apiUrl = `http://localhost:8000/api/vocabulary/${id}/categories`;
+        const apiUrl = `http://localhost:8000/api/vocabulary/${id}/categories?size=1000`;
 
         fetch(apiUrl)
             .then(response => {
@@ -404,17 +404,24 @@
         defaultColDef: defaultColDef,
         suppressRowClickSelection: true,
         groupSelectsChildren: true,
-        onRowSelected: onRowSelected,
         rowSelection: 'multiple',
-        pagination: true,
+
+        // 상단 그리드 선택 이벤트 핸들러
+        onRowSelected: onRowSelected,
+
         localeText: {
             noRowsToShow: 'No Rows',
         },
+
+        // 페이지네이션 설정
+        pagination: true,
+        paginationPageSizeSelector: [10, 20, 50, 100],
+        paginationPageSize: 20,
     };
 
     // GET API로 좌측 그리드에서 선택한 category의 자식 kanji 조회
     function fetchData(id) {
-        const apiUrl = `http://localhost:8000/api/categories/${id}/kanjis`;
+        const apiUrl = `http://localhost:8000/api/categories/${id}/kanjis?size=1000`;
 
         fetch(apiUrl)
              .then(response => {

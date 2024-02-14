@@ -210,6 +210,7 @@
         defaultColDef: defaultColDef,
         suppressRowClickSelection: true,
         groupSelectsChildren: true,
+        rowSelection: 'multiple',
 
         // 상단 그리드 선택 이벤트 핸들러
         onRowSelected: onRowSelected,
@@ -218,13 +219,14 @@
             noRowsToShow: 'No Rows',
         },
 
-        // 체크박스 단일, 다중 선택 옵션
-        rowSelection: 'multiple', // single, multiple
+        // 페이지네이션 설정
         pagination: true,
+        paginationPageSizeSelector: [10, 20, 50, 100],
+        paginationPageSize: 20,
     };
 
     function fetchData() {
-        const apiUrl = 'http://localhost:8000/api/yomi-types';
+        const apiUrl = 'http://localhost:8000/api/yomi-types?size=1000';
 
         fetch(apiUrl)
             .then(response => {
