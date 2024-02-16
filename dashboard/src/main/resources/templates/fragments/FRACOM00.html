@@ -124,6 +124,20 @@
                         </a>
                     </li>
                     <li>
+                        <a href="#" th:href="@{/admin/yomi-type}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'yomi-type' ? 'text-primary' : 'text-secondary'">
+                            음·훈독 타입 관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/admin/yomi}"
+                           class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                           th:classappend="${route} == 'yomi' ? 'text-primary' : 'text-secondary'">
+                            음·훈독 관리
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" th:href="@{/admin/word}"
                            class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                            th:classappend="${route} == 'word' ? 'text-primary' : 'text-secondary'">
@@ -131,7 +145,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="#" th:href="@{/admin/furigana}"
                            class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                            th:classappend="${route} == 'furigana' ? 'text-primary' : 'text-secondary'">
                             후리가나 관리
