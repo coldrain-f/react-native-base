@@ -23,6 +23,16 @@ public class DashboardController {
         return "/admin/kanji";
     }
 
+    @GetMapping("/yomi-type")
+    public String yomiType() {
+        return "/admin/yomi-type";
+    }
+
+    @GetMapping("/yomi")
+    public String yomi() {
+        return "/admin/yomi";
+    }
+
     @GetMapping("/word")
     public String word() {
         return "/admin/word";
@@ -32,4 +42,5 @@ public class DashboardController {
     public String furigana() {
         return "/admin/furigana";
     }
+
 }
