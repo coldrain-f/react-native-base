@@ -4,6 +4,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+<!-- Begin:: 로딩 스피너 -->
+<div id="loadingSpinner" class="spinner-container">
+    <div class="spinner"></div>
+</div>
+<!-- End:: 로딩 스피너 -->
 <div class="container-fluid">
     <div class="row">
         <!-- Begin:: 공통 프래그먼트 > SIDEBAR -->
@@ -258,6 +263,7 @@
     // GET API로 필터 옵션 조회
     function fetchVocabularyFilterData() {
         const apiUrl = 'http://localhost:8000/api/vocabulary?size=1000';
+        showLoadingSpinner(); // 로딩창 시작
 
         fetch(apiUrl)
             .then(response => {
@@ -272,6 +278,9 @@
             })
             .catch(error => {
                 console.error('Error:', error);
+            })
+            .finally(() => {
+                hideLoadingSpinner(); // 로딩창 끝
         });
     }
 
@@ -341,6 +350,7 @@
     // Category 조회 함수
     function fetchLeftData(id) {
         const apiUrl = `http://localhost:8000/api/vocabulary/${id}/categories?size=1000`;
+        showLoadingSpinner(); // 로딩창 시작
 
         fetch(apiUrl)
             .then(response => {
@@ -354,7 +364,10 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-            });
+            })
+            .finally(() => {
+                hideLoadingSpinner(); // 로딩창 끝
+        });
     }
 
 
@@ -422,6 +435,7 @@
     // GET API로 좌측 그리드에서 선택한 category의 자식 kanji 조회
     function fetchData(id) {
         const apiUrl = `http://localhost:8000/api/categories/${id}/kanjis?size=1000`;
+        showLoadingSpinner(); // 로딩창 시작
 
         fetch(apiUrl)
              .then(response => {
@@ -435,7 +449,10 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-            });
+            })
+            .finally(() => {
+                hideLoadingSpinner(); // 로딩창 끝
+        });
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
@@ -854,6 +871,18 @@
         return true;
     }
 
+    // 로딩 스피너 표시
+    function showLoadingSpinner() {
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        loadingSpinner.style.display = 'block';
+    }
+
+    // 로딩 스피너 숨김
+    function hideLoadingSpinner() {
+        const spinner = document.getElementById('loadingSpinner');
+        loadingSpinner.style.display = 'none';
+    }
+
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 그리드 로딩
 
@@ -871,7 +900,7 @@
         new agGrid.Grid(deleteGridDiv, deleteGridOptions);
 
         // 필터 데이터 조회
-        fetchFilterData();
+        fetchVocabularyFilterData();
     });
 </script>
 

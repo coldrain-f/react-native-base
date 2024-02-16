@@ -4,6 +4,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+<!-- Begin:: 로딩 스피너 -->
+<div id="loadingSpinner" class="spinner-container">
+    <div class="spinner"></div>
+</div>
+<!-- End:: 로딩 스피너 -->
 <div class="container-fluid">
     <div class="row">
         <!-- Begin:: 공통 프래그먼트 > SIDEBAR -->
@@ -244,6 +249,7 @@
 
     function fetchLeftData() {
         const apiUrl = 'http://localhost:8000/api/vocabulary?size=1000';
+        showLoadingSpinner(); // 로딩창 시작
 
         fetch(apiUrl)
             .then(response => {
@@ -257,7 +263,10 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-            });
+            })
+            .finally(() => {
+                hideLoadingSpinner(); // 로딩창 끝
+        });
     }
 
 
@@ -317,6 +326,7 @@
 
     function fetchData(id) {
         const apiUrl = `http://localhost:8000/api/vocabulary/${id}/categories?size=1000`;
+        showLoadingSpinner(); // 로딩창 시작
 
         fetch(apiUrl)
             .then(response => response.json())
@@ -325,7 +335,10 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-            });
+            })
+            .finally(() => {
+                hideLoadingSpinner(); // 로딩창 끝
+        });
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
@@ -728,6 +741,18 @@
             }
         }
         return true;
+    }
+
+    // 로딩 스피너 표시
+    function showLoadingSpinner() {
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        loadingSpinner.style.display = 'block';
+    }
+
+    // 로딩 스피너 숨김
+    function hideLoadingSpinner() {
+        const spinner = document.getElementById('loadingSpinner');
+        loadingSpinner.style.display = 'none';
     }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
