@@ -333,6 +333,9 @@
         const selectElements = document.querySelectorAll('select');
 
         selectElements.forEach(selectElement => {
+            defaultOption = selectElement.querySelector('option');
+            selectElement.innerHTML = "";
+            selectElement.appendChild(defaultOption);
             selectElement.value = "";
         });
     }
@@ -342,8 +345,6 @@
         const leftGridApi = leftGridOptions.api;
         const topGridApi = gridOptions.api;
         const selectFilterVocabulary = document.getElementById("selectFilterVocabulary");
-        // const selectedVocabulary = vocabularyList.find(vocabulary => vocabulary.title === selectFilterVocabulary.value);
-
         const selectElements = document.querySelectorAll('select');
 
          for (const selectElement of selectElements) {
@@ -360,6 +361,7 @@
                  if (selectId === "selectFilterCategory") {
                      const selectedOption = fetchDataList.find(kanji => kanji.name === selectId.value);
                      fetchLeftData(selectedOption.id);
+                     break;
                  }
             }
         }
