@@ -296,11 +296,10 @@
     function resetSelect(selectId) {
         const selectElement = document.getElementById(selectId);
         defaultOption = selectElement.querySelector('option');
-        if (selectElement.value) {
-            selectElement.innerHTML = "";
-            selectElement.appendChild(defaultOption);
-            selectElement.value = "";
-        }
+
+        selectElement.innerHTML = "";
+        selectElement.appendChild(defaultOption);
+        selectElement.value = "";
     }
 
     // SelectBox에 옵션 추가 함수
