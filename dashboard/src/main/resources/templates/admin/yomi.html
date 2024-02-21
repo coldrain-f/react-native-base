@@ -287,6 +287,130 @@
 -->
 <script type="text/javascript">
     // ──────────────────────────────────────────────────────────────────────────────────────────────
+    // 관리자 페이지 필터 영역
+
+    // placeholder용 기본 옵션 저장 변수
+    var defaultOption;
+
+    // select 옵션 초기화 함수
+    function resetSelect(selectId) {
+        const selectElement = document.getElementById(selectId);
+        defaultOption = selectElement.querySelector('option');
+        if (selectElement.value) {
+            selectElement.innerHTML = "";
+            selectElement.appendChild(defaultOption);
+            selectElement.value = "";
+        }
+    }
+
+    // SelectBox에 옵션 추가 함수
+    function addSelectOptions(selectId, data, fieldName) {
+        const selectElement = document.getElementById(selectId);
+        const dataList = Array.isArray(data.content) ? data.content : [];
+        const options = dataList.map(entry => entry[fieldName]);
+
+        // API에서 가져온 title 옵션으로 추가
+        options.forEach(function (option) {
+            const optionElement = document.createElement("option");
+            optionElement.value = option;
+            optionElement.text = option;
+            selectElement.appendChild(optionElement);
+        });
+    }
+
+    // Vocabulary select 요소에 이벤트 리스너 추가
+    document.getElementById("selectFilterVocabulary").addEventListener("change", function() {
+        const selectedVocabulary = this.value;
+        const vocabulary = vocabularyList.find(entry => entry.title === selectedVocabulary);
+        const vocabularyId = vocabulary.id;
+        const categorySelectUrl = `http://localhost:8000/api/vocabulary/${vocabularyId}/categories`;
+
+        resetSelect("selectFilterCategory")
+        fetchFilterData(categorySelectUrl);
+    });
+
+    // 필터 초기화 버튼 실행 시
+    function filterInit() {
+        const selectElements = document.querySelectorAll('select');
+
+        selectElements.forEach(selectElement => {
+            selectElement.value = "";
+        });
+    }
+
+     // 검색 실행 시
+    function filterSearch() {
+        const leftGridApi = leftGridOptions.api;
+        const topGridApi = gridOptions.api;
+        const selectFilterVocabulary = document.getElementById("selectFilterVocabulary");
+        // const selectedVocabulary = vocabularyList.find(vocabulary => vocabulary.title === selectFilterVocabulary.value);
+
+        const selectElements = document.querySelectorAll('select');
+
+         for (const selectElement of selectElements) {
+            const selectId = selectElement.id;
+            const selectedValue = selectElement.value;
+
+             if (!selectedValue) {
+                 leftGridApi.deselectAll();
+                 leftGridApi.setGridOption('rowData', []);
+                 alert("필터 옵션을 선택하세요.");
+                 selectElement.focus();
+                 return;
+             } else if (selectedValue) {
+                 if (selectId === "selectFilterCategory") {
+                     const selectedOption = fetchDataList.find(kanji => kanji.name === selectId.value);
+                     fetchLeftData(selectedOption.id);
+                 }
+            }
+        }
+
+        // filter 옵션 변경 시 그리드 초기화
+        leftGridApi.addEventListener('rowDataUpdated', function() {
+            topGridApi.setGridOption('rowData', []);
+        });
+    }
+
+    // GET API로 필터 옵션 조회
+    function fetchVocabularyFilterData() {
+        const apiUrl = 'http://localhost:8000/api/vocabulary?size=1000';
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                vocabularyList = Array.isArray(data.content) ? data.content : [];
+                addSelectOptions("selectFilterVocabulary", data, "title");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+        });
+    }
+
+    function fetchFilterData(fetchApiUrl) {
+        const apiUrl = fetchApiUrl;
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                fetchDataList = Array.isArray(data.content) ? data.content : [];
+                addSelectOptions("selectFilterCategory", data, "subject");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+        });
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 좌측 그리드
 
     // 부모 그리드 컬럼 설정
@@ -650,6 +774,8 @@
         new agGrid.Grid(leftGridDiv, leftGridOptions);
         new agGrid.Grid(editGridDiv, editGridOptions);
         new agGrid.Grid(deleteGridDiv, deleteGridOptions);
+
+        fetchVocabularyFilterData();
     });
 
 </script>
