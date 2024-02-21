@@ -531,6 +531,25 @@
         paginationPageSize: 20,
     };
 
+    // GET API로 좌측 그리드에서 선택한 kanji의 자식 yomi 조회
+    function fetchData(id) {
+        const apiUrl = `http://localhost:8000/api/kanjis/${id}/yomi?size=1000`;
+
+        fetch(apiUrl)
+             .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                gridOptions.api.setGridOption('rowData', data.content);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+        });
+    }
+
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 하단 그리드 등록 Tab
 
@@ -756,7 +775,7 @@
         if (event.api == leftGridApi) {
             if (event.node.isSelected()) {
                 selectedRowId = selectedId;
-                // 상단 그리드 조회 함수
+                fetchData(selectedRowId);
 
                 // 선택 변경하면 초기화
                 leftGridApi.addEventListener('selectionChanged', function() {
