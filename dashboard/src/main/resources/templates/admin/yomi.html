@@ -338,6 +338,8 @@
             selectElement.appendChild(defaultOption);
             selectElement.value = "";
         });
+
+        fetchVocabularyFilterData();
     }
 
      // 검색 실행 시
@@ -458,6 +460,25 @@
         rowSelection: 'single', // single, multiple
         pagination: false,
     };
+
+    // 좌측 부모 그리드 데이터 로딩
+    function fetchLeftData(id) {
+        const apiUrl = `http://localhost:8000/api/categories/${id}/kanjis`;
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                leftGridOptions.api.setGridOption('rowData', data.content);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 관리자 페이지 상단 그리드
