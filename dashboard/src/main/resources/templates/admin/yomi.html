@@ -607,6 +607,16 @@
         localeText: {
             noRowsToShow: 'No Rows',
         },
+
+        // Gruop 더블 클릭 시 모달 창 생성
+        onCellDoubleClicked: function (params) {
+            const colId = params.column.colId;
+
+            if (colId === 'yomiType') {
+                handleCellDoubleClicked(params, 'add');
+                console.log("add");
+            }
+        },
     };
 
 
@@ -685,6 +695,16 @@
         pagination: false,
         localeText: {
             noRowsToShow: 'No Rows',
+        },
+
+        // Gruop 더블 클릭 시 모달 창 생성
+        onCellDoubleClicked: function (params) {
+            const colId = params.column.colId;
+
+            if (colId === 'yomiType') {
+                handleCellDoubleClicked(params, 'edit');
+                console.log("edit");
+            }
         },
     };
 
@@ -828,6 +848,52 @@
         const spinner = document.getElementById('loadingSpinner');
         loadingSpinner.style.display = 'none';
     }
+
+    // 모달창 옵션 선택 함수
+    function handleCellDoubleClicked(params, gridType) {
+        const colId = params.column.colId;
+        const rowNode = params.node;
+        const colDef = params.colDef;
+        const cellValue = params.value;
+        const rowIndex = rowNode.rowIndex;
+
+        const modalId = gridType === 'add' ? 'addModal' : 'editModal';
+        const btnGroupSelectionId = gridType === 'add' ? 'addBtnGroupSelection' : 'editBtnGroupSelection';
+
+        const groupSelectionModal = new mdb.Modal(document.getElementById(modalId));
+        groupSelectionModal.show();
+
+        // 모달창에서 선택한 옵션 저장 변수
+        var selectedYomiType = null;
+
+        fetch('/api/yomi-types')
+        .then(response => response.json())
+        .then(data => {
+             const yomiTypeArray = Array.isArray(data.content) ? data.content : [data.content];
+
+            // 받아온 yomi-types 목록을 모달창의 select 옵션에 추가
+            const selectElement = $("#" + modalId + ' select');
+            selectElement.empty();
+            yomiTypeArray.forEach(yomiType => {
+                const option = `<option value="${yomiType.id}">${yomiType.name}</option>`;
+                selectElement.append(option);
+            });
+
+            // Group 추가
+            $("#" + btnGroupSelectionId).off('click').on('click', function () {
+                selectedYomiType = yomiTypeArray.find(yomiType => yomiType.id == selectElement.val());
+                console.log(selectedYomiType);
+
+                // yomi-type 그리드에 반영
+                params.node.setDataValue('yomiType', selectedYomiType);
+                groupSelectionModal.hide();
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching yomiType list:', error);
+        });
+    }
+
 
     // ──────────────────────────────────────────────────────────────────────────────────────────────
     // 그리드 로딩
