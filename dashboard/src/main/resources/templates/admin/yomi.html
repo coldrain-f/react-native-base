@@ -512,7 +512,14 @@
         },
         {headerName: "#", field: "id", width: 110, cellDataType: 'number',},
         {headerName: "NAME", field: "name", width: 400,},
-        {headerName: "YOMI TYPE", field: "yomiType", width: 200,},
+        {headerName: "YOMI TYPE", field: "yomiType", width: 180, editable: false,
+            valueGetter: function(params) {
+                return params.data.yomiType ? params.data.yomiType : null;
+            },
+            cellRenderer: function(params) {
+                return params.value ? params.value.name : '';
+            },
+        },
     ];
 
     const defaultColDef = {
@@ -582,7 +589,14 @@
             width: 80,
         },
         {headerName: "NAME", field: "name", width: 450,},
-        {headerName: "YOMI TYPE", field: "yomiType", width: 250,},
+        {headerName: "YOMI TYPE", field: "yomiType", width: 250, editable: false,
+            valueGetter: function(params) {
+                return params.data.yomiType ? params.data.yomiType : null;
+            },
+            cellRenderer: function(params) {
+                return params.value ? params.value.name : '';
+            },
+        },
     ];
 
     const addDefaultColDef = {
@@ -670,7 +684,14 @@
         {headerName: "#", field: "id", width: 80, editable: false, cellDataType: 'number',
             cellStyle: {'background-color': '#F4F4F4'}},
         {headerName: "NAME", field: "name", width: 450,},
-        {headerName: "YOMI TYPE", field: "yomiType", width: 250,},
+        {headerName: "YOMI TYPE", field: "yomiType", width: 250, editable: false,
+            valueGetter: function(params) {
+                return params.data.yomiType ? params.data.yomiType : null;
+            },
+            cellRenderer: function(params) {
+                return params.value ? params.value.name : '';
+            },
+        },
     ];
 
 
@@ -736,7 +757,11 @@
         },
         {headerName: "#", field: "id", width: 80, cellDataType: 'number',},
         {headerName: "NAME", field: "name", width: 450,},
-        {headerName: "YOMI TYPE", field: "yomiType", width: 250,},
+        {headerName: "YOMI TYPE", field: "yomiType", width: 250,
+            valueGetter: function(params) {
+                return params.data.yomiType ? params.data.yomiType.name : 'null';
+            },
+        },
     ];
 
     const deleteDefaultColDef = {
